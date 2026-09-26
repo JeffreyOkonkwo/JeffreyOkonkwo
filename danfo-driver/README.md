@@ -1,46 +1,53 @@
-# Danfo Driver (prototype v0.1)
+# Danfo Craze (prototype v0.3)
 
-An endless-runner vertical slice set on Lagos roads. The whole game is one file with no build step, and it runs in any
-modern browser on phone or laptop. Open `index.html` to play.
+A 3D endless driving game set on Lagos roads. You're a danfo driver: fill your seats, drop passengers at
+their stops on time, get past the go-slow, and make the owner's daily "delivery". The whole game is one HTML file
+(Three.js from a CDN) and runs in the browser on phone or laptop. Open `index.html` to play.
 
 ## Screenshots
 
 | Laptop | Phone |
 |---|---|
 | ![Driving on laptop](screenshots/drive-laptop.png) | ![Driving on phone](screenshots/drive-phone.png) |
-| ![Title screen](screenshots/menu-laptop.png) | ![Title screen on phone](screenshots/menu-phone.png) |
-| ![Passenger mode](screenshots/passenger-laptop.png) | |
+| ![Evening go-slow](screenshots/drive-evening.png) | ![Title screen on phone](screenshots/menu-phone.png) |
+| ![Night run](screenshots/drive-night.png) | |
+| ![Title screen](screenshots/menu-laptop.png) | |
 
-## Modes
+## How to play
 
-- **Drive the danfo**: pick up hailing passengers (14 seats), drop them at named stops before the timer runs out
-  (late means half fare), hop potholes, dodge go-slow traffic, pay LASTMA fines, and chase passengers who run
-  off without paying ("Owo mi da?!"). Taking a one-way shortcut saves distance but sets the police on you for
-  10 seconds. Crash while they're chasing and you pay a "settlement". Boarding passengers fills the
-  **Bus Jam Party** meter: 9 seconds of synthesised afrobeat, bouncing passengers, double naira, and traffic moves out of your way.
-  The day ends when the bus takes 3 hits. The score screen subtracts the owner's ₦12,000 "delivery" from what you made.
-- **Catch the danfo**: you're a passenger late for work. Run, dodge okadas and hawkers, jump open gutters,
-  and reach the loading danfo before it pulls off.
+| Thing on the road | What to do |
+|---|---|
+| Cars, danfos, BRT, keke, okada (some ride against traffic) | Change lane. 3 hits end your day |
+| Potholes, speed bumps | **Hop** (↑ / Space / HOP button) |
+| Broken-down trailer with tree branches on the road | Change lane early |
+| Person crossing the road without warning | Change lane, or hit the horn so they hurry |
+| Waving passenger (green marker) | Drive into them. They pay at their stop |
+| Bus stop | Reach it before the timer runs out, or passengers pay half. Agbero collects ticket money at every stop |
+| LASTMA officer | Avoid their lane or pay a ₦2,000 fine |
+| One-way shortcut | Saves 120 m, but police chase you for 10 s. Crash during the chase and you pay a "settlement" |
+| Runaway passenger (red marker) | Steer into them to collect your money |
+| Horn (H) | Keke, okada and pedestrians in front of you move out of the way |
+| Bus Jam Party (P) | Fills as you pick up passengers: music, double naira, and traffic flies out of your way |
 
-## Controls
+## What keeps you playing
 
-| | Laptop | Phone |
-|---|---|---|
-| Change lane | ← → or A D | swipe left/right, or tap the left/right third of the screen |
-| Hop | ↑ W or Space | swipe up, or tap the middle |
-| Party / horn | P / H | on-screen buttons |
+- **Difficulty**: JJC (easy), Area Driver (normal), Agbero Level (hard).
+- **Levels**: Morning Rush, Afternoon Hustle, Evening Go-slow, Night Run, then Day 2 and beyond. The lighting changes with each level.
+- **Speed keeps climbing** with every level and every kilometre, with "SPEED UP" and distance bonuses along the way.
+- **Combos up to x5** from coins, pickups, clean hops and near misses. A crash resets it.
+- **High score** saved per difficulty (in the browser), with a "NEW HIGH SCORE" banner mid-run.
+- **9 badges** to collect, such as Runaway Hunter, Fast & Furious, Full Bus, Night Rider and Lagos Veteran.
 
-## Art direction
+## Sound
 
-Everything is drawn in code on a canvas in a "clay" style: soft top-lit gradients, dark rims and a highlight on
-every shape. Characters include gele and fila headwear, ankara-dot shirts, a conductor hanging off the door, hawkers
-carrying pure water and gala, the yellow bus with two black stripes and a painted slogan, and a Ghana-must-go bag on the roof rack.
-Sound is synthesised with WebAudio, so the game needs no asset files.
+Everything is synthesised in the browser: traffic rumble, the danfo engine, horns from all sides, police sirens and whistles,
+crowd noise, and an afrobeat-style Bus Jam Party beat. Characters speak (conductor, police, LASTMA, agbero, hawkers, a preacher,
+people fighting, pedestrians) in Yoruba and pidgin, through the device's speech engine, with subtitles.
+Sound and voices can be switched off separately.
 
 ## Research
 
-See [`RESEARCH.md`](RESEARCH.md) for sourced notes on danfo economics, conductor culture, enforcement, policy
-(BITP franchising, Cowry card) and music, plus the game-design takeaways. Figures marked [UNVERIFIED] still need checking.
+See [`RESEARCH.md`](RESEARCH.md) for sourced notes on danfo economics, conductor culture, enforcement and policy.
 
-> Naming note: "Danfo Driver" is also the title of a well-known 2003 song by Mad Melon & Mountain Black.
-> Do a trademark/naming check before any commercial release.
+> Naming note: the earlier working title "Danfo Driver" is also a 2003 song by Mad Melon & Mountain Black.
+> Check "Danfo Craze" for trademarks before any commercial release.
