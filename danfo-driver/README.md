@@ -1,6 +1,6 @@
 # Danfo Craze (prototype v0.4)
 
-A simple swipe runner in the style of Temple Run and Subway Surfers, set on Lagos roads. You drive a danfo that went the
+A simple swipe runner in the style of Temple Run and Subway Surfers, set on Nigerian roads. You drive a danfo that went the
 wrong way down a one-way street, and the police are chasing you. One HTML file with no libraries. Open `index.html` on a
 phone or laptop.
 
@@ -19,7 +19,7 @@ phone or laptop.
 
 Every row of traffic leaves one lane open, and that lane is never more than one swipe from the previous open lane, so there's always a way through.
 The first run slows down and shows a swipe hint the first time you need to dodge and the first time you need to hop.
-The scenery cycles through Oshodi Market, Third Mainland Bridge and Lekki.
+The scenery cycles through Lagos, Third Mainland Bridge, a village road, Abuja, Port Harcourt and Kano.
 
 Sound is synthesised in the browser: afrobeat music, horns, sirens and crowd noise. There's no talking; conductor calls
 appear as speech bubbles.

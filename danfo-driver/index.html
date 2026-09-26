@@ -118,7 +118,7 @@
   <div id="pops"></div>
 
   <div class="overlay title" id="title">
-    <div class="logo"><h1>DANFO<span>CRAZE</span></h1><div class="stripes"></div><span class="tagline ol">Lagos no dey carry last!</span></div>
+    <div class="logo"><h1>DANFO<span>CRAZE</span></h1><div class="stripes"></div><span class="tagline ol">Naija no dey carry last!</span></div>
     <div class="bottom">
       <div class="diffs" role="radiogroup" aria-label="Difficulty">
         <button class="dsel" type="button" role="radio" data-d="easy" aria-checked="false"><b>JJC</b><small>EASY</small></button>
@@ -170,13 +170,23 @@ const DIFFS = { easy: { name: 'JJC', start: 16, max: 36, acc: .14, gap: 1.25, tw
 let diff = 'normal';
 const START = 20;
 const ZONE_LEN = 650;
-const ZONES = [{ k: 'market', name: 'OSHODI MARKET' }, { k: 'bridge', name: 'THIRD MAINLAND BRIDGE' }, { k: 'island', name: 'LEKKI' }];
+const ZONES = [{ k: 'lagos', name: 'LAGOS · OSHODI' }, { k: 'bridge', name: 'THIRD MAINLAND BRIDGE' }, { k: 'village', name: 'VILLAGE ROAD' },
+  { k: 'abuja', name: 'ABUJA' }, { k: 'ph', name: 'PORT HARCOURT' }, { k: 'kano', name: 'KANO' }];
+const ZSHOPS = {
+  lagos: ['SUYA SPOT', 'MAMA PUT', "GOD'S GRACE PHONES", 'AMALA JOINT', 'POS · CASH OUT', 'VULCANIZER', 'BLESSED HANDS SALON', 'IYA BASIRAT BUKKA'],
+  abuja: ['WUSE MARKET', 'ASO VILLA ROAD', 'JABI LAKE MALL', 'CAPITAL HOTEL', 'NATIONAL STADIUM', 'GARKI PLAZA', 'CBD TOWERS'],
+  ph: ['MILE ONE MARKET', 'GARDEN CITY SUYA', 'RUMUOKORO MOTORS', 'BOLI & FISH', 'OIL CITY PHONES', 'PH PEPPER SOUP', 'WATERSIDE POS'],
+  kano: ['KURMI MARKET', 'KILISHI & SUYA', 'ALHAJI TEXTILES', 'SABON GARI STORES', 'DALA HILL SHOP', 'KANO PILLARS FANS'],
+  village: ['MAMA NKECHI PROVISIONS', 'CHURCH OF GOD MISSION', 'PALM WINE JOINT', 'BARBING SALON', 'VILLAGE SQUARE'] };
+const ZSTOPS = { lagos: ['OSHODI', 'OJUELEGBA', 'YABA', 'CMS'], abuja: ['WUSE', 'GARKI', 'MAITAMA', 'KUBWA'], ph: ['MILE ONE', 'RUMUOKORO', 'GARRISON', 'CHOBA'], kano: ['KURMI', 'SABON GARI', 'KOFAR MATA'] };
+const ZCALLS = { lagos: ['Oshodi! Oshodi! Enter!', 'CMS straight!', 'Yaba! Obalende!'], abuja: ['Wuse! Wuse! Enter!', 'Garki! Area One!', 'Kubwa, Kubwa!'],
+  ph: ['Mile One! Mile One!', 'Rumuokoro, Choba!', 'Garrison! Enter quick!'], kano: ['Kurmi! Kurmi market!', 'Sabon Gari! Enter!'], village: ['Village square! Who dey drop?', 'Oya, hold your goat well!'], bridge: ['Third Mainland! No stopping!'] };
 const SLOGANS = ['NO FOOD FOR LAZY MAN', "GOD'S TIME IS THE BEST", 'MONEY MISS ROAD', 'EYES DEY SEE', 'NO KING AS GOD', 'SHINE YOUR EYE'];
 const SHOPS = ['SUYA SPOT', 'MAMA PUT', "GOD'S GRACE PHONES", 'AMALA JOINT', 'POS · CASH OUT', 'VULCANIZER', 'BLESSED HANDS SALON', 'ALHAJI & SONS', 'IYA BASIRAT BUKKA', 'CHOP & CLEAN'];
 const TOWERS = ['EKO TOWER', 'LEKKI MALL', 'TECH HUB', 'ISLAND BANK', 'OCEAN VIEW'];
 const BOARDS = ['BUY LAND FOR EPE', 'JOLLOF WARS · SAT', 'LAGOS · CENTRE OF EXCELLENCE', 'WAKE UP NAIJA · 99.1FM'];
-const STOPNAMES = ['OSHODI', 'OJUELEGBA', 'YABA', 'OBALENDE', 'CMS', 'LEKKI', 'AJAH'];
-const CALLS = ['Oshodi! Oshodi!', 'Wọlé! Wọlé!', 'Enter with your change!', 'Owa! O wa!', 'CMS straight!', 'Shift for back!', 'Yaba! Obalende!'];
+const STOPNAMES = ZSTOPS.lagos;
+const CALLS = ['Enter with your change!', 'Shift for back abeg!', 'One chance remain!', 'Who never pay?', 'Owa! Owa!', 'Driver, go jeje!', 'Oya enter, we dey go!', 'No story, pay your money!'];
 
 let W, H, DPR, U, cx, hy, gy, skyline = [];
 const clouds = Array.from({ length: 6 }, () => ({ x: rand(), y: rand(.05, .24), s: rand(.7, 1.3), v: rand(.004, .012) }));
@@ -415,6 +425,7 @@ function wall(b) {
     }
   }
   ctx.lineWidth = clamp(A.s * .012, 1.2, 3.5); ctx.strokeStyle = OUT; ctx.beginPath(); ctx.moveTo(At.x, At.y); ctx.lineTo(Bt.x, Bt.y); ctx.stroke();
+  if (b.kano && A.s > 40) for (const zz of [b.z + .05, b.z + b.len - .05]) { if (zz < zn || zz > zf) continue; const a = P3(xw, b.h, zz), t = P3(xw, b.h + .16, zz); poly([{ x: a.x - a.s * .04, y: a.y }, { x: a.x + a.s * .04, y: a.y }, t], shade(b.col, .1), 1.5); }
 }
 function goods(b, z) { return ['#ff5a3c', '#ffb000', '#18b86b', '#2f7bff', '#fff'][Math.abs(Math.floor(z * 7 + b.seed)) % 5]; }
 function palm(x, y, s, t) {
@@ -443,6 +454,47 @@ function billboard(x, y, s, o) {
   const w = .9 * s, h = .38 * s; if (w < 8) return;
   for (const sx of [-.3, .3]) flat(x + sx * w - s * .015, y - s * .9, s * .03, s * .9, 1, '#6a6f7e', 1);
   blob(x - w / 2, y - s * .9 - h, w, h, h * .08, o.col); label(o.text, x, y - s * .9 - h / 2, h * .22, '#fff', w * .9);
+}
+function hut(x, y, s, o) {
+  const w = .75 * s, h = .42 * s; if (w < 5) return; shadowE(x, y, w * 1.1);
+  blob(x - w / 2, y - h, w, h, w * .04, o.wall, false);
+  flat(x - w * .1, y - h * .7, w * .2, h * .7, 2, '#3a2418', 1.5); flat(x + w * .22, y - h * .72, w * .14, h * .22, 2, '#3a2418', 1.2);
+  ctx.beginPath(); ctx.moveTo(x - w * .6, y - h + 1); ctx.lineTo(x, y - h - .32 * s); ctx.lineTo(x + w * .6, y - h + 1); ctx.closePath();
+  ctx.fillStyle = o.roof === 'zinc' ? '#a9b3bd' : '#d6a94f'; ctx.fill(); ctx.lineWidth = lwOf(w, h); ctx.strokeStyle = OUT; ctx.stroke();
+  if (o.roof === 'zinc') { ctx.strokeStyle = 'rgba(27,16,36,.35)'; ctx.lineWidth = 1; for (let i = 1; i < 6; i++) { const t = i / 6; ctx.beginPath(); ctx.moveTo(x - w * .6 + w * 1.2 * t, y - h); ctx.lineTo(x, y - h - .32 * s); ctx.stroke(); } }
+}
+function tree(x, y, s) {
+  if (s < 6) return; shadowE(x, y, s * .4);
+  flat(x - s * .04, y - s * .5, s * .08, s * .5, 2, '#8a5a2b', 2);
+  for (const [dx, dy, r] of [[-.16, -.62, .18], [.14, -.64, .18], [0, -.8, .22], [-.02, -.58, .16]]) ball(x + dx * s, y + dy * s, r * s, '#3fae4a');
+  for (let i = 0; i < 4; i++) ball(x + (i - 1.5) * s * .1, y - s * .62 + (i % 2) * s * .1, s * .025, '#ffb000');
+}
+function goat(x, y, s, t) {
+  const w = .26 * s; if (w < 3) return; shadowE(x, y, w * 1.2); const b = Math.abs(Math.sin(t * 6 + x)) * w * .05;
+  for (const dx of [-.3, -.1, .15, .32]) flat(x + dx * w - w * .04, y - w * .35, w * .08, w * .35, 2, '#6b5a4a', 1);
+  blob(x - w * .45, y - w * .72 - b, w * .9, w * .45, w * .2, '#f4efe6', false);
+  blob(x + w * .3, y - w * .95 - b, w * .32, w * .3, w * .12, '#f4efe6', false);
+  ctx.fillStyle = OUT; ctx.beginPath(); ctx.arc(x + w * .5, y - w * .84 - b, w * .035, 0, 7); ctx.fill();
+  ctx.strokeStyle = '#8a7a6a'; ctx.lineWidth = Math.max(1.5, w * .05); ctx.beginPath(); ctx.moveTo(x + w * .4, y - w * .95 - b); ctx.quadraticCurveTo(x + w * .3, y - w * 1.15 - b, x + w * .2, y - w * 1.05 - b); ctx.stroke();
+}
+function landmark(zone) {
+  const base = hy, W2 = W;
+  if (zone === 'abuja') { // Aso Rock
+    ctx.beginPath(); ctx.moveTo(W2 * .52, base); ctx.bezierCurveTo(W2 * .55, base - H * .2, W2 * .72, base - H * .26, W2 * .84, base - H * .15); ctx.bezierCurveTo(W2 * .9, base - H * .1, W2 * .96, base - H * .06, W2, base); ctx.closePath();
+    ctx.fillStyle = '#9a8f86'; ctx.fill(); ctx.lineWidth = 3; ctx.strokeStyle = OUT; ctx.stroke();
+    ctx.fillStyle = 'rgba(255,255,255,.18)'; ctx.beginPath(); ctx.ellipse(W2 * .68, base - H * .17, W2 * .06, H * .03, -.3, 0, 7); ctx.fill();
+    const mr = Math.min(W2, H) * .045; ball(W2 * .22, base - mr * .6, mr, '#ffd166'); for (const mx of [-2.2, 2.2]) flat(W2 * .22 + mx * mr - 2, base - mr * 3, 4, mr * 3, 1, '#fff', 1.5);
+  } else if (zone === 'ph') { // gas flares on the horizon
+    for (const fx of [.16, .27, .82]) { const x = W2 * fx, fh = Math.min(W2, H) * .12; flat(x - 3, base - fh, 6, fh, 1, '#5a5670', 2);
+      const f = 1 + Math.sin(T * 12 + fx * 20) * .15; ctx.fillStyle = '#ff7b25'; ctx.beginPath(); ctx.ellipse(x, base - fh - fh * .12, fh * .08 * f, fh * .2 * f, 0, 0, 7); ctx.fill(); ctx.fillStyle = '#ffe066'; ctx.beginPath(); ctx.ellipse(x, base - fh - fh * .08, fh * .04 * f, fh * .1 * f, 0, 0, 7); ctx.fill(); }
+  } else if (zone === 'kano') { // mud city dome and minaret
+    ctx.fillStyle = '#d49a5e'; ctx.strokeStyle = OUT; ctx.lineWidth = 3;
+    const kr = Math.min(W2, H) * .09; ctx.beginPath(); ctx.arc(W2 * .7, base, kr, Math.PI, 0); ctx.fill(); ctx.stroke(); flat(W2 * .7 + kr * 1.3, base - kr * 2, kr * .3, kr * 2, 2, '#c98b52', 3);
+    ball(W2 * .7 + kr * 1.45, base - kr * 2.1, kr * .2, '#18b86b');
+  } else if (zone === 'village') { // green hills
+    ctx.fillStyle = '#5cbf5a'; ctx.strokeStyle = OUT; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(0, base);
+    for (let i = 0; i <= 8; i++) ctx.quadraticCurveTo(W2 * (i + .5) / 8, base - H * (.08 + (i % 2) * .05), W2 * (i + 1) / 8, base); ctx.fill(); ctx.stroke();
+  }
 }
 function overpass(z, name) {
   const pl = P3(-2.1, 0, z), pr = P3(2.1, 0, z), s = pl.s; if (s < 8) return;
@@ -526,11 +578,11 @@ let G = null, mode = 'title', T = 0, shake = 0, flashA = 0, last = 0;
 const objs = [], props = [], walls = [], parts = [];
 diff = store.get('diff', 'normal'); if (!DIFFS[diff]) diff = 'normal';
 let best = store.get('best.' + diff, 0), bank = store.get('bank', 0), tutDone = store.get('tut', false);
-const BLOCK = new Set(['car', 'danfo', 'keke', 'brt', 'okada']), JUMP = new Set(['pothole', 'branches', 'barrier', 'bump']);
-const LEN = { car: .95, danfo: 1.2, keke: .7, brt: 2.2, okada: .5, pothole: .3, branches: .35, barrier: .2, bump: .2, coin: .2, pax: .3, speaker: .3, magnet: .3 };
+const BLOCK = new Set(['car', 'danfo', 'keke', 'brt', 'okada']), JUMP = new Set(['pothole', 'branches', 'barrier', 'bump', 'goat']);
+const LEN = { car: .95, danfo: 1.2, keke: .7, brt: 2.2, okada: .5, pothole: .3, branches: .35, barrier: .2, bump: .2, goat: .35, coin: .2, pax: .3, speaker: .3, magnet: .3 };
 const NAMES = { car: 'Camry', danfo: 'danfo', keke: 'keke', brt: 'BRT bus', okada: 'okada' };
 
-function zoneAt(z) { return ZONES[((Math.floor((G.dist + z) / ZONE_LEN) % 3) + 3) % 3].k; }
+function zoneAt(z) { const n = ZONES.length; return ZONES[((Math.floor((G.dist + z) / ZONE_LEN) % n) + n) % n].k; }
 function newGame(demo) {
   objs.length = props.length = walls.length = parts.length = 0;
   G = { demo, D: DIFFS[demo ? 'normal' : diff], dist: 0, time: 0, speed: START, score: 0, coins: 0, streak: 0, P: { lane: 1, x: 0, y: 0, jt: 0, sq: 1, tilt: 0 },
@@ -551,7 +603,7 @@ function laneClear(l) { return !objs.some(o => o.lane === l && (BLOCK.has(o.type
 function spawnRow() {
   const z = FAR, r = Math.random(), veh = () => pick(['car', 'car', 'danfo', 'danfo', 'keke', 'brt']);
   const F = clamp(G.free + pick([-1, 0, 0, 1]), 0, 2), B = [0, 1, 2].filter(l => l !== F).sort(() => Math.random() - .5);
-  const low = () => pick(['pothole', 'branches', 'barrier']);
+  const low = () => zoneAt(z) === 'village' ? pick(['pothole', 'pothole', 'goat', 'branches']) : pick(['pothole', 'branches', 'barrier']);
   const early = !tutDone && G.time < 14;
   if (early) {
     if (!G.tut.dodge) { addV(pick(['car', 'danfo']), G.P.lane, z); coinLine(G.P.lane === 1 ? 0 : 1, z, 5); G.free = G.P.lane === 1 ? 0 : 1; }
@@ -581,12 +633,14 @@ function stepScenery(mv) {
     while (G.edge[s] < FAR + 4) {
       const zone = zoneAt(G.edge[s]);
       if (zone === 'bridge') { if (Math.random() < .25) props.push({ kind: 'boat', z: G.edge[s] + 2, x: side * rand(2.6, 4.5) }); if (Math.random() < .2) props.push({ kind: 'billboard', z: G.edge[s] + 1, x: side * 2.1, col: pick(['#2f7bff', '#ff5a3c', '#8b5cf6', '#18b86b']), text: pick(BOARDS) }); G.edge[s] += 4; continue; }
-      const glass = zone === 'island', len = rand(1.2, 2), b = { side, z: G.edge[s], len, glass, h: glass ? rand(1.6, 2.6) : rand(1.05, 1.7), floors: 1 + ri(3),
-        col: glass ? pick(['#7fb8e8', '#9fc8ef', '#b0d4f4']) : pick(['#ff9f7a', '#7ad0c9', '#ffd166', '#b39ddb', '#9ad36a', '#ff8fb1', '#f6c28b']),
+      if (zone === 'village') { const e = G.edge[s]; props.push({ kind: Math.random() < .6 ? 'hut' : 'tree', z: e + 1, x: side * rand(1.7, 2.3), roof: Math.random() < .5 ? 'zinc' : 'thatch', wall: pick(['#b86b3c', '#c47a45', '#a95f33']) });
+        if (Math.random() < .35) props.push({ kind: 'tree', z: e + 2.4, x: side * rand(2.6, 3.4) }); if (Math.random() < .2) props.push({ kind: 'sign', z: e + .5, x: side * 1.5, side, col: pick(['#18b86b', '#2f7bff', '#ff5a3c']), text: pick(ZSHOPS.village) }); G.edge[s] += rand(2.4, 3.6); continue; }
+      const glass = zone === 'abuja', kano = zone === 'kano', len = rand(1.2, 2), b = { side, z: G.edge[s], len, glass, kano, h: glass ? rand(1.6, 2.6) : kano ? rand(.9, 1.3) : rand(1.05, 1.7), floors: 1 + ri(3),
+        col: glass ? pick(['#7fb8e8', '#9fc8ef', '#b0d4f4']) : kano ? pick(['#c98b52', '#b8763f', '#d49a5e']) : pick(['#ff9f7a', '#7ad0c9', '#ffd166', '#b39ddb', '#9ad36a', '#ff8fb1', '#f6c28b']),
         win: pick(['#6ec6ff', '#a0e0ff', '#ffe08a']), awn: pick(['#ff5a3c', '#18b86b', '#2f7bff', '#ffb000', '#8b5cf6']), seed: ri(100) };
       b.floors = Math.max(1, Math.min(b.floors, Math.floor((b.h - .45) / .32)));
       walls.push(b);
-      props.push({ kind: 'sign', z: b.z + len * .5, x: side * 1.62, side, col: pick(['#ff5a3c', '#2f7bff', '#18b86b', '#8b5cf6', '#1b1024']), text: glass ? pick(TOWERS) : pick(SHOPS) });
+      props.push({ kind: 'sign', z: b.z + len * .5, x: side * 1.62, side, col: pick(['#ff5a3c', '#2f7bff', '#18b86b', '#8b5cf6', '#1b1024']), text: pick(ZSHOPS[zone] || SHOPS) });
       G.edge[s] += len + (Math.random() < .15 ? rand(.2, .6) : .02);
     }
   }
@@ -596,14 +650,16 @@ function stepScenery(mv) {
     for (const side of [-1, 1]) {
       const r = Math.random();
       if (zone === 'bridge') { if (r < .35) props.push({ kind: 'lamp', z, x: side * 1.14, side }); continue; }
-      if (r < (zone === 'island' ? .35 : .18)) props.push({ kind: 'palm', z, x: side * 1.38 });
+      if (zone === 'village') { if (r < .25) props.push({ kind: 'goat', z, x: side * rand(1.2, 1.6) }); else if (r < .5) props.push({ kind: 'person', z, x: side * rand(1.2, 1.5), look: randomLook(), pose: Math.random() < .5 ? 'tray' : 'idle' }); continue; }
+      if (zone === 'kano' && r < .3) { props.push({ kind: 'person', z, x: side * rand(1.2, 1.5), look: { skin: pick(SKINS), shirt: pick(['#ffffff', '#e8f0ff', '#cfe8d8']), dots: '#d4af37', pants: '#ffffff', hat: 'fila', hatCol: pick(['#18b86b', '#ff5a3c', '#2f7bff']), gown: true }, pose: 'idle' }); continue; }
+      if (r < (zone === 'abuja' ? .1 : zone === 'ph' ? .3 : .18)) props.push({ kind: 'palm', z, x: side * 1.38 });
       else if (r < .32) props.push({ kind: 'lamp', z, x: side * 1.14, side });
       else if (r < .55) props.push({ kind: 'person', z, x: side * rand(1.25, 1.5), look: randomLook(), pose: Math.random() < .5 ? 'tray' : 'idle' });
-      else if (r < .7 && zone === 'market') props.push({ kind: 'stall', z, x: side * 1.45, col: pick(['#ff5a3c', '#2f7bff', '#18b86b', '#ffb000', '#8b5cf6']), look: randomLook() });
+      else if (r < .7 && (zone === 'lagos' || zone === 'ph' || zone === 'kano')) props.push({ kind: 'stall', z, x: side * 1.45, col: pick(['#ff5a3c', '#2f7bff', '#18b86b', '#ffb000', '#8b5cf6']), look: randomLook() });
     }
   }
   G.stopAcc += mv;
-  if (G.stopAcc > 180) { G.stopAcc = 0; if (zoneAt(FAR) !== 'bridge') { G.stopName = pick(STOPNAMES); props.push({ kind: 'overpass', z: FAR + 3, name: G.stopName }); } }
+  if (G.stopAcc > 180) { G.stopAcc = 0; const zf = zoneAt(FAR); if (ZSTOPS[zf]) { G.stopName = pick(ZSTOPS[zf]); props.push({ kind: 'overpass', z: FAR + 3, name: G.stopName }); } }
 }
 
 // ---------------------------------------------------------------- effects
@@ -660,7 +716,7 @@ function start() {
   audioInit(); newGame(false); mode = 'play'; musicStart();
   show('title', false); show('over', false); show('paused', false); show('hud', true); $('dchip').textContent = DIFFS[diff].name; $('toasts').innerHTML = '';
   toast('POLICE DEY FOLLOW YOU!'); sfx.siren(); setTimeout(() => sfx.siren(), 900);
-  setTimeout(() => say('Oshodi! Oshodi! Wọlé!'), 1200);
+  setTimeout(() => say('Oshodi! Oshodi! Enter!'), 1200);
 }
 function die(kind, what) {
   if (G.dead) return; G.dead = true; G.deadT = 0; G.deadKind = kind; G.deadWhat = what;
@@ -753,7 +809,7 @@ function update(dt) {
 
   if (!G.demo && !G.dead) {
     G.hornT -= dt; if (G.hornT <= 0) { G.hornT = rand(1.8, 4.5); sfx.horn(rand(-1, 1), rand(.025, .055)); if (Math.random() < .25) sfx.crowd(); }
-    G.callNext -= dt; if (G.callNext <= 0) { G.callNext = rand(6, 11); say(pick(CALLS)); }
+    G.callNext -= dt; if (G.callNext <= 0) { G.callNext = rand(6, 11); const zc = ZCALLS[zoneAt(ZP)]; say(Math.random() < .5 && zc ? pick(zc) : pick(CALLS)); }
   }
   if (G.callT > 0) G.callT -= dt;
   G.swerveT += dt;
@@ -770,7 +826,7 @@ function hit(o) {
     burstParts(p.x, p.y - p.s * .55 - P.y * p.s, 5, ['#FFC91A', '#fff3a6'], 120, .35, 150, 4); return;
   }
   if (o.type === 'pax') { o.done = true; o.gone = true; G.pax++; G.chain = Math.min(5, G.chain + 1); G.chainT = 6; const pts = 100 * G.chain * (G.partyT > 0 ? 2 : 1); G.score += pts;
-    sfx.pax(); popText(`+${pts}`, G.chain > 1 ? `PASSENGER x${G.chain}` : 'PASSENGER', 'green'); burstParts(p.x, p.y - p.s * .6, 10, ['#3fe08f', '#fff', '#FFC91A'], 160, .5, 200, 5); say(pick(['Wọlé! Enter!', 'Oya enter, e remain one!', 'Shift for back!'])); return; }
+    sfx.pax(); popText(`+${pts}`, G.chain > 1 ? `PASSENGER x${G.chain}` : 'PASSENGER', 'green'); burstParts(p.x, p.y - p.s * .6, 10, ['#3fe08f', '#fff', '#FFC91A'], 160, .5, 200, 5); say(pick(['Enter! Enter!', 'Oya enter, e remain one!', 'Shift for back!', 'Welcome, sit down!'])); return; }
   if (o.type === 'speaker') { o.done = true; o.gone = true; G.partyT = 7; sfx.power(); toast('BUS JAM PARTY!'); say('Bus jam party! Oya dance!'); return; }
   if (o.type === 'magnet') { o.done = true; o.gone = true; G.magnetT = 9; sfx.power(); toast('NAIRA MAGNET!'); return; }
   if (JUMP.has(o.type)) {
@@ -795,9 +851,12 @@ function drawSky() {
   ball(sx, sy, sr, '#ffe066');
   for (const c of clouds) { const x = c.x * W, y = c.y * H, r = H * .035 * c.s; ctx.fillStyle = '#fff';
     ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.arc(x + r * 1.1, y - r * .4, r * 1.2, 0, 7); ctx.arc(x + r * 2.3, y, r * .9, 0, 7); ctx.fill(); }
-  for (const b of skyline) { ctx.fillStyle = b.c; ctx.fillRect(b.x, hy - b.h, b.w, b.h); ctx.fillStyle = 'rgba(255,255,255,.45)'; for (let y = hy - b.h + 6; y < hy - 4; y += 10) for (let x = b.x + 4; x < b.x + b.w - 5; x += 9) ctx.fillRect(x, y, 3, 4); }
+  const lz = zoneAt(30);
+  if (lz !== 'village') for (const b of skyline) { ctx.fillStyle = b.c; ctx.fillRect(b.x, hy - b.h, b.w, b.h); ctx.fillStyle = 'rgba(255,255,255,.45)'; for (let y = hy - b.h + 6; y < hy - 4; y += 10) for (let x = b.x + 4; x < b.x + b.w - 5; x += 9) ctx.fillRect(x, y, 3, 4); }
 }
+const SIDE = { lagos: ['#f6e0bd', '#ead2aa'], abuja: ['#8fd46a', '#84ca5f'], ph: ['#e6dcc6', '#d9ceb6'], kano: ['#efd49d', '#e3c68b'], village: ['#d9844c', '#cc7843'] };
 function drawGround() {
+  landmark(zoneAt(30));
   ctx.fillStyle = '#e3a86b'; ctx.fillRect(0, hy, W, H - hy);
   const seg = 1.5, z0s = -1.4;
   poly([P3(-1, 0, FAR), P3(1, 0, FAR), P3(1, 0, z0s), P3(-1, 0, z0s)], '#5a5670');
@@ -811,9 +870,9 @@ function drawGround() {
         poly([P3(sd * 1.1, 0, za), P3(sd * 12, 0, za), P3(sd * 12, 0, zb), P3(sd * 1.1, 0, zb)], par ? '#2fb3e8' : '#39c0f2');
         poly([P3(sd * 1.1, 0, za), P3(sd * 1.1, .13, za), P3(sd * 1.1, .13, zb), P3(sd * 1.1, 0, zb)], par ? '#eef3f8' : '#dfe7ef', 1.2);
       } else {
-        poly([P3(sd * 1.1, 0, za), P3(sd * 1.95, 0, za), P3(sd * 1.95, 0, zb), P3(sd * 1.1, 0, zb)], zone === 'island' ? (par ? '#efece6' : '#e2ded6') : (par ? '#f6e0bd' : '#ead2aa'));
+        const sc = SIDE[zone] || SIDE.lagos; poly([P3(sd * 1.1, 0, za), P3(sd * (zone === 'village' || zone === 'abuja' ? 6 : 1.95), 0, za), P3(sd * (zone === 'village' || zone === 'abuja' ? 6 : 1.95), 0, zb), P3(sd * 1.1, 0, zb)], par ? sc[0] : sc[1]);
       }
-      poly([P3(sd * 1.0, 0, za), P3(sd * 1.1, 0, za), P3(sd * 1.1, 0, zb), P3(sd * 1.0, 0, zb)], par ? '#FFC91A' : '#1b1024');
+      poly([P3(sd * 1.0, 0, za), P3(sd * 1.1, 0, za), P3(sd * 1.1, 0, zb), P3(sd * 1.0, 0, zb)], zone === 'village' ? '#a85a2c' : zone === 'abuja' ? (par ? '#fff' : '#18b86b') : par ? '#FFC91A' : '#1b1024');
     }
     if (par) for (const lx of [-.31, .31]) poly([P3(lx - .025, 0, za), P3(lx + .025, 0, za), P3(lx + .025, 0, zb), P3(lx - .025, 0, zb)], '#fff');
   }
@@ -832,6 +891,9 @@ function drawEntity(e) {
       case 'sign': { const q = P3(e.x, .72, e.z); projSign(q.x, q.y, q.s, e); break; }
       case 'billboard': billboard(p.x, p.y, p.s, e); break;
       case 'boat': boat(p.x, p.y, p.s, T); break;
+      case 'hut': hut(p.x, p.y, p.s, e); break;
+      case 'tree': tree(p.x, p.y, p.s); break;
+      case 'goat': goat(p.x, p.y, p.s, T + e.z); break;
       case 'overpass': overpass(e.z, e.name); break;
     }
     ctx.globalAlpha = 1; return;
@@ -849,6 +911,7 @@ function drawEntity(e) {
     case 'pothole': pothole(p); break;
     case 'branches': branches(p); break;
     case 'barrier': barrier(p); break;
+    case 'goat': goat(p.x, p.y, p.s, T); break;
     case 'bump': bump(e.z); break;
     case 'coin': coin(p.x, p.y, p.s, T, e.y * p.s); break;
     case 'pax': { ctx.strokeStyle = '#3fe08f'; ctx.lineWidth = Math.max(2, p.s * .02); ctx.beginPath(); ctx.ellipse(p.x, p.y, p.s * .2, p.s * .05, 0, 0, 7); ctx.stroke(); person(p.x, p.y, p.s, e.look, 'wave', T + e.z); break; }
