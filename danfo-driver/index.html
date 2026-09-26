@@ -33,6 +33,8 @@
     background:rgba(27,16,36,.55);border:3px solid var(--ink);border-radius:999px;padding:2px 14px 2px 4px;font-variant-numeric:tabular-nums}
   .coin-i{width:28px;height:28px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff3a6,#ffc91a 55%,#d99100);
     border:3px solid var(--ink);display:grid;place-items:center;font-size:14px;color:#8a5a00;font-family:"Baloo 2",sans-serif;font-weight:800;line-height:1}
+  .pax-i{position:relative;width:22px;height:26px}.pax-i::before{content:"";position:absolute;left:5px;top:0;width:12px;height:12px;border-radius:50%;background:#a0673f;border:3px solid var(--ink)}.pax-i::after{content:"";position:absolute;left:1px;bottom:0;width:20px;height:11px;border-radius:10px 10px 4px 4px;background:var(--green);border:3px solid var(--ink)}
+  .coins.pax{padding-left:8px}
   .pause{pointer-events:auto;width:46px;height:46px;border-radius:14px;border:3px solid var(--ink);background:#fff;color:var(--ink);
     font-family:"Bungee",Impact,sans-serif;font-size:17px;box-shadow:0 4px 0 var(--ink)}
   .pause:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
@@ -43,6 +45,14 @@
   .toast.small{font-size:clamp(16px,4.2vw,24px);top:56px}
   @keyframes toast{0%{opacity:0;transform:translate(-50%,10px) scale(.5)}14%{opacity:1;transform:translate(-50%,0) scale(1.12)}24%{transform:translate(-50%,0) scale(1)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-24px)}}
 
+  #pops{position:absolute;left:0;right:0;top:50%;pointer-events:none}
+  .pop{position:absolute;left:50%;top:0;font-family:"Bungee",Impact,sans-serif;font-size:clamp(30px,8.5vw,52px);line-height:1;color:#FFC91A;
+    white-space:nowrap;background:var(--ink);padding:8px 20px 10px;border-radius:18px;border:4px solid #FFC91A;box-shadow:0 6px 0 rgba(27,16,36,.6),0 12px 24px rgba(0,0,0,.35);
+    animation:popIn 1.1s cubic-bezier(.2,1.4,.4,1) forwards}
+  .pop small{display:block;text-align:center;font-size:.46em;color:#fff;margin-top:4px}
+  .pop.green{color:#4ff0a0;border-color:#4ff0a0}
+  @keyframes popIn{0%{opacity:0;transform:translate(-50%,20px) scale(.3) rotate(-8deg)}25%{opacity:1;transform:translate(-50%,0) scale(1.1) rotate(-4deg)}40%{transform:translate(-50%,0) scale(1) rotate(-4deg)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-50px) scale(1) rotate(-4deg)}}
+  @media (prefers-reduced-motion:reduce){.pop{animation-duration:.01s;animation-delay:1s}}
   .hint{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);display:grid;justify-items:center;gap:8px;pointer-events:none}
   .hint .arrows{font-family:"Bungee",Impact,sans-serif;font-size:clamp(60px,16vw,110px);line-height:1;color:#fff;animation:nudge .7s ease-in-out infinite alternate}
   .hint.up .arrows{animation-name:nudgeUp}
@@ -66,6 +76,14 @@
     background:linear-gradient(#4ff0a0,var(--green));color:#fff;box-shadow:inset 0 6px 0 rgba(255,255,255,.35),0 8px 0 var(--ink);animation:pulse .8s ease-in-out infinite alternate}
   .play:active{transform:translateY(6px);box-shadow:0 2px 0 var(--ink)}
   @keyframes pulse{to{transform:scale(1.06)}}
+  .diffs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+  .dsel{pointer-events:auto;border:3px solid var(--ink);border-radius:16px;padding:6px 12px 5px;background:rgba(27,16,36,.72);color:#fff;
+    box-shadow:0 4px 0 var(--ink);display:grid;justify-items:center;line-height:1.05;min-width:92px}
+  .dsel b{font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:16px}
+  .dsel small{font-weight:800;font-size:11px;opacity:.85;letter-spacing:.06em}
+  .dsel[aria-checked="true"]{background:var(--danfo);color:var(--ink)}
+  .dsel:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+  .chip.lvl{background:#fff}
   .meta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;font-weight:800}
   .pillm{background:rgba(27,16,36,.72);border:3px solid var(--ink);border-radius:999px;padding:3px 14px;font-size:15px;font-variant-numeric:tabular-nums}
   .small{pointer-events:auto;background:#fff;color:var(--ink);border:3px solid var(--ink);border-radius:12px;padding:5px 14px;font-weight:800;box-shadow:0 3px 0 var(--ink)}
@@ -91,18 +109,24 @@
     <div>
       <div class="score ol" id="score">0</div>
       <div class="best ol" id="best">BEST 0</div>
-      <div class="chips"><span class="chip" id="mult" hidden>x2</span><span class="chip cop" id="cop" hidden>POLICE!</span><span class="chip party" id="pwP" hidden>PARTY</span><span class="chip mag" id="pwM" hidden>MAGNET</span></div>
+      <div class="chips"><span class="chip lvl" id="dchip">AREA DRIVER</span><span class="chip" id="mult" hidden>x2</span><span class="chip cop" id="cop" hidden>POLICE!</span><span class="chip party" id="pwP" hidden>PARTY</span><span class="chip mag" id="pwM" hidden>MAGNET</span></div>
     </div>
-    <div class="right"><div class="coins"><span class="coin-i">₦</span><span id="coins">0</span></div><button class="pause" id="pauseBtn" type="button" aria-label="Pause">II</button></div>
+    <div class="right"><div class="coins pax" aria-label="Passengers"><span class="pax-i"></span><span id="paxN">0</span></div><div class="coins"><span class="coin-i">₦</span><span id="coins">0</span></div><button class="pause" id="pauseBtn" type="button" aria-label="Pause">II</button></div>
   </div>
   <div class="hint" id="hint" hidden><div class="arrows ol" id="hintArrows">←&nbsp;→</div><div class="txt" id="hintTxt">SWIPE TO DODGE</div></div>
   <div id="toasts"></div>
+  <div id="pops"></div>
 
   <div class="overlay title" id="title">
     <div class="logo"><h1>DANFO<span>CRAZE</span></h1><div class="stripes"></div><span class="tagline ol">Lagos no dey carry last!</span></div>
     <div class="bottom">
+      <div class="diffs" role="radiogroup" aria-label="Difficulty">
+        <button class="dsel" type="button" role="radio" data-d="easy" aria-checked="false"><b>JJC</b><small>EASY</small></button>
+        <button class="dsel" type="button" role="radio" data-d="normal" aria-checked="true"><b>AREA DRIVER</b><small>NORMAL</small></button>
+        <button class="dsel" type="button" role="radio" data-d="hard" aria-checked="false"><b>AGBERO</b><small>HARD</small></button>
+      </div>
       <button class="play" id="playBtn" type="button">PLAY</button>
-      <span class="howto ol">Swipe ← → to dodge cars · Swipe ↑ to hop potholes</span>
+      <span class="howto ol">Pick up passengers for points · Swipe ← → to dodge · Swipe ↑ to hop potholes</span>
       <div class="meta"><span class="pillm" id="tBest">BEST 0</span><span class="pillm" id="tCoins">₦ 0 saved</span></div>
       <button class="small" id="soundBtn" type="button">Sound: ON</button>
     </div>
@@ -114,7 +138,7 @@
       <p class="why" id="overWhy"></p>
       <span class="newbest" id="newBest" hidden>NEW BEST!</span>
       <div><div class="lbl">Score</div><div class="big" id="oScore">0</div></div>
-      <div class="row"><div><div class="lbl">Coins</div><b id="oCoins">0</b></div><div><div class="lbl">Best</div><b id="oBest">0</b></div></div>
+      <div class="row"><div><div class="lbl">Passengers</div><b id="oPax">0</b></div><div><div class="lbl">Coins</div><b id="oCoins">0</b></div><div><div class="lbl">Best</div><b id="oBest">0</b></div></div>
       <button class="play" id="againBtn" type="button">PLAY AGAIN</button>
       <button class="small" id="homeBtn" type="button">Home</button>
     </div>
@@ -141,8 +165,10 @@ const OUT = '#1b1024';
 
 // ---------------------------------------------------------------- world
 const LANES = [-0.62, 0, 0.62];
-const D = 6, FAR = 90, ZP = 2, JT = .62, JH = .42;
-const START = 20, MAXS = 46, ACC = .2;
+const D = 6, FAR = 90, ZP = 2, JT = .55, JH = .26;
+const DIFFS = { easy: { name: 'JJC', start: 16, max: 36, acc: .14, gap: 1.25, two: .08 }, normal: { name: 'AREA DRIVER', start: 20, max: 46, acc: .2, gap: 1, two: .2 }, hard: { name: 'AGBERO', start: 25, max: 56, acc: .28, gap: .85, two: .32 } };
+let diff = 'normal';
+const START = 20;
 const ZONE_LEN = 650;
 const ZONES = [{ k: 'market', name: 'OSHODI MARKET' }, { k: 'bridge', name: 'THIRD MAINLAND BRIDGE' }, { k: 'island', name: 'LEKKI' }];
 const SLOGANS = ['NO FOOD FOR LAZY MAN', "GOD'S TIME IS THE BEST", 'MONEY MISS ROAD', 'EYES DEY SEE', 'NO KING AS GOD', 'SHINE YOUR EYE'];
@@ -498,7 +524,8 @@ function say(text) { if (!G || G.demo) return; G.call = text; G.callT = 2.2; }
 // ---------------------------------------------------------------- game state
 let G = null, mode = 'title', T = 0, shake = 0, flashA = 0, last = 0;
 const objs = [], props = [], walls = [], parts = [];
-let best = store.get('best', 0), bank = store.get('bank', 0), tutDone = store.get('tut', false);
+diff = store.get('diff', 'normal'); if (!DIFFS[diff]) diff = 'normal';
+let best = store.get('best.' + diff, 0), bank = store.get('bank', 0), tutDone = store.get('tut', false);
 const BLOCK = new Set(['car', 'danfo', 'keke', 'brt', 'okada']), JUMP = new Set(['pothole', 'branches', 'barrier', 'bump']);
 const LEN = { car: .95, danfo: 1.2, keke: .7, brt: 2.2, okada: .5, pothole: .3, branches: .35, barrier: .2, bump: .2, coin: .2, pax: .3, speaker: .3, magnet: .3 };
 const NAMES = { car: 'Camry', danfo: 'danfo', keke: 'keke', brt: 'BRT bus', okada: 'okada' };
@@ -506,10 +533,10 @@ const NAMES = { car: 'Camry', danfo: 'danfo', keke: 'keke', brt: 'BRT bus', okad
 function zoneAt(z) { return ZONES[((Math.floor((G.dist + z) / ZONE_LEN) % 3) + 3) % 3].k; }
 function newGame(demo) {
   objs.length = props.length = walls.length = parts.length = 0;
-  G = { demo, dist: 0, time: 0, speed: START, score: 0, coins: 0, streak: 0, P: { lane: 1, x: 0, y: 0, jt: 0, sq: 1, tilt: 0 },
+  G = { demo, D: DIFFS[demo ? 'normal' : diff], dist: 0, time: 0, speed: START, score: 0, coins: 0, streak: 0, P: { lane: 1, x: 0, y: 0, jt: 0, sq: 1, tilt: 0 },
     chase: { d: .3, t: demo ? 0 : 3 }, partyT: 0, magnetT: 0, dead: false, deadT: 0, rowAcc: 0, edge: [-1.3, -1.3], propAcc: 0,
     lastPow: 0, nextSpeed: 25, zone: 'market', call: '', callT: 0, callNext: 3, hornT: 2, slogan: pick(SLOGANS), tut: { dodge: tutDone, jump: tutDone, on: null },
-    stopName: pick(STOPNAMES), stopAcc: 0, free: 1, swerveT: 9 };
+    stopName: pick(STOPNAMES), stopAcc: 0, free: 1, swerveT: 9, pax: 0, chain: 0, chainT: 0 };
   for (let i = 0; i < 60; i++) stepScenery(1.6);
 }
 function addO(o) { o.x ??= LANES[o.lane]; o.v ??= 0; o.y ??= 0; objs.push(o); return o; }
@@ -534,14 +561,15 @@ function spawnRow() {
   }
   G.free = F;
   if (r < .22) { addV(veh(), B[0], z); coinLine(F, z, 5); }
-  else if (r < .42) { addV(veh(), B[0], z); addV(veh(), B[1], z); coinLine(F, z, 6); }
+  else if (r < .42) { addV(veh(), B[0], z); if (Math.random() < G.D.two / .2 * .5 + .25 * (G.D.two >= .2)) addV(veh(), B[1], z); coinLine(F, z, 6); }
   else if (r < .56) { addJ(low(), B[0], z); coinArc(B[0], z); if (Math.random() < .5) addJ(low(), F, z); else coinLine(F, z, 4); }
   else if (r < .62) { addJ('bump', 1, z); coinArc(F, z); }
   else if (r < .76) { addV(veh(), B[0], z); addJ(low(), B[1], z); coinLine(F, z, 5); }
   else if (r < .84) { // oncoming okada timed to arrive together with this row, in a blocked lane
     const t = (FAR - ZP) / (G.speed - 5); addV('okada', B[0], ZP + t * (G.speed + 7), -7); addV(veh(), B[1], z); coinLine(F, z, 5); }
-  else if (r < .93) { addO({ type: 'pax', lane: F, z, look: randomLook() }); addV(veh(), B[0], z); }
+  else if (r < .93) { addO({ type: 'pax', lane: F, z, look: randomLook() }); addO({ type: 'pax', lane: F, z: z + 2.5, look: randomLook() }); addV(veh(), B[0], z); }
   else { for (let i = 0; i < 9; i++) addO({ type: 'coin', lane: [0, 1, 2, 1][i % 4], z: z + i * 1.2 }); }
+  if (r < .84 && Math.random() < .5) addO({ type: 'pax', lane: F, z: z - 3, look: randomLook() });
   if (G.time - G.lastPow > 20 && Math.random() < .4) { addO({ type: pick(['speaker', 'magnet']), lane: F, z: z + 5 }); G.lastPow = G.time; }
 }
 function stepScenery(mv) {
@@ -583,6 +611,12 @@ function toast(text, small) {
   if (G && G.demo) return; const d = document.createElement('div'); d.className = 'toast ol' + (small ? ' small' : ''); d.textContent = text;
   $('toasts').append(d); d.addEventListener('animationend', () => d.remove());
 }
+function popText(text, sub, cls = '') {
+  if (G && G.demo) return; const box = $('pops'); box.innerHTML = '';
+  const d = document.createElement('div'); d.className = 'pop ' + cls; d.textContent = text;
+  if (sub) { const s = document.createElement('small'); s.textContent = sub; d.append(s); }
+  box.append(d); d.addEventListener('animationend', () => d.remove());
+}
 function burstParts(x, y, n, cols, spd = 160, life = .6, grav = 400, size = 4) {
   for (let i = 0; i < n; i++) { const a = rand(Math.PI * 2), v = rand(spd * .4, spd); parts.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - spd * .4, g: grav, t: 0, life: rand(life * .6, life), r: rand(size * .6, size), col: pick(cols) }); }
 }
@@ -621,10 +655,10 @@ stage.addEventListener('pointerup', e => {
 
 // ---------------------------------------------------------------- flow
 function show(id, on) { $(id).hidden = !on; }
-function refreshTitle() { $('tBest').textContent = `BEST ${best.toLocaleString()}`; $('tCoins').textContent = `₦ ${bank.toLocaleString()} saved`; $('soundBtn').textContent = `Sound: ${A.on ? 'ON' : 'OFF'}`; }
+function refreshTitle() { document.querySelectorAll('.dsel').forEach(b => b.setAttribute('aria-checked', b.dataset.d === diff)); $('tBest').textContent = `${DIFFS[diff].name} BEST ${best.toLocaleString()}`; $('tCoins').textContent = `₦ ${bank.toLocaleString()} saved`; $('soundBtn').textContent = `Sound: ${A.on ? 'ON' : 'OFF'}`; }
 function start() {
   audioInit(); newGame(false); mode = 'play'; musicStart();
-  show('title', false); show('over', false); show('paused', false); show('hud', true); $('toasts').innerHTML = '';
+  show('title', false); show('over', false); show('paused', false); show('hud', true); $('dchip').textContent = DIFFS[diff].name; $('toasts').innerHTML = '';
   toast('POLICE DEY FOLLOW YOU!'); sfx.siren(); setTimeout(() => sfx.siren(), 900);
   setTimeout(() => say('Oshodi! Oshodi! Wọlé!'), 1200);
 }
@@ -635,11 +669,11 @@ function die(kind, what) {
 }
 function gameOver() {
   mode = 'over'; musicStop(); show('hud', false); show('hint', false);
-  const score = Math.floor(G.score), isBest = score > best; if (isBest) { best = score; store.set('best', best); }
+  const score = Math.floor(G.score), isBest = score > best; if (isBest) { best = score; store.set('best.' + diff, best); }
   bank += G.coins; store.set('bank', bank);
   $('overT').textContent = G.deadKind === 'caught' ? 'CAUGHT!' : 'CRASH!';
   $('overWhy').textContent = G.deadKind === 'caught' ? 'Police don catch you. You stumble twice!' : `You jam ${G.deadWhat === 'okada' ? 'an' : 'a'} ${NAMES[G.deadWhat] || 'car'}. Wahala!`;
-  $('oScore').textContent = score.toLocaleString(); $('oCoins').textContent = G.coins.toLocaleString(); $('oBest').textContent = best.toLocaleString();
+  $('oScore').textContent = score.toLocaleString(); $('oCoins').textContent = G.coins.toLocaleString(); $('oPax').textContent = G.pax; $('oBest').textContent = best.toLocaleString();
   $('newBest').hidden = !isBest; show('over', true); $('againBtn').focus();
 }
 function pause(on) {
@@ -647,6 +681,7 @@ function pause(on) {
   else if (!on && mode === 'paused') { mode = 'play'; show('paused', false); if (A.ctx) A.ctx.resume(); last = performance.now(); }
 }
 function home() { musicStop(); if (A.ctx && A.ctx.state === 'suspended') A.ctx.resume(); mode = 'title'; newGame(true); show('over', false); show('paused', false); show('hud', false); show('hint', false); refreshTitle(); show('title', true); }
+document.querySelectorAll('.dsel').forEach(b => b.onclick = () => { diff = b.dataset.d; store.set('diff', diff); best = store.get('best.' + diff, 0); refreshTitle(); });
 $('playBtn').onclick = start; $('againBtn').onclick = start; $('homeBtn').onclick = home; $('pHomeBtn').onclick = home;
 $('pauseBtn').onclick = () => pause(true); $('resumeBtn').onclick = () => pause(false);
 $('soundBtn').onclick = () => { A.on = !A.on; store.set('sound', A.on); if (A.master) A.master.gain.value = A.on ? .8 : 0; refreshTitle(); };
@@ -675,11 +710,12 @@ function update(dt) {
   const wdt = dt * ws;
   if (!G.dead) {
     G.time += wdt;
-    G.speed = Math.min(MAXS, START + G.time * ACC) * (G.chase.t > 0 && G.chase.recover ? .82 : 1);
+    G.speed = Math.min(G.D.max, G.D.start + G.time * G.D.acc) * (G.chase.t > 0 && G.chase.recover ? .82 : 1);
     if (!G.demo && G.time > G.nextSpeed) { G.nextSpeed += 25; toast('SPEED UP!'); sfx.speed(); }
   } else { G.speed *= Math.max(0, 1 - dt * 6); G.deadT += dt; if (G.deadT > 1.1 && mode === 'play') gameOver(); }
   const mv = G.speed * wdt; G.dist += mv;
-  if (!G.dead && !G.demo) G.score += mv * .5 * (G.partyT > 0 ? 2 : 1);
+  if (!G.dead && !G.demo) G.score += mv * .08;
+  if (G.chainT > 0) { G.chainT -= wdt; if (G.chainT <= 0) G.chain = 0; }
   P.x += (LANES[P.lane] - P.x) * Math.min(1, dt * 16);
   P.tilt += ((LANES[P.lane] - P.x) * .35 - P.tilt) * Math.min(1, dt * 12);
   if (P.jt > 0) { P.jt -= wdt; P.y = Math.max(0, Math.sin(Math.PI * (1 - P.jt / JT))) * JH; if (P.jt <= 0) { P.y = 0; P.sq = .8; if (!G.demo) sfx.land(); const p = P3(P.x, 0, ZP); burstParts(p.x, p.y, 8, ['#e8dcc8', '#fff'], 90, .4, 200, 5); } }
@@ -693,7 +729,7 @@ function update(dt) {
 
   stepScenery(mv);
   G.rowAcc += mv;
-  const gap = Math.max(.75, 1.15 - (G.speed - START) * .012) * (G.speed - 5);
+  const gap = Math.max(.75, 1.15 - (G.speed - G.D.start) * .012) * (G.speed - 5) * G.D.gap;
   if (!G.dead && G.rowAcc > gap) { G.rowAcc = 0; spawnRow(); }
 
   const zn = zoneAt(ZP); if (zn !== G.zone) { G.zone = zn; toast(ZONES.find(z => z.k === zn).name, true); }
@@ -710,7 +746,7 @@ function update(dt) {
     }
     if (!G.dead && !G.demo && BLOCK.has(o.type) && !o.fly && !o.passed && o.z < ZP - (LEN[o.type] || .3) / 2) {
       o.passed = true;
-      if (Math.abs(o.x - P.x) < .75 && G.swerveT < .9) { G.score += 25; G.coins += 2; toast('CHANCE AM! +25', true); sfx.pax(); const pp = P3(P.x, 0, ZP); burstParts(pp.x, pp.y - pp.s * .5, 8, ['#FFC91A', '#fff'], 140, .4, 150, 4); }
+      if (Math.abs(o.x - P.x) < .75 && G.swerveT < .9) { G.score += 30; G.coins += 2; popText('CHANCE AM!', '+30'); sfx.pax(); const pp = P3(P.x, 0, ZP); burstParts(pp.x, pp.y - pp.s * .5, 8, ['#FFC91A', '#fff'], 140, .4, 150, 4); }
     }
     if (o.z < -2.5 || o.fly > 2.2 || (o.done && o.gone)) objs.splice(i, 1);
   }
@@ -730,10 +766,11 @@ function hit(o) {
   const P = G.P, p = P3(P.x, 0, ZP), air = P.y > .12;
   if (o.type === 'coin') {
     if (Math.abs(o.y - P.y) > .22 && G.magnetT <= 0) return;
-    o.done = true; o.gone = true; const v = G.partyT > 0 ? 2 : 1; G.coins += v; G.score += 5 * v; G.streak++; sfx.coin(G.streak);
+    o.done = true; o.gone = true; const v = G.partyT > 0 ? 2 : 1; G.coins += v; G.score += v; G.streak++; sfx.coin(G.streak);
     burstParts(p.x, p.y - p.s * .55 - P.y * p.s, 5, ['#FFC91A', '#fff3a6'], 120, .35, 150, 4); return;
   }
-  if (o.type === 'pax') { o.done = true; o.gone = true; G.coins += 5; G.score += 100; sfx.pax(); toast('+100 PASSENGER!', true); say(pick(['Wọlé! Enter!', 'Oya enter, e remain one!'])); return; }
+  if (o.type === 'pax') { o.done = true; o.gone = true; G.pax++; G.chain = Math.min(5, G.chain + 1); G.chainT = 6; const pts = 100 * G.chain * (G.partyT > 0 ? 2 : 1); G.score += pts;
+    sfx.pax(); popText(`+${pts}`, G.chain > 1 ? `PASSENGER x${G.chain}` : 'PASSENGER', 'green'); burstParts(p.x, p.y - p.s * .6, 10, ['#3fe08f', '#fff', '#FFC91A'], 160, .5, 200, 5); say(pick(['Wọlé! Enter!', 'Oya enter, e remain one!', 'Shift for back!'])); return; }
   if (o.type === 'speaker') { o.done = true; o.gone = true; G.partyT = 7; sfx.power(); toast('BUS JAM PARTY!'); say('Bus jam party! Oya dance!'); return; }
   if (o.type === 'magnet') { o.done = true; o.gone = true; G.magnetT = 9; sfx.power(); toast('NAIRA MAGNET!'); return; }
   if (JUMP.has(o.type)) {
@@ -744,7 +781,7 @@ function hit(o) {
     G.chase.t = 5; G.chase.recover = true; G.streak = 0; shake = .35; sfx.stumble(); P.sq = .75; toast('OOPS! POLICE DEY COME!', true); return;
   }
   if (BLOCK.has(o.type)) {
-    if (G.partyT > 0 || G.demo) { o.fly = 1; o.flyDir = o.x < P.x ? -1 : 1; o.done = true; if (!G.demo) { G.score += 50; sfx.horn(0, .06); burstParts(p.x, p.y - p.s * .4, 10, ['#FFC91A', '#18b86b', '#fff'], 200, .5); } return; }
+    if (G.partyT > 0 || G.demo) { o.fly = 1; o.flyDir = o.x < P.x ? -1 : 1; o.done = true; if (!G.demo) { G.score += 10; sfx.horn(0, .06); burstParts(p.x, p.y - p.s * .4, 10, ['#FFC91A', '#18b86b', '#fff'], 200, .5); } return; }
     die('crash', o.type);
   }
 }
@@ -861,11 +898,11 @@ function render() {
 }
 let hudKey = '';
 function hud() {
-  const s = Math.floor(G.score), key = [s, G.coins, G.partyT > 0, G.magnetT > 0, G.chase.t > 0].join();
+  const s = Math.floor(G.score), key = [s, G.coins, G.pax, G.partyT > 0, G.magnetT > 0, G.chase.t > 0].join();
   if (key === hudKey) return; hudKey = key;
   $('score').textContent = s.toLocaleString(); $('best').textContent = s > best && best > 0 ? 'NEW BEST!' : `BEST ${best.toLocaleString()}`;
-  $('coins').textContent = G.coins.toLocaleString();
-  $('mult').hidden = !(G.partyT > 0); $('pwP').hidden = !(G.partyT > 0); $('pwM').hidden = !(G.magnetT > 0); $('cop').hidden = !(G.chase.t > 0);
+  $('coins').textContent = G.coins.toLocaleString(); $('paxN').textContent = G.pax;
+  $('mult').hidden = !(G.partyT > 0 || G.chain > 1); $('mult').textContent = 'x' + Math.max(G.chain, 1) * (G.partyT > 0 ? 2 : 1); $('pwP').hidden = !(G.partyT > 0); $('pwM').hidden = !(G.magnetT > 0); $('cop').hidden = !(G.chase.t > 0);
 }
 function frame(now) {
   const dt = Math.min(.05, (now - last) / 1000 || 0); last = now;
@@ -875,7 +912,7 @@ function frame(now) {
   requestAnimationFrame(frame);
 }
 resize(); newGame(true); for (let i = 0; i < 90; i++) update(1 / 30); refreshTitle();
-window.__dc = { get G() { return G; } };
+window.__dc = { popText, get G() { return G; } };
 requestAnimationFrame(frame);
 })();
 </script>
