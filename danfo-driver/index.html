@@ -46,10 +46,11 @@
   .pause:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
 
   #toasts{position:absolute;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 160px);pointer-events:none}
-  .toast{position:absolute;left:50%;transform:translateX(-50%);font-family:"Bungee",Impact,sans-serif;font-size:clamp(18px,5vw,30px);
-    color:#fff;white-space:nowrap;animation:toast 1.5s ease-out forwards}
-  .toast.small{font-size:clamp(14px,3.8vw,20px);top:40px}
-  @keyframes toast{0%{opacity:0;transform:translate(-50%,10px) scale(.5)}14%{opacity:1;transform:translate(-50%,0) scale(1.12)}24%{transform:translate(-50%,0) scale(1)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-24px)}}
+  .toast{position:absolute;left:50%;transform:translateX(-50%);font-family:"Bungee",Impact,sans-serif;font-size:clamp(17px,4.6vw,26px);line-height:1.1;
+    color:#FFC91A;background:rgba(27,16,36,.9);border:3px solid #FFC91A;border-radius:14px;padding:6px 16px 7px;box-shadow:0 5px 0 rgba(27,16,36,.5);
+    white-space:nowrap;animation:toast 1.8s ease-out forwards}
+  .toast.tsub{font-size:clamp(13px,3.6vw,17px);top:52px;color:#fff;border-color:rgba(255,255,255,.35)}
+  @keyframes toast{0%{opacity:0;transform:translate(-50%,10px) scale(.7)}14%{opacity:1;transform:translate(-50%,0) scale(1.06)}24%{transform:translate(-50%,0) scale(1)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-16px)}}
 
   #pops{position:absolute;left:14px;top:calc(env(safe-area-inset-top,0px) + 124px);pointer-events:none}
   .pop{position:absolute;left:0;top:0;font-family:"Bungee",Impact,sans-serif;font-size:clamp(15px,4.2vw,20px);line-height:1;color:#FFC91A;
@@ -690,7 +691,7 @@ function stepScenery(mv) {
 
 // ---------------------------------------------------------------- effects
 function toast(text, small) {
-  if (G && G.demo) return; const d = document.createElement('div'); d.className = 'toast ol' + (small ? ' small' : ''); d.textContent = text;
+  if (G && G.demo) return; const d = document.createElement('div'); d.className = 'toast' + (small ? ' tsub' : ''); d.textContent = text;
   $('toasts').append(d); d.addEventListener('animationend', () => d.remove());
 }
 function popText(text, sub, cls = '') {
@@ -1025,6 +1026,7 @@ function frame(now) {
   requestAnimationFrame(frame);
 }
 resize(); newGame(true); for (let i = 0; i < 90; i++) update(1 / 30); refreshTitle();
+if ('serviceWorker' in navigator && location.protocol === 'https:' && /vercel\.app$|danfo/i.test(location.hostname)) { try { navigator.serviceWorker.register('sw.js').catch(() => {}); } catch (e) {} }
 window.__dc = { popText, spawn(t, l, z) { addO({ type: t, lane: l, z, look: t === 'cop' ? COP : randomLook() }); }, get G() { return G; } };
 requestAnimationFrame(frame);
 })();
