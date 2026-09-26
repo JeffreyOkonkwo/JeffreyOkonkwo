@@ -3,6 +3,14 @@
 An endless-runner vertical slice set on Lagos roads. The whole game is one file with no build step, and it runs in any
 modern browser on phone or laptop. Open `index.html` to play.
 
+## Screenshots
+
+| Laptop | Phone |
+|---|---|
+| ![Driving on laptop](screenshots/drive-laptop.png) | ![Driving on phone](screenshots/drive-phone.png) |
+| ![Title screen](screenshots/menu-laptop.png) | ![Title screen on phone](screenshots/menu-phone.png) |
+| ![Passenger mode](screenshots/passenger-laptop.png) | |
+
 ## Modes
 
 - **Drive the danfo**: pick up hailing passengers (14 seats), drop them at named stops before the timer runs out
