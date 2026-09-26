@@ -738,6 +738,16 @@ function start() {
   if (learning()) G.chase.t = 0; else { toast('POLICE DEY FOLLOW YOU!'); sfx.siren(); setTimeout(() => sfx.siren(), 900); }
   setTimeout(() => say('Oshodi! Oshodi! Enter!'), 1200);
 }
+// Police catch you: settle with coins, else with points; with nothing left it's jail.
+function policeCatch(checkpoint) {
+  G.catches = (G.catches || 0) + 1;
+  const coinFee = (checkpoint ? 20 : 10) * G.catches, pointFee = coinFee * 25;
+  if (G.coins >= coinFee) { G.coins -= coinFee; popText(`-${coinFee} COINS`, 'POLICE: SETTLE AM!'); }
+  else if (G.score >= pointFee) { G.score -= pointFee; popText(`-${pointFee} POINTS`, 'POLICE TAKE AM!'); }
+  else { die('caught', checkpoint ? 'cop' : undefined); return; }
+  G.chase.t = 0; G.chase.recover = false; G.chase.d = .05; G.chain = 0; G.streak = 0; shake = .4; flashA = .25;
+  sfx.siren(); say(pick(['Oga abeg, take am!', 'Na so dem dey do!', 'Officer, we dey go!']));
+}
 function die(kind, what) {
   if (G.dead) return; G.dead = true; G.deadT = 0; G.deadKind = kind; G.deadWhat = what;
   shake = .6; flashA = .8; sfx.crash(); sfx.crowd(); if (kind === 'caught') G.chase.d = 0;
@@ -747,8 +757,8 @@ function gameOver() {
   mode = 'over'; musicStop(); show('hud', false); show('hint', false);
   const score = Math.floor(G.score), isBest = score > best; if (isBest) { best = score; store.set('best.' + diff, best); }
   bank += G.coins; store.set('bank', bank);
-  $('overT').textContent = G.deadKind === 'caught' ? 'CAUGHT!' : 'CRASH!';
-  $('overWhy').textContent = G.deadWhat === 'cop' ? 'You drive enter police checkpoint. Dem don hold you!' : G.deadKind === 'caught' ? 'Police don catch you. You stumble twice!' : `You jam ${G.deadWhat === 'okada' ? 'an' : 'a'} ${NAMES[G.deadWhat] || 'car'}. Wahala!`;
+  $('overT').textContent = G.deadKind === 'caught' ? 'JAIL!' : 'CRASH!';
+  $('overWhy').textContent = G.deadKind === 'caught' ? 'Police catch you and you no get money to settle. Dem don carry you go station!' : `You jam ${G.deadWhat === 'okada' ? 'an' : 'a'} ${NAMES[G.deadWhat] || 'car'}. Wahala!`;
   $('oScore').textContent = score.toLocaleString(); $('oCoins').textContent = G.coins.toLocaleString(); $('oPax').textContent = G.pax; $('oBest').textContent = best.toLocaleString();
   $('newBest').hidden = !isBest; show('over', true); $('againBtn').focus();
 }
@@ -860,10 +870,10 @@ function hit(o) {
     if (air) { o.done = true; return; }
     o.done = true;
     if (G.partyT > 0) return;
-    if (G.chase.t > 0 && !G.demo && !learning()) { die('caught'); return; }
+    if (G.chase.t > 0 && !G.demo && !learning()) { policeCatch(false); return; }
     G.chase.t = 5; G.chase.recover = true; G.streak = 0; shake = .35; sfx.stumble(); P.sq = .75; toast('OOPS! POLICE DEY COME!', true); return;
   }
-  if (o.type === 'cop') { o.done = true; if (G.partyT > 0 || G.demo) { o.dodge = true; return; } die('caught', 'cop'); return; }
+  if (o.type === 'cop') { o.done = true; o.dodge = true; if (G.partyT > 0 || G.demo) return; policeCatch(true); return; }
   if (BLOCK.has(o.type)) {
     if (G.partyT > 0 || G.demo) { o.fly = 1; o.flyDir = o.x < P.x ? -1 : 1; o.done = true; if (!G.demo) { G.score += 10; sfx.horn(0, .06); burstParts(p.x, p.y - p.s * .4, 10, ['#FFC91A', '#18b86b', '#fff'], 200, .5); } return; }
     die('crash', o.type);
