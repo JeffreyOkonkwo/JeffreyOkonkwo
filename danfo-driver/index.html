@@ -56,6 +56,8 @@
   .hint{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);display:grid;justify-items:center;gap:8px;pointer-events:none}
   .hint .arrows{font-family:"Bungee",Impact,sans-serif;font-size:clamp(60px,16vw,110px);line-height:1;color:#fff;animation:nudge .7s ease-in-out infinite alternate}
   .hint.up .arrows{animation-name:nudgeUp}
+  .hint.good .txt{background:var(--green)}
+  .hint.bad .txt{background:var(--red)}
   .hint .txt{font-family:"Bungee",Impact,sans-serif;font-size:clamp(20px,5.4vw,30px);color:#fff;background:var(--ink);padding:5px 18px;border-radius:14px}
   @keyframes nudge{from{transform:translateX(-18px)}to{transform:translateX(18px)}}
   @keyframes nudgeUp{from{transform:translateY(14px)}to{transform:translateY(-14px)}}
@@ -63,17 +65,17 @@
   .overlay{position:absolute;inset:0;display:grid;place-items:center;overflow:auto;
     padding:calc(env(safe-area-inset-top,0px) + 16px) 16px calc(env(safe-area-inset-bottom,0px) + 16px)}
   .title{align-content:space-between;justify-items:center;text-align:center;gap:16px;
-    background:linear-gradient(180deg,rgba(27,16,36,.2),rgba(27,16,36,.45) 50%,rgba(27,16,36,.75));-webkit-backdrop-filter:blur(8px) saturate(1.15);backdrop-filter:blur(8px) saturate(1.15)}
-  .logo{display:grid;justify-items:center;gap:8px;margin-top:5vh;transform:rotate(-4deg);animation:bob 2.4s ease-in-out infinite}
-  .logo h1{margin:0;font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:clamp(52px,min(17vw,15vh),128px);line-height:.84;color:var(--danfo);
+    background:linear-gradient(180deg,rgba(27,16,36,.25),rgba(27,16,36,0) 30%,rgba(27,16,36,0) 55%,rgba(27,16,36,.55));-webkit-backdrop-filter:blur(2.5px);backdrop-filter:blur(2.5px)}
+  .logo{display:grid;justify-items:center;gap:6px;margin-top:3vh;transform:rotate(-4deg);animation:bob 2.4s ease-in-out infinite}
+  .logo h1{margin:0;font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:clamp(44px,min(14vw,12vh),108px);line-height:.84;color:var(--danfo);
     -webkit-text-stroke:3px var(--ink);text-shadow:0 8px 0 var(--ink),0 16px 26px rgba(0,0,0,.3)}
   .logo h1 span{display:block;color:#fff}
   .stripes{width:min(380px,74vw);height:22px;border:4px solid var(--ink);border-radius:8px;
     background:linear-gradient(var(--danfo) 0 20%,var(--ink) 20% 42%,var(--danfo) 42% 58%,var(--ink) 58% 80%,var(--danfo) 80%)}
   .tagline{font-family:"Bungee",Impact,sans-serif;font-size:clamp(14px,3.8vw,18px);color:#fff}
   @keyframes bob{50%{transform:rotate(-4deg) translateY(-10px)}}
-  .bottom{display:grid;gap:14px;justify-items:center;margin-bottom:2vh;width:min(440px,100%);background:rgba(27,16,36,.9);
-    border:3px solid rgba(255,255,255,.14);border-radius:28px;padding:18px 16px 16px;box-shadow:0 14px 40px rgba(0,0,0,.45)}
+  .bottom{display:grid;gap:10px;justify-items:center;margin-bottom:1vh;width:min(440px,100%);background:rgba(27,16,36,.88);
+    border:3px solid rgba(255,255,255,.14);border-radius:24px;padding:12px 12px 12px;box-shadow:0 14px 40px rgba(0,0,0,.45)}
   .play{border:4px solid var(--ink);border-radius:24px;padding:14px 46px;font-family:"Bungee",Impact,sans-serif;font-size:clamp(26px,7vw,36px);
     background:linear-gradient(#4ff0a0,var(--green));color:#fff;box-shadow:inset 0 6px 0 rgba(255,255,255,.35),0 8px 0 var(--ink);animation:pulse .8s ease-in-out infinite alternate}
   .play:active{transform:translateY(6px);box-shadow:0 2px 0 var(--ink)}
@@ -86,10 +88,12 @@
   .dsel[aria-checked="true"]{background:var(--danfo);color:var(--ink)}
   .dsel:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
   .chip.lvl{background:#fff}
-  .meta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;font-weight:800}
-  .pillm{background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.18);border-radius:999px;padding:3px 14px;font-size:15px;font-variant-numeric:tabular-nums}
+  .meta{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;font-weight:800}
+  .title .play{padding:10px 44px;font-size:clamp(24px,6.4vw,32px)}
+  .sound{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);right:14px;padding:4px 10px;font-size:13px}
+  .pillm{background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.18);border-radius:999px;padding:2px 12px;font-size:13px;font-variant-numeric:tabular-nums}
   .small{pointer-events:auto;background:#fff;color:var(--ink);border:3px solid var(--ink);border-radius:12px;padding:5px 14px;font-weight:800;box-shadow:0 3px 0 var(--ink)}
-  .howto{font-weight:700;font-size:14px;line-height:1.35;color:#fff;opacity:.9;max-width:34ch}
+  .howto{font-weight:700;font-size:13px;line-height:1.35;color:#fff;opacity:.9;max-width:34ch}
   .coin-i.sm{display:inline-grid;width:18px;height:18px;font-size:10px;border-width:2px;vertical-align:-3px;margin-right:5px}
   .card{width:min(360px,100%);background:#fff;color:var(--ink);border:4px solid var(--ink);border-radius:26px;box-shadow:0 8px 0 var(--ink);
     padding:18px 18px 20px;display:grid;gap:10px;justify-items:center;text-align:center}
@@ -131,8 +135,8 @@
       <button class="play" id="playBtn" type="button">PLAY</button>
       <span class="howto">Pick up passengers for points.<br>Swipe ← → to dodge · Swipe ↑ to hop potholes</span>
       <div class="meta"><span class="pillm" id="tBest">BEST 0</span><span class="pillm" id="tCoins">₦ 0 saved</span></div>
-      <button class="small" id="soundBtn" type="button">Sound: ON</button>
-    </div>
+      </div>
+    <button class="small sound" id="soundBtn" type="button">Sound: ON</button>
   </div>
 
   <div class="overlay" id="over" hidden>
@@ -259,6 +263,7 @@ function person(x, y, s, look, pose, t, back = false) {
   const bw = u * .48, bh = u * .36, by = y - legH - bh + u * .05, armW = u * .11, armL = u * .28, sy = by + u * .06;
   let aL = .3, aR = -.3;
   if (pose === 'wave') aR = Math.PI * .85 + Math.sin(t * 10) * .3;
+  if (pose === 'hail') { aL = Math.PI * .8 + Math.sin(t * 11) * .3; aR = -Math.PI * .8 - Math.sin(t * 11 + 1.2) * .3; }
   if (run) { aL = .4 + ph * .7; aR = -.4 - ph * .7; }
   if (pose === 'hang') { aL = Math.PI * .95; aR = -1.3 + Math.sin(t * 7) * .35; }
   if (pose === 'stop') aR = Math.PI * .98;
@@ -278,11 +283,12 @@ function person(x, y, s, look, pose, t, back = false) {
     for (const sx of [-.36, .36]) { ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.ellipse(hx + sx * hr, hy2 - hr * .02, hr * .2, hr * .24, 0, 0, 7); ctx.fill(); }
     ctx.fillStyle = OUT; for (const sx of [-.32, .4]) { ctx.beginPath(); ctx.arc(hx + sx * hr, hy2 + hr * .02, hr * .11, 0, 7); ctx.fill(); }
     ctx.strokeStyle = OUT; ctx.lineWidth = Math.max(1, hr * .1); ctx.beginPath();
-    if (pose === 'wave' || pose === 'hang' || pose === 'dance' || pose === 'stop') { ctx.fillStyle = '#5a0f0a'; ctx.ellipse(hx, hy2 + hr * .45, hr * .2, hr * .16, 0, 0, 7); ctx.fill(); }
+    if (pose === 'wave' || pose === 'hail' || pose === 'hang' || pose === 'dance' || pose === 'stop') { ctx.fillStyle = '#5a0f0a'; ctx.ellipse(hx, hy2 + hr * .45, hr * .2, hr * .16, 0, 0, 7); ctx.fill(); }
     else { ctx.arc(hx, hy2 + hr * .22, hr * .3, .35, Math.PI - .35); ctx.stroke(); }
   }
   if (look.hat === 'gele') { ctx.save(); ctx.translate(hx, hy2 - hr * .8); blob(-hr * 1.4, -hr * .6, hr * 2.8, hr * 1, hr * .5, look.hatCol); ctx.restore(); }
   else if (look.hat === 'fila') { ctx.save(); ctx.translate(hx, hy2 - hr * .85); ctx.rotate(-.22); blob(-hr * .78, -hr * .45, hr * 1.56, hr * .62, hr * .16, look.hatCol); ctx.restore(); }
+  else if (look.hat === 'police') { ctx.fillStyle = '#1b1b24'; ctx.beginPath(); ctx.arc(hx, hy2 - hr * .25, hr * 1.05, Math.PI, 0); ctx.fill(); ctx.lineWidth = clamp(hr * .12, 1, 2.6); ctx.strokeStyle = OUT; ctx.stroke(); flat(hx - hr, hy2 - hr * .38, hr * 2, hr * .26, hr * .1, '#2a2a36', 1); ball(hx, hy2 - hr * .72, hr * .2, '#FFC91A'); }
   else if (look.hat === 'cap') { ctx.fillStyle = look.hatCol; ctx.beginPath(); ctx.arc(hx, hy2 - hr * .2, hr * 1.03, Math.PI, 0); ctx.fill(); ctx.lineWidth = clamp(hr * .12, 1, 2.6); ctx.strokeStyle = OUT; ctx.stroke(); if (!back) flat(hx - hr * .95, hy2 - hr * .34, hr * 1.9, hr * .24, hr * .1, shade(look.hatCol, -.15), 1); }
   if (pose === 'tray') { const ty = hy2 - hr * 1.3; flat(hx - hr * 1.6, ty, hr * 3.2, hr * .34, hr * .12, '#c48a45', 1.2); for (let i = 0; i < 4; i++) blob(hx - hr * 1.35 + i * hr * .7, ty - hr * .5, hr * .55, hr * .5, hr * .15, ['#e9f4ff', '#ff4d4d', '#ffc91a', '#e9f4ff'][i], false); }
 }
@@ -499,6 +505,11 @@ function landmark(zone) {
     for (let i = 0; i <= 8; i++) ctx.quadraticCurveTo(W2 * (i + .5) / 8, base - H * (.08 + (i % 2) * .05), W2 * (i + 1) / 8, base); ctx.fill(); ctx.stroke();
   }
 }
+function marker(x, y, s, col, kind) {
+  const r = s * .06; if (r < 2) return; const b = Math.sin(T * 6) * r * .35;
+  if (kind === 'down') { ctx.beginPath(); ctx.moveTo(x - r, y - r * 1.2 + b); ctx.lineTo(x + r, y - r * 1.2 + b); ctx.lineTo(x, y + b); ctx.closePath(); ctx.fillStyle = col; ctx.fill(); ctx.lineWidth = clamp(r * .25, 1.5, 3); ctx.strokeStyle = OUT; ctx.stroke(); }
+  else { ball(x, y - r * .6, r * .9, col); label('!', x, y - r * .55, r * 1.3, '#fff', r * 2); }
+}
 function overpass(z, name) {
   const pl = P3(-2.1, 0, z), pr = P3(2.1, 0, z), s = pl.s; if (s < 8) return;
   const deckY = P3(0, 1.0, z).y, deckB = P3(0, .86, z).y;
@@ -581,16 +592,17 @@ let G = null, mode = 'title', T = 0, shake = 0, flashA = 0, last = 0;
 const objs = [], props = [], walls = [], parts = [];
 diff = store.get('diff', 'normal'); if (!DIFFS[diff]) diff = 'normal';
 let best = store.get('best.' + diff, 0), bank = store.get('bank', 0), tutDone = store.get('tut', false);
-const BLOCK = new Set(['car', 'danfo', 'keke', 'brt', 'okada']), JUMP = new Set(['pothole', 'branches', 'barrier', 'bump', 'goat']);
-const LEN = { car: .95, danfo: 1.2, keke: .7, brt: 2.2, okada: .5, pothole: .3, branches: .35, barrier: .2, bump: .2, goat: .35, coin: .2, pax: .3, speaker: .3, magnet: .3 };
+const BLOCK = new Set(['car', 'danfo', 'keke', 'brt', 'okada', 'cop']), JUMP = new Set(['pothole', 'branches', 'barrier', 'bump', 'goat']);
+const LEN = { car: .95, danfo: 1.2, keke: .7, brt: 2.2, okada: .5, pothole: .3, branches: .35, barrier: .2, bump: .2, goat: .35, cop: .3, coin: .2, pax: .3, speaker: .3, magnet: .3 };
 const NAMES = { car: 'Camry', danfo: 'danfo', keke: 'keke', brt: 'BRT bus', okada: 'okada' };
+const COP = { skin: '#5a3320', shirt: '#1b1b24', dots: '#1b1b24', pants: '#1b1b24', hat: 'police' };
 
 function zoneAt(z) { const n = ZONES.length; return ZONES[((Math.floor((G.dist + z) / ZONE_LEN) % n) + n) % n].k; }
 function newGame(demo) {
   objs.length = props.length = walls.length = parts.length = 0;
   G = { demo, D: DIFFS[demo ? 'normal' : diff], dist: 0, time: 0, speed: START, score: 0, coins: 0, streak: 0, P: { lane: 1, x: 0, y: 0, jt: 0, sq: 1, tilt: 0 },
     chase: { d: .3, t: demo ? 0 : 3 }, partyT: 0, magnetT: 0, dead: false, deadT: 0, rowAcc: 0, edge: [-1.3, -1.3], propAcc: 0,
-    lastPow: 0, nextSpeed: 25, zone: 'market', call: '', callT: 0, callNext: 3, hornT: 2, slogan: pick(SLOGANS), tut: { dodge: tutDone, jump: tutDone, on: null },
+    lastPow: 0, nextSpeed: 25, zone: 'market', call: '', callT: 0, callNext: 3, hornT: 2, slogan: pick(SLOGANS), tut: (() => { const k = demo || (tutDone && diff !== 'easy'); return { dodge: k, jump: k, pax: k, cop: k, on: null }; })(),
     stopName: pick(STOPNAMES), stopAcc: 0, free: 1, swerveT: 9, pax: 0, chain: 0, chainT: 0 };
   for (let i = 0; i < 60; i++) stepScenery(1.6);
 }
@@ -607,14 +619,18 @@ function spawnRow() {
   const z = FAR, r = Math.random(), veh = () => pick(['car', 'car', 'danfo', 'danfo', 'keke', 'brt']);
   const F = clamp(G.free + pick([-1, 0, 0, 1]), 0, 2), B = [0, 1, 2].filter(l => l !== F).sort(() => Math.random() - .5);
   const low = () => zoneAt(z) === 'village' ? pick(['pothole', 'pothole', 'goat', 'branches']) : pick(['pothole', 'branches', 'barrier']);
-  const early = !tutDone && G.time < 14;
+  const early = !(G.tut.dodge && G.tut.jump && G.tut.pax) && G.time < 20;
   if (early) {
-    if (!G.tut.dodge) { addV(pick(['car', 'danfo']), G.P.lane, z); coinLine(G.P.lane === 1 ? 0 : 1, z, 5); G.free = G.P.lane === 1 ? 0 : 1; }
+    const other = G.P.lane === 1 ? 0 : 1;
+    if (!G.tut.dodge) { addV(pick(['car', 'danfo']), G.P.lane, z); coinLine(other, z, 5); G.free = other; }
     else if (!G.tut.jump) { addJ(low(), G.P.lane, z); coinArc(G.P.lane, z); }
+    else if (!G.tut.pax) { addO({ type: 'pax', lane: other, z, look: randomLook() }); G.free = other; }
     else coinLine(F, z, 6);
     return;
   }
   G.free = F;
+  const copsOn = diff === 'hard' || (diff === 'normal' && G.time > 40);
+  if (copsOn && Math.random() < .2) { addO({ type: 'cop', lane: B[0], z, look: COP }); addO({ type: 'pax', lane: F, z: z + 1, look: randomLook() }); if (Math.random() < .5) addV(veh(), B[1], z); return; }
   if (r < .22) { addV(veh(), B[0], z); coinLine(F, z, 5); }
   else if (r < .42) { addV(veh(), B[0], z); if (Math.random() < G.D.two / .2 * .5 + .25 * (G.D.two >= .2)) addV(veh(), B[1], z); coinLine(F, z, 6); }
   else if (r < .56) { addJ(low(), B[0], z); coinArc(B[0], z); if (Math.random() < .5) addJ(low(), F, z); else coinLine(F, z, 4); }
@@ -683,13 +699,14 @@ function burstParts(x, y, n, cols, spd = 160, life = .6, grav = 400, size = 4) {
 // ---------------------------------------------------------------- input
 function lane(d) {
   if (mode !== 'play' || G.dead) return; const n = clamp(G.P.lane + d, 0, 2); if (n === G.P.lane) { G.P.tilt = d * .06; return; }
-  G.P.lane = n; G.swerveT = 0; sfx.lane(); if (G.tut.on === 'dodge') { G.tut.dodge = true; finishTutStep(); }
+  G.P.lane = n; G.swerveT = 0; sfx.lane(); if (G.tut.on === 'dodge' || G.tut.on === 'cop') { G.tut[G.tut.on] = true; finishTutStep(); }
 }
 function jump() {
   if (mode !== 'play' || G.dead || G.P.jt > 0) return; G.P.jt = JT; G.P.sq = 1.18; sfx.jump();
   if (G.tut.on === 'jump') { G.tut.jump = true; finishTutStep(); }
 }
-function finishTutStep() { G.tut.on = null; $('hint').hidden = true; if (G.tut.dodge && G.tut.jump && !tutDone) { tutDone = true; store.set('tut', true); } }
+function learning() { return !(G.tut.dodge && G.tut.jump && G.tut.pax); }
+function finishTutStep() { if (G.tut.on === 'pax') G.tut.pax = true; G.tut.on = null; $('hint').hidden = true; if (G.tut.dodge && G.tut.jump && G.tut.pax && !tutDone) { tutDone = true; store.set('tut', true); } }
 addEventListener('keydown', e => {
   const k = e.key.toLowerCase();
   if (mode === 'title' && (k === ' ' || k === 'enter')) { start(); e.preventDefault(); return; }
@@ -714,11 +731,11 @@ stage.addEventListener('pointerup', e => {
 
 // ---------------------------------------------------------------- flow
 function show(id, on) { $(id).hidden = !on; }
-function refreshTitle() { document.querySelectorAll('.dsel').forEach(b => b.setAttribute('aria-checked', b.dataset.d === diff)); $('tBest').textContent = `${DIFFS[diff].name} BEST ${best.toLocaleString()}`; $('tCoins').innerHTML = `<span class="coin-i sm">₦</span>${bank.toLocaleString()} saved`; $('soundBtn').textContent = `Sound: ${A.on ? 'ON' : 'OFF'}`; }
+function refreshTitle() { document.querySelectorAll('.dsel').forEach(b => b.setAttribute('aria-checked', b.dataset.d === diff)); $('tBest').textContent = `BEST ${best.toLocaleString()}`; $('tCoins').innerHTML = `<span class="coin-i sm">₦</span>${bank.toLocaleString()} saved`; $('soundBtn').textContent = `Sound: ${A.on ? 'ON' : 'OFF'}`; }
 function start() {
   audioInit(); newGame(false); mode = 'play'; musicStart();
   show('title', false); show('over', false); show('paused', false); show('hud', true); $('dchip').textContent = DIFFS[diff].name; $('toasts').innerHTML = '';
-  toast('POLICE DEY FOLLOW YOU!'); sfx.siren(); setTimeout(() => sfx.siren(), 900);
+  if (learning()) G.chase.t = 0; else { toast('POLICE DEY FOLLOW YOU!'); sfx.siren(); setTimeout(() => sfx.siren(), 900); }
   setTimeout(() => say('Oshodi! Oshodi! Enter!'), 1200);
 }
 function die(kind, what) {
@@ -731,7 +748,7 @@ function gameOver() {
   const score = Math.floor(G.score), isBest = score > best; if (isBest) { best = score; store.set('best.' + diff, best); }
   bank += G.coins; store.set('bank', bank);
   $('overT').textContent = G.deadKind === 'caught' ? 'CAUGHT!' : 'CRASH!';
-  $('overWhy').textContent = G.deadKind === 'caught' ? 'Police don catch you. You stumble twice!' : `You jam ${G.deadWhat === 'okada' ? 'an' : 'a'} ${NAMES[G.deadWhat] || 'car'}. Wahala!`;
+  $('overWhy').textContent = G.deadWhat === 'cop' ? 'You drive enter police checkpoint. Dem don hold you!' : G.deadKind === 'caught' ? 'Police don catch you. You stumble twice!' : `You jam ${G.deadWhat === 'okada' ? 'an' : 'a'} ${NAMES[G.deadWhat] || 'car'}. Wahala!`;
   $('oScore').textContent = score.toLocaleString(); $('oCoins').textContent = G.coins.toLocaleString(); $('oPax').textContent = G.pax; $('oBest').textContent = best.toLocaleString();
   $('newBest').hidden = !isBest; show('over', true); $('againBtn').focus();
 }
@@ -759,12 +776,19 @@ function autopilot() {
 function update(dt) {
   T += dt; const P = G.P;
   if (G.demo) autopilot();
-  // first-run tutorial: slow motion until the player does the move
+  // beginner lessons: slow motion the first time each thing reaches you
   let ws = 1;
-  if (!G.demo && !tutDone && !G.dead) {
-    const th = objs.find(o => !o.done && (BLOCK.has(o.type) || JUMP.has(o.type)) && (o.type === 'bump' || o.lane === P.lane) && o.z > ZP + .5 && o.z < ZP + 7);
-    if (th) { const need = JUMP.has(th.type) ? 'jump' : 'dodge';
-      if (!G.tut[need]) { if (G.tut.on !== need) { G.tut.on = need; $('hint').hidden = false; $('hint').className = 'hint' + (need === 'jump' ? ' up' : ''); $('hintArrows').innerHTML = need === 'jump' ? '↑' : '←&nbsp;→'; $('hintTxt').textContent = need === 'jump' ? 'SWIPE UP TO HOP' : 'SWIPE TO DODGE'; } ws = .12; } }
+  if (!G.demo && !G.dead) {
+    const th = objs.find(o => !o.done && o.z > ZP + .5 && o.z < ZP + (JUMP.has(o.type) ? 3.2 : 7) && ((BLOCK.has(o.type) || JUMP.has(o.type)) && (o.type === 'bump' || o.lane === P.lane) || o.type === 'pax'));
+    if (th) {
+      const need = th.type === 'cop' ? 'cop' : th.type === 'pax' ? 'pax' : JUMP.has(th.type) ? 'jump' : 'dodge';
+      if (!G.tut[need] && !(need === 'pax' && th.lane === P.lane)) {
+        const dir = th.lane < P.lane ? '←' : '→';
+        const TXT = { dodge: ['←&nbsp;→', 'SWIPE TO DODGE'], jump: ['↑', 'SWIPE UP TO HOP'], pax: [dir, 'PICK UP PASSENGERS!'], cop: ['←&nbsp;→', 'POLICE! AVOID THEM'] }[need];
+        if (G.tut.on !== need) { G.tut.on = need; $('hint').hidden = false; $('hint').className = 'hint' + (need === 'jump' ? ' up' : '') + (need === 'cop' ? ' bad' : need === 'pax' ? ' good' : ''); $('hintArrows').innerHTML = TXT[0]; $('hintTxt').textContent = TXT[1]; }
+        ws = .12;
+      }
+    } else if (G.tut.on === 'pax') finishTutStep();
   }
   const wdt = dt * ws;
   if (!G.dead) {
@@ -828,7 +852,7 @@ function hit(o) {
     o.done = true; o.gone = true; const v = G.partyT > 0 ? 2 : 1; G.coins += v; G.score += v; G.streak++; sfx.coin(G.streak);
     burstParts(p.x, p.y - p.s * .55 - P.y * p.s, 5, ['#FFC91A', '#fff3a6'], 120, .35, 150, 4); return;
   }
-  if (o.type === 'pax') { o.done = true; o.gone = true; G.pax++; G.chain = Math.min(5, G.chain + 1); G.chainT = 6; const pts = 100 * G.chain * (G.partyT > 0 ? 2 : 1); G.score += pts;
+  if (o.type === 'pax') { if (G.tut.on === 'pax') finishTutStep(); o.done = true; o.gone = true; G.pax++; G.chain = Math.min(5, G.chain + 1); G.chainT = 6; const pts = 100 * G.chain * (G.partyT > 0 ? 2 : 1); G.score += pts;
     sfx.pax(); popText(`+${pts}`, G.chain > 1 ? `PASSENGER x${G.chain}` : 'PASSENGER', 'green'); burstParts(p.x, p.y - p.s * .6, 10, ['#3fe08f', '#fff', '#FFC91A'], 160, .5, 200, 5); say(pick(['Enter! Enter!', 'Oya enter, e remain one!', 'Shift for back!', 'Welcome, sit down!'])); return; }
   if (o.type === 'speaker') { o.done = true; o.gone = true; G.partyT = 7; sfx.power(); toast('BUS JAM PARTY!'); say('Bus jam party! Oya dance!'); return; }
   if (o.type === 'magnet') { o.done = true; o.gone = true; G.magnetT = 9; sfx.power(); toast('NAIRA MAGNET!'); return; }
@@ -836,9 +860,10 @@ function hit(o) {
     if (air) { o.done = true; return; }
     o.done = true;
     if (G.partyT > 0) return;
-    if (G.chase.t > 0 && !G.demo) { die('caught'); return; }
+    if (G.chase.t > 0 && !G.demo && !learning()) { die('caught'); return; }
     G.chase.t = 5; G.chase.recover = true; G.streak = 0; shake = .35; sfx.stumble(); P.sq = .75; toast('OOPS! POLICE DEY COME!', true); return;
   }
+  if (o.type === 'cop') { o.done = true; if (G.partyT > 0 || G.demo) { o.dodge = true; return; } die('caught', 'cop'); return; }
   if (BLOCK.has(o.type)) {
     if (G.partyT > 0 || G.demo) { o.fly = 1; o.flyDir = o.x < P.x ? -1 : 1; o.done = true; if (!G.demo) { G.score += 10; sfx.horn(0, .06); burstParts(p.x, p.y - p.s * .4, 10, ['#FFC91A', '#18b86b', '#fff'], 200, .5); } return; }
     die('crash', o.type);
@@ -917,7 +942,12 @@ function drawEntity(e) {
     case 'goat': goat(p.x, p.y, p.s, T); break;
     case 'bump': bump(e.z); break;
     case 'coin': coin(p.x, p.y, p.s, T, e.y * p.s); break;
-    case 'pax': { ctx.strokeStyle = '#3fe08f'; ctx.lineWidth = Math.max(2, p.s * .02); ctx.beginPath(); ctx.ellipse(p.x, p.y, p.s * .2, p.s * .05, 0, 0, 7); ctx.stroke(); person(p.x, p.y, p.s, e.look, 'wave', T + e.z); break; }
+    case 'pax': { const hop = Math.abs(Math.sin(T * 7 + e.z)) * p.s * .05;
+      ctx.fillStyle = 'rgba(63,224,143,.35)'; ctx.beginPath(); ctx.ellipse(p.x, p.y, p.s * .22, p.s * .06, 0, 0, 7); ctx.fill(); ctx.strokeStyle = '#18b86b'; ctx.lineWidth = Math.max(2, p.s * .02); ctx.stroke();
+      person(p.x, p.y - hop, p.s, e.look, 'hail', T + e.z); marker(p.x, p.y - p.s * .66 - hop, p.s, '#3fe08f', 'down'); break; }
+    case 'cop': { if (e.dodge) { e.x += (e.x < G.P.x ? -1 : 1) * .06; }
+      ctx.fillStyle = 'rgba(255,77,77,.3)'; ctx.beginPath(); ctx.ellipse(p.x, p.y, p.s * .22, p.s * .06, 0, 0, 7); ctx.fill(); ctx.strokeStyle = '#ff4d4d'; ctx.lineWidth = Math.max(2, p.s * .02); ctx.stroke();
+      person(p.x, p.y, p.s, e.look, 'stop', T + e.z); marker(p.x, p.y - p.s * .52, p.s * 1.15, '#ff4d4d', '!'); break; }
     case 'speaker': speaker(p.x, p.y, p.s, T); break;
     case 'magnet': magnet(p.x, p.y, p.s, T); break;
   }
@@ -978,7 +1008,7 @@ function frame(now) {
   requestAnimationFrame(frame);
 }
 resize(); newGame(true); for (let i = 0; i < 90; i++) update(1 / 30); refreshTitle();
-window.__dc = { popText, get G() { return G; } };
+window.__dc = { popText, spawn(t, l, z) { addO({ type: t, lane: l, z, look: t === 'cop' ? COP : randomLook() }); }, get G() { return G; } };
 requestAnimationFrame(frame);
 })();
 </script>
