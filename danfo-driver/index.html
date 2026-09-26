@@ -62,16 +62,18 @@
 
   .overlay{position:absolute;inset:0;display:grid;place-items:center;overflow:auto;
     padding:calc(env(safe-area-inset-top,0px) + 16px) 16px calc(env(safe-area-inset-bottom,0px) + 16px)}
-  .title{align-content:space-between;justify-items:center;text-align:center;background:linear-gradient(180deg,rgba(27,16,36,0) 40%,rgba(27,16,36,.45))}
+  .title{align-content:space-between;justify-items:center;text-align:center;gap:16px;
+    background:linear-gradient(180deg,rgba(27,16,36,.2),rgba(27,16,36,.45) 50%,rgba(27,16,36,.75));-webkit-backdrop-filter:blur(8px) saturate(1.15);backdrop-filter:blur(8px) saturate(1.15)}
   .logo{display:grid;justify-items:center;gap:8px;margin-top:5vh;transform:rotate(-4deg);animation:bob 2.4s ease-in-out infinite}
-  .logo h1{margin:0;font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:clamp(60px,17vw,128px);line-height:.84;color:var(--danfo);
+  .logo h1{margin:0;font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:clamp(52px,min(17vw,15vh),128px);line-height:.84;color:var(--danfo);
     -webkit-text-stroke:3px var(--ink);text-shadow:0 8px 0 var(--ink),0 16px 26px rgba(0,0,0,.3)}
   .logo h1 span{display:block;color:#fff}
   .stripes{width:min(380px,74vw);height:22px;border:4px solid var(--ink);border-radius:8px;
     background:linear-gradient(var(--danfo) 0 20%,var(--ink) 20% 42%,var(--danfo) 42% 58%,var(--ink) 58% 80%,var(--danfo) 80%)}
   .tagline{font-family:"Bungee",Impact,sans-serif;font-size:clamp(14px,3.8vw,18px);color:#fff}
   @keyframes bob{50%{transform:rotate(-4deg) translateY(-10px)}}
-  .bottom{display:grid;gap:12px;justify-items:center;margin-bottom:4vh}
+  .bottom{display:grid;gap:14px;justify-items:center;margin-bottom:2vh;width:min(440px,100%);background:rgba(27,16,36,.9);
+    border:3px solid rgba(255,255,255,.14);border-radius:28px;padding:18px 16px 16px;box-shadow:0 14px 40px rgba(0,0,0,.45)}
   .play{border:4px solid var(--ink);border-radius:24px;padding:14px 46px;font-family:"Bungee",Impact,sans-serif;font-size:clamp(26px,7vw,36px);
     background:linear-gradient(#4ff0a0,var(--green));color:#fff;box-shadow:inset 0 6px 0 rgba(255,255,255,.35),0 8px 0 var(--ink);animation:pulse .8s ease-in-out infinite alternate}
   .play:active{transform:translateY(6px);box-shadow:0 2px 0 var(--ink)}
@@ -85,9 +87,10 @@
   .dsel:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
   .chip.lvl{background:#fff}
   .meta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;font-weight:800}
-  .pillm{background:rgba(27,16,36,.72);border:3px solid var(--ink);border-radius:999px;padding:3px 14px;font-size:15px;font-variant-numeric:tabular-nums}
+  .pillm{background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.18);border-radius:999px;padding:3px 14px;font-size:15px;font-variant-numeric:tabular-nums}
   .small{pointer-events:auto;background:#fff;color:var(--ink);border:3px solid var(--ink);border-radius:12px;padding:5px 14px;font-weight:800;box-shadow:0 3px 0 var(--ink)}
-  .howto{font-weight:800;font-size:14px;color:#fff;opacity:.95}
+  .howto{font-weight:700;font-size:14px;line-height:1.35;color:#fff;opacity:.9;max-width:34ch}
+  .coin-i.sm{display:inline-grid;width:18px;height:18px;font-size:10px;border-width:2px;vertical-align:-3px;margin-right:5px}
   .card{width:min(360px,100%);background:#fff;color:var(--ink);border:4px solid var(--ink);border-radius:26px;box-shadow:0 8px 0 var(--ink);
     padding:18px 18px 20px;display:grid;gap:10px;justify-items:center;text-align:center}
   .card h2{margin:0;font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:clamp(38px,11vw,54px);color:var(--red);-webkit-text-stroke:2px var(--ink);line-height:1}
@@ -126,7 +129,7 @@
         <button class="dsel" type="button" role="radio" data-d="hard" aria-checked="false"><b>AGBERO</b><small>HARD</small></button>
       </div>
       <button class="play" id="playBtn" type="button">PLAY</button>
-      <span class="howto ol">Pick up passengers for points · Swipe ← → to dodge · Swipe ↑ to hop potholes</span>
+      <span class="howto">Pick up passengers for points.<br>Swipe ← → to dodge · Swipe ↑ to hop potholes</span>
       <div class="meta"><span class="pillm" id="tBest">BEST 0</span><span class="pillm" id="tCoins">₦ 0 saved</span></div>
       <button class="small" id="soundBtn" type="button">Sound: ON</button>
     </div>
@@ -711,7 +714,7 @@ stage.addEventListener('pointerup', e => {
 
 // ---------------------------------------------------------------- flow
 function show(id, on) { $(id).hidden = !on; }
-function refreshTitle() { document.querySelectorAll('.dsel').forEach(b => b.setAttribute('aria-checked', b.dataset.d === diff)); $('tBest').textContent = `${DIFFS[diff].name} BEST ${best.toLocaleString()}`; $('tCoins').textContent = `₦ ${bank.toLocaleString()} saved`; $('soundBtn').textContent = `Sound: ${A.on ? 'ON' : 'OFF'}`; }
+function refreshTitle() { document.querySelectorAll('.dsel').forEach(b => b.setAttribute('aria-checked', b.dataset.d === diff)); $('tBest').textContent = `${DIFFS[diff].name} BEST ${best.toLocaleString()}`; $('tCoins').innerHTML = `<span class="coin-i sm">₦</span>${bank.toLocaleString()} saved`; $('soundBtn').textContent = `Sound: ${A.on ? 'ON' : 'OFF'}`; }
 function start() {
   audioInit(); newGame(false); mode = 'play'; musicStart();
   show('title', false); show('over', false); show('paused', false); show('hud', true); $('dchip').textContent = DIFFS[diff].name; $('toasts').innerHTML = '';
