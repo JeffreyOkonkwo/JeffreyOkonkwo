@@ -315,12 +315,13 @@
   .lopt small.bad{color:#d62828}
   .tags{display:flex;flex-wrap:wrap;gap:6px}.tagchip{border:2px solid var(--ink);border-radius:999px;padding:3px 10px;background:#fff;color:var(--ink);font:800 12px/1.3 "Baloo 2",sans-serif}.tagchip.on{background:var(--danfo)}
   .stripesb{display:flex;flex-wrap:wrap;gap:6px}.stripeb{width:38px;height:30px;border:3px solid var(--ink);border-radius:10px;background:#fff;font-weight:800;font-size:10px;color:var(--ink);padding:0}.stripeb:first-child{width:auto;padding:0 8px}.stripeb.on{outline:3px solid var(--danfo);outline-offset:1px}.stripeb.locked{opacity:.55}
+  .lopt,.ccp,.ccpanel,.cclist,.ccrow{min-width:0}.ccbtn{width:100%;box-sizing:border-box;min-width:0}.ccbtn b{min-width:0;white-space:normal!important;line-height:1.15;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:normal}.ccbtn i,.ccbtn .ccflag{flex:none}.ccpanel{box-sizing:border-box}.ccsearch{width:100%;box-sizing:border-box;min-width:0}.ccrow{overflow-wrap:normal;line-height:1.2}
   .ccp{display:grid;gap:6px}.ccbtn{display:flex;align-items:center;gap:10px;border:3px solid var(--ink);border-radius:14px;background:#fff;color:var(--ink);padding:8px 12px;font:800 16px "Baloo 2",sans-serif;text-align:left;box-shadow:0 3px 0 var(--ink)}.ccbtn b{flex:1}.ccbtn i{font-style:normal;opacity:.6}
   .ccflag{display:inline-flex;width:30px;height:20px;border-radius:4px;overflow:hidden;box-shadow:0 0 0 1.5px var(--ink);flex:0 0 auto}.ccflag .flagimg{width:100%;height:100%;display:block;object-fit:cover}
   .ccsearch{font-size:14px!important;padding:6px 10px!important;min-width:0;width:100%}.ccpanel{display:grid;gap:6px;min-width:0;border:3px solid var(--ink);border-radius:14px;background:#fff8e7;padding:8px}.cclist{max-height:240px;overflow:auto;display:grid;gap:4px}
   .ccrow{display:flex;align-items:center;gap:10px;border:2px solid transparent;border-radius:10px;background:#fff;color:var(--ink);padding:6px 8px;font:700 15px "Baloo 2",sans-serif;text-align:left}.ccrow.on{border-color:var(--ink);background:#fff3c4}
   .cchead{margin:6px 2px 0;font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.6}
-  #sheetB>*,.rcard>*,.rinfo,.rpills{min-width:0}.rpill{max-width:100%}.rpill span{overflow-wrap:anywhere}
+  #sheetB>*,.rcard>*,.rinfo,.rpills{min-width:0}.rpill{max-width:100%;min-width:0}.rpill span,.rpill small{display:block;min-width:0;overflow-wrap:normal;word-break:normal;hyphens:manual}.rpill span.fit1{font-size:11px}.rpill span.fit2{font-size:10px}.rpill span.fitx{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   @media (max-width:380px){.lbrow{grid-template-columns:18px 34px minmax(0,1fr) auto auto;gap:4px;padding:3px 5px}.lbface{width:34px;height:34px}.lbsc{font-size:12.5px}.lbname{font-size:13px}.lbrep{padding:0 2px}.lcats{gap:4px}.lcats button{padding:4px 8px;font-size:12.5px}}
   .rkey{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}.rkey span{border:2px solid var(--ink);border-radius:999px;padding:2px 9px;font-weight:800;font-size:12px}
   .rkey .own,.rpill.own{background:#dff7ea}.rkey .buy,.rpill.buy{background:#fff1c2}.rkey .wait,.rpill.wait{background:#eceaf0;color:#6d6480}.rpill.shop{background:#e8f0ff}
@@ -1973,11 +1974,15 @@ function cityThumb(k) {
 let roadPick = '';
 const ACRO = new Set(['UCC', 'KNUST', 'GRA', 'CBD', 'VI', 'FNB', 'KG', 'D-LINE']);
 const roadTitle = v => String(v).split(' ').map(w => ACRO.has(w) ? w : titleCase(w)).join(' ');
+function fitRoadNames() {
+  for (const s of document.querySelectorAll('#sheetB .rpill span')) { s.classList.remove('fit1', 'fit2', 'fitx');
+    for (const c of ['fit1', 'fit2', 'fitx']) { if (s.scrollWidth <= s.clientWidth + 1) break; s.classList.remove('fit1', 'fit2'); s.classList.add(c); } }
+}
 function showJourney() {
   loadRoads(); if (!FLAGSET) loadFlags().then(() => { if (FLAGSET && !$('sheet').hidden && $('roadsWrap')) showJourney(); });
   const got = reachedZones(), cur = roadPick || startKey(), pass = hasPass(), cityName = k => titleCase(ZONES.find(z => z.k === k).name.split(' · ')[0]);
   // every road gets one of three states: ready (green), buy with coins (gold), or reach the city first (grey)
-  const pill = (k, label, state, note) => `<button type="button" class="rpill ${state} ${k === cur ? 'sel' : ''}" data-road="${k}" ${state === 'wait' ? 'disabled' : ''}><span>${k === cur ? '▶ ' : state === 'own' ? '✓ ' : state === 'wait' ? '🔒 ' : ''}${escHtml(label).replace(/ · /g, '&nbsp;· ')}</span><small>${note}</small></button>`;
+  const pill = (k, label, state, note) => `<button type="button" class="rpill ${state} ${k === cur ? 'sel' : ''}" data-road="${k}" ${state === 'wait' ? 'disabled' : ''}><span>${k === cur ? '▶ ' : state === 'own' ? '✓ ' : state === 'wait' ? '🔒 ' : ''}${escHtml(label).replace(/ · /g, '&nbsp;· ').replace(/-/g, '-&#8288;')}</span><small>${note}</small></button>`;
   let next = null;
   const card = (k, n) => {
     const here = got.includes(k), pic = cityThumb(k);
@@ -1999,6 +2004,7 @@ function showJourney() {
     + `</div>`;
   const pickName = (() => { const z = zoneOf(cur); return z ? (z.road ? roadTitle(z.road.title) : cityName(z.k)) : ''; })();
   openSheet(t('roadsTitle'), html, t('startOn', pickName), () => { if (roadPick) { store.set('startRoad', roadPick); store.set('startZone', 0); } roadPick = ''; start(); });
+  requestAnimationFrame(fitRoadNames);
   $('sheetB').querySelectorAll('.rpill').forEach(b => b.onclick = () => {
     const k = b.dataset.road, z = zoneOf(k);
     if (b.classList.contains('own')) { roadPick = k; store.set('startRoad', k); store.set('startZone', 0); newGame(true); for (let i = 0; i < 60; i++) update(1 / 30); showJourney(); return; }
@@ -2925,7 +2931,7 @@ function runStress() {
       const rows = LB_CREW.map((e, i) => ({ ...e, crew: false, h: 's' + i, n: names[i % names.length], cc: LONG[i % 3], pl: 'WWWWWWWW', rk: 'Legend', s: 99999999 - i * 1111111, k: i % 3 }));
       STRESS_MEM.set('flag', '"VC"'); lbMine = 's1'; lbTab = STRESS === 'country' ? 'country' : 'world'; lbCall = async () => ({ ok: true, status: 200, j: { world: rows, clean: rows, country: rows, total: 999 } }); showBoard();
     } else if (STRESS === 'roads') {
-      for (const z of ZONES) if (z.road) z.road.title = (z.road.title + ' · BOULEVARD DE LA RÉPUBLIQUE').slice(0, 26);
+      for (const z of ZONES) if (z.road) { const w = (z.road.title + ' · BOULEVARD DE LA RÉPUBLIQUE').split(' '); let t2 = ''; for (const x of w) { if ((t2 + ' ' + x).trim().length > 26) break; t2 = (t2 + ' ' + x).trim(); } z.road.title = t2.replace(/ ·$/, ''); }
       STRESS_MEM.set('bank', '2500'); showJourney();
     }
   };
