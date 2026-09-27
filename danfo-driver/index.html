@@ -64,9 +64,6 @@
   .clock .fc svg{width:16px;height:16px}
   .clock.warn .fc{animation:fcPulse 1.2s ease-in-out infinite}
   @keyframes fcPulse{50%{opacity:.45}}
-  #wx{position:absolute;left:50%;top:calc(env(safe-area-inset-top,0px) + 150px);transform:translateX(-50%);width:min(92vw,420px);
-    background:rgba(27,16,36,.92);border:3px solid #ffe066;border-radius:18px;padding:10px 12px 12px;color:#fff;text-align:center;z-index:6}
-  #wx[hidden]{display:none}
   #ptimer{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);transform:translateX(-50%);width:min(86vw,340px);text-align:center;pointer-events:none;
     font-family:"Bungee",Impact,sans-serif;font-size:13px;color:#fff;background:rgba(27,16,36,.7);border:3px solid #3fe08f;border-radius:14px;padding:4px 10px 7px}
   #ptimer[hidden]{display:none}
@@ -104,11 +101,6 @@
   .shapp:active i{transform:translateY(2px);box-shadow:0 1px 0 var(--ink)}
   .shcopy{display:flex;gap:6px}.shcopy input{flex:1;min-width:0;border:3px solid var(--ink);border-radius:12px;padding:8px 10px;font:700 13px "Baloo 2",sans-serif;color:#5a5068;background:#f6f2ea}
   .shcopy button{border:3px solid var(--ink);border-radius:12px;padding:8px 12px;font:800 14px "Baloo 2",sans-serif;background:var(--ink);color:#fff;min-width:64px}.shcopy button.ok{background:var(--green)}
-  #wx .wt{font-family:"Bungee",Impact,sans-serif;font-size:16px;color:#ffe066;margin-bottom:8px}
-  #wx .wb{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-  #wx button{flex:1 1 0;min-width:0;border:3px solid var(--ink);border-radius:12px;padding:8px 6px;font:800 14px/1.1 "Baloo 2",sans-serif;box-shadow:0 3px 0 var(--ink);background:#fff;color:var(--ink)}
-  #wx button.day{background:#ffe066}#wx button.dry{background:#7fd0ff}#wx button.keep{background:#3fe08f}
-  #wx .bar{height:4px;border-radius:4px;background:#ffe066;margin-top:10px;transform-origin:left}
 
   #toasts{position:absolute;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 160px);pointer-events:none}
   .toast{position:absolute;left:50%;transform:translateX(-50%);font-family:"Bungee",Impact,sans-serif;font-size:clamp(17px,4.6vw,26px);line-height:1.1;
@@ -264,7 +256,6 @@
       <div class="clock" id="clock" aria-label="Weather" hidden><span class="fc" id="fc"></span></div></div>
   </div>
   <div id="ptimer" hidden><div class="pt1"><span class="pti">♪</span><span id="ptLbl">FREE RIDE</span><span class="pts" id="ptSec">12</span></div><i><b id="ptFill"></b></i><small id="ptHow"></small></div><div id="pcount" hidden></div>
-  <div id="wx" hidden><div class="wt" id="wxT">SUN COIN!</div><div class="wb" id="wxB"></div><div class="bar" id="wxBar"></div></div>
   <div class="hint" id="hint" hidden><div class="arrows ol" id="hintArrows">←&nbsp;→</div><div class="txt" id="hintTxt">SWIPE TO DODGE</div></div>
   <div id="toasts"></div>
   <div id="pops"></div>
@@ -1026,12 +1017,11 @@ function reachedZones() { const md = store.get('maxDist', 0), r = store.get('rea
 function newGame(demo) {
   $('ptimer').hidden = true; $('pcount').hidden = true;
   const zl = zoneList(), zi = Math.max(0, zl.indexOf(ZONES[startZone()].k));
-  $('wx').hidden = true; $('wx').style.visibility = '';
   objs.length = props.length = walls.length = parts.length = 0;
   G = { zl, zi, demo, D: DIFFS[demo ? 'normal' : diff], dist: 0, time: 0, speed: START, score: 0, coins: 0, streak: 0, P: { lane: 1, x: 0, y: 0, jt: 0, sq: 1, tilt: 0 },
     chase: { d: .3, t: demo ? 0 : 3 }, partyT: 0, magnetT: 0, dead: false, deadT: 0, rowAcc: 0, edge: [-1.3, -1.3], propAcc: 0,
     invT: 0, slowT: 0, waveT: 0, heat: 0, heatT: 0, lastPow: 0, lastParty: 0, nextSpeed: 25, zone: 'market', call: '', callT: 0, callNext: 3, hornT: 2, slogan: pick(SLOGANS), tut: (() => { const k = demo || (tutDone && diff !== 'easy'); return { dodge: k, jump: k, pax: k, cop: k, on: null }; })(),
-    stopName: pick(STOPNAMES), stopAcc: 0, free: 1, swerveT: 9, rain: 0, rainT: 0, nextRain: rand(120, 170), todOff: 0, ff: 0, badEp: false, sunN: 0, nextSun: 0, wxOpen: false, wxT: 0, boltT: 0, nextBolt: 4, pax: 0, chain: 0, chainT: 0 };
+    stopName: pick(STOPNAMES), stopAcc: 0, free: 1, swerveT: 9, rain: 0, rainT: 0, nextRain: rand(120, 170), todOff: 0, ff: 0, badEp: false, sunN: 0, nextSun: 0, boltT: 0, nextBolt: 4, pax: 0, chain: 0, chainT: 0 };
   for (let i = 0; i < 60; i++) stepScenery(1.6);
 }
 function addO(o) { o.x ??= LANES[o.lane]; o.v ??= 0; o.y ??= 0; objs.push(o); return o; }
@@ -1165,14 +1155,13 @@ addEventListener('keydown', e => {
   if (mode === 'title' && (k === ' ' || k === 'enter') && !e.target.closest('button, input, a') && $('sheet').hidden && $('quiz').hidden) { start(); e.preventDefault(); return; }
   if (mode === 'paused' && (k === 'p' || k === 'escape')) { pause(false); e.preventDefault(); return; }
   if (mode !== 'play') return;
-  if (G.wxOpen && '123'.includes(k)) { const b = $('wxB').children[+k - 1]; if (b) b.click(); return; }
   if (k === 'arrowleft' || k === 'a') lane(-1); else if (k === 'arrowright' || k === 'd') lane(1);
   else if (k === 'arrowup' || k === 'w' || k === ' ') jump(); else if (k === 'p' || k === 'escape') pause(true); else return;
   e.preventDefault();
 });
 let sw = null;
 const stage = $('stage');
-stage.addEventListener('pointerdown', e => { if (e.target.closest('button, input, label, a, .card, #wx')) return; sw = { x: e.clientX, y: e.clientY, used: false }; });
+stage.addEventListener('pointerdown', e => { if (e.target.closest('button, input, label, a, .card')) return; sw = { x: e.clientX, y: e.clientY, used: false }; });
 stage.addEventListener('pointermove', e => {
   if (!sw || sw.used || mode !== 'play') return; const dx = e.clientX - sw.x, dy = e.clientY - sw.y;
   if (Math.abs(dx) > 26 && Math.abs(dx) > Math.abs(dy)) { lane(dx > 0 ? 1 : -1); sw.used = true; }
@@ -1229,17 +1218,17 @@ const STR = {
   en: { play: 'PLAY', again: 'PLAY AGAIN', home: 'Home', quiz: 'QUIZ TO CONTINUE', free: 'Answer right, keep driving · FREE', cost: 'Answer right, keep driving · {n} coins', need: 'You need {n} coins to try',
     howto: 'Pick up passengers for points.<br>Swipe ← → to dodge · Swipe ↑ to hop potholes', name: 'Your name', missions: 'Missions', garage: 'Garage', journey: 'Journey', quizmode: 'Africa Quiz',
     challenge: 'CHALLENGE A FRIEND', crash: 'CRASH!', jail: 'JAIL!', dodge: 'SWIPE TO DODGE', jump: 'SWIPE UP TO HOP', pax: 'PICK UP PASSENGERS!', cop: 'POLICE! AVOID THEM', tag: 'We never finish last!', resume: 'RESUME', paused: 'PAUSED',
-    sun: 'SUN COIN! PICK ONE', mkday: 'MAKE IT DAY', dry: 'STOP THE RAIN', keep: 'KEEP IT', rainSoon: 'Rain soon', raining: 'Raining', nightSoon: 'Night soon', daySoon: 'Dawn soon', nightOn: 'NIGHT DON FALL · HEADLIGHTS ON', partyGo: 'BUS JAM PARTY! ROAD CLEAR!', partyHow: 'No traffic · no police · passengers and coins come to you', partyEnd: 'PARTY ENDING · TRAFFIC DEY COME BACK', partyBar: 'FREE RIDE', chalT: 'Beat my score', chalSub: 'CAN YOU BEAT', chalPax: 'passengers carried', chalShare: 'Share to any app', chalCopy: 'COPY', chalDone: 'DONE', correct: 'Correct!', timeUp: 'Time up!', notQuite: 'Not quite.', keepDriving: 'KEEP DRIVING', ok: 'OK', next: 'NEXT', finish: 'FINISH', youGot: 'You got {n} of 5 right!', plusCoins: '+{n} coins', capHit: 'You reached today\'s quiz coin limit. Keep learning for fun!', comeBack: 'Come back any time to learn more about Africa.', close: 'CLOSE', letsgo: 'LET\'S GO', save: 'SAVE', share: 'SHARE', lblScore: 'Score', lblPax: 'Passengers', lblCoins: 'Coins', lblBest: 'Best', newBest: 'NEW BEST!', bestPill: 'BEST', saved: 'saved', todayMis: 'Today\'s missions. New ones every day. Day streak: {n}', coinsSaved: 'Coins saved', driving: 'DRIVING', tapDrive: 'Tap to drive', needMore: 'Need A {n} more', addName: 'Add your name', hi: 'Hi', easy: 'EASY', normal: 'NORMAL', hard: 'HARD', dailyBonus: 'Daily bonus +{n} coins', dayN: 'Day {n} streak', missionDone: 'MISSION DONE! +{n} COINS', backOnRoad: 'BACK ON THE ROAD!', quizTag: 'AFRICA QUIZ', journeyIntro: 'Drive across Africa. Tap any place you have reached to start your next run there.', reachedTap: 'Reached · tap to start here', startsHere: 'Your next run starts here', keepAfter: 'Keep driving after {n}', nameInfo: 'This name shows on your score and on challenges you send to friends.', nameChal: 'Add your name so your friend knows who to beat.', namePh: 'Enter nickname', watchAd: 'Watch an ad', presentedBy: 'Presented by', adCont: 'CONTINUE', adDouble: 'DOUBLE COINS', adNA: 'No ad right now. Try again soon.', doubled: '+{n} coins doubled!', honk: 'HONK BOOST', honkS: 'Watch an ad · start with a free ride', honkReady: 'HONK BOOST READY', honkReadyS: 'Your next run starts with a free ride', honkGo: 'HONK BOOST! FREE RIDE!', shop: 'Shop', shopWeb: 'Purchases are available in the Danfo Craze app.', shopWait: 'Connecting to the store…', restore: 'Restore purchases', restored: 'Purchases restored', buyFail: 'Could not finish. Please try again.', gotCoins: '+{n} COINS!', paidRoute: 'Paid route · tap to see it in the shop', whyCrash: 'You crashed into {n}!', gateT: 'Before you share', gateMsg: 'Sharing opens other apps like WhatsApp. What year were you born?', gatePh: 'Year of birth', gateGo: 'CONTINUE', gateBad: 'Please enter a year, like 1990.', gateKid: 'Ask a grown-up to share your score for you. Keep driving!', whyCaught: 'The police caught you and you had no money to settle.',
+    sunCoin: 'SUN COIN!', sunDry: 'RAIN STOPPED', sunDay: 'DAY IS BACK', sunBoth: 'RAIN STOPPED · DAY IS BACK', rainSoon: 'Rain soon', raining: 'Raining', nightSoon: 'Night soon', daySoon: 'Dawn soon', nightOn: 'NIGHT DON FALL · HEADLIGHTS ON', partyGo: 'BUS JAM PARTY! ROAD CLEAR!', partyHow: 'No traffic · no police · passengers and coins come to you', partyEnd: 'PARTY ENDING · TRAFFIC DEY COME BACK', partyBar: 'FREE RIDE', chalT: 'Beat my score', chalSub: 'CAN YOU BEAT', chalPax: 'passengers carried', chalShare: 'Share to any app', chalCopy: 'COPY', chalDone: 'DONE', correct: 'Correct!', timeUp: 'Time up!', notQuite: 'Not quite.', keepDriving: 'KEEP DRIVING', ok: 'OK', next: 'NEXT', finish: 'FINISH', youGot: 'You got {n} of 5 right!', plusCoins: '+{n} coins', capHit: 'You reached today\'s quiz coin limit. Keep learning for fun!', comeBack: 'Come back any time to learn more about Africa.', close: 'CLOSE', letsgo: 'LET\'S GO', save: 'SAVE', share: 'SHARE', lblScore: 'Score', lblPax: 'Passengers', lblCoins: 'Coins', lblBest: 'Best', newBest: 'NEW BEST!', bestPill: 'BEST', saved: 'saved', todayMis: 'Today\'s missions. New ones every day. Day streak: {n}', coinsSaved: 'Coins saved', driving: 'DRIVING', tapDrive: 'Tap to drive', needMore: 'Need A {n} more', addName: 'Add your name', hi: 'Hi', easy: 'EASY', normal: 'NORMAL', hard: 'HARD', dailyBonus: 'Daily bonus +{n} coins', dayN: 'Day {n} streak', missionDone: 'MISSION DONE! +{n} COINS', backOnRoad: 'BACK ON THE ROAD!', quizTag: 'AFRICA QUIZ', journeyIntro: 'Drive across Africa. Tap any place you have reached to start your next run there.', reachedTap: 'Reached · tap to start here', startsHere: 'Your next run starts here', keepAfter: 'Keep driving after {n}', nameInfo: 'This name shows on your score and on challenges you send to friends.', nameChal: 'Add your name so your friend knows who to beat.', namePh: 'Enter nickname', watchAd: 'Watch an ad', presentedBy: 'Presented by', adCont: 'CONTINUE', adDouble: 'DOUBLE COINS', adNA: 'No ad right now. Try again soon.', doubled: '+{n} coins doubled!', honk: 'HONK BOOST', honkS: 'Watch an ad · start with a free ride', honkReady: 'HONK BOOST READY', honkReadyS: 'Your next run starts with a free ride', honkGo: 'HONK BOOST! FREE RIDE!', shop: 'Shop', shopWeb: 'Purchases are available in the Danfo Craze app.', shopWait: 'Connecting to the store…', restore: 'Restore purchases', restored: 'Purchases restored', buyFail: 'Could not finish. Please try again.', gotCoins: '+{n} COINS!', paidRoute: 'Paid route · tap to see it in the shop', whyCrash: 'You crashed into {n}!', gateT: 'Before you share', gateMsg: 'Sharing opens other apps like WhatsApp. What year were you born?', gatePh: 'Year of birth', gateGo: 'CONTINUE', gateBad: 'Please enter a year, like 1990.', gateKid: 'Ask a grown-up to share your score for you. Keep driving!', whyCaught: 'The police caught you and you had no money to settle.',
     siren: 'SIREN {n}/3 · DRIVE CLEAN TO LOSE THEM', sirenOff: 'SIREN OFF', settled: 'SETTLED POLICE: {n}' },
   pcm: { play: 'OYA DRIVE', again: 'TRY AM AGAIN', home: 'Go house', quiz: 'ANSWER QUIZ, CONTINUE', free: 'Answer am correct, continue · FREE', cost: 'Answer am correct, continue · {n} coins', need: 'You need {n} coins to try',
     howto: 'Carry passengers, collect point.<br>Swipe ← → dodge motor · Swipe ↑ jump pothole', name: 'Your name', missions: 'Wetin to do', garage: 'Mechanic', journey: 'Our road', quizmode: 'Africa Quiz',
     challenge: 'CHALLENGE YOUR PADI', crash: 'E DON HAPPEN!', jail: 'DEM DON LOCK YOU!', dodge: 'SWIPE, DODGE AM', jump: 'SWIPE UP, JUMP AM', pax: 'CARRY PASSENGER!', cop: 'POLICE! NO JAM DEM', tag: '', resume: 'CONTINUE', paused: 'HOLD ON',
-    sun: 'SUN COIN! WETIN YOU WAN?', mkday: 'MAKE AM DAY', dry: 'STOP DI RAIN', keep: 'KEEP AM', rainSoon: 'Rain dey come', raining: 'Rain dey fall', nightSoon: 'Night dey come', daySoon: 'Day don near', nightOn: 'NIGHT DON FALL · ON YOUR LIGHT', partyGo: 'BUS JAM PARTY! ROAD DON CLEAR!', partyHow: 'No motor · no police · passenger and coin go come meet you', partyEnd: 'PARTY DON DEY END · MOTOR DEY COME BACK', partyBar: 'FREE RIDE', chalT: 'Beat my score', chalSub: 'YOU FIT BEAT', chalPax: 'passengers carried', chalShare: 'Share for any app', chalCopy: 'COPY', chalDone: 'I DON FINISH', correct: 'Correct!', timeUp: 'Time don finish!', notQuite: 'E no correct.', keepDriving: 'CONTINUE DRIVE', ok: 'OK', next: 'NEXT', finish: 'FINISH', youGot: 'You get {n} out of 5 correct!', plusCoins: '+{n} coins', capHit: 'You don reach today quiz coin limit. Continue to learn for fun!', comeBack: 'Come back anytime, learn more about Africa.', close: 'CLOSE', letsgo: 'OYA GO', save: 'SAVE', share: 'SHARE', lblScore: 'Score', lblPax: 'Passengers', lblCoins: 'Coins', lblBest: 'Best', newBest: 'NEW BEST!', bestPill: 'BEST', saved: 'for bank', todayMis: 'Wetin to do today. New ones every day. Day streak: {n}', coinsSaved: 'Coins for bank', driving: 'YOU DEY DRIVE AM', tapDrive: 'Tap to drive am', needMore: 'You need A {n} more', addName: 'Put your name', hi: 'How far', easy: 'EASY', normal: 'NORMAL', hard: 'HARD', dailyBonus: 'Daily bonus +{n} coins', dayN: 'Day {n} streak', missionDone: 'MISSION DON COMPLETE! +{n} COINS', backOnRoad: 'WE DON RETURN FOR ROAD!', quizTag: 'AFRICA QUIZ', journeyIntro: 'Drive across Africa. Tap any place wey you don reach, make your next run start from there.', reachedTap: 'You don reach here · tap to start here', startsHere: 'Your next run go start here', keepAfter: 'Continue to drive pass {n}', nameInfo: 'This name go show for your score and the challenge wey you send your padi.', nameChal: 'Put your name make your padi know who to beat.', namePh: 'Your nickname', watchAd: 'Watch ad', presentedBy: 'Presented by', adCont: 'CONTINUE', adDouble: 'DOUBLE COINS', adNA: 'No ad now. Try again small time.', doubled: '+{n} coins don double!', honk: 'HONK BOOST', honkS: 'Watch ad · start with free ride', honkReady: 'HONK BOOST DEY READY', honkReadyS: 'Your next run go start with free ride', honkGo: 'HONK BOOST! FREE RIDE!', shop: 'Shop', shopWeb: 'You fit buy for inside Danfo Craze app.', shopWait: 'We dey connect to store…', restore: 'Restore wetin you buy', restored: 'We don restore wetin you buy', buyFail: 'E no work. Abeg try again.', gotCoins: '+{n} COINS!', paidRoute: 'Paid route · tap make you see am for shop', whyCrash: 'You don jam {n}!', gateT: 'Before you share', gateMsg: 'Sharing go open other apps like WhatsApp. Which year dem born you?', gatePh: 'Year wey dem born you', gateGo: 'CONTINUE', gateBad: 'Abeg put correct year, like 1990.', gateKid: 'Make big person share your score for you. Continue to drive!', whyCaught: 'No money to settle. Na station be that!',
+    sunCoin: 'SUN COIN!', sunDry: 'RAIN DON STOP', sunDay: 'SUN DON COME OUT', sunBoth: 'RAIN DON STOP · SUN DON COME OUT', rainSoon: 'Rain dey come', raining: 'Rain dey fall', nightSoon: 'Night dey come', daySoon: 'Day don near', nightOn: 'NIGHT DON FALL · ON YOUR LIGHT', partyGo: 'BUS JAM PARTY! ROAD DON CLEAR!', partyHow: 'No motor · no police · passenger and coin go come meet you', partyEnd: 'PARTY DON DEY END · MOTOR DEY COME BACK', partyBar: 'FREE RIDE', chalT: 'Beat my score', chalSub: 'YOU FIT BEAT', chalPax: 'passengers carried', chalShare: 'Share for any app', chalCopy: 'COPY', chalDone: 'I DON FINISH', correct: 'Correct!', timeUp: 'Time don finish!', notQuite: 'E no correct.', keepDriving: 'CONTINUE DRIVE', ok: 'OK', next: 'NEXT', finish: 'FINISH', youGot: 'You get {n} out of 5 correct!', plusCoins: '+{n} coins', capHit: 'You don reach today quiz coin limit. Continue to learn for fun!', comeBack: 'Come back anytime, learn more about Africa.', close: 'CLOSE', letsgo: 'OYA GO', save: 'SAVE', share: 'SHARE', lblScore: 'Score', lblPax: 'Passengers', lblCoins: 'Coins', lblBest: 'Best', newBest: 'NEW BEST!', bestPill: 'BEST', saved: 'for bank', todayMis: 'Wetin to do today. New ones every day. Day streak: {n}', coinsSaved: 'Coins for bank', driving: 'YOU DEY DRIVE AM', tapDrive: 'Tap to drive am', needMore: 'You need A {n} more', addName: 'Put your name', hi: 'How far', easy: 'EASY', normal: 'NORMAL', hard: 'HARD', dailyBonus: 'Daily bonus +{n} coins', dayN: 'Day {n} streak', missionDone: 'MISSION DON COMPLETE! +{n} COINS', backOnRoad: 'WE DON RETURN FOR ROAD!', quizTag: 'AFRICA QUIZ', journeyIntro: 'Drive across Africa. Tap any place wey you don reach, make your next run start from there.', reachedTap: 'You don reach here · tap to start here', startsHere: 'Your next run go start here', keepAfter: 'Continue to drive pass {n}', nameInfo: 'This name go show for your score and the challenge wey you send your padi.', nameChal: 'Put your name make your padi know who to beat.', namePh: 'Your nickname', watchAd: 'Watch ad', presentedBy: 'Presented by', adCont: 'CONTINUE', adDouble: 'DOUBLE COINS', adNA: 'No ad now. Try again small time.', doubled: '+{n} coins don double!', honk: 'HONK BOOST', honkS: 'Watch ad · start with free ride', honkReady: 'HONK BOOST DEY READY', honkReadyS: 'Your next run go start with free ride', honkGo: 'HONK BOOST! FREE RIDE!', shop: 'Shop', shopWeb: 'You fit buy for inside Danfo Craze app.', shopWait: 'We dey connect to store…', restore: 'Restore wetin you buy', restored: 'We don restore wetin you buy', buyFail: 'E no work. Abeg try again.', gotCoins: '+{n} COINS!', paidRoute: 'Paid route · tap make you see am for shop', whyCrash: 'You don jam {n}!', gateT: 'Before you share', gateMsg: 'Sharing go open other apps like WhatsApp. Which year dem born you?', gatePh: 'Year wey dem born you', gateGo: 'CONTINUE', gateBad: 'Abeg put correct year, like 1990.', gateKid: 'Make big person share your score for you. Continue to drive!', whyCaught: 'No money to settle. Na station be that!',
     siren: 'SIREN {n}/3 · DRIVE WELL MAKE DEM COMOT', sirenOff: 'SIREN DON OFF', settled: 'YOU DON SETTLE: {n}' },
   fr: { play: 'JOUER', again: 'REJOUER', home: 'Accueil', quiz: 'QUIZ POUR CONTINUER', free: 'Bonne réponse, tu continues · GRATUIT', cost: 'Bonne réponse, tu continues · {n} pièces', need: 'Il te faut {n} pièces',
     howto: 'Prends des passagers pour gagner des points.<br>Glisse ← → pour esquiver · Glisse ↑ pour sauter', name: 'Ton nom', missions: 'Missions', garage: 'Garage', journey: 'Voyage', quizmode: 'Quiz Afrique',
     challenge: 'DÉFIE UN AMI', crash: 'ACCIDENT !', jail: 'PRISON !', dodge: 'GLISSE POUR ESQUIVER', jump: 'GLISSE ↑ POUR SAUTER', pax: 'PRENDS LES PASSAGERS !', cop: 'POLICE ! ÉVITE-LES', tag: 'On ne finit jamais dernier !', resume: 'REPRENDRE', paused: 'PAUSE',
-    sun: 'PIÈCE SOLEIL ! CHOISIS', mkday: 'FAIS LE JOUR', dry: 'STOP LA PLUIE', keep: 'GARDE-LA', rainSoon: 'Pluie bientôt', raining: 'Il pleut', nightSoon: 'Nuit bientôt', daySoon: 'Aube bientôt', nightOn: 'LA NUIT TOMBE · PHARES ALLUMÉS', partyGo: 'BUS JAM PARTY ! ROUTE LIBRE !', partyHow: 'Pas de trafic · pas de police · passagers et pièces viennent à toi', partyEnd: 'FIN DE LA FÊTE · LE TRAFIC REVIENT', partyBar: 'TRAJET LIBRE', chalT: 'Bats mon score', chalSub: 'PEUX-TU BATTRE', chalPax: 'passagers transportés', chalShare: 'Partager vers une app', chalCopy: 'COPIER', chalDone: 'TERMINÉ', correct: 'Bonne réponse !', timeUp: 'Temps écoulé !', notQuite: 'Pas tout à fait.', keepDriving: 'CONTINUER', ok: 'OK', next: 'SUIVANT', finish: 'TERMINER', youGot: 'Tu as {n} bonnes réponses sur 5 !', plusCoins: '+{n} pièces', capHit: 'Limite de pièces du quiz atteinte pour aujourd\'hui. Continue à apprendre pour le plaisir !', comeBack: 'Reviens quand tu veux pour découvrir l\'Afrique.', close: 'FERMER', letsgo: 'C\'EST PARTI', save: 'ENREGISTRER', share: 'PARTAGER', lblScore: 'Score', lblPax: 'Passagers', lblCoins: 'Pièces', lblBest: 'Record', newBest: 'NOUVEAU RECORD !', bestPill: 'RECORD', saved: 'gagnées', todayMis: 'Missions du jour. De nouvelles chaque jour. Série de jours : {n}', coinsSaved: 'Pièces gagnées', driving: 'EN SERVICE', tapDrive: 'Touche pour conduire', needMore: 'Il manque A {n}', addName: 'Ajoute ton nom', hi: 'Salut', easy: 'FACILE', normal: 'NORMAL', hard: 'DIFFICILE', dailyBonus: 'Bonus du jour +{n} pièces', dayN: 'Série de jours : {n}', missionDone: 'MISSION RÉUSSIE ! +{n} PIÈCES', backOnRoad: 'DE RETOUR SUR LA ROUTE !', quizTag: 'QUIZ AFRIQUE', journeyIntro: 'Traverse l\'Afrique. Touche un lieu déjà atteint pour y commencer ta prochaine course.', reachedTap: 'Atteint · touche pour commencer ici', startsHere: 'Ta prochaine course commence ici', keepAfter: 'Continue après {n}', nameInfo: 'Ce nom apparaît sur ton score et sur les défis envoyés à tes amis.', nameChal: 'Ajoute ton nom pour que ton ami sache qui battre.', namePh: 'Ton pseudo', watchAd: 'Regarder une pub', presentedBy: 'Présenté par', adCont: 'CONTINUER', adDouble: 'DOUBLER LES PIÈCES', adNA: 'Pas de pub pour le moment. Réessaie bientôt.', doubled: '+{n} pièces doublées !', honk: 'HONK BOOST', honkS: 'Regarde une pub · départ en trajet libre', honkReady: 'HONK BOOST PRÊT', honkReadyS: 'Ta prochaine course commence en trajet libre', honkGo: 'HONK BOOST ! TRAJET LIBRE !', shop: 'Boutique', shopWeb: 'Les achats sont disponibles dans l\'appli Danfo Craze.', shopWait: 'Connexion à la boutique…', restore: 'Restaurer les achats', restored: 'Achats restaurés', buyFail: 'Échec. Réessaie.', gotCoins: '+{n} PIÈCES !', paidRoute: 'Route payante · touche pour la voir en boutique', whyCrash: 'Tu as percuté {n} !', gateT: 'Avant de partager', gateMsg: 'Le partage ouvre d\'autres applis comme WhatsApp. En quelle année es-tu né(e) ?', gatePh: 'Année de naissance', gateGo: 'CONTINUER', gateBad: 'Entre une année, par exemple 1990.', gateKid: 'Demande à un adulte de partager ton score pour toi. Continue à rouler !', whyCaught: 'La police t\'a arrêté et tu n\'avais pas de quoi payer.',
+    sunCoin: 'PIÈCE SOLEIL !', sunDry: 'LA PLUIE S\'ARRÊTE', sunDay: 'LE JOUR REVIENT', sunBoth: 'PLUIE FINIE · LE JOUR REVIENT', rainSoon: 'Pluie bientôt', raining: 'Il pleut', nightSoon: 'Nuit bientôt', daySoon: 'Aube bientôt', nightOn: 'LA NUIT TOMBE · PHARES ALLUMÉS', partyGo: 'BUS JAM PARTY ! ROUTE LIBRE !', partyHow: 'Pas de trafic · pas de police · passagers et pièces viennent à toi', partyEnd: 'FIN DE LA FÊTE · LE TRAFIC REVIENT', partyBar: 'TRAJET LIBRE', chalT: 'Bats mon score', chalSub: 'PEUX-TU BATTRE', chalPax: 'passagers transportés', chalShare: 'Partager vers une app', chalCopy: 'COPIER', chalDone: 'TERMINÉ', correct: 'Bonne réponse !', timeUp: 'Temps écoulé !', notQuite: 'Pas tout à fait.', keepDriving: 'CONTINUER', ok: 'OK', next: 'SUIVANT', finish: 'TERMINER', youGot: 'Tu as {n} bonnes réponses sur 5 !', plusCoins: '+{n} pièces', capHit: 'Limite de pièces du quiz atteinte pour aujourd\'hui. Continue à apprendre pour le plaisir !', comeBack: 'Reviens quand tu veux pour découvrir l\'Afrique.', close: 'FERMER', letsgo: 'C\'EST PARTI', save: 'ENREGISTRER', share: 'PARTAGER', lblScore: 'Score', lblPax: 'Passagers', lblCoins: 'Pièces', lblBest: 'Record', newBest: 'NOUVEAU RECORD !', bestPill: 'RECORD', saved: 'gagnées', todayMis: 'Missions du jour. De nouvelles chaque jour. Série de jours : {n}', coinsSaved: 'Pièces gagnées', driving: 'EN SERVICE', tapDrive: 'Touche pour conduire', needMore: 'Il manque A {n}', addName: 'Ajoute ton nom', hi: 'Salut', easy: 'FACILE', normal: 'NORMAL', hard: 'DIFFICILE', dailyBonus: 'Bonus du jour +{n} pièces', dayN: 'Série de jours : {n}', missionDone: 'MISSION RÉUSSIE ! +{n} PIÈCES', backOnRoad: 'DE RETOUR SUR LA ROUTE !', quizTag: 'QUIZ AFRIQUE', journeyIntro: 'Traverse l\'Afrique. Touche un lieu déjà atteint pour y commencer ta prochaine course.', reachedTap: 'Atteint · touche pour commencer ici', startsHere: 'Ta prochaine course commence ici', keepAfter: 'Continue après {n}', nameInfo: 'Ce nom apparaît sur ton score et sur les défis envoyés à tes amis.', nameChal: 'Ajoute ton nom pour que ton ami sache qui battre.', namePh: 'Ton pseudo', watchAd: 'Regarder une pub', presentedBy: 'Présenté par', adCont: 'CONTINUER', adDouble: 'DOUBLER LES PIÈCES', adNA: 'Pas de pub pour le moment. Réessaie bientôt.', doubled: '+{n} pièces doublées !', honk: 'HONK BOOST', honkS: 'Regarde une pub · départ en trajet libre', honkReady: 'HONK BOOST PRÊT', honkReadyS: 'Ta prochaine course commence en trajet libre', honkGo: 'HONK BOOST ! TRAJET LIBRE !', shop: 'Boutique', shopWeb: 'Les achats sont disponibles dans l\'appli Danfo Craze.', shopWait: 'Connexion à la boutique…', restore: 'Restaurer les achats', restored: 'Achats restaurés', buyFail: 'Échec. Réessaie.', gotCoins: '+{n} PIÈCES !', paidRoute: 'Route payante · touche pour la voir en boutique', whyCrash: 'Tu as percuté {n} !', gateT: 'Avant de partager', gateMsg: 'Le partage ouvre d\'autres applis comme WhatsApp. En quelle année es-tu né(e) ?', gatePh: 'Année de naissance', gateGo: 'CONTINUER', gateBad: 'Entre une année, par exemple 1990.', gateKid: 'Demande à un adulte de partager ton score pour toi. Continue à rouler !', whyCaught: 'La police t\'a arrêté et tu n\'avais pas de quoi payer.',
     siren: 'SIRÈNE {n}/3 · CONDUIS BIEN POUR LES SEMER', sirenOff: 'SIRÈNE ÉTEINTE', settled: 'POLICE PAYÉE : {n}' },
 };
 const LANGS = ['en', 'pcm', 'fr'], LANG_LABEL = { en: 'EN', pcm: 'PIDGIN', fr: 'FR' };
@@ -1453,20 +1442,21 @@ function startPractice() { if (!window.DC_QUIZ || !DC_QUIZ.length) return; pract
 // ---- quiz to continue: first save free, then 50, 100, 200 coins
 function saveCost() { return G.saves === 0 || !G.saves ? 0 : 50 * Math.pow(2, G.saves - 1); }
 let quizQ = null, quizT = 0, quizTimer = null;
+// Question level: easy questions (shuffled) for everyone. Harder ones only on AGBERO (hard),
+// and one step harder again after more than 3 saves in the same run.
+function quizCap() { let cap = diff === 'hard' ? 2 : 1; if (!practice && G && (G.saves || 0) >= 3) cap++; return cap; }
 // Question order that helps people learn:
 // 1) a question you got wrong comes back about 15 questions later,
-// 2) otherwise a question you have never seen, easier ones first for new players,
-// 3) once you have seen them all, the one you saw longest ago.
+// 2) otherwise a question you have never seen at your level,
+// 3) once you have seen them all, one at your level you saw longest ago.
 function qid(q) { let h = 5381; for (let i = 0; i < q.q.length; i++) h = (h * 33 + q.q.charCodeAt(i)) | 0; return (h >>> 0).toString(36); }
 function nextQuestion() {
-  const bankQ = window.DC_QUIZ || []; if (!bankQ.length) return null;
-  const seen = store.get('qseen', {}), n = store.get('qn', 0), right = store.get('qright', 0);
+  const all = window.DC_QUIZ || []; if (!all.length) return null;
+  const seen = store.get('qseen', {}), n = store.get('qn', 0), cap = quizCap();
+  const lvl = all.filter(q => (q.d || 1) <= cap), bankQ = lvl.length ? lvl : all;
   const due = bankQ.filter(q => { const s = seen[qid(q)]; return s && s.due && s.due <= n; }).sort((a, b) => seen[qid(a)].due - seen[qid(b)].due);
   let pickQ = due[0];
-  if (!pickQ) {
-    const fresh = bankQ.filter(q => !seen[qid(q)]), cap = right < 10 ? 1 : right < 40 ? 2 : 3, easy = fresh.filter(q => (q.d || 1) <= cap);
-    pickQ = pick(easy.length ? easy : fresh);
-  }
+  if (!pickQ) { const fresh = bankQ.filter(q => !seen[qid(q)]); pickQ = fresh.length ? pick(fresh) : null; }
   if (!pickQ) { const old = bankQ.slice().sort((a, b) => seen[qid(a)].last - seen[qid(b)].last); pickQ = pick(old.slice(0, Math.max(1, Math.floor(old.length * .1)))); }
   // shuffle the options so people learn answers, not button positions
   const idx = [0, 1, 2, 3].sort(() => Math.random() - .5);
@@ -1508,8 +1498,8 @@ function continueRun(byAd) {
   mode = 'play'; show('hud', true); hudKey = ''; audioInit(); musicStart(); last = performance.now(); toast(t('backOnRoad'));
 }
 function pause(on) {
-  if (on && mode === 'play') { mode = 'paused'; show('paused', true); setTimeout(() => $('resumeBtn').focus(), 0); $('wx').style.visibility = 'hidden'; if (A.ctx) A.ctx.suspend(); }
-  else if (!on && mode === 'paused') { mode = 'play'; show('paused', false); $('wx').style.visibility = ''; if (A.ctx) A.ctx.resume(); last = performance.now(); }
+  if (on && mode === 'play') { mode = 'paused'; show('paused', true); setTimeout(() => $('resumeBtn').focus(), 0); if (A.ctx) A.ctx.suspend(); }
+  else if (!on && mode === 'paused') { mode = 'play'; show('paused', false); if (A.ctx) A.ctx.resume(); last = performance.now(); }
 }
 function home() { moneyBanner(true); musicStop(); if (A.ctx && A.ctx.state !== 'running') A.ctx.resume(); mode = 'title'; newGame(true); show('over', false); show('paused', false); show('hud', false); show('hint', false); refreshTitle(); show('title', true); }
 document.querySelectorAll('.dsel').forEach(b => b.onclick = () => { diff = b.dataset.d; store.set('diff', diff); best = store.get('best.' + diff, 0); refreshTitle(); });
@@ -1560,7 +1550,6 @@ function update(dt) {
     else if (G.tut.on) { G.tut.on = null; $('hint').hidden = true; } // swerved away instead: the lesson comes back next time
   }
   if (G.slowT > 0) { G.slowT -= dt; ws = Math.min(ws, .35); }
-  if (G.wxOpen) { ws = Math.min(ws, .2); G.wxT -= dt; $('wxBar').style.transform = `scaleX(${Math.max(0, G.wxT / 6)})`; if (G.dead) { G.wxOpen = false; $('wx').hidden = true; } else if (G.wxT <= 0) chooseWx('keep'); }
   const wdt = dt * ws;
   if (!G.dead) {
     G.time += wdt;
@@ -1593,7 +1582,7 @@ function update(dt) {
     const bad = TOD.dark > .6 || G.rain > .6;
     if (bad && !G.badEp) { G.badEp = true; G.sunN = 0; G.nextSun = rand(4, 8); }
     else if (!bad && G.badEp && TOD.dark < .3 && G.rain < .3) G.badEp = false;
-    if (G.badEp && G.sunN < 2) { G.nextSun -= wdt; if (G.nextSun <= 0) { G.sunPending = true; G.sunN += Math.random() < .6 ? 1 : 2; G.nextSun = rand(14, 22); } }
+    if (G.badEp && G.sunN < 1) { G.nextSun -= wdt; if (G.nextSun <= 0) { G.sunPending = true; G.sunN = 1; G.nextSun = rand(14, 22); } }
     if (TOD.dark > .7 && !G.nightSaid) { G.nightSaid = true; toast(t('nightOn'), true); } else if (TOD.dark < .2) G.nightSaid = false;
   }
   if (!G.demo && !G.dead) { G.trackT = (G.trackT || 0) - dt; if (G.trackT <= 0) { G.trackT = 1; track('distRun', G.dist, true); track('scoreRun', G.score, true); if (TOD.dark > .8) track('night', 1, true); if (G.rain > .5) track('rain', 1, true); const md = store.get('maxDist', 0); if (G.dist > md) store.set('maxDist', G.dist); } }
@@ -1655,7 +1644,7 @@ function hit(o) {
   if (o.type === 'speaker') { o.done = true; o.gone = true; G.partyT = G.D.pdur; G.partyLen = G.D.pdur; clearRoad();
     for (let i = 0; i < 26; i++) confetti(rand(W), rand(-40, H * .15)); sfx.power(); toast(t('partyGo'), false, 'big'); say('Bus jam party! Oya dance!'); partyMusic(true); track('party'); return; }
   if (o.type === 'magnet') { o.done = true; o.gone = true; G.magnetT = 9; sfx.power(); toast('COIN MAGNET!'); return; }
-  if (o.type === 'sun') { o.done = true; o.gone = true; sfx.power(); burstParts(p.x, p.y - p.s * .6, 14, ['#ffe066', '#fff', '#ffb000'], 180, .5, 200, 5); openWx(); return; }
+  if (o.type === 'sun') { o.done = true; o.gone = true; sfx.power(); burstParts(p.x, p.y - p.s * .6, 14, ['#ffe066', '#fff', '#ffb000'], 180, .5, 200, 5); sunGrab(); return; }
   if (G.invT > 0 && (JUMP.has(o.type) || BLOCK.has(o.type))) return;
   if (JUMP.has(o.type)) {
     if (air) { o.done = true; track('hop'); return; }
@@ -1914,19 +1903,14 @@ function sunCoin(x, y, s, t) {
   ball(x, by, r, '#ffe066'); ball(x - r * .3, by - r * .1, r * .1, OUT); ball(x + r * .3, by - r * .1, r * .1, OUT);
   ctx.strokeStyle = OUT; ctx.lineWidth = Math.max(1, r * .1); ctx.beginPath(); ctx.arc(x, by + r * .1, r * .4, .4, Math.PI - .4); ctx.stroke();
 }
+// sun coin: no menu, it just clears the bad weather (rain and/or night). If the sky already cleared, it pays coins.
 const SUN_KEEP = 50;
-function openWx() {
-  G.wxOpen = true; G.wxT = 6; $('wxT').textContent = t('sun');
-  const opts = []; if (TOD.dark > .25 && G.ff <= 0) opts.push(['day', t('mkday')]); if (G.rainT > 0) opts.push(['dry', t('dry')]); opts.push(['keep', `${t('keep')} +${SUN_KEEP}`]);
-  $('wxB').innerHTML = opts.map(([k, l]) => `<button type="button" class="${k}" data-k="${k}">${l}</button>`).join('');
-  for (const b of $('wxB').children) b.onclick = e => { e.stopPropagation(); chooseWx(b.dataset.k); };
-  $('wx').hidden = false;
-}
-function chooseWx(k) {
-  if (!G.wxOpen) return; G.wxOpen = false; $('wx').hidden = true;
-  if (k === 'day') { G.ff = CYCLE - cycleU(); popText('SUN DON COME OUT!', 'NIGHT DON CLEAR'); }
-  else if (k === 'dry') { G.rainT = 0; G.nextRain = rand(90, 140); popText('RAIN DON STOP!', 'ROAD DON DRY'); }
-  else { G.coins += SUN_KEEP; popText(`+${SUN_KEEP}`, 'SUN COIN KEPT', 'green'); }
+function sunGrab() {
+  const wet = G.rainT > 0, dark = TOD.dark > .25 && G.ff <= 0;
+  if (wet) { G.rainT = 0; G.nextRain = rand(90, 140); }
+  if (dark) G.ff = CYCLE - cycleU();
+  if (wet || dark) popText(t('sunCoin'), t(wet && dark ? 'sunBoth' : wet ? 'sunDry' : 'sunDay'));
+  else { G.coins += SUN_KEEP; popText(`+${SUN_KEEP}`, t('sunCoin'), 'green'); }
   sfx.pax(); track('sun');
 }
 function confetti(x, y) { parts.push({ x, y, vx: rand(-30, 30), vy: rand(50, 120), g: 20, t: 0, life: 2.4, r: rand(2.5, 4.5), col: pick(['#FFC91A', '#18b86b', '#fff', '#ff4d4d', '#8b5cf6']), conf: true }); }
@@ -1944,7 +1928,7 @@ resize(); newGame(true); for (let i = 0; i < 90; i++) update(1 / 30);
 const lb = loginStreak(); if (lb) { const dn = $('dailyNote'); dn.hidden = false; dn.textContent = `${t('dailyBonus', lb.bonus)} · ${t('dayN', lb.streak)}`; }
 applyLang(); refreshTitle();
 if ('serviceWorker' in navigator && location.protocol === 'https:' && /vercel\.app$|danfo/i.test(location.hostname)) { try { navigator.serviceWorker.register('sw.js').catch(() => {}); } catch (e) {} }
-if ((/^(localhost|127\.0\.0\.1)$/.test(location.hostname) || location.protocol === 'file:') && !window.Capacitor) window.__dc = { popText, clear() { objs.length = 0; }, counts() { return { objs: objs.length, props: props.length, walls: walls.length, parts: parts.length, drops: drops.length, heads: headSpots.length, lamps: lampSpots.length }; }, spawn(t, l, z) { if (BLOCK.has(t) && t !== 'cop') addV(t, l, z); else addO({ type: t, lane: l, z, look: t === 'cop' ? COP : randomLook() }); }, get G() { return G; } };
+if ((/^(localhost|127\.0\.0\.1)$/.test(location.hostname) || location.protocol === 'file:') && !window.Capacitor) window.__dc = { popText, nextQuestion, clear() { objs.length = 0; }, counts() { return { objs: objs.length, props: props.length, walls: walls.length, parts: parts.length, drops: drops.length, heads: headSpots.length, lamps: lampSpots.length }; }, spawn(t, l, z) { if (BLOCK.has(t) && t !== 'cop') addV(t, l, z); else addO({ type: t, lane: l, z, look: t === 'cop' ? COP : randomLook() }); }, get G() { return G; } };
 requestAnimationFrame(frame);
 })();
 </script>
