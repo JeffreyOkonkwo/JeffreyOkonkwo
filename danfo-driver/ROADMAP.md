@@ -27,7 +27,11 @@ The leaderboard shows the licence photo and the custom bus, so items 5 and 8 shi
   - **Outfit:** plain shirt, football jersey, hoodie, dashiki, kitenge, suit and tie, Ankara print, kente, track jacket, boubou, agbada, denim jacket
   - **Extras:** glasses (round, square, shades) and earrings (studs, hoops)
 - **No boy or girl labels.** Long hair, lashes, lip colour, earrings and head wraps are free for everyone, so any player can build any look without choosing a gender.
-- **Unlocking:** every group has free options. More outfits, hair colours (auburn, blonde, blue, purple) and headwear colours unlock through play, the Danfo Pass or the shop. Looks only.
+- **Unlocking: Free, Earn or Pass.** Licence looks have no separate shop price, so players only see two kinds of tag.
+  - **Free from the start (about 25 looks):** every skin tone, eight hair styles, head wrap, cap, earrings, glasses, lashes, lip colours and three outfits.
+  - **Earn by playing (about 12):** for example locs and bun, beanie and bucket hat, dashiki, kitenge, suit and denim jacket, and the auburn and blue colours. Kept forever once earned.
+  - **Danfo Pass (about 12):** the flashiest looks, such as gele, shades, Ankara, kente, agbada, boubou, track jacket, and gold, purple and blonde colours.
+  - Free players can build a full, good-looking driver without paying; the Pass is what makes it stand out.
 - **The licence shows:** photo, name, flag, licence number, plate number, rank and the furthest city reached.
 - **Flags:** every country and territory (249), grouped as Africa first and then the rest of the world, plus "Africa (no country)". Use the open flag-icons set (MIT licence), about 540 KB compressed.
 - **Ranks are earned from the player's record, never picked.** Four ranks, based on the furthest city reached on the journey:
@@ -63,6 +67,8 @@ The leaderboard shows the licence photo and the custom bus, so items 5 and 8 shi
 ### Danfo Pass (the only subscription)
 - The Danfo Pass replaces the planned Oga Driver Club, which has been removed from the code.
 - It unlocks looks only (licence options, hair and headwear colours, bus colours, plate styles, conductor looks and speech bubble styles). It never raises a score and never includes quiz help.
+- **What makes players want it:** a gold licence frame that also shows on their leaderboard row, new looks every month, and the flashiest outfits and colours.
+- **Shop vs Pass:** the shop keeps what it sells in 1.0 (coin packs, Remove Ads, the Starter Pack and the Lagos routes), and coins still buy bus colours in the Garage. Licence looks are never sold one by one; they are free, earned or in the Pass.
 - **Store setup:** create one subscription product in both stores and one entitlement in RevenueCat when this version is built.
 
 ## Version 1.2 (proposed): conductor and trip cards
