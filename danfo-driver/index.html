@@ -54,7 +54,8 @@
   .clock .dial{position:relative;width:20px;height:20px;border-radius:50%;background:#ffe066;border:2px solid var(--ink);transition:background .6s}
   .clock .dial.night{background:#3a4486}.clock .dial.dusk{background:#ff9a4d}
   .clock .dial i{position:absolute;left:50%;top:50%;width:2px;height:7px;margin-left:-1px;background:var(--ink);transform-origin:50% 0;border-radius:2px}
-  .clock .fc{display:flex;align-items:center;gap:4px;padding-left:6px;border-left:1px solid rgba(255,255,255,.35)}
+  .clock[hidden]{display:none}
+  .clock .fc{display:flex;align-items:center;gap:5px;padding:2px 4px}
   .clock .fc[hidden]{display:none}
   .clock .fc svg{width:16px;height:16px}
   .clock.warn .fc{animation:fcPulse 1.2s ease-in-out infinite}
@@ -242,7 +243,7 @@
       <div class="heat" id="heat" aria-label="Police sirens"><i></i><i></i><i></i></div>
     </div>
     <div class="rcol"><div class="right"><div class="coins pax" aria-label="Passengers"><span class="pax-i"></span><span id="paxN">0</span></div><div class="coins"><span class="coin-i">A</span><span id="coins">0</span></div><button class="pause" id="pauseBtn" type="button" aria-label="Pause">II</button></div>
-      <div class="clock" id="clock" aria-label="Time and weather"><span class="dial" id="dial"><i id="hand"></i></span><span id="clockT">7:00 AM</span><span class="fc" id="fc" hidden></span></div></div>
+      <div class="clock" id="clock" aria-label="Weather" hidden><span class="fc" id="fc"></span></div></div>
   </div>
   <div id="ptimer" hidden><div class="pt1"><span class="pti">♪</span><span id="ptLbl">FREE RIDE</span><span class="pts" id="ptSec">12</span></div><i><b id="ptFill"></b></i><small id="ptHow"></small></div><div id="pcount" hidden></div>
   <div id="wx" hidden><div class="wt" id="wxT">SUN COIN!</div><div class="wb" id="wxB"></div><div class="bar" id="wxBar"></div></div>
@@ -1439,9 +1440,8 @@ const CYCLE = 170, SKY = { day: ['#3fb4f5', '#a6e4ff', '#ffe9b0'], sunset: ['#3b
 const KEYS = [[0, 'day', 0], [55, 'day', 0], [72, 'sunset', .25], [88, 'night', 1], [140, 'night', 1], [155, 'sunset', .3], [170, 'day', 0]];
 function mixHex(a, b, t) { const A = parseInt(a.slice(1), 16), B = parseInt(b.slice(1), 16), m = s => Math.round(((A >> s) & 255) + (((B >> s) & 255) - ((A >> s) & 255)) * t); return `rgb(${m(16)},${m(8)},${m(0)})`; }
 function toHex(rgb) { const [r, g, b] = rgb.match(/\d+/g).map(Number); return '#' + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1); }
-const DAY0 = 100, HRS = [[0, 7], [55, 17.5], [72, 18.75], [88, 20], [140, 28.5], [155, 30], [170, 31]];
+const DAY0 = 100;
 function cycleU() { const t = G ? G.time + G.todOff : 0; return t < DAY0 + 55 ? t / (DAY0 + 55) * 55 : (t - DAY0) % CYCLE; }
-function gameHour(u) { let i = 0; while (i < HRS.length - 2 && HRS[i + 1][0] <= u) i++; const [a, h0] = HRS[i], [b, h1] = HRS[i + 1]; return (h0 + (h1 - h0) * (u - a) / (b - a)) % 24; }
 function timeOfDay() {
   const u = cycleU(); let i = 0; while (i < KEYS.length - 2 && KEYS[i + 1][0] <= u) i++;
   const [t0, k0, d0] = KEYS[i], [t1, k1, d1] = KEYS[i + 1], f = t1 > t0 ? (u - t0) / (t1 - t0) : 0;
@@ -1645,16 +1645,13 @@ function clearRoad() {
 let clockAcc = 1, fcKey = '';
 function clockHud(dt) {
   clockAcc += dt; if (clockAcc < .25) return; clockAcc = 0;
-  const u = cycleU(), h = gameHour(u), hr = Math.floor(h), mn = Math.floor((h - hr) * 4) * 15, h12 = hr % 12 || 12;
-  $('clockT').textContent = `${h12}:${String(mn).padStart(2, '0')} ${hr < 12 ? 'AM' : 'PM'}`;
-  $('hand').style.transform = `rotate(${(h % 12) / 12 * 360 + 180}deg)`;
-  $('dial').className = 'dial' + (TOD.dark > .6 ? ' night' : TOD.dark > .08 ? ' dusk' : '');
+  const u = cycleU();
   const t0 = G.time + G.todOff, toDusk = t0 < DAY0 + 55 ? DAY0 + 55 - t0 : (55 - u + CYCLE) % CYCLE, toDawn = (155 - u + CYCLE) % CYCLE;
   let fc = '';
   if (G.rainT > 0) fc = 'rain|raining'; else if (G.nextRain < 15) fc = 'rain|rainSoon!';
   else if (TOD.dark < .05 && toDusk < 20) fc = 'moon|nightSoon!'; else if (TOD.dark > .6 && toDawn < 15) fc = 'sun|daySoon';
   if (fc === fcKey) return; fcKey = fc;
-  const el = $('fc'); el.hidden = !fc; $('clock').classList.toggle('warn', fc.endsWith('!'));
+  const el = $('fc'); $('clock').hidden = !fc; $('clock').classList.toggle('warn', fc.endsWith('!'));
   if (fc) { const [ic, k] = fc.replace('!', '').split('|'); el.innerHTML = ICO[ic] + `<span>${t(k)}</span>`; }
 }
 // ---- sun coin: shows up once (sometimes twice) at night or in rain. Use it, or keep it for coins

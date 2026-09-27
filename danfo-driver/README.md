@@ -22,7 +22,7 @@ The first run slows down and shows a swipe hint the first time you need to dodge
 The scenery starts in Nigeria (Lagos, Third Mainland Bridge, a village road, Abuja, Port Harcourt and Kano). It then goes on a road trip across Africa: Accra, Dakar, Marrakech, Cairo, Addis Ababa, Nairobi, Kigali, Kinshasa and Johannesburg. Each city has its own local minibuses, landmarks, signs and conductor calls. Once you reach a place, you can start your next run there from **Journey**.
 
 Other features:
-- **Night and rain** come later in a run. A small clock shows the time and warns before rain or night.
+- **Night and rain** come later in a run. A small note appears only when rain or night is coming.
 - **Sun Coin:** turns night into day, stops the rain, or is kept for coins.
 - **Bus Jam Party** is a rare free ride: traffic and police leave the road, and passengers and coins come to you until the timer runs out.
 - **Challenge a friend:** share your score through any app, or copy the link.
