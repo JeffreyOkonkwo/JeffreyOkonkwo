@@ -1,14 +1,19 @@
 {
+  "id": "/",
   "name": "Danfo Craze",
   "short_name": "Danfo Craze",
-  "description": "We no dey carry last! A swipe-to-dodge danfo runner across Nigerian roads.",
-  "start_url": ".",
+  "description": "We no dey carry last! Drive a yellow danfo across Africa: dodge traffic, pick up passengers, escape the police and learn about Africa.",
+  "lang": "en",
+  "start_url": "/",
+  "scope": "/",
   "display": "fullscreen",
   "orientation": "portrait",
   "background_color": "#0E8F52",
   "theme_color": "#FFC91A",
+  "categories": ["games", "education", "entertainment"],
   "icons": [
-    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }
