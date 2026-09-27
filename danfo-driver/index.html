@@ -1179,7 +1179,7 @@ function musicStop() { clearInterval(A.t); A.t = null; partyMusic(false); }
 // conductor calls are shown as speech bubbles only
 const calm = v => String(v).charAt(0) + String(v).slice(1).toLowerCase().replace(' · ', '. ');
 // the conductor talks now and then: police and new places come first (pri 2 and 1), small chatter never talks over them
-function say(text, pri = 0) { if (!G || G.demo || !text) return; if (G.callT > 0 && (G.callPri || 0) > pri) return; if (!pri && G.time - (G.saidAt ?? -99) < 9) return; G.call = text; G.callT = 2.2; G.callPri = pri; G.saidAt = G.time; }
+function say(text, pri = 0) { if (!G || G.demo || !text) return; if (G.callT > 0 && (G.callPri || 0) > pri) return; if (!pri && G.time - (G.saidAt ?? -99) < 9) return; G.call = text; G.callT = pri > 1 ? 2.8 : 2.2; G.callPri = pri; G.saidAt = G.time; }
 
 // ---------------------------------------------------------------- game state
 let G = null, mode = 'title', T = 0, shake = 0, flashA = 0, last = 0;
@@ -1398,7 +1398,7 @@ function policeCatch(checkpoint) {
   else { die('caught', checkpoint ? 'cop' : undefined); return; }
   G.chase.t = 0; G.chase.recover = false; G.chase.d = .05; G.chain = 0; G.streak = 0; shake = .4; flashA = .25; G.heat = 0; G.heatT = 0;
   toast(t('settled', paid), true);
-  sfx.siren(); say(pick(['Officer, please, we are going!', 'Police stopped us!', 'Na so dem dey do!']), 2);
+  sfx.siren(); say(pick(paid.includes('COINS') ? ['Chai! There goes our money!', 'Officer, take it and let us go!', 'Na so dem dey collect!'] : ['Chai! Our points are gone!', 'Officer, please, we are going!', 'Na so dem dey collect!']), 2);
 }
 function die(kind, what) {
   if (G.dead) return; G.dead = true; G.deadT = 0; G.deadKind = kind; G.deadWhat = what;
@@ -2519,7 +2519,7 @@ function bubble(x, y, text) {
   const bx = clamp(x - w * .3, 8, W - w - 8), by = y - h;
   // the bubble never hides the road: it fades while a car, obstacle or passenger is behind it
   const hid = objs.some(o => !o.done && o.type !== 'coin' && o.z > ZP + .5 && o.z < ZP + 40 && (() => { const q = P3(o.x, 0, o.z); return q.x + q.s * .55 > bx && q.x - q.s * .55 < bx + w && q.y > by - 6 && q.y - q.s * 1.1 < by + h + 12; })());
-  G.bubA = (G.bubA === undefined ? 1 : G.bubA) + ((hid ? .22 : 1) - (G.bubA === undefined ? 1 : G.bubA)) * .25; ctx.save(); ctx.globalAlpha = G.bubA;
+  G.bubA = (G.bubA === undefined ? 1 : G.bubA) + ((hid && (G.callPri || 0) < 2 ? .22 : 1) - (G.bubA === undefined ? 1 : G.bubA)) * .25; ctx.save(); ctx.globalAlpha = G.bubA;
   flat(bx, by, w, h, 14, '#fff', 3);
   const tx = clamp(x, bx + 14, bx + w - 14); ctx.beginPath(); ctx.moveTo(tx - 7, by + h - 1.5); ctx.lineTo(tx + 3, by + h + 11); ctx.lineTo(tx + 9, by + h - 1.5); ctx.fillStyle = '#fff'; ctx.fill();
   ctx.lineWidth = 3; ctx.strokeStyle = OUT; ctx.beginPath(); ctx.moveTo(tx - 7, by + h); ctx.lineTo(tx + 3, by + h + 11); ctx.lineTo(tx + 9, by + h); ctx.stroke();
