@@ -78,6 +78,20 @@ export default async function handler(req, res) {
       const out = await update(data => { const e = data.e[who]; if (!e || who === me) return { error: 'no entry', status: 404 }; e.rep = e.rep || []; if (!e.rep.includes(me)) e.rep.push(me); });
       return res.status(out.status || 200).json(out.error ? out : { ok: true });
     }
+    if (q.profile) { // name, flag, plate, rank or look changed: update the player's row without a new score
+      const n = clip(b.n, 14) || 'Driver', pl = clip(b.pl, 8).toUpperCase().replace(/[^A-Z0-9 ]/g, '');
+      if (BAD.test(n.replace(/[^a-z]/gi, '')) || BAD.test(pl.replace(/ /g, ''))) return res.status(422).json({ error: 'name' });
+      let lk = {}; try { lk = typeof b.lk === 'object' && b.lk ? JSON.parse(JSON.stringify(b.lk).slice(0, 600)) : {}; } catch { lk = {}; }
+      const now = Date.now();
+      const out = await update(data => {
+        const e = data.e[me]; if (!e) return { error: 'no entry', status: 404 };
+        if (now - (e.pat || 0) < 2000) return { error: 'wait', status: 429 };
+        if (n !== e.lastN) { e.rep = []; e.lastN = n; }
+        Object.assign(e, { n, cc: clip(b.cc, 6).toUpperCase(), pl, rk: clip(b.rk, 14), lk, gold: !!b.gold, pat: now });
+        return { ok: true, me };
+      });
+      return res.status(out.status || 200).json(out);
+    }
     const why = check(b); if (why) return res.status(422).json({ error: why });
     const n = clip(b.n, 14) || 'Driver', pl = clip(b.pl, 8).toUpperCase().replace(/[^A-Z0-9 ]/g, '');
     if (BAD.test(n.replace(/[^a-z]/gi, '')) || BAD.test(pl.replace(/ /g, ''))) return res.status(422).json({ error: 'name' });
@@ -91,6 +105,9 @@ export default async function handler(req, res) {
       if (n !== e.lastN) { e.rep = []; e.lastN = n; }
       if (s > e.s) { e.s = s; e.k = k; e.diff = diff; }
       if (!k && s > (e.cs || 0)) { e.cs = s; e.cdiff = diff; }
+      // rejoining: the player's best clean run can come with their best run in the same request
+      const c = b.clean && typeof b.clean === 'object' ? b.clean : null;
+      if (c && !check(c)) { const cs = num(c.s, 1e8); if (cs > (e.cs || 0) && cs <= Math.max(s, e.s)) { e.cs = cs; e.cdiff = ['easy', 'normal', 'hard'].includes(c.diff) ? c.diff : 'normal'; } }
       data.e[me] = e;
       const ids = Object.keys(data.e);
       if (ids.length > KEEP) ids.sort((a, b2) => data.e[a].s - data.e[b2].s).slice(0, ids.length - KEEP).forEach(id => { if (id !== me) delete data.e[id]; });
