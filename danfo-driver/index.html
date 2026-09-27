@@ -113,6 +113,26 @@
   .row b{font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:20px}
   .newbest{font-family:"Bungee",Impact,sans-serif;background:var(--danfo);border:3px solid var(--ink);border-radius:10px;padding:2px 14px;transform:rotate(-3deg)}
   .card .play{animation:none;padding:12px 30px}
+  .nick{display:flex;align-items:center;gap:8px;width:100%;max-width:340px;font-weight:800;font-size:13px;color:#fff}
+  .nick span{white-space:nowrap;opacity:.8}
+  .nick input{flex:1;min-width:0;font:inherit;font-size:16px;font-weight:800;color:var(--ink);background:#fff;border:3px solid var(--danfo);border-radius:12px;padding:6px 10px}
+  .nick input:focus{outline:3px solid #fff;outline-offset:1px}
+  .quizbtn{width:100%;border:4px solid var(--ink);border-radius:18px;padding:10px 14px;background:linear-gradient(#ffe066,var(--danfo));color:var(--ink);
+    box-shadow:0 6px 0 var(--ink);display:grid;gap:2px}
+  .quizbtn b{font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:20px}
+  .quizbtn small{font-weight:800;font-size:12px}
+  .quizbtn:disabled{opacity:.5;cursor:default}
+  .quizbtn:active:not(:disabled){transform:translateY(4px);box-shadow:0 2px 0 var(--ink)}
+  .qcard{max-width:440px;text-align:left;justify-items:stretch}
+  .qtag{justify-self:start;font-family:"Bungee",Impact,sans-serif;font-size:13px;background:var(--green);color:#fff;padding:3px 10px;border-radius:8px;border:3px solid var(--ink)}
+  .qbar{height:10px;border-radius:6px;background:#e9e3f0;overflow:hidden;border:2px solid var(--ink)}
+  .qbar i{display:block;height:100%;width:100%;background:var(--danfo)}
+  .qq{margin:0;font-weight:800;font-size:clamp(18px,4.8vw,22px);line-height:1.3}
+  .qopts{display:grid;gap:8px}
+  .qopt{text-align:left;font-weight:800;font-size:17px;padding:10px 14px;border-radius:14px;border:3px solid var(--ink);background:#fff;color:var(--ink);box-shadow:0 4px 0 var(--ink)}
+  .qopt:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+  .qopt.right{background:#4ff0a0}.qopt.wrong{background:#ff8b80}
+  .qfact{margin:0;font-weight:700;font-size:15px;line-height:1.4;background:#fff6d6;border:2px solid var(--danfo);border-radius:12px;padding:8px 12px}
   @media (prefers-reduced-motion:reduce){.logo,.play,.hint .arrows,.chip.cop{animation:none}}
 </style>
 </head>
@@ -135,6 +155,7 @@
   <div class="overlay title" id="title">
     <div class="logo"><h1><img class="logoimg" src="brand/logo.svg" alt="Danfo Craze: Naija no dey carry last!"></h1></div>
     <div class="bottom">
+      <label class="nick"><span>Your name</span><input id="nick" type="text" maxlength="14" autocomplete="nickname" placeholder="Enter nickname" enterkeyhint="done"></label>
       <div class="diffs" role="radiogroup" aria-label="Difficulty">
         <button class="dsel" type="button" role="radio" data-d="easy" aria-checked="false"><b>JJC</b><small>EASY</small></button>
         <button class="dsel" type="button" role="radio" data-d="normal" aria-checked="true"><b>AREA DRIVER</b><small>NORMAL</small></button>
@@ -154,8 +175,19 @@
       <span class="newbest" id="newBest" hidden>NEW BEST!</span>
       <div><div class="lbl">Score</div><div class="big" id="oScore">0</div></div>
       <div class="row"><div><div class="lbl">Passengers</div><b id="oPax">0</b></div><div><div class="lbl">Coins</div><b id="oCoins">0</b></div><div><div class="lbl">Best</div><b id="oBest">0</b></div></div>
+      <button class="quizbtn" id="quizBtn" type="button"><b>QUIZ TO CONTINUE</b><small id="quizCost">Answer right, keep driving · FREE</small></button>
       <button class="play" id="againBtn" type="button">PLAY AGAIN</button>
       <button class="small" id="homeBtn" type="button">Home</button>
+    </div>
+  </div>
+  <div class="overlay" id="quiz" hidden>
+    <div class="card qcard">
+      <span class="qtag">AFRICA QUIZ</span>
+      <div class="qbar"><i id="qTime"></i></div>
+      <p class="qq" id="qQ"></p>
+      <div class="qopts" id="qOpts"></div>
+      <p class="qfact" id="qFact" hidden></p>
+      <button class="play" id="qNext" type="button" hidden>OK</button>
     </div>
   </div>
   <div class="overlay" id="paused" hidden>
@@ -163,6 +195,7 @@
   </div>
 </div>
 
+<script src="quiz.js"></script>
 <script>
 (() => {
 'use strict';
@@ -201,7 +234,7 @@ const SHOPS = ['SUYA SPOT', 'MAMA PUT', "GOD'S GRACE PHONES", 'AMALA JOINT', 'PO
 const TOWERS = ['EKO TOWER', 'LEKKI MALL', 'TECH HUB', 'ISLAND BANK', 'OCEAN VIEW'];
 const BOARDS = ['BUY LAND FOR EPE', 'JOLLOF WARS · SAT', 'LAGOS · CENTRE OF EXCELLENCE', 'WAKE UP NAIJA · 99.1FM'];
 const STOPNAMES = ZSTOPS.lagos;
-const CALLS = ['Enter with your change!', 'Shift for back abeg!', 'One chance remain!', 'Who never pay?', 'Owa! Owa!', 'Driver, go jeje!', 'Oya enter, we dey go!', 'No story, pay your money!'];
+const CALLS = ['Enter with your change!', 'Shift for back abeg!', 'Space still dey for back!', 'Who never pay?', 'Owa! Owa!', 'Driver, go jeje!', 'Oya enter, we dey go!', 'No story, pay your money!'];
 
 let W, H, DPR, U, cx, hy, gy, skyline = [];
 const clouds = Array.from({ length: 6 }, () => ({ x: rand(), y: rand(.05, .24), s: rand(.7, 1.3), v: rand(.004, .012) }));
@@ -434,7 +467,7 @@ function wall(b) {
     if (b.glass) {
       for (let y = .1; y < b.h - .1; y += .22) for (let z = b.z + .08; z < b.z + b.len - .1; z += .3) { const r = q(y, y + .17, z, z + .24); if (r) poly(r, (Math.floor(y * 10 + z) % 3) ? '#8fdcff' : '#bfeaff', 0); }
     } else {
-      for (let f = 0; f < b.floors; f++) { const y0 = .42 + f * .32; for (let z = b.z + .14; z < b.z + b.len - .2; z += .42) { const r = q(y0, y0 + .19, z, z + .24); if (r) { poly(r, '#fff', 0); const r2 = q(y0 + .02, y0 + .17, z + .02, z + .22); if (r2) poly(r2, b.win, 1); } } }
+      for (let f = 0; f < b.floors; f++) { const y0 = .42 + f * .32; for (let z = b.z + .14; z < b.z + b.len - .2; z += .42) { const r = q(y0, y0 + .19, z, z + .24); if (r) { poly(r, '#fff', 0); const r2 = q(y0 + .02, y0 + .17, z + .02, z + .22); if (r2) poly(r2, TOD.dark > .5 && (b.seed + Math.floor(z * 3)) % 3 ? '#ffd76a' : b.win, 1); } } }
       const sf = q(.02, .28, b.z + .1, b.z + b.len - .1); if (sf) poly(sf, '#3a2a44', 1.2);
       for (let z = b.z + .16; z < b.z + b.len - .2; z += .22) { const g = q(.06, .16, z, z + .14); if (g) poly(g, goods(b, z), 0); }
       for (let i = 0; i < 6; i++) { const z1 = b.z + .05 + i * (b.len - .1) / 6, z2 = z1 + (b.len - .1) / 6; if (z2 < zn || z1 > zf) continue;
@@ -454,6 +487,7 @@ function palm(x, y, s, t) {
 function lamp(x, y, s, side) {
   if (s < 6) return; ctx.strokeStyle = OUT; ctx.lineWidth = Math.max(2.5, s * .03); ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, y - s * .95); ctx.lineTo(x - side * s * .18, y - s * .95); ctx.stroke();
   ctx.strokeStyle = '#8a93a6'; ctx.lineWidth = Math.max(1.2, s * .018); ctx.stroke(); blob(x - side * s * .24, y - s * .98, s * .12, s * .05, s * .02, '#fff4b0', false);
+  if (TOD.dark > .02 && lampSpots.length < 30) lampSpots.push({ x: x - side * s * .18, y: y - s * .9, s });
 }
 function stall(x, y, s, t, o) {
   if (s < 6) return; shadowE(x, y, s * .4);
@@ -543,6 +577,7 @@ function audioInit() {
   A.music = c.createGain(); A.music.gain.value = .45; A.music.connect(A.master);
   A.noise = c.createBuffer(1, c.sampleRate, c.sampleRate); const d = A.noise.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
   const s = c.createBufferSource(); s.buffer = A.noise; s.loop = true; const f = c.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 220; const g = c.createGain(); g.gain.value = .08; s.connect(f); f.connect(g); g.connect(A.master); s.start();
+  const rs = c.createBufferSource(); rs.buffer = A.noise; rs.loop = true; const rf = c.createBiquadFilter(); rf.type = 'highpass'; rf.frequency.value = 2500; A.rain = c.createGain(); A.rain.gain.value = 0; rs.connect(rf); rf.connect(A.rain); A.rain.connect(A.master); rs.start();
 }
 function out(pan) { if (!A.ctx.createStereoPanner) return A.master; const p = A.ctx.createStereoPanner(); p.pan.value = clamp(pan, -1, 1); p.connect(A.master); return p; }
 function tone(f, dur, type = 'sine', vol = .2, when = 0, dest, slide) {
@@ -602,7 +637,7 @@ diff = store.get('diff', 'normal'); if (!DIFFS[diff]) diff = 'normal';
 let best = store.get('best.' + diff, 0), bank = store.get('bank', 0), tutDone = store.get('tut', false);
 const BLOCK = new Set(['car', 'danfo', 'keke', 'brt', 'okada', 'cop']), JUMP = new Set(['pothole', 'branches', 'barrier', 'bump', 'goat']);
 const LEN = { car: .95, danfo: 1.2, keke: .7, brt: 2.2, okada: .5, pothole: .3, branches: .35, barrier: .2, bump: .2, goat: .35, cop: .3, coin: .2, pax: .3, speaker: .3, magnet: .3 };
-const NAMES = { car: 'Camry', danfo: 'danfo', keke: 'keke', brt: 'BRT bus', okada: 'okada' };
+const NAMES = { car: 'Camry', danfo: 'another danfo', keke: 'keke', brt: 'BRT bus', okada: 'okada' };
 const COP = { skin: '#5a3320', shirt: '#1b1b24', dots: '#1b1b24', pants: '#1b1b24', hat: 'police' };
 
 function zoneAt(z) { const n = ZONES.length; return ZONES[((Math.floor((G.dist + z) / ZONE_LEN) % n) + n) % n].k; }
@@ -611,7 +646,7 @@ function newGame(demo) {
   G = { demo, D: DIFFS[demo ? 'normal' : diff], dist: 0, time: 0, speed: START, score: 0, coins: 0, streak: 0, P: { lane: 1, x: 0, y: 0, jt: 0, sq: 1, tilt: 0 },
     chase: { d: .3, t: demo ? 0 : 3 }, partyT: 0, magnetT: 0, dead: false, deadT: 0, rowAcc: 0, edge: [-1.3, -1.3], propAcc: 0,
     lastPow: 0, nextSpeed: 25, zone: 'market', call: '', callT: 0, callNext: 3, hornT: 2, slogan: pick(SLOGANS), tut: (() => { const k = demo || (tutDone && diff !== 'easy'); return { dodge: k, jump: k, pax: k, cop: k, on: null }; })(),
-    stopName: pick(STOPNAMES), stopAcc: 0, free: 1, swerveT: 9, pax: 0, chain: 0, chainT: 0 };
+    stopName: pick(STOPNAMES), stopAcc: 0, free: 1, swerveT: 9, rain: 0, rainT: 0, nextRain: rand(35, 70), pax: 0, chain: 0, chainT: 0 };
   for (let i = 0; i < 60; i++) stepScenery(1.6);
 }
 function addO(o) { o.x ??= LANES[o.lane]; o.v ??= 0; o.y ??= 0; objs.push(o); return o; }
@@ -725,14 +760,14 @@ addEventListener('keydown', e => {
 });
 let sw = null;
 const stage = $('stage');
-stage.addEventListener('pointerdown', e => { if (e.target.closest('button')) return; sw = { x: e.clientX, y: e.clientY, used: false }; });
+stage.addEventListener('pointerdown', e => { if (e.target.closest('button, input, label, .card')) return; sw = { x: e.clientX, y: e.clientY, used: false }; });
 stage.addEventListener('pointermove', e => {
   if (!sw || sw.used || mode !== 'play') return; const dx = e.clientX - sw.x, dy = e.clientY - sw.y;
   if (Math.abs(dx) > 26 && Math.abs(dx) > Math.abs(dy)) { lane(dx > 0 ? 1 : -1); sw.used = true; }
   else if (dy < -26 && Math.abs(dy) > Math.abs(dx)) { jump(); sw.used = true; }
 });
 stage.addEventListener('pointerup', e => {
-  if (mode === 'title' && !e.target.closest('button') && sw) { start(); sw = null; return; }
+  if (mode === 'title' && !e.target.closest('button, input, label') && sw) { start(); sw = null; return; }
   if (sw && !sw.used && mode === 'play') { const dx = e.clientX - sw.x, dy = e.clientY - sw.y; if (Math.abs(dx) < 10 && Math.abs(dy) < 10) { if (e.clientX < W * .33) lane(-1); else if (e.clientX > W * .67) lane(1); else jump(); } }
   sw = null;
 });
@@ -763,12 +798,45 @@ function die(kind, what) {
 }
 function gameOver() {
   mode = 'over'; musicStop(); show('hud', false); show('hint', false);
+  const cost = saveCost(), qb = $('quizBtn'); qb.hidden = !window.DC_QUIZ || G.quizFailed;
+  qb.disabled = G.coins < cost; $('quizCost').textContent = cost === 0 ? 'Answer right, keep driving · FREE' : G.coins >= cost ? `Answer right, keep driving · ${cost} coins` : `You need ${cost} coins to try`;
   const score = Math.floor(G.score), isBest = score > best; if (isBest) { best = score; store.set('best.' + diff, best); }
-  bank += G.coins; store.set('bank', bank);
+  if (!G.banked) { bank += G.coins; store.set('bank', bank); G.banked = G.coins; } else { bank += G.coins - G.banked; store.set('bank', bank); G.banked = G.coins; }
   $('overT').textContent = G.deadKind === 'caught' ? 'JAIL!' : 'CRASH!';
-  $('overWhy').textContent = G.deadKind === 'caught' ? 'Police catch you and you no get money to settle. Dem don carry you go station!' : `You jam ${G.deadWhat === 'okada' ? 'an' : 'a'} ${NAMES[G.deadWhat] || 'car'}. Wahala!`;
+  $('overWhy').textContent = G.deadKind === 'caught' ? 'Police don catch you and you no get money to settle. Dem don carry you go station!' : `You don jam ${NAMES[G.deadWhat] || 'motor'}. Wahala dey!`;
   $('oScore').textContent = score.toLocaleString(); $('oCoins').textContent = G.coins.toLocaleString(); $('oPax').textContent = G.pax; $('oBest').textContent = best.toLocaleString();
-  $('newBest').hidden = !isBest; show('over', true); $('againBtn').focus();
+  $('newBest').hidden = !isBest; const nk = store.get('nick', ''); if (nk) $('overWhy').textContent += ` Sorry ${nk}!`; show('over', true); (qb.hidden || qb.disabled ? $('againBtn') : qb).focus();
+}
+// ---- quiz to continue: first save free, then 50, 100, 200 coins
+function saveCost() { return G.saves === 0 || !G.saves ? 0 : 50 * Math.pow(2, G.saves - 1); }
+let quizQ = null, quizT = 0, quizTimer = null;
+function nextQuestion() {
+  const bankQ = window.DC_QUIZ || []; let order = store.get('qorder', null), i = store.get('qi', 0);
+  if (!order || order.length !== bankQ.length || i >= order.length) { order = bankQ.map((_, k) => k).sort(() => Math.random() - .5); i = 0; store.set('qorder', order); }
+  store.set('qi', i + 1); return bankQ[order[i]];
+}
+function openQuiz() {
+  const cost = saveCost(); if (G.coins < cost) return;
+  quizQ = nextQuestion(); if (!quizQ) return;
+  show('over', false); show('quiz', true); $('qQ').textContent = quizQ.q; $('qFact').hidden = true; $('qNext').hidden = true;
+  const box = $('qOpts'); box.innerHTML = '';
+  quizQ.o.forEach((t, k) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'qopt'; b.textContent = t; b.onclick = () => answerQuiz(k); box.append(b); });
+  box.firstChild.focus(); quizT = 12; clearInterval(quizTimer);
+  quizTimer = setInterval(() => { quizT -= .1; $('qTime').style.width = Math.max(0, quizT / 12 * 100) + '%'; if (quizT <= 0) answerQuiz(-1); }, 100);
+}
+function answerQuiz(k) {
+  if (!quizQ || quizQ.done) return; quizQ.done = true; clearInterval(quizTimer);
+  const btns = [...$('qOpts').children]; btns.forEach(b => b.disabled = true); btns[quizQ.a].classList.add('right'); if (k >= 0 && k !== quizQ.a) btns[k].classList.add('wrong');
+  const ok = k === quizQ.a; audioInit(); ok ? sfx.power() : sfx.stumble();
+  $('qFact').textContent = (ok ? 'Correct! ' : k < 0 ? 'Time up! ' : 'Not quite. ') + quizQ.f; $('qFact').hidden = false;
+  const nb = $('qNext'); nb.hidden = false; nb.textContent = ok ? 'KEEP DRIVING' : 'OK'; nb.focus();
+  nb.onclick = () => { show('quiz', false); if (ok) continueRun(); else { G.quizFailed = true; gameOver(); } };
+}
+function continueRun() {
+  G.coins -= saveCost(); G.saves = (G.saves || 0) + 1;
+  for (let i = objs.length - 1; i >= 0; i--) if (objs[i].z < ZP + 30 && objs[i].type !== 'coin') objs.splice(i, 1);
+  G.dead = false; G.deadT = 0; G.invT = 3; G.chase.t = 0; G.chase.d = 1.3; G.chase.recover = false; flashA = .5;
+  mode = 'play'; show('hud', true); hudKey = ''; audioInit(); musicStart(); last = performance.now(); toast('BACK ON THE ROAD!');
 }
 function pause(on) {
   if (on && mode === 'play') { mode = 'paused'; show('paused', true); if (A.ctx) A.ctx.suspend(); }
@@ -776,6 +844,9 @@ function pause(on) {
 }
 function home() { musicStop(); if (A.ctx && A.ctx.state === 'suspended') A.ctx.resume(); mode = 'title'; newGame(true); show('over', false); show('paused', false); show('hud', false); show('hint', false); refreshTitle(); show('title', true); }
 document.querySelectorAll('.dsel').forEach(b => b.onclick = () => { diff = b.dataset.d; store.set('diff', diff); best = store.get('best.' + diff, 0); refreshTitle(); });
+$('quizBtn').onclick = openQuiz;
+$('nick').value = store.get('nick', ''); $('nick').addEventListener('input', e => store.set('nick', e.target.value.trim().slice(0, 14)));
+$('nick').addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Enter') e.target.blur(); });
 $('playBtn').onclick = start; $('againBtn').onclick = start; $('homeBtn').onclick = home; $('pHomeBtn').onclick = home;
 $('pauseBtn').onclick = () => pause(true); $('resumeBtn').onclick = () => pause(false);
 $('soundBtn').onclick = () => { A.on = !A.on; store.set('sound', A.on); if (A.master) A.master.gain.value = A.on ? .8 : 0; refreshTitle(); };
@@ -823,6 +894,12 @@ function update(dt) {
   P.sq += (1 - P.sq) * Math.min(1, dt * 12);
   if (G.partyT > 0) { G.partyT -= wdt; if (Math.random() < dt * 30) parts.push({ x: rand(W), y: -10, vx: rand(-40, 40), vy: rand(60, 160), g: 30, t: 0, life: 3, r: rand(3, 6), col: pick(['#FFC91A', '#18b86b', '#fff', '#ff4d4d', '#8b5cf6']), conf: true }); }
   if (G.magnetT > 0) G.magnetT -= wdt;
+  if (G.invT > 0) G.invT -= wdt;
+  // weather: now and then it rains for a while
+  if (!G.demo) { G.nextRain -= wdt; if (G.nextRain <= 0 && G.rainT <= 0) { G.rainT = rand(18, 30); G.nextRain = rand(50, 90); toast('RAIN DEY FALL! ROAD DON WET', true); } }
+  if (G.rainT > 0) G.rainT -= wdt;
+  G.rain += ((G.rainT > 0 ? 1 : 0) - G.rain) * Math.min(1, dt * .6);
+  if (A.rain) A.rain.gain.setTargetAtTime(G.rain * .12, A.ctx.currentTime, .3);
 
   const C = G.chase;
   if (C.t > 0) { C.t -= wdt; if (C.t <= 0) C.recover = false; if (!G.demo && Math.floor((C.t + wdt) * 1.1) !== Math.floor(C.t * 1.1)) sfx.siren(); }
@@ -874,12 +951,13 @@ function hit(o) {
     sfx.pax(); popText(`+${pts}`, G.chain > 1 ? `PASSENGER x${G.chain}` : 'PASSENGER', 'green'); burstParts(p.x, p.y - p.s * .6, 10, ['#3fe08f', '#fff', '#FFC91A'], 160, .5, 200, 5); say(pick(['Enter! Enter!', 'Oya enter, e remain one!', 'Shift for back!', 'Welcome, sit down!'])); return; }
   if (o.type === 'speaker') { o.done = true; o.gone = true; G.partyT = 7; sfx.power(); toast('BUS JAM PARTY!'); say('Bus jam party! Oya dance!'); return; }
   if (o.type === 'magnet') { o.done = true; o.gone = true; G.magnetT = 9; sfx.power(); toast('NAIRA MAGNET!'); return; }
+  if (G.invT > 0 && (JUMP.has(o.type) || BLOCK.has(o.type))) return;
   if (JUMP.has(o.type)) {
     if (air) { o.done = true; return; }
     o.done = true;
     if (G.partyT > 0) return;
     if (G.chase.t > 0 && !G.demo && !learning()) { policeCatch(false); return; }
-    G.chase.t = 5; G.chase.recover = true; G.streak = 0; shake = .35; sfx.stumble(); P.sq = .75; toast('OOPS! POLICE DEY COME!', true); return;
+    G.chase.t = 5; G.chase.recover = true; G.streak = 0; shake = .35; sfx.stumble(); P.sq = .75; toast('OOPS! POLICE DON DEY COME!', true); return;
   }
   if (o.type === 'cop') { o.done = true; o.dodge = true; if (G.partyT > 0 || G.demo) return; policeCatch(true); return; }
   if (BLOCK.has(o.type)) {
@@ -889,16 +967,30 @@ function hit(o) {
 }
 
 // ---------------------------------------------------------------- render
+// ---- time of day: the longer you drive, the day turns to sunset, night, then dawn
+const CYCLE = 170, SKY = { day: ['#3fb4f5', '#a6e4ff', '#ffe9b0'], sunset: ['#3b2a6b', '#ff7a59', '#ffc46b'], night: ['#070b26', '#18204f', '#35306a'], rain: ['#5d6b7c', '#8b98a8', '#b7c0c9'] };
+const KEYS = [[0, 'day', 0], [55, 'day', 0], [72, 'sunset', .25], [88, 'night', 1], [140, 'night', 1], [155, 'sunset', .3], [170, 'day', 0]];
+function mixHex(a, b, t) { const A = parseInt(a.slice(1), 16), B = parseInt(b.slice(1), 16), m = s => Math.round(((A >> s) & 255) + (((B >> s) & 255) - ((A >> s) & 255)) * t); return `rgb(${m(16)},${m(8)},${m(0)})`; }
+function toHex(rgb) { const [r, g, b] = rgb.match(/\d+/g).map(Number); return '#' + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1); }
+function timeOfDay() {
+  const u = ((G ? G.time : 0) + 12) % CYCLE; let i = 0; while (i < KEYS.length - 2 && KEYS[i + 1][0] <= u) i++;
+  const [t0, k0, d0] = KEYS[i], [t1, k1, d1] = KEYS[i + 1], f = t1 > t0 ? (u - t0) / (t1 - t0) : 0;
+  const col = [0, 1, 2].map(j => { const c = mixHex(SKY[k0][j], SKY[k1][j], f); return G && G.rain > 0 ? mixHex(toHex(c), SKY.rain[j], G.rain * .7) : c; });
+  return { col, dark: d0 + (d1 - d0) * f };
+}
+let TOD = { col: SKY.day, dark: 0 };
 function drawSky() {
-  const g = ctx.createLinearGradient(0, 0, 0, hy); g.addColorStop(0, '#3fb4f5'); g.addColorStop(.7, '#a6e4ff'); g.addColorStop(1, '#ffe9b0');
+  TOD = timeOfDay(); const dk = TOD.dark;
+  const g = ctx.createLinearGradient(0, 0, 0, hy); g.addColorStop(0, TOD.col[0]); g.addColorStop(.7, TOD.col[1]); g.addColorStop(1, TOD.col[2]);
   ctx.fillStyle = g; ctx.fillRect(0, 0, W, hy + 2);
-  const sx = W * .78, sy = hy * .38, sr = Math.min(W, H) * .06;
-  const sg = ctx.createRadialGradient(sx, sy, sr * .5, sx, sy, sr * 2.6); sg.addColorStop(0, 'rgba(255,245,180,.9)'); sg.addColorStop(1, 'rgba(255,245,180,0)'); ctx.fillStyle = sg; ctx.fillRect(sx - sr * 3, sy - sr * 3, sr * 6, sr * 6);
-  ball(sx, sy, sr, '#ffe066');
-  for (const c of clouds) { const x = c.x * W, y = c.y * H, r = H * .035 * c.s; ctx.fillStyle = '#fff';
+  if (dk > .3) { ctx.fillStyle = `rgba(255,255,255,${(dk - .3) * .9})`; for (let i = 0; i < 60; i++) { const x = (i * 97.3) % W, y = (i * 53.7) % (hy * .8); ctx.fillRect(x, y, 2, 2); } }
+  const sx = W * .78, sy = hy * (.38 + dk * .12), sr = Math.min(W, H) * (.06 - dk * .02), sunCol = dk > .6 ? '#f1f4ff' : dk > .15 ? '#ff9a4d' : '#ffe066';
+  const sg = ctx.createRadialGradient(sx, sy, sr * .5, sx, sy, sr * 2.6); sg.addColorStop(0, dk > .6 ? 'rgba(220,230,255,.5)' : 'rgba(255,245,180,.9)'); sg.addColorStop(1, 'rgba(255,245,180,0)');
+  if (!(G && G.rain > .6)) { ctx.fillStyle = sg; ctx.fillRect(sx - sr * 3, sy - sr * 3, sr * 6, sr * 6); ball(sx, sy, sr, sunCol); }
+  for (const c of clouds) { const x = c.x * W, y = c.y * H, r = H * .035 * c.s; ctx.fillStyle = G && G.rain > 0 ? mixHex('#ffffff', '#6f7c8b', G.rain) : dk > .5 ? '#3a3f6b' : '#fff';
     ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.arc(x + r * 1.1, y - r * .4, r * 1.2, 0, 7); ctx.arc(x + r * 2.3, y, r * .9, 0, 7); ctx.fill(); }
   const lz = zoneAt(30);
-  if (lz !== 'village') for (const b of skyline) { ctx.fillStyle = b.c; ctx.fillRect(b.x, hy - b.h, b.w, b.h); ctx.fillStyle = 'rgba(255,255,255,.45)'; for (let y = hy - b.h + 6; y < hy - 4; y += 10) for (let x = b.x + 4; x < b.x + b.w - 5; x += 9) ctx.fillRect(x, y, 3, 4); }
+  if (lz !== 'village') for (const b of skyline) { ctx.fillStyle = dk > .5 ? '#2a2f5a' : b.c; ctx.fillRect(b.x, hy - b.h, b.w, b.h); ctx.fillStyle = dk > .5 ? 'rgba(255,214,120,.8)' : 'rgba(255,255,255,.45)'; for (let y = hy - b.h + 6; y < hy - 4; y += 10) for (let x = b.x + 4; x < b.x + b.w - 5; x += 9) ctx.fillRect(x, y, 3, 4); }
 }
 const SIDE = { lagos: ['#f6e0bd', '#ead2aa'], abuja: ['#8fd46a', '#84ca5f'], ph: ['#e6dcc6', '#d9ceb6'], kano: ['#efd49d', '#e3c68b'], village: ['#d9844c', '#cc7843'] };
 function drawGround() {
@@ -976,9 +1068,11 @@ const NOTE_COLS = ['#FFC91A', '#18b86b', '#ff4fa3'];
 function drawPlayer() {
   const P = G.P, p = P3(P.x, 0, ZP), air = P.y * p.s;
   shadowE(p.x, p.y, .64 * p.s * (1 - P.y * .8), .32);
+  if (G.invT > 0 && Math.floor(T * 12) % 2) ctx.globalAlpha = .45;
   danfo(p.x, p.y - air, p.s, T, { heads: 6, conductor: true, party: G.partyT > 0, tilt: P.tilt, sq: P.sq, slogan: G.slogan, brake: G.dead });
   if (G.partyT > 0) for (let i = 0; i < 3; i++) label('♪', p.x - p.s * .35 + i * p.s * .35, p.y - p.s * .78 - air - Math.abs(Math.sin(T * 4 + i)) * p.s * .12, p.s * .12, NOTE_COLS[i], p.s);
   if (G.magnetT > 0) { ctx.strokeStyle = `rgba(255,90,90,${.35 + .2 * Math.sin(T * 10)})`; ctx.lineWidth = 4; ctx.beginPath(); ctx.ellipse(p.x, p.y - air - p.s * .3, p.s * .42, p.s * .42, 0, 0, 7); ctx.stroke(); }
+  ctx.globalAlpha = 1;
   if (G.callT > 0 && G.call) bubble(p.x + p.s * .36, p.y - p.s * .7 - air, G.call);
 }
 function bubble(x, y, text) {
@@ -987,6 +1081,27 @@ function bubble(x, y, text) {
   const tx = clamp(x, bx + 14, bx + w - 14); ctx.beginPath(); ctx.moveTo(tx - 7, by + h - 1.5); ctx.lineTo(tx + 3, by + h + 11); ctx.lineTo(tx + 9, by + h - 1.5); ctx.fillStyle = '#fff'; ctx.fill();
   ctx.lineWidth = 3; ctx.strokeStyle = OUT; ctx.beginPath(); ctx.moveTo(tx - 7, by + h); ctx.lineTo(tx + 3, by + h + 11); ctx.lineTo(tx + 9, by + h); ctx.stroke();
   ctx.fillStyle = OUT; ctx.textAlign = 'left'; ctx.textBaseline = 'middle'; ctx.fillText(text, bx + 11, by + h / 2 + 1);
+}
+const lampSpots = [];
+function lightsAndWeather() {
+  const dk = TOD.dark;
+  if (dk > .02) {
+    ctx.fillStyle = `rgba(8,10,40,${dk * .5})`; ctx.fillRect(0, hy - H * .2, W, H);
+    ctx.save(); ctx.globalCompositeOperation = 'lighter';
+    const p = P3(G.P.x, 0, ZP), top = P3(G.P.x, 0, ZP + 14);
+    const hl = ctx.createLinearGradient(0, p.y - p.s * .3, 0, top.y); hl.addColorStop(0, `rgba(255,240,180,${.28 * dk})`); hl.addColorStop(1, 'rgba(255,240,180,0)');
+    ctx.fillStyle = hl; ctx.beginPath(); ctx.moveTo(p.x - p.s * .25, p.y - p.s * .35); ctx.lineTo(p.x + p.s * .25, p.y - p.s * .35); ctx.lineTo(top.x + top.s * .5, top.y); ctx.lineTo(top.x - top.s * .5, top.y); ctx.fill();
+    for (const l of lampSpots) { const r = l.s * .5, lg = ctx.createRadialGradient(l.x, l.y, 0, l.x, l.y, r); lg.addColorStop(0, `rgba(255,220,130,${.5 * dk})`); lg.addColorStop(1, 'rgba(255,220,130,0)'); ctx.fillStyle = lg; ctx.fillRect(l.x - r, l.y - r, r * 2, r * 2); }
+    ctx.restore();
+  }
+  lampSpots.length = 0;
+  if (G.rain > .02) {
+    ctx.strokeStyle = `rgba(210,225,245,${.55 * G.rain})`; ctx.lineWidth = 1.5; ctx.beginPath();
+    const n = Math.floor(90 * G.rain);
+    for (let i = 0; i < n; i++) { const x = Math.random() * W, y = Math.random() * H; ctx.moveTo(x, y); ctx.lineTo(x - 4, y + 18); }
+    ctx.stroke();
+    ctx.fillStyle = `rgba(160,190,230,${.08 * G.rain})`; ctx.fillRect(0, hy, W, H - hy);
+  }
 }
 function render() {
   ctx.save(); if (shake > 0) ctx.translate(rand(-8, 8) * shake, rand(-8, 8) * shake);
@@ -1006,6 +1121,7 @@ function render() {
     else { ctx.globalAlpha = clamp(a * 1.4, 0, 1); ctx.fillStyle = q.col; ctx.beginPath(); ctx.arc(q.x, q.y, q.r * (.6 + a * .4), 0, 7); ctx.fill(); ctx.globalAlpha = 1; }
   }
   ctx.restore();
+  lightsAndWeather();
   if (G.chase.t > 0 && !G.demo) { const on = Math.floor(T * 6) % 2, vg = ctx.createRadialGradient(cx, H / 2, H * .35, cx, H / 2, H * .9); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, on ? 'rgba(47,91,255,.28)' : 'rgba(255,42,31,.28)'); ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H); }
   if (G.partyT > 0) { ctx.fillStyle = `hsla(${(T * 140) % 360},90%,60%,.08)`; ctx.fillRect(0, 0, W, H); }
   if (flashA > 0) { ctx.fillStyle = `rgba(255,255,255,${flashA})`; ctx.fillRect(0, 0, W, H); }
@@ -1027,7 +1143,7 @@ function frame(now) {
 }
 resize(); newGame(true); for (let i = 0; i < 90; i++) update(1 / 30); refreshTitle();
 if ('serviceWorker' in navigator && location.protocol === 'https:' && /vercel\.app$|danfo/i.test(location.hostname)) { try { navigator.serviceWorker.register('sw.js').catch(() => {}); } catch (e) {} }
-window.__dc = { popText, spawn(t, l, z) { addO({ type: t, lane: l, z, look: t === 'cop' ? COP : randomLook() }); }, get G() { return G; } };
+window.__dc = { popText, spawn(t, l, z) { if (BLOCK.has(t) && t !== 'cop') addV(t, l, z); else addO({ type: t, lane: l, z, look: t === 'cop' ? COP : randomLook() }); }, get G() { return G; } };
 requestAnimationFrame(frame);
 })();
 </script>
