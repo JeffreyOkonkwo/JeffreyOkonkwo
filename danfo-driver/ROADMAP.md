@@ -60,29 +60,28 @@ The leaderboard shows the licence photo and the custom bus, so items 5 and 8 shi
 
 ### Danfo Pass (the only subscription)
 - The Danfo Pass replaces the planned Oga Driver Club, which has been removed from the code.
-- It unlocks looks only (licence options, hair and headwear colours, bus colours, plate styles, conductor looks and voice styles). It never raises a score and never includes quiz help.
+- It unlocks looks only (licence options, hair and headwear colours, bus colours, plate styles, conductor looks and speech bubble styles). It never raises a score and never includes quiz help.
 - **Store setup:** create one subscription product in both stores and one entitlement in RevenueCat when this version is built.
 
-## Version 1.2 (proposed): conductor and city cards
+## Version 1.2 (proposed): conductor and trip cards
 
 ### 6. Conductor as a sidekick
-- **Look:** a conductor with a separate look and outfit.
-- **Voice packs, picked by the player:**
-  - languages: Pidgin, English, French
-  - styles: calm, loud, comedy
-- **Unlocking:** one conductor and the calm voice in each language are free. More looks and the loud and comedy voices unlock through play, the Danfo Pass or the shop.
-- **No typed lines.** Players cannot type what the conductor says: typed lines would need checking for rude words, and a computer voice reading them sounds flat.
-- **Recording:** Suno makes songs, not short spoken lines, so it is not the right tool here. Use voice actors from Lagos, Accra, Nairobi and Dakar, or a licensed voice tool. Record a few lines first and test them with players.
-- **Voice notes:** accents are never used as the joke, and comedy lines come from situations on the road, not from people's background.
+- **Look:** a conductor with a separate look and outfit. One is free; more unlock through play, the Danfo Pass or the shop.
+- **No voices.** The conductor speaks in speech bubbles, as in the game today, so nothing is mispronounced and no accent is faked.
+- **Players write the lines.** Three lines, each up to 24 letters, free to edit:
+  - **Calling passengers:** "Come in! Come in!"
+  - **Bus is moving:** "Oya, we dey go!"
+  - **Close call:** "Driver, shine your eye!"
+- **"Start from" buttons** fill in ready-made lines in Pidgin, English or French, so nobody has to type.
+- **Safety:** each line passes the same word filter as the bus tag. Custom lines only show on the player's own phone; other players never see them.
 
-### 7. City card
+### 7. Trip card
 - **The run is never interrupted.** When a player reaches a new city during a run, a short banner shows (as the game does today) and the run keeps going.
-- After the run, the game over screen shows one small link, "New city card". Tapping it opens a shareable image with:
-  - the city fact (with its source)
-  - the player's custom bus and plate number
-  - the licence photo
-  - the score
-  - the rank
+- After the run, the game over screen shows one small link, "Trip card". It opens a shareable image with:
+  - every city the run touched, with the new ones marked
+  - one "Did you know?" fact about the newest city, with its source, sized to fit its box
+  - the player's bus with its tag and plate number
+  - the licence photo, name, rank and score
 - Players can save it to the phone or share it to WhatsApp, Instagram or TikTok.
 - The image is made on the phone. Nothing is uploaded unless the player shares it.
 
