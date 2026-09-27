@@ -35,6 +35,11 @@
   .chip.party{background:var(--green);color:#fff}.chip.mag{background:#ff5a5a;color:#fff}.chip.cop{background:#2f5bff;color:#fff;animation:flash .5s steps(2) infinite}
   @keyframes flash{50%{background:#ff2a1f}}
   .right{display:flex;align-items:center;gap:10px}
+  .heat{display:flex;gap:5px;margin-top:7px;padding:4px 7px;background:rgba(27,16,36,.55);border-radius:999px;width:max-content}
+  .heat i{width:18px;height:14px;border-radius:9px 9px 3px 3px;background:#6d6882;border:2px solid var(--ink);transition:background .2s}
+  .heat i.on{background:#ff2a1f;box-shadow:0 0 9px #ff2a1f}.heat i.on:nth-child(2){background:#2f5bff;box-shadow:0 0 9px #2f5bff}
+  .heat.chase i.on{animation:sirenF .45s steps(2) infinite}
+  @keyframes sirenF{50%{filter:brightness(1.9)}}
   .coins{display:flex;align-items:center;gap:6px;font-family:"Bungee",Impact,sans-serif;font-size:clamp(20px,5.4vw,26px);color:#fff;
     background:rgba(27,16,36,.55);border:3px solid var(--ink);border-radius:999px;padding:2px 14px 2px 4px;font-variant-numeric:tabular-nums}
   .coin-i{width:28px;height:28px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff3a6,#ffc91a 55%,#d99100);
@@ -234,6 +239,7 @@
       <div class="score ol" id="score">0</div>
       <div class="best ol" id="best">BEST 0</div>
       <div class="chips"><span class="chip lvl" id="dchip">AREA DRIVER</span><span class="chip" id="mult" hidden>x2</span><span class="chip cop" id="cop" hidden>POLICE!</span><span class="chip party" id="pwP" hidden>PARTY</span><span class="chip beat" id="beatChip" hidden></span><span class="chip mag" id="pwM" hidden>MAGNET</span></div>
+      <div class="heat" id="heat" aria-label="Police sirens"><i></i><i></i><i></i></div>
     </div>
     <div class="rcol"><div class="right"><div class="coins pax" aria-label="Passengers"><span class="pax-i"></span><span id="paxN">0</span></div><div class="coins"><span class="coin-i">A</span><span id="coins">0</span></div><button class="pause" id="pauseBtn" type="button" aria-label="Pause">II</button></div>
       <div class="clock" id="clock" aria-label="Time and weather"><span class="dial" id="dial"><i id="hand"></i></span><span id="clockT">7:00 AM</span><span class="fc" id="fc" hidden></span></div></div>
@@ -315,7 +321,7 @@ const OUT = '#1b1024';
 // ---------------------------------------------------------------- world
 const LANES = [-0.62, 0, 0.62];
 const D = 6, FAR = 90, ZP = 2, JT = .55, JH = .26;
-const DIFFS = { easy: { name: 'JJC', start: 16, max: 36, acc: .14, gap: 1.25, two: .08, party: 35, pdur: 14 }, normal: { name: 'AREA DRIVER', start: 20, max: 46, acc: .2, gap: 1, two: .2, party: 50, pdur: 12 }, hard: { name: 'AGBERO', start: 25, max: 56, acc: .28, gap: .85, two: .32, party: 75, pdur: 10 } };
+const DIFFS = { easy: { name: 'JJC', start: 16, max: 36, acc: .14, gap: 1.25, two: .08, party: 35, pdur: 14, cool: 12 }, normal: { name: 'AREA DRIVER', start: 20, max: 46, acc: .2, gap: 1, two: .2, party: 50, pdur: 12, cool: 15 }, hard: { name: 'AGBERO', start: 25, max: 56, acc: .28, gap: .85, two: .32, party: 75, pdur: 10, cool: 25 } };
 let diff = 'normal';
 const START = 20;
 const ZONE_LEN = 650;
@@ -910,7 +916,7 @@ function newGame(demo) {
   objs.length = props.length = walls.length = parts.length = 0;
   G = { zi, demo, D: DIFFS[demo ? 'normal' : diff], dist: 0, time: 0, speed: START, score: 0, coins: 0, streak: 0, P: { lane: 1, x: 0, y: 0, jt: 0, sq: 1, tilt: 0 },
     chase: { d: .3, t: demo ? 0 : 3 }, partyT: 0, magnetT: 0, dead: false, deadT: 0, rowAcc: 0, edge: [-1.3, -1.3], propAcc: 0,
-    lastPow: 0, lastParty: 0, nextSpeed: 25, zone: 'market', call: '', callT: 0, callNext: 3, hornT: 2, slogan: pick(SLOGANS), tut: (() => { const k = demo || (tutDone && diff !== 'easy'); return { dodge: k, jump: k, pax: k, cop: k, on: null }; })(),
+    heat: 0, heatT: 0, lastPow: 0, lastParty: 0, nextSpeed: 25, zone: 'market', call: '', callT: 0, callNext: 3, hornT: 2, slogan: pick(SLOGANS), tut: (() => { const k = demo || (tutDone && diff !== 'easy'); return { dodge: k, jump: k, pax: k, cop: k, on: null }; })(),
     stopName: pick(STOPNAMES), stopAcc: 0, free: 1, swerveT: 9, rain: 0, rainT: 0, nextRain: rand(120, 170), todOff: 0, ff: 0, badEp: false, sunN: 0, nextSun: 0, wxOpen: false, wxT: 0, boltT: 0, nextBolt: 4, pax: 0, chain: 0, chainT: 0 };
   for (let i = 0; i < 60; i++) stepScenery(1.6);
 }
@@ -1074,11 +1080,12 @@ function start() {
 // Police catch you: settle with coins, else with points; with nothing left it's jail.
 function policeCatch(checkpoint) {
   G.catches = (G.catches || 0) + 1;
-  const coinFee = (checkpoint ? 20 : 10) * G.catches, pointFee = coinFee * 25;
-  if (G.coins >= coinFee) { G.coins -= coinFee; popText(`-${coinFee} COINS`, 'POLICE: SETTLE AM!'); }
-  else if (G.score >= pointFee) { G.score -= pointFee; popText(`-${pointFee} POINTS`, 'POLICE TAKE AM!'); }
+  const coinFee = (checkpoint ? 20 : 10) * G.catches, pointFee = coinFee * 25; let paid;
+  if (G.coins >= coinFee) { G.coins -= coinFee; paid = `-${coinFee} COINS`; popText(paid, 'POLICE: SETTLE AM!'); }
+  else if (G.score >= pointFee) { G.score -= pointFee; paid = `-${pointFee} POINTS`; popText(paid, 'POLICE TAKE AM!'); }
   else { die('caught', checkpoint ? 'cop' : undefined); return; }
-  G.chase.t = 0; G.chase.recover = false; G.chase.d = .05; G.chain = 0; G.streak = 0; shake = .4; flashA = .25;
+  G.chase.t = 0; G.chase.recover = false; G.chase.d = .05; G.chain = 0; G.streak = 0; shake = .4; flashA = .25; G.heat = 0; G.heatT = 0;
+  toast(t('settled', paid), true);
   sfx.siren(); say(pick(['Oga abeg, take am!', 'Na so dem dey do!', 'Officer, we dey go!']));
 }
 function die(kind, what) {
@@ -1103,15 +1110,15 @@ const STR = {
   en: { play: 'PLAY', again: 'PLAY AGAIN', home: 'Home', quiz: 'QUIZ TO CONTINUE', free: 'Answer right, keep driving · FREE', cost: 'Answer right, keep driving · {n} coins', need: 'You need {n} coins to try',
     howto: 'Pick up passengers for points.<br>Swipe ← → to dodge · Swipe ↑ to hop potholes', name: 'Your name', missions: 'Missions', garage: 'Garage', journey: 'Journey', quizmode: 'Africa Quiz',
     challenge: 'CHALLENGE A FRIEND', crash: 'CRASH!', jail: 'JAIL!', dodge: 'SWIPE TO DODGE', jump: 'SWIPE UP TO HOP', pax: 'PICK UP PASSENGERS!', cop: 'POLICE! AVOID THEM', tag: 'We never finish last!', resume: 'RESUME', paused: 'PAUSED',
-    sun: 'SUN COIN! PICK ONE', mkday: 'MAKE IT DAY', dry: 'STOP THE RAIN', keep: 'KEEP IT', rainSoon: 'Rain soon', raining: 'Raining', nightSoon: 'Night soon', daySoon: 'Dawn soon', nightOn: 'NIGHT DON FALL · HEADLIGHTS ON', partyGo: 'BUS JAM PARTY! ROAD CLEAR!', partyHow: 'No traffic · no police · passengers and coins come to you', partyEnd: 'PARTY ENDING · TRAFFIC DEY COME BACK', partyBar: 'FREE RIDE', chalT: 'Beat my score', chalSub: 'CAN YOU BEAT', chalPax: 'passengers carried', chalShare: 'Share to any app', chalCopy: 'COPY', chalDone: 'DONE' },
+    sun: 'SUN COIN! PICK ONE', mkday: 'MAKE IT DAY', dry: 'STOP THE RAIN', keep: 'KEEP IT', rainSoon: 'Rain soon', raining: 'Raining', nightSoon: 'Night soon', daySoon: 'Dawn soon', nightOn: 'NIGHT DON FALL · HEADLIGHTS ON', partyGo: 'BUS JAM PARTY! ROAD CLEAR!', partyHow: 'No traffic · no police · passengers and coins come to you', partyEnd: 'PARTY ENDING · TRAFFIC DEY COME BACK', partyBar: 'FREE RIDE', chalT: 'Beat my score', chalSub: 'CAN YOU BEAT', chalPax: 'passengers carried', chalShare: 'Share to any app', chalCopy: 'COPY', chalDone: 'DONE', siren: 'SIREN {n}/3 · DRIVE CLEAN TO LOSE THEM', sirenOff: 'SIREN OFF', settled: 'SETTLED POLICE: {n}' },
   pcm: { play: 'OYA DRIVE', again: 'TRY AM AGAIN', home: 'Go house', quiz: 'ANSWER QUIZ, CONTINUE', free: 'Answer am correct, continue · FREE', cost: 'Answer am correct, continue · {n} coins', need: 'You need {n} coins to try',
     howto: 'Carry passengers, collect point.<br>Swipe ← → dodge motor · Swipe ↑ jump pothole', name: 'Your name', missions: 'Wetin to do', garage: 'Mechanic', journey: 'Our road', quizmode: 'Africa Quiz',
     challenge: 'CHALLENGE YOUR PADI', crash: 'E DON HAPPEN!', jail: 'DEM DON LOCK YOU!', dodge: 'SWIPE, DODGE AM', jump: 'SWIPE UP, JUMP AM', pax: 'CARRY PASSENGER!', cop: 'POLICE! NO JAM DEM', tag: '', resume: 'CONTINUE', paused: 'HOLD ON',
-    sun: 'SUN COIN! WETIN YOU WAN?', mkday: 'MAKE AM DAY', dry: 'STOP DI RAIN', keep: 'KEEP AM', rainSoon: 'Rain dey come', raining: 'Rain dey fall', nightSoon: 'Night dey come', daySoon: 'Day don near', nightOn: 'NIGHT DON FALL · ON YOUR LIGHT', partyGo: 'BUS JAM PARTY! ROAD DON CLEAR!', partyHow: 'No motor · no police · passenger and coin go come meet you', partyEnd: 'PARTY DON DEY END · MOTOR DEY COME BACK', partyBar: 'FREE RIDE', chalT: 'Beat my score', chalSub: 'YOU FIT BEAT', chalPax: 'passengers carried', chalShare: 'Share for any app', chalCopy: 'COPY', chalDone: 'I DON FINISH' },
+    sun: 'SUN COIN! WETIN YOU WAN?', mkday: 'MAKE AM DAY', dry: 'STOP DI RAIN', keep: 'KEEP AM', rainSoon: 'Rain dey come', raining: 'Rain dey fall', nightSoon: 'Night dey come', daySoon: 'Day don near', nightOn: 'NIGHT DON FALL · ON YOUR LIGHT', partyGo: 'BUS JAM PARTY! ROAD DON CLEAR!', partyHow: 'No motor · no police · passenger and coin go come meet you', partyEnd: 'PARTY DON DEY END · MOTOR DEY COME BACK', partyBar: 'FREE RIDE', chalT: 'Beat my score', chalSub: 'YOU FIT BEAT', chalPax: 'passengers carried', chalShare: 'Share for any app', chalCopy: 'COPY', chalDone: 'I DON FINISH', siren: 'SIREN {n}/3 · DRIVE WELL MAKE DEM COMOT', sirenOff: 'SIREN DON OFF', settled: 'YOU DON SETTLE: {n}' },
   fr: { play: 'JOUER', again: 'REJOUER', home: 'Accueil', quiz: 'QUIZ POUR CONTINUER', free: 'Bonne réponse, tu continues · GRATUIT', cost: 'Bonne réponse, tu continues · {n} pièces', need: 'Il te faut {n} pièces',
     howto: 'Prends des passagers pour gagner des points.<br>Glisse ← → pour esquiver · Glisse ↑ pour sauter', name: 'Ton nom', missions: 'Missions', garage: 'Garage', journey: 'Voyage', quizmode: 'Quiz Afrique',
     challenge: 'DÉFIE UN AMI', crash: 'ACCIDENT !', jail: 'PRISON !', dodge: 'GLISSE POUR ESQUIVER', jump: 'GLISSE ↑ POUR SAUTER', pax: 'PRENDS LES PASSAGERS !', cop: 'POLICE ! ÉVITE-LES', tag: 'On ne finit jamais dernier !', resume: 'REPRENDRE', paused: 'PAUSE',
-    sun: 'PIÈCE SOLEIL ! CHOISIS', mkday: 'FAIS LE JOUR', dry: 'STOP LA PLUIE', keep: 'GARDE-LA', rainSoon: 'Pluie bientôt', raining: 'Il pleut', nightSoon: 'Nuit bientôt', daySoon: 'Aube bientôt', nightOn: 'LA NUIT TOMBE · PHARES ALLUMÉS', partyGo: 'BUS JAM PARTY ! ROUTE LIBRE !', partyHow: 'Pas de trafic · pas de police · passagers et pièces viennent à toi', partyEnd: 'FIN DE LA FÊTE · LE TRAFIC REVIENT', partyBar: 'TRAJET LIBRE', chalT: 'Bats mon score', chalSub: 'PEUX-TU BATTRE', chalPax: 'passagers transportés', chalShare: 'Partager vers une app', chalCopy: 'COPIER', chalDone: 'TERMINÉ' },
+    sun: 'PIÈCE SOLEIL ! CHOISIS', mkday: 'FAIS LE JOUR', dry: 'STOP LA PLUIE', keep: 'GARDE-LA', rainSoon: 'Pluie bientôt', raining: 'Il pleut', nightSoon: 'Nuit bientôt', daySoon: 'Aube bientôt', nightOn: 'LA NUIT TOMBE · PHARES ALLUMÉS', partyGo: 'BUS JAM PARTY ! ROUTE LIBRE !', partyHow: 'Pas de trafic · pas de police · passagers et pièces viennent à toi', partyEnd: 'FIN DE LA FÊTE · LE TRAFIC REVIENT', partyBar: 'TRAJET LIBRE', chalT: 'Bats mon score', chalSub: 'PEUX-TU BATTRE', chalPax: 'passagers transportés', chalShare: 'Partager vers une app', chalCopy: 'COPIER', chalDone: 'TERMINÉ', siren: 'SIRÈNE {n}/3 · CONDUIS BIEN POUR LES SEMER', sirenOff: 'SIRÈNE ÉTEINTE', settled: 'POLICE PAYÉE : {n}' },
 };
 const LANGS = ['en', 'pcm', 'fr'], LANG_LABEL = { en: 'EN', pcm: 'PIDGIN', fr: 'FR' };
 let lang = store.get('lang', 'en'); if (!STR[lang]) lang = 'en';
@@ -1352,8 +1359,9 @@ function update(dt) {
   if (A.rain) A.rain.gain.setTargetAtTime(G.rain * .12, A.ctx.currentTime, .3);
 
   const C = G.chase;
+  if (!G.demo && !G.dead && G.heat > 0 && C.t <= 0) { G.heatT += wdt; if (G.heatT > G.D.cool) { G.heat--; G.heatT = 0; popText(t('sirenOff'), `${G.heat}/3`, 'green'); sfx.pax(); } }
   if (C.t > 0) { C.t -= wdt; if (C.t <= 0) C.recover = false; if (!G.demo && Math.floor((C.t + wdt) * 1.1) !== Math.floor(C.t * 1.1)) sfx.siren(); }
-  C.d += ((G.dead && G.deadKind === 'caught' ? -0.1 : C.t > 0 ? .22 : 1.3) - C.d) * Math.min(1, dt * 2);
+  C.d += ((G.dead && G.deadKind === 'caught' ? -0.1 : C.t > 0 ? .22 : G.heat >= 2 ? .62 : G.heat === 1 ? .95 : 1.3) - C.d) * Math.min(1, dt * 2);
 
   stepScenery(mv);
   G.rowAcc += mv;
@@ -1411,8 +1419,12 @@ function hit(o) {
     if (air) { o.done = true; track('hop'); return; }
     o.done = true;
     if (G.partyT > 0) return;
-    if (G.chase.t > 0 && !G.demo && !learning()) { policeCatch(false); return; }
-    G.chase.t = 5; G.chase.recover = true; G.streak = 0; shake = .35; sfx.stumble(); P.sq = .75; toast('OOPS! POLICE DON DEY COME!', true); return;
+    G.streak = 0; shake = .35; sfx.stumble(); P.sq = .75;
+    if (G.demo || learning()) { G.chase.t = 5; G.chase.recover = true; return; }
+    // 3 sirens: each trip lights one; clean driving turns them off; all 3 and you're caught
+    G.heat = (G.heat || 0) + 1; G.heatT = 0;
+    if (G.heat >= 3) { policeCatch(false); return; }
+    G.chase.t = 5; G.chase.recover = true; toast(t('siren', G.heat), true); return;
   }
   if (o.type === 'cop') { o.done = true; o.dodge = true; if (G.partyT > 0 || G.demo) return; policeCatch(true); return; }
   if (BLOCK.has(o.type)) {
@@ -1603,12 +1615,12 @@ function render() {
 }
 let hudKey = '';
 function hud() {
-  const s = Math.floor(G.score), key = [s, G.coins, G.pax, G.partyT > 0, G.magnetT > 0, G.chase.t > 0].join();
+  const s = Math.floor(G.score), key = [s, G.coins, G.pax, G.partyT > 0, G.magnetT > 0, G.chase.t > 0, G.heat].join();
   if (key === hudKey) return; hudKey = key;
   $('score').textContent = s.toLocaleString(); $('best').textContent = s > best && best > 0 ? 'NEW BEST!' : `BEST ${best.toLocaleString()}`;
   $('coins').textContent = G.coins.toLocaleString(); $('paxN').textContent = G.pax;
   if (beat) { const bc = $('beatChip'); bc.hidden = false; bc.textContent = s > beat.score ? `YOU BEAT ${beat.name.toUpperCase()}!` : `BEAT ${beat.name.toUpperCase()}: ${beat.score.toLocaleString()}`; if (s > beat.score && !G.beatShown) { G.beatShown = true; toast(`YOU DON BEAT ${beat.name.toUpperCase()}!`); sfx.speed(); } }
-  $('mult').hidden = !(G.partyT > 0 || G.chain > 1); $('mult').textContent = 'x' + Math.max(G.chain, 1) * (G.partyT > 0 ? 2 : 1); $('pwP').hidden = !(G.partyT > 0); $('pwM').hidden = !(G.magnetT > 0); $('cop').hidden = !(G.chase.t > 0);
+  $('mult').hidden = !(G.partyT > 0 || G.chain > 1); $('mult').textContent = 'x' + Math.max(G.chain, 1) * (G.partyT > 0 ? 2 : 1); $('pwP').hidden = !(G.partyT > 0); $('pwM').hidden = !(G.magnetT > 0); $('cop').hidden = true; const hs = $('heat').children; for (let i = 0; i < 3; i++) hs[i].classList.toggle('on', i < (G.heat || 0)); $('heat').classList.toggle('chase', G.chase.t > 0);
 }
 // ---- clock + forecast chip, top right
 const ICO = {
@@ -1628,7 +1640,7 @@ function clearRoad() {
     if (BLOCK.has(o.type)) { o.exit = o.x < 0 || (o.x === 0 && Math.random() < .5) ? -1 : 1; o.done = true; if (o.z < 40) { const q = P3(o.x, 0, o.z); burstParts(q.x, q.y - q.s * .3, 8, ['#fff', '#3fe08f', '#FFC91A'], 140, .5, 150, 4); } }
     else if (JUMP.has(o.type)) { const q = P3(o.x, 0, Math.max(o.z, ZP)); burstParts(q.x, q.y, 6, ['#FFC91A', '#fff', '#3fe08f'], 120, .4, 200, 4); o.done = true; o.gone = true; }
   }
-  G.chase.t = 0; G.chase.recover = false; G.waveT = .9; G.slowT = .7; sfx.horn(0, .1); setTimeout(() => sfx.horn(.3, .08), 180);
+  G.chase.t = 0; G.chase.recover = false; G.heat = 0; G.heatT = 0; G.waveT = .9; G.slowT = .7; sfx.horn(0, .1); setTimeout(() => sfx.horn(.3, .08), 180);
 }
 let clockAcc = 1, fcKey = '';
 function clockHud(dt) {
@@ -1685,7 +1697,7 @@ resize(); newGame(true); for (let i = 0; i < 90; i++) update(1 / 30);
 const lb = loginStreak(); if (lb) { const dn = $('dailyNote'); dn.hidden = false; dn.textContent = `Daily bonus +${lb.bonus} coins · Day ${lb.streak} streak`; }
 applyLang(); refreshTitle();
 if ('serviceWorker' in navigator && location.protocol === 'https:' && /vercel\.app$|danfo/i.test(location.hostname)) { try { navigator.serviceWorker.register('sw.js').catch(() => {}); } catch (e) {} }
-window.__dc = { popText, spawn(t, l, z) { if (BLOCK.has(t) && t !== 'cop') addV(t, l, z); else addO({ type: t, lane: l, z, look: t === 'cop' ? COP : randomLook() }); }, get G() { return G; } };
+window.__dc = { popText, clear() { objs.length = 0; }, spawn(t, l, z) { if (BLOCK.has(t) && t !== 'cop') addV(t, l, z); else addO({ type: t, lane: l, z, look: t === 'cop' ? COP : randomLook() }); }, get G() { return G; } };
 requestAnimationFrame(frame);
 })();
 </script>
