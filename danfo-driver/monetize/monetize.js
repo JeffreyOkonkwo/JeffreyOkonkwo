@@ -110,6 +110,8 @@
     get storeReady() { return rcReady; },
     has: ent => entitlements.has(ent), owns: id => owned.has(id),
     price: id => (storeProducts[id] && storeProducts[id].priceString) || null,
+    // the price to show: the store's local price once connected, otherwise the list price in the config (US dollars)
+    listPrice: id => { const p = C.products.find(x => x.id === id); return (storeProducts[id] && storeProducts[id].priceString) || (p && p.fallbackPrice) || null; },
     products: () => C.products.filter(p => !p.flag || C.flags[p.flag]),
     rewarded, banner, buy, restore, onChange: f => listeners.add(f),
     // players who saw the consent message must be able to change their answer (link in the name sheet)

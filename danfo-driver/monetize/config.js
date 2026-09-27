@@ -41,19 +41,20 @@ window.DC_MONEY_CONFIG = {
     googleKey: (window.DC_BUILD && window.DC_BUILD.revenuecatGoogleKey) || 'PASTE_REVENUECAT_GOOGLE_PUBLIC_KEY_IN_danfo-app/keys.local.json',
   },
   entitlements: { noAds: 'no_ads', pass: 'danfo_pass' },
-  // what each product gives; prices shown in the shop come from the store (localised)
+  // what each product gives; the shop shows the store's local price, and fallbackPrice (US dollars) until the store answers
+  // Keep fallbackPrice the same as the prices set in App Store Connect and Google Play Console.
   // Paid items are looks only: nothing paid can raise a score. Coins buy bus colours only.
   // The Danfo Pass is the only subscription: looks only (gold frame, Pass looks, stripe colours, monthly looks).
   products: [
     { id: 'danfo_pass_monthly', type: 'subscription', grants: { entitlement: 'danfo_pass' }, fallbackPrice: '$2.99' },
     { id: 'remove_ads', type: 'non_consumable', grants: { entitlement: 'no_ads' }, fallbackPrice: '$2.99' },
     { id: 'starter_pack', type: 'non_consumable', grants: { coins: 1500, skin: 'gold' }, fallbackPrice: '$0.99' },
-    { id: 'coins_small', type: 'consumable', grants: { coins: 1000 } },
-    { id: 'coins_medium', type: 'consumable', grants: { coins: 3500 } },
-    { id: 'coins_large', type: 'consumable', grants: { coins: 10000 } },
-    { id: 'route_lekki', type: 'non_consumable', grants: { route: 'lekki' } },
-    { id: 'route_ikorodu', type: 'non_consumable', grants: { route: 'ikorodu' } },
-    { id: 'route_third_mainland', type: 'non_consumable', grants: { route: 'mainland' } },
+    { id: 'coins_small', type: 'consumable', grants: { coins: 1000 }, fallbackPrice: '$0.99' },
+    { id: 'coins_medium', type: 'consumable', grants: { coins: 3500 }, fallbackPrice: '$2.99' },
+    { id: 'coins_large', type: 'consumable', grants: { coins: 10000 }, fallbackPrice: '$6.99' },
+    { id: 'route_lekki', type: 'non_consumable', grants: { route: 'lekki' }, fallbackPrice: '$0.99' },
+    { id: 'route_ikorodu', type: 'non_consumable', grants: { route: 'ikorodu' }, fallbackPrice: '$0.99' },
+    { id: 'route_third_mainland', type: 'non_consumable', grants: { route: 'mainland' }, fallbackPrice: '$0.99' },
   ],
 
   // --- feature flags ---------------------------------------------------------------------
