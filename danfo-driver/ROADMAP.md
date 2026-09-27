@@ -1,6 +1,6 @@
 # Danfo Craze: roadmap
 
-Version 1.0 is items 1 to 4 (done). Items 5 to 8 are planned for versions 1.1 and 1.2 and are **not built yet**.
+Version 1.0 is items 1 to 4 plus the bus tag (done). Items 5 to 8 are planned for versions 1.1 and 1.2 and are **not built yet**.
 
 ## Rules for every version
 - Paid items are looks only. Nothing paid may raise a score.
@@ -14,6 +14,7 @@ Version 1.0 is items 1 to 4 (done). Items 5 to 8 are planned for versions 1.1 an
 2. **Paid items are looks only:** the +25% coin bonus on paid Lagos routes is removed. Quiz continues are free (3 chances a run), so bought coins can never help a score.
 3. **Quiz facts:** after every answer, a one-line "Did you know?" fact with its source.
 4. **Driver look:** Madam Driver alongside Oga Driver, both free, chosen in the Garage.
+5. **Bus tag:** the slogan on the player's bus, GOD IS KING by default. Players pick another from a list or write their own (20 characters maximum, basic word filter). Free and looks only. When the leaderboard arrives, custom tags pass the same server word filter as nicknames.
 
 ## Version 1.1 (proposed): licence, leaderboard and Danfo Pass
 The leaderboard shows the licence photo and the custom bus, so items 5 and 8 ship together.
