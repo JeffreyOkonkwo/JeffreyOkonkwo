@@ -2348,16 +2348,37 @@ function timeOfDay() {
   return { col, dark };
 }
 let TOD = { col: SKY.day, dark: 0 };
+// life in the sky: birds by day in green and seaside places, a plane now and then, all cheap to draw
+function skyLife(dk) {
+  if (G && G.rain > .4) return;
+  const z = G ? zoneAt(30) : 'lagos', C = CITY[z], green = z === 'village' || z === 'abuja' || (C && ((C.palm || 0) > .15 || (C.lm && C.lm.sea)));
+  const bc = 30, bp = (T % bc) / bc; // one small flock crosses in the first part of every 30 seconds
+  if (dk < .4 && green && bp < .5) { ctx.strokeStyle = 'rgba(27,16,36,.6)'; ctx.lineWidth = 1.6; ctx.lineCap = 'round';
+    const cxb = -60 + (W + 120) * (bp / .5), cyb = hy * (.5 + ((T / bc | 0) % 3) * .08);
+    for (let i = 0; i < 3; i++) { const bx = cxb - i * 15, by = cyb + i * 6 + Math.sin(T * 3 + i) * 2, wf = Math.sin(T * 9 + i * 1.3) * 3;
+      ctx.beginPath(); ctx.moveTo(bx - 6, by - 2 - wf); ctx.quadraticCurveTo(bx - 3, by - 3, bx, by); ctx.quadraticCurveTo(bx + 3, by - 3, bx + 6, by - 2 - wf); ctx.stroke(); }
+    ctx.lineCap = 'butt'; }
+  const cyc = 65, ph = ((T + 20) % cyc) / cyc; // a plane crosses for a few seconds about once a minute
+  if (ph < .22) { const px = -60 + (W + 120) * (ph / .22), py = hy * (.38 + ((T / cyc | 0) % 2) * .1), s2 = Math.max(9, W * .026), dark = dk > .6;
+    ctx.strokeStyle = dark ? 'rgba(255,255,255,.18)' : 'rgba(255,255,255,.8)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(px - s2 * 5, py + 1); ctx.lineTo(px - s2, py + 1); ctx.stroke();
+    ctx.fillStyle = dark ? '#8c93c4' : '#f4f6fb'; ctx.strokeStyle = 'rgba(27,16,36,.6)'; ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.ellipse(px, py, s2, s2 * .22, 0, 0, 7); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(px - s2 * .1, py); ctx.lineTo(px - s2 * .55, py + s2 * .55); ctx.lineTo(px - s2 * .3, py + s2 * .55); ctx.lineTo(px + s2 * .25, py); ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(px - s2 * .8, py); ctx.lineTo(px - s2 * 1.05, py - s2 * .45); ctx.lineTo(px - s2 * .9, py - s2 * .45); ctx.lineTo(px - s2 * .55, py); ctx.closePath(); ctx.fill(); ctx.stroke();
+    if (dark && (T * 2 | 0) % 2) ball(px + s2 * .9, py, 2, '#ff4d4d'); }
+}
 function drawSky() {
   TOD = timeOfDay(); const dk = TOD.dark;
   const g = ctx.createLinearGradient(0, 0, 0, hy); g.addColorStop(0, TOD.col[0]); g.addColorStop(.7, TOD.col[1]); g.addColorStop(1, TOD.col[2]);
   ctx.fillStyle = g; ctx.fillRect(0, 0, W, hy + 2);
-  if (dk > .3) { ctx.fillStyle = `rgba(255,255,255,${(dk - .3) * .9})`; for (let i = 0; i < 60; i++) { const x = (i * 97.3) % W, y = (i * 53.7) % (hy * .8); ctx.fillRect(x, y, 2, 2); } }
+  if (dk > .3) for (let i = 0; i < 60; i++) { const x = (i * 97.3) % W, y = (i * 53.7) % (hy * .8), tw = .55 + .45 * Math.sin(T * (1.5 + i % 5) + i); ctx.fillStyle = `rgba(255,255,255,${Math.min(1, (dk - .3) * 1.3) * tw})`; const r = i % 7 === 0 ? 3 : 2; ctx.fillRect(x, y, r, r); }
   const sx = W * .78, sy = hy * (.38 + dk * .12), sr = Math.min(W, H) * (.06 - dk * .02), sunCol = dk > .6 ? '#f1f4ff' : dk > .15 ? '#ff9a4d' : '#ffe066';
   const sg = ctx.createRadialGradient(sx, sy, sr * .5, sx, sy, sr * 2.6); sg.addColorStop(0, dk > .6 ? 'rgba(220,230,255,.5)' : 'rgba(255,245,180,.9)'); sg.addColorStop(1, 'rgba(255,245,180,0)');
-  if (!(G && G.rain > .6)) { ctx.fillStyle = sg; ctx.fillRect(sx - sr * 3, sy - sr * 3, sr * 6, sr * 6); ball(sx, sy, sr, sunCol); }
+  if (!(G && G.rain > .6)) { ctx.fillStyle = sg; ctx.fillRect(sx - sr * 3, sy - sr * 3, sr * 6, sr * 6); ball(sx, sy, sr, sunCol);
+    if (dk > .6) { ctx.fillStyle = mixHex(TOD.col[0], '#141a4a', .2); ctx.beginPath(); ctx.arc(sx + sr * .45, sy - sr * .25, sr * .9, 0, 7); ctx.fill(); } } // crescent moon at night
   for (const c of clouds) { const x = c.x * W, y = c.y * H, r = H * .035 * c.s; ctx.fillStyle = G && G.rain > 0 ? mixHex('#ffffff', '#6f7c8b', G.rain) : dk > .5 ? '#3a3f6b' : '#fff';
     ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.arc(x + r * 1.1, y - r * .4, r * 1.2, 0, 7); ctx.arc(x + r * 2.3, y, r * .9, 0, 7); ctx.fill(); }
+  skyLife(dk);
   const lz = zoneAt(30);
   if (lz !== 'village' && !(CITY[lz] && CITY[lz].noSky)) for (const b of skyline) { ctx.fillStyle = dk > .5 ? '#2a2f5a' : G && G.rain > .02 ? mixHex(b.c, '#8d96a6', G.rain * .75) : b.c; ctx.fillRect(b.x, hy - b.h, b.w, b.h); ctx.fillStyle = dk > .5 ? 'rgba(255,214,120,.8)' : 'rgba(255,255,255,.45)'; for (let y = hy - b.h + 6; y < hy - 4; y += 10) for (let x = b.x + 4; x < b.x + b.w - 5; x += 9) ctx.fillRect(x, y, 3, 4); }
 }
@@ -2842,7 +2863,7 @@ if (beatFresh) setTimeout(showChallengeAccept, 700);
 else if (!store.get('setup', false) && !store.get('nick', '')) setTimeout(() => { if (mode === 'title' && $('sheet').hidden) showSetup(); }, 700);
 else if (playerList().length > 1 && !(() => { try { return sessionStorage.getItem('danfocraze.chose'); } catch (e) { return 1; } })()) setTimeout(() => { if (mode === 'title' && $('sheet').hidden) showChooser(); }, 700);
 if ('serviceWorker' in navigator && location.protocol === 'https:' && /vercel\.app$|danfo/i.test(location.hostname)) { try { navigator.serviceWorker.register('sw.js').catch(() => {}); } catch (e) {} }
-if ((/^(localhost|127\.0\.0\.1)$/.test(location.hostname) || location.protocol === 'file:') && !window.Capacitor) window.__dc = { roadKeys: () => ZONES.filter(z => z.road || (CITY[z.k] && !['lekki', 'ikorodu', 'mainland'].includes(z.k) && !CITY[z.k].premium && ROADS_ON && ['douala', 'kumasi', 'capecoast', 'abidjan', 'kampala', 'mombasa', 'dar', 'soweto', 'capetown'].includes(z.k))).map(z => z.k), city: z => newCityReached(z), step: dt => update(dt), lane, jump, get objs() { return objs; }, ZP, BLOCK, JUMP, get mode() { return mode; }, setDiff: d => { diff = d; }, start, popText, nextQuestion, clear() { objs.length = 0; }, counts() { return { objs: objs.length, props: props.length, walls: walls.length, parts: parts.length, drops: drops.length, heads: headSpots.length, lamps: lampSpots.length }; }, spawn(t, l, z) { if (BLOCK.has(t) && t !== 'cop') addV(t, l, z); else addO({ type: t, lane: l, z, look: t === 'cop' ? COP : randomLook() }); }, get G() { return G; } };
+if ((/^(localhost|127\.0\.0\.1)$/.test(location.hostname) || location.protocol === 'file:') && !window.Capacitor) window.__dc = { T: () => T, setT: v => { T = v; }, dark: () => TOD.dark, roadKeys: () => ZONES.filter(z => z.road || (CITY[z.k] && !['lekki', 'ikorodu', 'mainland'].includes(z.k) && !CITY[z.k].premium && ROADS_ON && ['douala', 'kumasi', 'capecoast', 'abidjan', 'kampala', 'mombasa', 'dar', 'soweto', 'capetown'].includes(z.k))).map(z => z.k), city: z => newCityReached(z), step: dt => update(dt), lane, jump, get objs() { return objs; }, ZP, BLOCK, JUMP, get mode() { return mode; }, setDiff: d => { diff = d; }, start, popText, nextQuestion, clear() { objs.length = 0; }, counts() { return { objs: objs.length, props: props.length, walls: walls.length, parts: parts.length, drops: drops.length, heads: headSpots.length, lamps: lampSpots.length }; }, spawn(t, l, z) { if (BLOCK.has(t) && t !== 'cop') addV(t, l, z); else addO({ type: t, lane: l, z, look: t === 'cop' ? COP : randomLook() }); }, get G() { return G; } };
 requestAnimationFrame(frame);
 })();
 </script>
