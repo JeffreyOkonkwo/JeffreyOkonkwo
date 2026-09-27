@@ -113,6 +113,34 @@
   .row b{font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:20px}
   .newbest{font-family:"Bungee",Impact,sans-serif;background:var(--danfo);border:3px solid var(--ink);border-radius:10px;padding:2px 14px;transform:rotate(-3deg)}
   .card .play{animation:none;padding:12px 30px}
+  .tag1{font-family:"Bungee",Impact,sans-serif;font-size:clamp(15px,4.2vw,22px);color:#fff;background:var(--ink);padding:3px 14px;border-radius:10px;transform:rotate(-3deg);margin-top:-6px}
+  .tag2{font-weight:800;font-size:13px;color:#fff;text-shadow:0 1px 3px #000}
+  .daily{font-weight:800;font-size:13px;background:var(--green);color:#fff;border:3px solid var(--ink);border-radius:12px;padding:3px 12px}
+  .menu4{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;width:100%}
+  .mbtn{position:relative;display:grid;justify-items:center;gap:1px;padding:6px 2px;border-radius:14px;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.2);font-weight:800;font-size:11.5px}
+  .mbtn b{font-size:17px;color:var(--danfo);line-height:1}
+  .mbtn .dot{position:absolute;top:4px;right:8px;width:10px;height:10px;border-radius:50%;background:#ff4d4d;border:2px solid var(--ink)}
+  .lang{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);left:14px;padding:4px 10px;font-size:13px}
+  .chal{width:100%;border:4px solid var(--ink);border-radius:16px;padding:9px 12px;background:#25d366;color:#fff;font-family:"Bungee",Impact,sans-serif;font-size:16px;box-shadow:0 5px 0 var(--ink)}
+  .chal:active{transform:translateY(3px);box-shadow:0 2px 0 var(--ink)}
+  .chip.beat{background:#25d366;color:#fff}
+  .sheetc{max-width:460px;max-height:86vh;grid-template-rows:auto 1fr auto}
+  .sh{color:var(--ink)!important;-webkit-text-stroke:0!important;font-size:clamp(26px,7vw,34px)!important}
+  .sbody{overflow:auto;width:100%;display:grid;gap:8px;text-align:left}
+  .mis{display:grid;gap:4px;border:3px solid var(--ink);border-radius:14px;padding:8px 12px;background:#fff8e1}
+  .mis.done{background:#d9fbe8}
+  .mis .top{display:flex;justify-content:space-between;gap:8px;font-weight:800}
+  .mis .rw{font-family:"Bungee",Impact,sans-serif;font-weight:400;color:#b07a00;white-space:nowrap}
+  .pbar{height:10px;border-radius:6px;background:#e9e3f0;overflow:hidden;border:2px solid var(--ink)}.pbar i{display:block;height:100%;background:var(--green)}
+  .skins{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+  .skin{display:grid;justify-items:center;gap:2px;border:3px solid var(--ink);border-radius:14px;padding:6px;background:#eef6ff;color:var(--ink);font-weight:800;font-size:13px}
+  .skin canvas{width:100%;height:auto;max-width:150px}
+  .skin.on{background:#fff3b0;box-shadow:0 0 0 3px var(--danfo) inset}
+  .skin small{font-weight:800;font-size:12px;opacity:.8}
+  .stop{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;font-weight:800}
+  .stop .pin{width:26px;height:26px;border-radius:50%;border:3px solid var(--ink);background:#d0cbd8;display:grid;place-items:center;font-size:13px}
+  .stop.on .pin{background:var(--green);color:#fff}
+  .stop small{display:block;font-weight:700;opacity:.7}
   .nick{display:flex;align-items:center;gap:8px;width:100%;max-width:340px;font-weight:800;font-size:13px;color:#fff}
   .nick span{white-space:nowrap;opacity:.8}
   .nick input{flex:1;min-width:0;font:inherit;font-size:16px;font-weight:800;color:var(--ink);background:#fff;border:3px solid var(--danfo);border-radius:12px;padding:6px 10px}
@@ -144,7 +172,7 @@
     <div>
       <div class="score ol" id="score">0</div>
       <div class="best ol" id="best">BEST 0</div>
-      <div class="chips"><span class="chip lvl" id="dchip">AREA DRIVER</span><span class="chip" id="mult" hidden>x2</span><span class="chip cop" id="cop" hidden>POLICE!</span><span class="chip party" id="pwP" hidden>PARTY</span><span class="chip mag" id="pwM" hidden>MAGNET</span></div>
+      <div class="chips"><span class="chip lvl" id="dchip">AREA DRIVER</span><span class="chip" id="mult" hidden>x2</span><span class="chip cop" id="cop" hidden>POLICE!</span><span class="chip party" id="pwP" hidden>PARTY</span><span class="chip beat" id="beatChip" hidden></span><span class="chip mag" id="pwM" hidden>MAGNET</span></div>
     </div>
     <div class="right"><div class="coins pax" aria-label="Passengers"><span class="pax-i"></span><span id="paxN">0</span></div><div class="coins"><span class="coin-i">₦</span><span id="coins">0</span></div><button class="pause" id="pauseBtn" type="button" aria-label="Pause">II</button></div>
   </div>
@@ -153,7 +181,7 @@
   <div id="pops"></div>
 
   <div class="overlay title" id="title">
-    <div class="logo"><h1><img class="logoimg" src="brand/logo.svg" alt="Danfo Craze: Naija no dey carry last!"></h1></div>
+    <div class="logo"><h1><img class="logoimg" src="brand/logo.svg" alt="Danfo Craze"></h1><span class="tag1">WE NO DEY CARRY LAST!</span><span class="tag2" id="tag2"></span><span class="daily" id="dailyNote" hidden></span></div>
     <div class="bottom">
       <label class="nick"><span>Your name</span><input id="nick" type="text" maxlength="14" autocomplete="nickname" placeholder="Enter nickname" enterkeyhint="done"></label>
       <div class="diffs" role="radiogroup" aria-label="Difficulty">
@@ -162,10 +190,17 @@
         <button class="dsel" type="button" role="radio" data-d="hard" aria-checked="false"><b>AGBERO</b><small>HARD</small></button>
       </div>
       <button class="play" id="playBtn" type="button">PLAY</button>
-      <span class="howto">Pick up passengers for points.<br>Swipe ← → to dodge · Swipe ↑ to hop potholes</span>
+      <span class="howto" id="howto"></span>
+      <div class="menu4">
+        <button class="mbtn" id="mMissions" type="button"><b>✓</b><span data-t="missions">Missions</span><i class="dot" id="mDot" hidden></i></button>
+        <button class="mbtn" id="mGarage" type="button"><b>◆</b><span data-t="garage">Garage</span></button>
+        <button class="mbtn" id="mJourney" type="button"><b>➜</b><span data-t="journey">Journey</span></button>
+        <button class="mbtn" id="mQuiz" type="button"><b>?</b><span data-t="quizmode">Africa Quiz</span></button>
+      </div>
       <div class="meta"><span class="pillm" id="tBest">BEST 0</span><span class="pillm" id="tCoins">₦ 0 saved</span></div>
       </div>
     <button class="small sound" id="soundBtn" type="button">Sound: ON</button>
+    <button class="small lang" id="langBtn" type="button" aria-label="Language">EN</button>
   </div>
 
   <div class="overlay" id="over" hidden>
@@ -176,6 +211,7 @@
       <div><div class="lbl">Score</div><div class="big" id="oScore">0</div></div>
       <div class="row"><div><div class="lbl">Passengers</div><b id="oPax">0</b></div><div><div class="lbl">Coins</div><b id="oCoins">0</b></div><div><div class="lbl">Best</div><b id="oBest">0</b></div></div>
       <button class="quizbtn" id="quizBtn" type="button"><b>QUIZ TO CONTINUE</b><small id="quizCost">Answer right, keep driving · FREE</small></button>
+      <button class="chal" id="chalBtn" type="button" data-t="challenge">CHALLENGE A FRIEND</button>
       <button class="play" id="againBtn" type="button">PLAY AGAIN</button>
       <button class="small" id="homeBtn" type="button">Home</button>
     </div>
@@ -190,6 +226,9 @@
       <button class="play" id="qNext" type="button" hidden>OK</button>
     </div>
   </div>
+  <div class="overlay" id="sheet" hidden>
+    <div class="card sheetc"><h2 class="sh" id="sheetT"></h2><div class="sbody" id="sheetB"></div><button class="play" id="sheetClose" type="button">OK</button></div>
+  </div>
   <div class="overlay" id="paused" hidden>
     <div class="card"><h2 style="color:var(--danfo)">PAUSED</h2><button class="play" id="resumeBtn" type="button">RESUME</button><button class="small" id="pHomeBtn" type="button">Home</button></div>
   </div>
@@ -200,7 +239,7 @@
 (() => {
 'use strict';
 const $ = id => document.getElementById(id);
-const cvs = $('c'), ctx = cvs.getContext('2d');
+const cvs = $('c'); let ctx = cvs.getContext('2d');
 const rand = (a = 1, b) => b === undefined ? Math.random() * a : a + Math.random() * (b - a);
 const ri = n => Math.floor(Math.random() * n);
 const pick = a => a[ri(a.length)];
@@ -239,7 +278,7 @@ const CALLS = ['Enter with your change!', 'Shift for back abeg!', 'Space still d
 let W, H, DPR, U, cx, hy, gy, skyline = [];
 const clouds = Array.from({ length: 6 }, () => ({ x: rand(), y: rand(.05, .24), s: rand(.7, 1.3), v: rand(.004, .012) }));
 function resize() {
-  DPR = Math.min(1.75, window.devicePixelRatio || 1); W = innerWidth; H = innerHeight;
+  DPR = lowFx ? 1 : Math.min(1.75, window.devicePixelRatio || 1); W = innerWidth; H = innerHeight;
   cvs.width = Math.round(W * DPR); cvs.height = Math.round(H * DPR); ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
   U = Math.min(W * .66, H * .6); cx = W / 2; hy = H * .36; gy = H * 1.02;
   skyline = []; let x = -20;
@@ -336,7 +375,17 @@ function person(x, y, s, look, pose, t, back = false) {
 
 // ---------------------------------------------------------------- vehicles
 function wheels(x, y, w, dx, size) { for (const s of [-1, 1]) blob(x + s * w * dx - size / 2, y - size * .9, size, size * .9, size * .3, '#2a2433', false); }
+const BUS_SKINS = [
+  { id: 'classic', name: 'Lagos Classic', price: 0, body: '#FFC91A', stripe: '#1b1024', slogan: 'NO FOOD FOR LAZY MAN' },
+  { id: 'naija', name: 'Green White Green', price: 300, body: '#18b86b', stripe: '#ffffff', slogan: 'NAIJA TO THE WORLD' },
+  { id: 'trotro', name: 'Accra Tro-tro', price: 500, body: '#2f7bff', stripe: '#FFC91A', slogan: 'GOD IS KING' },
+  { id: 'matatu', name: 'Nairobi Matatu', price: 800, body: '#8b5cf6', stripe: '#ff4fa3', slogan: 'NGANYA VIBES', art: true },
+  { id: 'kente', name: 'Kente Weave', price: 1200, body: '#ffb000', stripe: '#18b86b', slogan: 'AKWAABA', kente: true },
+  { id: 'night', name: 'Midnight Runner', price: 1500, body: '#2a2d5a', stripe: '#00e5ff', slogan: 'EYES DEY SEE' },
+  { id: 'gold', name: 'Owambe Gold', price: 2500, body: '#e6b422', stripe: '#1b1024', slogan: 'MONEY MISS ROAD', shine: true },
+];
 function danfo(x, y, s, t, o = {}) {
+  const sk = o.skin || BUS_SKINS[0];
   const w = .58 * s, h = w * .92; if (w < 4) return;
   ctx.save(); ctx.translate(x, y); if (o.tilt) ctx.rotate(o.tilt);
   const sq = o.sq || 1; ctx.scale(2 - sq, sq);
@@ -347,9 +396,12 @@ function danfo(x, y, s, t, o = {}) {
   ctx.strokeStyle = '#2f5bff'; ctx.lineWidth = Math.max(1, w * .014); for (let i = 1; i < 4; i++) { ctx.beginPath(); ctx.moveTo(gx + i * w * .085, gyy); ctx.lineTo(gx + i * w * .085, gyy + w * .13); ctx.stroke(); }
   ctx.strokeStyle = '#ff4d4d'; ctx.beginPath(); ctx.moveTo(gx, gyy + w * .065); ctx.lineTo(gx + w * .34, gyy + w * .065); ctx.stroke();
   blob(w * .08, top - w * .12, w * .24, w * .09, w * .04, '#c7d2dc');
-  blob(-w / 2, top, w, h * .9, w * .14, '#FFC91A');
+  blob(-w / 2, top, w, h * .9, w * .14, sk.body);
   ctx.save(); rr(-w / 2, top, w, h * .9, w * .14); ctx.clip();
-  ctx.fillStyle = OUT; ctx.fillRect(-w / 2, top + h * .55, w, h * .08); ctx.fillRect(-w / 2, top + h * .68, w, h * .05);
+  if (sk.kente) for (let i = 0; i < 10; i++) for (let j = 0; j < 3; j++) if ((i + j) % 2) { ctx.fillStyle = ['#ff4d4d', '#18b86b', '#1b1024'][j]; ctx.fillRect(-w / 2 + i * w / 10, top + h * (.42 + j * .045), w / 10, h * .04); }
+  if (sk.art) { const cs = ['#ff4fa3', '#00e5ff', '#ffe066', '#4ff0a0']; for (let i = 0; i < 7; i++) { ctx.fillStyle = cs[i % 4]; ctx.beginPath(); ctx.arc(-w * .42 + i * w * .14, top + h * (.5 + (i % 2) * .06), w * .05, 0, 7); ctx.fill(); } }
+  ctx.fillStyle = sk.stripe; ctx.fillRect(-w / 2, top + h * .55, w, h * .08); ctx.fillRect(-w / 2, top + h * .68, w, h * .05);
+  if (sk.shine) { ctx.fillStyle = `rgba(255,255,255,${.25 + .2 * Math.sin(t * 4)})`; ctx.beginPath(); ctx.moveTo(-w * .1 + Math.sin(t) * w * .3, top); ctx.lineTo(w * .05 + Math.sin(t) * w * .3, top); ctx.lineTo(-w * .15 + Math.sin(t) * w * .3, top + h * .9); ctx.lineTo(-w * .3 + Math.sin(t) * w * .3, top + h * .9); ctx.fill(); }
   ctx.restore();
   const wx = -w * .4, wy = top + h * .08, ww = w * .8, wh = h * .31;
   ctx.save(); rr(wx, wy, ww, wh, w * .06);
@@ -358,7 +410,7 @@ function danfo(x, y, s, t, o = {}) {
   for (let i = 0; i < n; i++) { const hx = wx + ww * (.14 + (i % 3) * .36 + (i > 2 ? .18 : 0)), bb = o.party ? Math.abs(Math.sin(t * 9.4 + i)) * wh * .14 : 0; ball(hx, wy + wh * (i > 2 ? .98 : .8) - bb, wh * .24, SKINS[i % SKINS.length]); }
   ctx.fillStyle = 'rgba(255,255,255,.35)'; ctx.beginPath(); ctx.moveTo(wx + ww * .55, wy); ctx.lineTo(wx + ww * .72, wy); ctx.lineTo(wx + ww * .44, wy + wh); ctx.lineTo(wx + ww * .27, wy + wh); ctx.fill();
   ctx.restore(); rr(wx, wy, ww, wh, w * .06); ctx.lineWidth = lwOf(w, h) * .8; ctx.strokeStyle = OUT; ctx.stroke();
-  if (w > 40) label(o.slogan || SLOGANS[0], 0, top + h * .47, w * .066, OUT, w * .9);
+  if (w > 40) label(o.slogan || SLOGANS[0], 0, top + h * .47, w * .066, sk.body === '#2a2d5a' || sk.body === '#8b5cf6' || sk.body === '#2f7bff' || sk.body === '#18b86b' ? '#fff' : OUT, w * .9);
   flat(-w * .16, top + h * .745, w * .32, h * .1, w * .02, '#fff', 1.2);
   if (w > 60) label('KJA 214 XY', 0, top + h * .8, w * .05, '#0e8f52', w * .3, '"Baloo 2", sans-serif');
   for (const sx of [-1, 1]) { ball(sx * w * .41, top + h * .77, w * .05, o.brake ? '#ff2a1f' : '#d9261c'); ball(sx * w * .41, top + h * .66, w * .032, '#ffb000'); }
@@ -625,8 +677,16 @@ function scheduleMusic() {
     A.next += sd; A.step++;
   }
 }
+// custom party clips listed in music/tracks.json (MP3s); falls back to the built-in beat
+let partyTracks = [], partyAudio = null;
+fetch('music/tracks.json').then(r => r.json()).then(j => { partyTracks = (j.tracks || []).filter(Boolean); }).catch(() => {});
+function partyMusic(on) {
+  if (on && A.on && partyTracks.length) {
+    try { if (partyAudio) partyAudio.pause(); partyAudio = new Audio('music/' + pick(partyTracks)); partyAudio.volume = .9; partyAudio.play().catch(() => {}); if (A.music) A.music.gain.setTargetAtTime(.05, A.ctx.currentTime, .2); } catch (e) {}
+  } else if (!on && partyAudio) { const a = partyAudio; partyAudio = null; let v = a.volume; const f = setInterval(() => { v -= .1; if (v <= 0) { clearInterval(f); a.pause(); } else a.volume = v; }, 60); if (A.music) A.music.gain.setTargetAtTime(.45, A.ctx.currentTime, .4); }
+}
 function musicStart() { if (!A.ctx || A.t) return; A.step = 0; A.next = A.ctx.currentTime + .05; A.t = setInterval(scheduleMusic, 25); }
-function musicStop() { clearInterval(A.t); A.t = null; }
+function musicStop() { clearInterval(A.t); A.t = null; partyMusic(false); }
 // conductor calls are shown as speech bubbles only
 function say(text) { if (!G || G.demo) return; G.call = text; G.callT = 2.2; }
 
@@ -774,9 +834,10 @@ stage.addEventListener('pointerup', e => {
 
 // ---------------------------------------------------------------- flow
 function show(id, on) { $(id).hidden = !on; }
-function refreshTitle() { document.querySelectorAll('.dsel').forEach(b => b.setAttribute('aria-checked', b.dataset.d === diff)); $('tBest').textContent = `BEST ${best.toLocaleString()}`; $('tCoins').innerHTML = `<span class="coin-i sm">₦</span>${bank.toLocaleString()} saved`; $('soundBtn').textContent = `Sound: ${A.on ? 'ON' : 'OFF'}`; }
+function refreshTitle() {
+  const d = daily(); $('mDot').hidden = d.ids.every(id => d.done[id]); document.querySelectorAll('.dsel').forEach(b => b.setAttribute('aria-checked', b.dataset.d === diff)); $('tBest').textContent = `BEST ${best.toLocaleString()}`; $('tCoins').innerHTML = `<span class="coin-i sm">₦</span>${bank.toLocaleString()} saved`; $('soundBtn').textContent = `Sound: ${A.on ? 'ON' : 'OFF'}`; }
 function start() {
-  audioInit(); newGame(false); mode = 'play'; musicStart();
+  audioInit(); newGame(false); mode = 'play'; musicStart(); track('runs'); G.beatShown = false;
   show('title', false); show('over', false); show('paused', false); show('hud', true); $('dchip').textContent = DIFFS[diff].name; $('toasts').innerHTML = '';
   if (learning()) G.chase.t = 0; else { toast('POLICE DEY FOLLOW YOU!'); sfx.siren(); setTimeout(() => sfx.siren(), 900); }
   setTimeout(() => say('Oshodi! Oshodi! Enter!'), 1200);
@@ -799,14 +860,117 @@ function die(kind, what) {
 function gameOver() {
   mode = 'over'; musicStop(); show('hud', false); show('hint', false);
   const cost = saveCost(), qb = $('quizBtn'); qb.hidden = !window.DC_QUIZ || G.quizFailed;
-  qb.disabled = G.coins < cost; $('quizCost').textContent = cost === 0 ? 'Answer right, keep driving · FREE' : G.coins >= cost ? `Answer right, keep driving · ${cost} coins` : `You need ${cost} coins to try`;
+  qb.disabled = G.coins < cost; $('quizCost').textContent = cost === 0 ? t('free') : G.coins >= cost ? t('cost', cost) : t('need', cost); $('chalBtn').textContent = t('challenge');
   const score = Math.floor(G.score), isBest = score > best; if (isBest) { best = score; store.set('best.' + diff, best); }
   if (!G.banked) { bank += G.coins; store.set('bank', bank); G.banked = G.coins; } else { bank += G.coins - G.banked; store.set('bank', bank); G.banked = G.coins; }
-  $('overT').textContent = G.deadKind === 'caught' ? 'JAIL!' : 'CRASH!';
+  $('overT').textContent = G.deadKind === 'caught' ? t('jail') : t('crash');
   $('overWhy').textContent = G.deadKind === 'caught' ? 'Police don catch you and you no get money to settle. Dem don carry you go station!' : `You don jam ${NAMES[G.deadWhat] || 'motor'}. Wahala dey!`;
   $('oScore').textContent = score.toLocaleString(); $('oCoins').textContent = G.coins.toLocaleString(); $('oPax').textContent = G.pax; $('oBest').textContent = best.toLocaleString();
   $('newBest').hidden = !isBest; const nk = store.get('nick', ''); if (nk) $('overWhy').textContent += ` Sorry ${nk}!`; show('over', true); (qb.hidden || qb.disabled ? $('againBtn') : qb).focus();
 }
+// ================================================================ features
+// ---- language (menus and hints). The catchphrase stays in pidgin everywhere.
+const STR = {
+  en: { play: 'PLAY', again: 'PLAY AGAIN', home: 'Home', quiz: 'QUIZ TO CONTINUE', free: 'Answer right, keep driving · FREE', cost: 'Answer right, keep driving · {n} coins', need: 'You need {n} coins to try',
+    howto: 'Pick up passengers for points.<br>Swipe ← → to dodge · Swipe ↑ to hop potholes', name: 'Your name', missions: 'Missions', garage: 'Garage', journey: 'Journey', quizmode: 'Africa Quiz',
+    challenge: 'CHALLENGE A FRIEND', crash: 'CRASH!', jail: 'JAIL!', dodge: 'SWIPE TO DODGE', jump: 'SWIPE UP TO HOP', pax: 'PICK UP PASSENGERS!', cop: 'POLICE! AVOID THEM', tag: 'We never finish last!', resume: 'RESUME', paused: 'PAUSED' },
+  pcm: { play: 'OYA DRIVE', again: 'TRY AM AGAIN', home: 'Go house', quiz: 'ANSWER QUIZ, CONTINUE', free: 'Answer am correct, continue · FREE', cost: 'Answer am correct, continue · {n} coins', need: 'You need {n} coins to try',
+    howto: 'Carry passengers, collect point.<br>Swipe ← → dodge motor · Swipe ↑ jump pothole', name: 'Your name', missions: 'Wetin to do', garage: 'Mechanic', journey: 'Our road', quizmode: 'Africa Quiz',
+    challenge: 'CHALLENGE YOUR PADI', crash: 'E DON HAPPEN!', jail: 'DEM DON LOCK YOU!', dodge: 'SWIPE, DODGE AM', jump: 'SWIPE UP, JUMP AM', pax: 'CARRY PASSENGER!', cop: 'POLICE! NO JAM DEM', tag: '', resume: 'CONTINUE', paused: 'HOLD ON' },
+  fr: { play: 'JOUER', again: 'REJOUER', home: 'Accueil', quiz: 'QUIZ POUR CONTINUER', free: 'Bonne réponse, tu continues · GRATUIT', cost: 'Bonne réponse, tu continues · {n} pièces', need: 'Il te faut {n} pièces',
+    howto: 'Prends des passagers pour gagner des points.<br>Glisse ← → pour esquiver · Glisse ↑ pour sauter', name: 'Ton nom', missions: 'Missions', garage: 'Garage', journey: 'Voyage', quizmode: 'Quiz Afrique',
+    challenge: 'DÉFIE UN AMI', crash: 'ACCIDENT !', jail: 'PRISON !', dodge: 'GLISSE POUR ESQUIVER', jump: 'GLISSE ↑ POUR SAUTER', pax: 'PRENDS LES PASSAGERS !', cop: 'POLICE ! ÉVITE-LES', tag: 'On ne finit jamais dernier !', resume: 'REPRENDRE', paused: 'PAUSE' },
+};
+const LANGS = ['en', 'pcm', 'fr'], LANG_LABEL = { en: 'EN', pcm: 'PIDGIN', fr: 'FR' };
+let lang = store.get('lang', 'en'); if (!STR[lang]) lang = 'en';
+const t = (k, n) => (STR[lang][k] ?? STR.en[k]).replace('{n}', n);
+function applyLang() {
+  $('playBtn').textContent = t('play'); $('againBtn').textContent = t('again'); $('homeBtn').textContent = t('home'); $('pHomeBtn').textContent = t('home');
+  $('resumeBtn').textContent = t('resume'); document.querySelector('#paused h2').textContent = t('paused');
+  $('howto').innerHTML = t('howto'); document.querySelector('.nick span').textContent = t('name'); $('tag2').textContent = t('tag');
+  document.querySelectorAll('[data-t]').forEach(el => el.textContent = t(el.dataset.t)); document.querySelector('#quizBtn b').textContent = t('quiz');
+  $('langBtn').textContent = LANG_LABEL[lang]; document.documentElement.lang = lang === 'fr' ? 'fr' : 'en';
+}
+
+// ---- daily missions + login streak
+const MISSIONS = [
+  { id: 'pax15', t: 'Pick up 15 passengers', k: 'pax', n: 15, r: 60 }, { id: 'pax40', t: 'Pick up 40 passengers', k: 'pax', n: 40, r: 150 },
+  { id: 'coin100', t: 'Collect 100 coins', k: 'coins', n: 100, r: 60 }, { id: 'coin300', t: 'Collect 300 coins', k: 'coins', n: 300, r: 140 },
+  { id: 'chance5', t: 'CHANCE AM 5 times', k: 'chance', n: 5, r: 80 }, { id: 'hop10', t: 'Hop over 10 obstacles', k: 'hop', n: 10, r: 50 },
+  { id: 'dist2', t: 'Drive 2 km in one run', k: 'distRun', n: 2000, r: 80 }, { id: 'dist5', t: 'Drive 5 km in one run', k: 'distRun', n: 5000, r: 200 },
+  { id: 'quiz3', t: 'Answer 3 quiz questions right', k: 'quiz', n: 3, r: 70 }, { id: 'score3k', t: 'Score 3,000 in one run', k: 'scoreRun', n: 3000, r: 100 },
+  { id: 'night', t: 'Keep driving until night falls', k: 'night', n: 1, r: 80 }, { id: 'party2', t: 'Start 2 Bus Jam Parties', k: 'party', n: 2, r: 60 },
+  { id: 'rain', t: 'Drive through the rain', k: 'rain', n: 1, r: 50 }, { id: 'runs5', t: 'Play 5 runs', k: 'runs', n: 5, r: 40 },
+];
+const dayKey = d => `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+function daily() {
+  const today = dayKey(new Date()); let d = store.get('daily', null);
+  if (!d || d.day !== today) {
+    let h = 0; for (const c of today) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+    const ids = []; let i = 0; while (ids.length < 3 && i < 200) { const m = MISSIONS[(h + i * 5) % MISSIONS.length]; if (!ids.includes(m.id) && !ids.some(x => MISSIONS.find(q => q.id === x).k === m.k)) ids.push(m.id); i++; }
+    d = { day: today, ids, prog: {}, done: {} }; store.set('daily', d);
+  }
+  return d;
+}
+function track(k, v = 1, abs = false) {
+  if (!G || (G.demo && k !== 'quiz')) return; const d = daily(); let changed = false;
+  for (const id of d.ids) { const m = MISSIONS.find(x => x.id === id); if (m.k !== k || d.done[id]) continue;
+    const cur = d.prog[id] || 0, nv = abs ? Math.max(cur, v) : cur + v; if (nv !== cur) { d.prog[id] = nv; changed = true; }
+    if (nv >= m.n) { d.done[id] = true; bank += m.r; store.set('bank', bank); toast(`MISSION DONE! +${m.r} COINS`, true); sfx.power(); } }
+  if (changed) store.set('daily', d);
+}
+function loginStreak() {
+  const today = dayKey(new Date()), last = store.get('lastDay', ''); if (last === today) return null;
+  const y = new Date(); y.setDate(y.getDate() - 1); let streak = last === dayKey(y) ? store.get('streak', 0) + 1 : 1;
+  const bonus = Math.min(streak, 7) * 20; store.set('streak', streak); store.set('lastDay', today); bank += bonus; store.set('bank', bank);
+  return { streak, bonus };
+}
+function openSheet(title, html) { $('sheetT').textContent = title; $('sheetB').innerHTML = html; show('sheet', true); $('sheetClose').focus(); }
+function showMissions() {
+  const d = daily(), st = store.get('streak', 1);
+  openSheet(t('missions'), `<p style="margin:0;font-weight:800">Today's missions. New ones every day. Day streak: ${st} 🔥</p>` + d.ids.map(id => { const m = MISSIONS.find(x => x.id === id), p = Math.min(m.n, d.prog[id] || 0), done = d.done[id];
+    return `<div class="mis ${done ? 'done' : ''}"><div class="top"><span>${done ? '✓ ' : ''}${m.t}</span><span class="rw">+${m.r}</span></div><div class="pbar"><i style="width:${p / m.n * 100}%"></i></div><small>${m.k === 'distRun' ? (p / 1000).toFixed(1) + ' / ' + m.n / 1000 + ' km' : p.toLocaleString() + ' / ' + m.n.toLocaleString()}</small></div>`; }).join(''));
+}
+
+// ---- garage: buy and choose your danfo
+function mySkin() { const id = store.get('skin', 'classic'); return BUS_SKINS.find(s => s.id === id) || BUS_SKINS[0]; }
+function showGarage() {
+  const owned = store.get('owned', ['classic']), cur = mySkin().id;
+  openSheet(t('garage'), `<p style="margin:0;font-weight:800">Coins saved: ₦ ${bank.toLocaleString()}</p><div class="skins">` + BUS_SKINS.map(sk => `<button class="skin ${sk.id === cur ? 'on' : ''}" data-skin="${sk.id}" type="button"><canvas width="220" height="170"></canvas>${sk.name}<small>${sk.id === cur ? 'DRIVING' : owned.includes(sk.id) ? 'Tap to drive' : '₦ ' + sk.price.toLocaleString()}</small></button>`).join('') + '</div>');
+  document.querySelectorAll('.skin').forEach(el => {
+    const sk = BUS_SKINS.find(s => s.id === el.dataset.skin), c = el.querySelector('canvas'), keep = ctx; ctx = c.getContext('2d');
+    ctx.fillStyle = '#bfe6ff'; ctx.fillRect(0, 0, 220, 170); danfo(110, 160, 250, 0, { heads: 4, skin: sk, slogan: sk.slogan }); ctx = keep;
+    el.onclick = () => { const own = store.get('owned', ['classic']);
+      if (own.includes(sk.id)) { store.set('skin', sk.id); showGarage(); return; }
+      if (bank >= sk.price) { bank -= sk.price; store.set('bank', bank); own.push(sk.id); store.set('owned', own); store.set('skin', sk.id); audioInit(); sfx.power(); refreshTitle(); showGarage(); }
+      else { el.querySelector('small').textContent = `Need ₦ ${(sk.price - bank).toLocaleString()} more`; } };
+  });
+}
+
+// ---- journey: every area you have reached lights up
+function showJourney() {
+  const md = store.get('maxDist', 0);
+  openSheet(t('journey'), ZONES.map((z, i) => { const need = i * ZONE_LEN, on = md >= need;
+    return `<div class="stop ${on ? 'on' : ''}"><span class="pin">${on ? '✓' : i + 1}</span><span>${z.name}<small>${on ? 'Reached' : `Drive ${(need / 1000).toFixed(1)} km in one run`}</small></span></div>`; }).join('') + '<p style="margin:0;font-weight:700;opacity:.7">More African cities coming soon.</p>');
+}
+
+// ---- challenge a friend (share link + on-screen target)
+const SHARE_URL = 'https://danfo-craze.vercel.app/';
+let beat = null;
+try { const bp = new URLSearchParams(location.search).get('beat'); if (bp) { const [n, sc] = bp.split('~'); if (+sc > 0) { beat = { name: decodeURIComponent(n || 'Your friend').slice(0, 14), score: +sc }; store.set('beat', beat); } } else beat = store.get('beat', null); } catch (e) {}
+function shareChallenge() {
+  const nk = store.get('nick', '') || 'I', sc = Math.floor(G.score);
+  const url = `${SHARE_URL}?beat=${encodeURIComponent(store.get('nick', '') || 'Friend')}~${sc}`;
+  const text = `${nk === 'I' ? 'I' : nk} scored ${sc.toLocaleString()} and carried ${G.pax} passengers in Danfo Craze! Can you beat me? 🚌`;
+  if (navigator.share) { navigator.share({ title: 'Danfo Craze', text, url }).catch(() => {}); return; }
+  const a = document.createElement('a'); a.href = 'https://wa.me/?text=' + encodeURIComponent(text + ' ' + url); a.target = '_blank'; a.rel = 'noopener'; document.body.append(a); a.click(); a.remove();
+  try { navigator.clipboard.writeText(text + ' ' + url).then(() => { $('chalBtn').textContent = 'LINK COPIED!'; }).catch(() => {}); } catch (e) {}
+}
+
+// ---- Africa quiz practice: 5 questions, 10 coins per right answer
+let practice = null;
+function startPractice() { practice = { left: 5, right: 0 }; audioInit(); show('title', false); openQuizCard(); }
+
 // ---- quiz to continue: first save free, then 50, 100, 200 coins
 function saveCost() { return G.saves === 0 || !G.saves ? 0 : 50 * Math.pow(2, G.saves - 1); }
 let quizQ = null, quizT = 0, quizTimer = null;
@@ -816,9 +980,11 @@ function nextQuestion() {
   store.set('qi', i + 1); return bankQ[order[i]];
 }
 function openQuiz() {
-  const cost = saveCost(); if (G.coins < cost) return;
+  const cost = saveCost(); if (G.coins < cost) return; practice = null; show('over', false); openQuizCard();
+}
+function openQuizCard() {
   quizQ = nextQuestion(); if (!quizQ) return;
-  show('over', false); show('quiz', true); $('qQ').textContent = quizQ.q; $('qFact').hidden = true; $('qNext').hidden = true;
+  show('quiz', true); $('qQ').textContent = quizQ.q; $('qFact').hidden = true; $('qNext').hidden = true;
   const box = $('qOpts'); box.innerHTML = '';
   quizQ.o.forEach((t, k) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'qopt'; b.textContent = t; b.onclick = () => answerQuiz(k); box.append(b); });
   box.firstChild.focus(); quizT = 12; clearInterval(quizTimer);
@@ -827,9 +993,15 @@ function openQuiz() {
 function answerQuiz(k) {
   if (!quizQ || quizQ.done) return; quizQ.done = true; clearInterval(quizTimer);
   const btns = [...$('qOpts').children]; btns.forEach(b => b.disabled = true); btns[quizQ.a].classList.add('right'); if (k >= 0 && k !== quizQ.a) btns[k].classList.add('wrong');
-  const ok = k === quizQ.a; audioInit(); ok ? sfx.power() : sfx.stumble();
+  const ok = k === quizQ.a; if (ok) track('quiz'); audioInit(); ok ? sfx.power() : sfx.stumble();
   $('qFact').textContent = (ok ? 'Correct! ' : k < 0 ? 'Time up! ' : 'Not quite. ') + quizQ.f; $('qFact').hidden = false;
   const nb = $('qNext'); nb.hidden = false; nb.textContent = ok ? 'KEEP DRIVING' : 'OK'; nb.focus();
+  if (practice) {
+    practice.left--; if (ok) { practice.right++; bank += 10; store.set('bank', bank); }
+    nb.textContent = practice.left > 0 ? `NEXT (${5 - practice.left}/5)` : 'FINISH';
+    nb.onclick = () => { show('quiz', false); if (practice.left > 0) openQuizCard(); else { const r = practice.right; practice = null; refreshTitle(); show('title', true); openSheet(t('quizmode'), `<p style="margin:0;font-weight:800;font-size:18px">You got ${r} of 5 right! +${r * 10} coins.</p><p style="margin:0">Come back any time to learn more about Africa.</p>`); } };
+    return;
+  }
   nb.onclick = () => { show('quiz', false); if (ok) continueRun(); else { G.quizFailed = true; gameOver(); } };
 }
 function continueRun() {
@@ -845,6 +1017,10 @@ function pause(on) {
 function home() { musicStop(); if (A.ctx && A.ctx.state === 'suspended') A.ctx.resume(); mode = 'title'; newGame(true); show('over', false); show('paused', false); show('hud', false); show('hint', false); refreshTitle(); show('title', true); }
 document.querySelectorAll('.dsel').forEach(b => b.onclick = () => { diff = b.dataset.d; store.set('diff', diff); best = store.get('best.' + diff, 0); refreshTitle(); });
 $('quizBtn').onclick = openQuiz;
+$('chalBtn').onclick = shareChallenge;
+$('mMissions').onclick = showMissions; $('mGarage').onclick = showGarage; $('mJourney').onclick = showJourney; $('mQuiz').onclick = startPractice;
+$('sheetClose').onclick = () => { show('sheet', false); refreshTitle(); };
+$('langBtn').onclick = () => { lang = LANGS[(LANGS.indexOf(lang) + 1) % LANGS.length]; store.set('lang', lang); applyLang(); };
 $('nick').value = store.get('nick', ''); $('nick').addEventListener('input', e => store.set('nick', e.target.value.trim().slice(0, 14)));
 $('nick').addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Enter') e.target.blur(); });
 $('playBtn').onclick = start; $('againBtn').onclick = start; $('homeBtn').onclick = home; $('pHomeBtn').onclick = home;
@@ -873,7 +1049,7 @@ function update(dt) {
       const need = th.type === 'cop' ? 'cop' : th.type === 'pax' ? 'pax' : JUMP.has(th.type) ? 'jump' : 'dodge';
       if (!G.tut[need] && !(need === 'pax' && th.lane === P.lane)) {
         const dir = th.lane < P.lane ? '←' : '→';
-        const TXT = { dodge: ['←&nbsp;→', 'SWIPE TO DODGE'], jump: ['↑', 'SWIPE UP TO HOP'], pax: [dir, 'PICK UP PASSENGERS!'], cop: ['←&nbsp;→', 'POLICE! AVOID THEM'] }[need];
+        const TXT = { dodge: ['←&nbsp;→', t('dodge')], jump: ['↑', t('jump')], pax: [dir, t('pax')], cop: ['←&nbsp;→', t('cop')] }[need];
         if (G.tut.on !== need) { G.tut.on = need; $('hint').hidden = false; $('hint').className = 'hint' + (need === 'jump' ? ' up' : '') + (need === 'cop' ? ' bad' : need === 'pax' ? ' good' : ''); $('hintArrows').innerHTML = TXT[0]; $('hintTxt').textContent = TXT[1]; }
         ws = .12;
       }
@@ -892,6 +1068,7 @@ function update(dt) {
   P.tilt += ((LANES[P.lane] - P.x) * .35 - P.tilt) * Math.min(1, dt * 12);
   if (P.jt > 0) { P.jt -= wdt; P.y = Math.max(0, Math.sin(Math.PI * (1 - P.jt / JT))) * JH; if (P.jt <= 0) { P.y = 0; P.sq = .8; if (!G.demo) sfx.land(); const p = P3(P.x, 0, ZP); burstParts(p.x, p.y, 8, ['#e8dcc8', '#fff'], 90, .4, 200, 5); } }
   P.sq += (1 - P.sq) * Math.min(1, dt * 12);
+  if (G.partyT > 0 && G.partyT - wdt <= 0) partyMusic(false);
   if (G.partyT > 0) { G.partyT -= wdt; if (Math.random() < dt * 30) parts.push({ x: rand(W), y: -10, vx: rand(-40, 40), vy: rand(60, 160), g: 30, t: 0, life: 3, r: rand(3, 6), col: pick(['#FFC91A', '#18b86b', '#fff', '#ff4d4d', '#8b5cf6']), conf: true }); }
   if (G.magnetT > 0) G.magnetT -= wdt;
   if (G.invT > 0) G.invT -= wdt;
@@ -899,6 +1076,7 @@ function update(dt) {
   if (!G.demo) { G.nextRain -= wdt; if (G.nextRain <= 0 && G.rainT <= 0) { G.rainT = rand(18, 30); G.nextRain = rand(50, 90); toast('RAIN DEY FALL! ROAD DON WET', true); } }
   if (G.rainT > 0) G.rainT -= wdt;
   G.rain += ((G.rainT > 0 ? 1 : 0) - G.rain) * Math.min(1, dt * .6);
+  if (!G.demo && !G.dead) { G.trackT = (G.trackT || 0) - dt; if (G.trackT <= 0) { G.trackT = 1; track('distRun', G.dist, true); track('scoreRun', G.score, true); if (TOD.dark > .8) track('night', 1, true); if (G.rain > .5) track('rain', 1, true); const md = store.get('maxDist', 0); if (G.dist > md) store.set('maxDist', G.dist); } }
   if (A.rain) A.rain.gain.setTargetAtTime(G.rain * .12, A.ctx.currentTime, .3);
 
   const C = G.chase;
@@ -915,6 +1093,7 @@ function update(dt) {
   for (let i = objs.length - 1; i >= 0; i--) {
     const o = objs[i];
     if (o.fly) { o.fly += dt * 2.4; o.x += o.flyDir * dt * 2.5; }
+    if (G.partyT > 0 && !G.demo && o.type === 'pax' && !o.done && o.z < ZP + 10 && o.z > ZP - .5) { o.x += (P.x - o.x) * Math.min(1, dt * 7); o.lane = P.lane; }
     if (G.magnetT > 0 && o.type === 'coin' && o.z < ZP + 12 && o.z > ZP - .5) { o.x += (P.x - o.x) * Math.min(1, dt * 8); o.y += (P.y - o.y) * Math.min(1, dt * 8); o.z -= mv * .6; }
     o.z -= (G.speed - o.v) * wdt;
     if (o.type === 'okada') { o.x += (LANES[o.lane] - o.x) * dt * 3; }
@@ -924,7 +1103,7 @@ function update(dt) {
     }
     if (!G.dead && !G.demo && BLOCK.has(o.type) && !o.fly && !o.passed && o.z < ZP - (LEN[o.type] || .3) / 2) {
       o.passed = true;
-      if (Math.abs(o.x - P.x) < .75 && G.swerveT < .9) { G.score += 30; G.coins += 2; popText('CHANCE AM!', '+30'); sfx.pax(); const pp = P3(P.x, 0, ZP); burstParts(pp.x, pp.y - pp.s * .5, 8, ['#FFC91A', '#fff'], 140, .4, 150, 4); }
+      if (Math.abs(o.x - P.x) < .75 && G.swerveT < .9) { G.score += 30; G.coins += 2; popText('CHANCE AM!', '+30'); track('chance'); sfx.pax(); const pp = P3(P.x, 0, ZP); burstParts(pp.x, pp.y - pp.s * .5, 8, ['#FFC91A', '#fff'], 140, .4, 150, 4); }
     }
     if (o.z < -2.5 || o.fly > 2.2 || (o.done && o.gone)) objs.splice(i, 1);
   }
@@ -944,16 +1123,16 @@ function hit(o) {
   const P = G.P, p = P3(P.x, 0, ZP), air = P.y > .12;
   if (o.type === 'coin') {
     if (Math.abs(o.y - P.y) > .22 && G.magnetT <= 0) return;
-    o.done = true; o.gone = true; const v = G.partyT > 0 ? 2 : 1; G.coins += v; G.score += v; G.streak++; sfx.coin(G.streak);
+    o.done = true; o.gone = true; const v = G.partyT > 0 ? 2 : 1; G.coins += v; G.score += v; track('coins', v); G.streak++; sfx.coin(G.streak);
     burstParts(p.x, p.y - p.s * .55 - P.y * p.s, 5, ['#FFC91A', '#fff3a6'], 120, .35, 150, 4); return;
   }
-  if (o.type === 'pax') { if (G.tut.on === 'pax') finishTutStep(); o.done = true; o.gone = true; G.pax++; G.chain = Math.min(5, G.chain + 1); G.chainT = 6; const pts = 100 * G.chain * (G.partyT > 0 ? 2 : 1); G.score += pts;
+  if (o.type === 'pax') { track('pax'); if (G.tut.on === 'pax') finishTutStep(); o.done = true; o.gone = true; G.pax++; G.chain = Math.min(5, G.chain + 1); G.chainT = 6; const pts = 100 * G.chain * (G.partyT > 0 ? 2 : 1); G.score += pts;
     sfx.pax(); popText(`+${pts}`, G.chain > 1 ? `PASSENGER x${G.chain}` : 'PASSENGER', 'green'); burstParts(p.x, p.y - p.s * .6, 10, ['#3fe08f', '#fff', '#FFC91A'], 160, .5, 200, 5); say(pick(['Enter! Enter!', 'Oya enter, e remain one!', 'Shift for back!', 'Welcome, sit down!'])); return; }
-  if (o.type === 'speaker') { o.done = true; o.gone = true; G.partyT = 7; sfx.power(); toast('BUS JAM PARTY!'); say('Bus jam party! Oya dance!'); return; }
+  if (o.type === 'speaker') { o.done = true; o.gone = true; G.partyT = 8; sfx.power(); toast('BUS JAM PARTY!'); say('Bus jam party! Oya dance!'); partyMusic(true); track('party'); return; }
   if (o.type === 'magnet') { o.done = true; o.gone = true; G.magnetT = 9; sfx.power(); toast('NAIRA MAGNET!'); return; }
   if (G.invT > 0 && (JUMP.has(o.type) || BLOCK.has(o.type))) return;
   if (JUMP.has(o.type)) {
-    if (air) { o.done = true; return; }
+    if (air) { o.done = true; track('hop'); return; }
     o.done = true;
     if (G.partyT > 0) return;
     if (G.chase.t > 0 && !G.demo && !learning()) { policeCatch(false); return; }
@@ -1069,7 +1248,7 @@ function drawPlayer() {
   const P = G.P, p = P3(P.x, 0, ZP), air = P.y * p.s;
   shadowE(p.x, p.y, .64 * p.s * (1 - P.y * .8), .32);
   if (G.invT > 0 && Math.floor(T * 12) % 2) ctx.globalAlpha = .45;
-  danfo(p.x, p.y - air, p.s, T, { heads: 6, conductor: true, party: G.partyT > 0, tilt: P.tilt, sq: P.sq, slogan: G.slogan, brake: G.dead });
+  danfo(p.x, p.y - air, p.s, T, { heads: 6, conductor: true, party: G.partyT > 0, tilt: P.tilt, sq: P.sq, slogan: mySkin().slogan, skin: mySkin(), brake: G.dead });
   if (G.partyT > 0) for (let i = 0; i < 3; i++) label('♪', p.x - p.s * .35 + i * p.s * .35, p.y - p.s * .78 - air - Math.abs(Math.sin(T * 4 + i)) * p.s * .12, p.s * .12, NOTE_COLS[i], p.s);
   if (G.magnetT > 0) { ctx.strokeStyle = `rgba(255,90,90,${.35 + .2 * Math.sin(T * 10)})`; ctx.lineWidth = 4; ctx.beginPath(); ctx.ellipse(p.x, p.y - air - p.s * .3, p.s * .42, p.s * .42, 0, 0, 7); ctx.stroke(); }
   ctx.globalAlpha = 1;
@@ -1097,7 +1276,7 @@ function lightsAndWeather() {
   lampSpots.length = 0;
   if (G.rain > .02) {
     ctx.strokeStyle = `rgba(210,225,245,${.55 * G.rain})`; ctx.lineWidth = 1.5; ctx.beginPath();
-    const n = Math.floor(90 * G.rain);
+    const n = Math.floor((lowFx ? 35 : 90) * G.rain);
     for (let i = 0; i < n; i++) { const x = Math.random() * W, y = Math.random() * H; ctx.moveTo(x, y); ctx.lineTo(x - 4, y + 18); }
     ctx.stroke();
     ctx.fillStyle = `rgba(160,190,230,${.08 * G.rain})`; ctx.fillRect(0, hy, W, H - hy);
@@ -1132,16 +1311,22 @@ function hud() {
   if (key === hudKey) return; hudKey = key;
   $('score').textContent = s.toLocaleString(); $('best').textContent = s > best && best > 0 ? 'NEW BEST!' : `BEST ${best.toLocaleString()}`;
   $('coins').textContent = G.coins.toLocaleString(); $('paxN').textContent = G.pax;
+  if (beat) { const bc = $('beatChip'); bc.hidden = false; bc.textContent = s > beat.score ? `YOU BEAT ${beat.name.toUpperCase()}!` : `BEAT ${beat.name.toUpperCase()}: ${beat.score.toLocaleString()}`; if (s > beat.score && !G.beatShown) { G.beatShown = true; toast(`YOU DON BEAT ${beat.name.toUpperCase()}!`); sfx.speed(); } }
   $('mult').hidden = !(G.partyT > 0 || G.chain > 1); $('mult').textContent = 'x' + Math.max(G.chain, 1) * (G.partyT > 0 ? 2 : 1); $('pwP').hidden = !(G.partyT > 0); $('pwM').hidden = !(G.magnetT > 0); $('cop').hidden = !(G.chase.t > 0);
 }
+// cheap-phone mode: if frames are slow for a few seconds, draw at lower resolution
+let slowFrames = 0, lowFx = false;
 function frame(now) {
   const dt = Math.min(.05, (now - last) / 1000 || 0); last = now;
+  if (!lowFx && mode === 'play') { slowFrames = dt > .034 ? slowFrames + 1 : Math.max(0, slowFrames - 2); if (slowFrames > 150) { lowFx = true; DPR = 1; cvs.width = W; cvs.height = H; ctx.setTransform(1, 0, 0, 1, 0, 0); } }
   if (G && mode !== 'paused' && mode !== 'over') update(dt);
   if (G) render();
   if (mode === 'play') hud();
   requestAnimationFrame(frame);
 }
-resize(); newGame(true); for (let i = 0; i < 90; i++) update(1 / 30); refreshTitle();
+resize(); newGame(true); for (let i = 0; i < 90; i++) update(1 / 30);
+const lb = loginStreak(); if (lb) { const dn = $('dailyNote'); dn.hidden = false; dn.textContent = `Daily bonus +${lb.bonus} coins · Day ${lb.streak} streak`; }
+applyLang(); refreshTitle();
 if ('serviceWorker' in navigator && location.protocol === 'https:' && /vercel\.app$|danfo/i.test(location.hostname)) { try { navigator.serviceWorker.register('sw.js').catch(() => {}); } catch (e) {} }
 window.__dc = { popText, spawn(t, l, z) { if (BLOCK.has(t) && t !== 'cop') addV(t, l, z); else addO({ type: t, lane: l, z, look: t === 'cop' ? COP : randomLook() }); }, get G() { return G; } };
 requestAnimationFrame(frame);
