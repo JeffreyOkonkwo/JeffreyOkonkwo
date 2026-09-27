@@ -11,5 +11,7 @@ open(man_p, 'w').write(s)
 pl_p = os.path.join(root, 'ios/App/App/Info.plist'); s = open(pl_p).read()
 s = re.sub(r'<key>UISupportedInterfaceOrientations</key>\s*<array>.*?</array>\s*<key>UISupportedInterfaceOrientations~ipad</key>\s*<array>.*?</array>',
   '<key>UISupportedInterfaceOrientations</key>\n\t<array>\n\t\t<string>UIInterfaceOrientationPortrait</string>\n\t</array>\n\t<key>UISupportedInterfaceOrientations~ipad</key>\n\t<array>\n\t\t<string>UIInterfaceOrientationPortrait</string>\n\t\t<string>UIInterfaceOrientationPortraitUpsideDown</string>\n\t</array>', s, flags=re.S)
+# no special encryption (only standard HTTPS): TestFlight/App Store then skip the export compliance question
+if 'ITSAppUsesNonExemptEncryption' not in s: k = s.rindex('</dict>'); s = s[:k] + '\t<key>ITSAppUsesNonExemptEncryption</key>\n\t<false/>\n' + s[k:]
 if 'GADApplicationIdentifier' not in s: k = s.rindex('</dict>'); s = s[:k] + open(os.path.join(here, 'admob-ios.plist.xml')).read() + s[k:]
 open(pl_p, 'w').write(s); print('native settings applied')

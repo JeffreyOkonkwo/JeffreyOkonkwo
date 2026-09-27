@@ -10,7 +10,8 @@
     "sync:release": "npm run web:release && npx cap sync",
     "android": "npx cap open android",
     "ios": "npx cap open ios",
-    "native:setup": "npx cap add android; npx cap add ios; python3 scripts/patch-native.py && node scripts/make-icons.cjs && npx cap sync"
+    "native:setup": "npx cap add android; npx cap add ios; python3 scripts/patch-native.py && node scripts/make-icons.cjs && npx cap sync",
+    "bump": "node scripts/bump.cjs"
   },
   "dependencies": {
     "@capacitor-community/admob": "^8.1.0",
