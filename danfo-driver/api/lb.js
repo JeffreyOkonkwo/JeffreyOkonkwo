@@ -6,7 +6,7 @@
 //   POST   /api/lb?report=HASH  { pid }
 //   DELETE /api/lb              { pid }   removes the player's entry
 import { get, put, BlobPreconditionFailedError } from '@vercel/blob';
-import { createHash } from 'node:crypto';
+import { createHash, createHmac, timingSafeEqual } from 'node:crypto';
 
 const FILE = 'lb/board.json', KEEP = 1000, TOP = 50, HIDE_AT = 3, WAIT_MS = 15000;
 const BAD = /(fuck|shit|bitch|cunt|nigg|fag|dick|pussy|porn|sex|rape|nazi|hitler|ashawo|olosho|mumu|werey|oloshi|puta|merde|salope|connard|pute|bastard|slut|whore)/i;
@@ -69,6 +69,22 @@ function check(b) {
   if (s > d * .1 + pax * 1000 + t * 40 + 2000) return 'score too high';
   return '';
 }
+// the body can arrive parsed, as text, as a buffer, or (for some DELETE requests) not read yet
+// a signed receipt of a removed entry, kept only on the player's phone, so they can come back later
+const sign = txt => createHmac('sha256', 'danfo-rejoin:' + (process.env.BLOB_READ_WRITE_TOKEN || '')).update(txt).digest('base64url');
+const makeReceipt = (me, e) => { const txt = Buffer.from(JSON.stringify({ me, s: e.s || 0, k: e.k || 0, diff: e.diff || 'normal', cs: e.cs || 0, cdiff: e.cdiff || 'normal' })).toString('base64url'); return txt + '.' + sign(txt); };
+function readReceipt(tok, me) {
+  const [txt, sig] = String(tok || '').split('.'); if (!txt || !sig) return null;
+  const a = Buffer.from(sign(txt)), b2 = Buffer.from(sig); if (a.length !== b2.length || !timingSafeEqual(a, b2)) return null;
+  try { const r = JSON.parse(Buffer.from(txt, 'base64url').toString('utf8')); return r && r.me === me ? r : null; } catch { return null; }
+}
+async function readBody(req) {
+  let v = req.body;
+  if (v === undefined && req.readable) { const parts = []; for await (const c of req) parts.push(c); v = Buffer.concat(parts).toString('utf8'); }
+  if (Buffer.isBuffer(v)) v = v.toString('utf8');
+  if (typeof v === 'string') { try { v = JSON.parse(v || '{}'); } catch { v = {}; } }
+  return v && typeof v === 'object' ? v : {};
+}
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS');
@@ -76,7 +92,7 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(204).end();
   if (!process.env.BLOB_READ_WRITE_TOKEN) return res.status(503).json({ error: 'not set up' });
   try {
-    const q = req.query || {}, b = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
+    const q = req.query || {}, b = await readBody(req);
     if (req.method === 'GET') {
       const { data } = await load();
       res.setHeader('Cache-Control', q.t ? 'no-store' : 'public, s-maxage=15, stale-while-revalidate=30');
@@ -85,8 +101,8 @@ export default async function handler(req, res) {
     const pid = clip(b.pid, 40);
     if (!/^[A-Za-z0-9_-]{16,40}$/.test(pid)) return res.status(400).json({ error: 'bad id' });
     const me = hash(pid);
-    if (req.method === 'DELETE') {
-      const out = await update(data => { delete data.e[me]; });
+    if (req.method === 'DELETE' || q.remove) { // POST ?remove=1 is used by the game; DELETE still works
+      const out = await update(data => { const e = data.e[me]; const receipt = e && e.s ? makeReceipt(me, e) : ''; delete data.e[me]; return { ok: true, receipt }; });
       return res.status(out.status || 200).json(out);
     }
     if (req.method !== 'POST') return res.status(405).json({ error: 'method' });
@@ -94,6 +110,24 @@ export default async function handler(req, res) {
       const who = clip(q.report, 12);
       const out = await update(data => { const e = data.e[who]; if (!e || who === me) return { error: 'no entry', status: 404 }; e.rep = e.rep || []; if (!e.rep.includes(me)) e.rep.push(me); });
       return res.status(out.status || 200).json(out.error ? out : { ok: true });
+    }
+    if (q.rejoin) { // put a player back from their receipt (and their best run on the phone, if it is higher)
+      const rc = readReceipt(b.receipt, me), run = b.run && typeof b.run === 'object' && !check(b.run) ? b.run : null;
+      if (!rc && !run) return res.status(422).json({ error: 'nothing to restore' });
+      const n = clip(b.n, 14) || 'Driver', pl = clip(b.pl, 8).toUpperCase().replace(/[^A-Z0-9 ]/g, '');
+      if (BAD.test(n.replace(/[^a-z]/gi, '')) || BAD.test(pl.replace(/ /g, ''))) return res.status(422).json({ error: 'name' });
+      let lk = {}; try { lk = typeof b.lk === 'object' && b.lk ? JSON.parse(JSON.stringify(b.lk).slice(0, 600)) : {}; } catch { lk = {}; }
+      const dv = v => ['easy', 'normal', 'hard'].includes(v) ? v : 'normal';
+      const out = await update(data => {
+        const e = data.e[me] || { s: 0, cs: 0, rep: [] };
+        if (rc) { if (rc.s > (e.s || 0)) { e.s = rc.s; e.k = rc.k; e.diff = dv(rc.diff); } if (rc.cs > (e.cs || 0)) { e.cs = rc.cs; e.cdiff = dv(rc.cdiff); } }
+        if (run) { const rs = num(run.s, 1e8), rk = num(run.k, 99); if (rs > (e.s || 0)) { e.s = rs; e.k = rk; e.diff = dv(run.diff); } if (!rk && rs > (e.cs || 0)) { e.cs = rs; e.cdiff = dv(run.diff); } }
+        Object.assign(e, { n, cc: clip(b.cc, 6).toUpperCase(), pl, rk: clip(b.rk, 14), lk, gold: !!b.gold, lastN: n });
+        data.e[me] = e;
+        const rank = withCrew(Object.entries(data.e)).filter(([, x]) => x.s > e.s).length + 1;
+        return { ok: true, me, best: e.s, rank };
+      });
+      return res.status(out.status || 200).json(out);
     }
     if (q.profile) { // name, flag, plate, rank or look changed: update the player's row without a new score
       const n = clip(b.n, 14) || 'Driver', pl = clip(b.pl, 8).toUpperCase().replace(/[^A-Z0-9 ]/g, '');

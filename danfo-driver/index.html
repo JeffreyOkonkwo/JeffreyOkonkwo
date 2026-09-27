@@ -1733,7 +1733,7 @@ function wipePlayer(id) {
 function leaveBoard(id) { // take a player's score off the online board before their data goes
   const rd = k => { try { return JSON.parse(localStorage.getItem(playerPfx(id) + k)); } catch (e) { return null; } }, pid = rd('pid');
   if (rd('lbOk') !== true || typeof pid !== 'string' || !pid) return Promise.resolve();
-  return Promise.race([fetch(LB_API, { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ pid }), keepalive: true }).catch(() => {}), new Promise(r => setTimeout(r, 2500))]);
+  return Promise.race([fetch(LB_API + '?remove=1', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ pid }), keepalive: true }).catch(() => {}), new Promise(r => setTimeout(r, 2500))]);
 }
 function goPlayer(id) { try { localStorage.setItem('danfocraze.player', String(id)); sessionStorage.setItem('danfocraze.chose', '1'); } catch (e) {} location.reload(); }
 const playerCap = () => hasPass() ? PLAYER_MAX : PLAYER_FREE;
@@ -2478,14 +2478,15 @@ function lbRecordRun(score) {
 }
 function lbRejoin() {
   store.set('lbOk', true); lbGone = '';
-  const run = store.get('bestRun', null), cl = store.get('bestCleanRun', null);
-  if (!run || !run.s) { toast(t('lbNext'), true, '', true); showBoard(); return; }
-  const body = Object.assign({ pid: lbPid(), n: store.get('nick', '') || t('driverWord'), cc: lbCC(), pl: myPlate(), rk: myRank(), lk: myLook(), gold: hasPass() }, run, cl && cl.s ? { clean: cl } : {});
-  lbCall('POST', body).then(r => {
-    if (r.ok) { store.set('lbSent', { s: run.s, cs: cl && cl.s ? cl.s : 0 }); if (r.j.me) { lbMine = r.j.me; store.set('lbMe', lbMine); } lbData = null; lbFreshUntil = Date.now() + 120000; toast(t('lbBack'), true, '', true); }
-    else toast(r.status === 429 ? t('lbWait') : t('lbOffTry'), true, '', true);
+  const receipt = store.get('lbReceipt', ''), run = store.get('bestRun', null);
+  if (!receipt && !(run && run.s)) { toast(t('lbNext'), true, '', true); showBoard(); return; }
+  const body = { pid: lbPid(), n: store.get('nick', '') || t('driverWord'), cc: lbCC(), pl: myPlate(), rk: myRank(), lk: myLook(), gold: hasPass(), receipt, run: run && run.s ? run : null };
+  lbCall('POST', body, '?rejoin=1').then(r => {
+    if (r.ok) { store.set('lbReceipt', ''); store.set('lbSent', { s: r.j.best || 0, cs: 0 }); if (r.j.me) { lbMine = r.j.me; store.set('lbMe', lbMine); } lbData = null; lbFreshUntil = Date.now() + 120000; toast(t('lbBack'), true, '', true); }
+    else if (r.status === 422 && r.j.error === 'nothing to restore') toast(t('lbNext'), true, '', true);
+    else { store.set('lbOk', false); toast(t('lbOffTry') + ' (' + r.status + (r.j.error ? ' ' + r.j.error : '') + ')', true, '', true); }
     showBoard();
-  }).catch(() => { toast(t('lbOffTry'), true, '', true); showBoard(); });
+  }).catch(() => { store.set('lbOk', false); toast(t('lbOffTry'), true, '', true); showBoard(); });
 }
 function lbSubmit(score, force) {
   lbRecordRun(score);
@@ -2585,8 +2586,9 @@ function showBoard() {
     <div id="lbBox"></div><p class="lbfoot"><small>${t('lbGold')}</small><br>${ok ? `<button type="button" class="linkbtn" id="lbOut">${t('lbRemove')}</button>` : ''}</p>`);
   document.querySelectorAll('#lbTabs button').forEach(b => b.onclick = () => { lbTab = b.dataset.lb; drawBoard(); });
   if ($('lbOut')) $('lbOut').onclick = () => askSheet(t('lbRemove'), t('lbRemoveAsk'), t('lbRemoveYes'), () => {
-    lbCall('DELETE', { pid: lbPid() }).then(r => {
-      if (!r.ok) { toast(t('lbOffTry'), true, '', true); showBoard(); return; }
+    lbCall('POST', { pid: lbPid() }, '?remove=1').then(r => {
+      if (!r.ok) { toast(t('lbOffTry') + ' (' + r.status + (r.j.error ? ' ' + r.j.error : '') + ')', true, '', true); showBoard(); return; }
+      if (r.j.receipt) store.set('lbReceipt', r.j.receipt);
       lbGone = lbMine || lbGone; lbMine = ''; store.set('lbMe', ''); store.set('lbOk', false); store.set('lbSent', { s: 0, cs: 0 });
       lbFreshUntil = Date.now() + 120000; if (lbData && lbData !== 'off') for (const k of ['world', 'clean', 'country']) lbData[k] = (lbData[k] || []).filter(e => e.h !== lbGone);
       toast(t('lbRemoved'), true, '', true); showBoard();
