@@ -11,7 +11,7 @@
 - [x] No debug or cheat hooks in the live build.
 - [x] App icon (the plate reads AFRIKA), plus a maskable icon for Android's round and squircle icon shapes.
 - [x] Privacy policy at `/privacy.html`, linked inside the app from the name screen.
-- [x] Grown-ups check (a sum) before Challenge a friend opens WhatsApp or other apps, as the kids and families rules require.
+- [x] One-time year-of-birth check before Challenge a friend opens WhatsApp or other apps. The year itself is not stored, only "18+ yes".
 - [x] English, Pidgin and French for all menus, missions, quiz and game-over text.
 - [x] Fits small phones (iPhone SE, 320 px wide) and large ones. Portrait layout.
 
@@ -22,7 +22,7 @@
 - [ ] **Age rating:** use the questionnaires. There is no violence (cars bump and fly off), no gambling, no chat and no purchases. Expect a rating around **Everyone / 4+**.
 - [ ] **Audience: all ages.** Select every age group, including under 13, in Google Play's Target audience section and Apple's age settings.
   - The game already meets the kids and families rules: no ads, no purchases, no chat and no data collected.
-  - "Challenge a friend" now asks a grown-up to answer a sum (for example 7 × 9) before it opens any other app.
+  - "Challenge a friend" asks for a year of birth the first time someone shares (a neutral age screen), before it opens any other app. 18+ is remembered on the phone; under 18 cannot share. Both Google Play Families and Apple (including the Kids category) accept this.
   - Content rating: Everyone (Google) and 4+ (Apple), so anyone can download it.
 - [ ] **Music rights:** keep proof that the 78 party clips were made on a **paid Suno plan** (Pro or Premier). A screenshot of the plan and the song list is enough.
 - [ ] **Developer accounts:** Google Play costs US$25 once. The Apple Developer Program costs US$99 a year.
