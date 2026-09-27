@@ -33,15 +33,32 @@ async function update(fn) {
   }
   return { error: 'busy', status: 503 };
 }
-const pub = (h, e, clean) => ({ h, n: e.n, cc: e.cc, s: clean ? e.cs : e.s, k: clean ? 0 : e.k, diff: clean ? e.cdiff : e.diff, pl: e.pl, rk: e.rk, lk: e.lk, gold: !!e.gold });
+const pub = (h, e, clean) => ({ h, crew: !!e.crew, n: e.n, cc: e.cc, s: clean ? e.cs : e.s, k: clean ? 0 : e.k, diff: clean ? e.cdiff : e.diff, pl: e.pl, rk: e.rk, lk: e.lk, gold: !!e.gold });
+// The Danfo Crew: 10 test drivers, clearly tagged CREW in the game, so a new board is not empty.
+// Their scores are set by hand to fit the range seen in test runs. They leave the board once CREW_UNTIL real players have joined.
+const CREW_UNTIL = 50;
+const L = (o) => Object.assign({ skin: '#6b3f27', hairCol: '#1b1024', hair: 'low', face: 'none', lashes: false, lips: 'none', hat: 'none', hatCol: '#e2463b', glasses: 'none', outfit: 'plain', outCol: '', earrings: 'none' }, o);
+const CREW = [
+  ['Amaka', 'NG', 28400, 0, 'hard', 'LAG 247', 'Legend', L({ skin: '#8e5836', hair: 'longbraids', lashes: true, lips: 'berry', earrings: 'hoops', outfit: 'ankara', glasses: 'shades' }), true],
+  ['Kwame', 'GH', 24150, 1, 'normal', 'GR 88', 'Pilot', L({ skin: '#6b3f27', hair: 'low', hat: 'cap', hatCol: '#18b86b', outfit: 'kente' }), false],
+  ['Wanjiru', 'KE', 21900, 0, 'normal', 'KDA 12', 'Pilot', L({ skin: '#4a2a1a', hair: 'puff', hairCol: '#1b1024', earrings: 'studs', outfit: 'kitenge', outCol: '#8b5cf6' }), true],
+  ['Moussa', 'SN', 18720, 2, 'hard', 'DK 305', 'Area Driver', L({ skin: '#4a2a1a', hair: 'bald', face: 'beard', outfit: 'boubou', outCol: '#2f7bff' }), false],
+  ['Thandi', 'ZA', 16480, 0, 'easy', 'GP 77', 'Area Driver', L({ skin: '#b57a4c', hair: 'braids', hat: 'wrap', hatCol: '#ff6fae', outfit: 'hoodie', outCol: '#5ec8ff', lashes: true }), false],
+  ['Tunde', 'NG', 14230, 1, 'normal', 'IKJ 90', 'Area Driver', L({ skin: '#6b3f27', hair: 'afro', outfit: 'jersey', outCol: '#18b86b', glasses: 'square' }), false],
+  ['Nadia', 'EG', 11900, 0, 'normal', 'CAI 5', 'Area Driver', L({ skin: '#d9a066', hair: 'bun', hairCol: '#3b2417', outfit: 'denim', glasses: 'round', earrings: 'studs' }), false],
+  ['Yao', 'CI', 9650, 0, 'easy', 'ABJ 14', 'JJC', L({ skin: '#8e5836', hair: 'locs', outfit: 'dashiki', outCol: '#ff7b25' }), false],
+  ['Zawadi', 'TZ', 7400, 1, 'easy', 'DAR 21', 'JJC', L({ skin: '#6b3f27', hair: 'longbraids', hairCol: '#8a3b1e', outfit: 'plain', outCol: '#ff6fae', earrings: 'hoops', lips: 'pink' }), false],
+  ['Chidi', 'NG', 5280, 0, 'easy', 'ENU 3', 'JJC', L({ skin: '#4a2a1a', hair: 'low', hat: 'beanie', hatCol: '#2f7bff', outfit: 'track' }), false],
+].map(([n, cc, s, k, diff, pl, rk, lk, gold], i) => ['crew' + (i + 1), { n, cc, s, k, diff, cs: k ? 0 : s, cdiff: diff, pl, rk, lk, gold, crew: true, rep: [] }]);
+const withCrew = list => list.length < CREW_UNTIL ? list.concat(CREW) : list;
 function boards(data, cc) {
-  const all = Object.entries(data.e).filter(([, e]) => (e.rep || []).length < HIDE_AT);
+  const real = Object.entries(data.e).filter(([, e]) => (e.rep || []).length < HIDE_AT), all = withCrew(real);
   const top = (list, clean) => list.sort((a, b) => (clean ? b[1].cs - a[1].cs : b[1].s - a[1].s)).slice(0, TOP).map(([h, e]) => pub(h, e, clean));
   return {
     world: top(all.slice(), false),
     clean: top(all.filter(([, e]) => e.cs > 0), true),
     country: cc ? top(all.filter(([, e]) => e.cc === cc), false) : [],
-    total: all.length,
+    total: real.length,
   };
 }
 function check(b) {
@@ -111,7 +128,7 @@ export default async function handler(req, res) {
       data.e[me] = e;
       const ids = Object.keys(data.e);
       if (ids.length > KEEP) ids.sort((a, b2) => data.e[a].s - data.e[b2].s).slice(0, ids.length - KEEP).forEach(id => { if (id !== me) delete data.e[id]; });
-      const rank = Object.values(data.e).filter(x => x.s > e.s).length + 1;
+      const rank = withCrew(Object.entries(data.e)).filter(([, x]) => x.s > e.s).length + 1;
       return { ok: true, me, best: e.s, rank };
     });
     return res.status(out.status || 200).json(out);
