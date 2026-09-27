@@ -27,6 +27,7 @@ The leaderboard shows the licence photo and the custom bus, so items 5 and 8 shi
   - **Outfit:** plain shirt, football jersey, hoodie, dashiki, kitenge, suit and tie, Ankara print, kente, track jacket, boubou, agbada, denim jacket
   - **Extras:** glasses (round, square, shades) and earrings (studs, hoops)
 - **No boy or girl labels.** Long hair, lashes, lip colour, earrings and head wraps are free for everyone, so any player can build any look without choosing a gender.
+- **Colours kids love (built):** based on colour surveys of children and teenagers, every favourite is included. Blue and sky blue, pink, purple, red, green, black, white and yellow are free for outfits and headwear. Orange, turquoise, lavender, mint and cerulean (the Gen Z favourite blue) are earned. Gold, silver, lime green and neon pink are on the Pass. Hair can be blue (earned), or blonde, purple or pink (Pass). The Pass also gives 15 bus stripe colours.
 - **Unlocking: Free, Earn or Pass.** Licence looks have no separate shop price, so players only see two kinds of tag.
   - **Free from the start (about 25 looks):** every skin tone, eight hair styles, head wrap, cap, earrings, glasses, lashes, lip colours and three outfits.
   - **Earn by playing (about 12):** for example locs and bun, beanie and bucket hat, dashiki, kitenge, suit and denim jacket, and the auburn and blue colours. Kept forever once earned.
