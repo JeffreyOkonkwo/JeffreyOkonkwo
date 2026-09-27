@@ -115,17 +115,29 @@
   .card .play{animation:none;padding:12px 30px}
   .tag1{font-family:"Bungee",Impact,sans-serif;font-size:clamp(15px,4.2vw,22px);color:#fff;background:var(--ink);padding:3px 14px;border-radius:10px;transform:rotate(-3deg);margin-top:-6px}
   .tag2{font-weight:800;font-size:13px;color:#fff;text-shadow:0 1px 3px #000}
-  .daily{font-weight:800;font-size:13px;background:var(--green);color:#fff;border:3px solid var(--ink);border-radius:12px;padding:3px 12px}
-  .menu4{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;width:100%}
-  .mbtn{position:relative;display:grid;justify-items:center;gap:1px;padding:6px 2px;border-radius:14px;background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.2);font-weight:800;font-size:11.5px}
-  .mbtn b{font-size:17px;color:var(--danfo);line-height:1}
-  .mbtn .dot{position:absolute;top:4px;right:8px;width:10px;height:10px;border-radius:50%;background:#ff4d4d;border:2px solid var(--ink)}
+  .daily{font-weight:800;font-size:13px;background:var(--green);color:#fff;border:3px solid var(--ink);border-radius:12px;padding:3px 12px;animation:fadeaway 5s ease-in forwards}
+  @keyframes fadeaway{0%,75%{opacity:1}100%{opacity:0;visibility:hidden}}
+  .menu4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%}
+  .topbar{position:absolute;left:0;right:0;top:0;display:flex;gap:8px;align-items:center;padding:calc(env(safe-area-inset-top,0px) + 12px) 14px 0}
+  .topbar .sp{flex:1}
+  .tb{background:rgba(27,16,36,.78);color:#fff;border:2px solid rgba(255,255,255,.25);border-radius:999px;padding:6px 12px;font-weight:800;font-size:13px;min-height:36px;display:flex;align-items:center;gap:6px}
+  .tb svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+  .tb.name{max-width:52vw;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+  .xbtn{position:absolute;top:10px;right:10px;width:40px;height:40px;border-radius:50%;border:3px solid var(--ink);background:#fff;color:var(--ink);font-size:18px;font-weight:800;display:grid;place-items:center;box-shadow:0 3px 0 var(--ink);z-index:2}
+  .xbtn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--ink)}
+  .card{position:relative}
+  .mbtn{position:relative;display:grid;justify-items:center;gap:4px;padding:2px 0;background:none;border:0;font-weight:800;font-size:11.5px;color:#fff}
+  .mbtn .ic{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;border:3px solid var(--ink);box-shadow:inset 0 3px 0 rgba(255,255,255,.35),0 4px 0 var(--ink)}
+  .mbtn svg{width:28px;height:28px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+  .mbtn:active .ic{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+  .m1 .ic{background:#18b86b}.m2 .ic{background:#2f7bff}.m3 .ic{background:#ff7b25}.m4 .ic{background:#8b5cf6}
+  .mbtn .dot{position:absolute;top:-2px;right:calc(50% - 32px);width:10px;height:10px;border-radius:50%;background:#ff4d4d;border:2px solid var(--ink)}
   .lang{position:absolute;top:calc(env(safe-area-inset-top,0px) + 12px);left:14px;padding:4px 10px;font-size:13px}
   .chal{width:100%;border:4px solid var(--ink);border-radius:16px;padding:9px 12px;background:#25d366;color:#fff;font-family:"Bungee",Impact,sans-serif;font-size:16px;box-shadow:0 5px 0 var(--ink)}
   .chal:active{transform:translateY(3px);box-shadow:0 2px 0 var(--ink)}
   .chip.beat{background:#25d366;color:#fff}
   .sheetc{max-width:460px;max-height:86vh;grid-template-rows:auto 1fr auto}
-  .sh{color:var(--ink)!important;-webkit-text-stroke:0!important;font-size:clamp(26px,7vw,34px)!important}
+  .sh{padding:0 44px;color:var(--ink)!important;-webkit-text-stroke:0!important;font-size:clamp(26px,7vw,34px)!important}
   .sbody{overflow:auto;width:100%;display:grid;gap:8px;text-align:left}
   .mis{display:grid;gap:4px;border:3px solid var(--ink);border-radius:14px;padding:8px 12px;background:#fff8e1}
   .mis.done{background:#d9fbe8}
@@ -141,6 +153,7 @@
   .stop .pin{width:26px;height:26px;border-radius:50%;border:3px solid var(--ink);background:#d0cbd8;display:grid;place-items:center;font-size:13px}
   .stop.on .pin{background:var(--green);color:#fff}
   .stop small{display:block;font-weight:700;opacity:.7}
+  .nickin{font:inherit;font-size:18px;font-weight:800;color:var(--ink);background:#fff;border:3px solid var(--ink);border-radius:12px;padding:10px 12px;width:100%;box-sizing:border-box}
   .nick{display:flex;align-items:center;gap:8px;width:100%;max-width:340px;font-weight:800;font-size:13px;color:#fff}
   .nick span{white-space:nowrap;opacity:.8}
   .nick input{flex:1;min-width:0;font:inherit;font-size:16px;font-weight:800;color:var(--ink);background:#fff;border:3px solid var(--danfo);border-radius:12px;padding:6px 10px}
@@ -183,24 +196,21 @@
   <div class="overlay title" id="title">
     <div class="logo"><h1><img class="logoimg" src="brand/logo.svg" alt="Danfo Craze"></h1><span class="tag1">WE NO DEY CARRY LAST!</span><span class="tag2" id="tag2"></span><span class="daily" id="dailyNote" hidden></span></div>
     <div class="bottom">
-      <label class="nick"><span>Your name</span><input id="nick" type="text" maxlength="14" autocomplete="nickname" placeholder="Enter nickname" enterkeyhint="done"></label>
       <div class="diffs" role="radiogroup" aria-label="Difficulty">
         <button class="dsel" type="button" role="radio" data-d="easy" aria-checked="false"><b>JJC</b><small>EASY</small></button>
         <button class="dsel" type="button" role="radio" data-d="normal" aria-checked="true"><b>AREA DRIVER</b><small>NORMAL</small></button>
         <button class="dsel" type="button" role="radio" data-d="hard" aria-checked="false"><b>AGBERO</b><small>HARD</small></button>
       </div>
       <button class="play" id="playBtn" type="button">PLAY</button>
-      <span class="howto" id="howto"></span>
       <div class="menu4">
-        <button class="mbtn" id="mMissions" type="button"><b>✓</b><span data-t="missions">Missions</span><i class="dot" id="mDot" hidden></i></button>
-        <button class="mbtn" id="mGarage" type="button"><b>◆</b><span data-t="garage">Garage</span></button>
-        <button class="mbtn" id="mJourney" type="button"><b>➜</b><span data-t="journey">Journey</span></button>
-        <button class="mbtn" id="mQuiz" type="button"><b>?</b><span data-t="quizmode">Africa Quiz</span></button>
+        <button class="mbtn m1" id="mMissions" type="button"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2.5"/><path d="M9.5 2.8h5v3h-5z"/><path d="m8.5 13.2 2.4 2.4 4.6-5"/></svg></span><span data-t="missions">Missions</span><i class="dot" id="mDot" hidden></i></button>
+        <button class="mbtn m2" id="mGarage" type="button"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.8 5.2a4.2 4.2 0 0 0-5.5 5.4L3.8 16.1a1.9 1.9 0 0 0 2.7 2.7l5.5-5.5a4.2 4.2 0 0 0 5.4-5.5l-2.6 2.6-2.4-.5-.5-2.4z"/></svg></span><span data-t="garage">Garage</span></button>
+        <button class="mbtn m3" id="mJourney" type="button"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 6.5 9 4.5l6 2 5.5-2v13l-5.5 2-6-2-5.5 2z"/><path d="M9 4.5v13M15 6.5v13"/></svg></span><span data-t="journey">Journey</span></button>
+        <button class="mbtn m4" id="mQuiz" type="button"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 18h5M10.5 21h3"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3z"/></svg></span><span data-t="quizmode">Africa Quiz</span></button>
       </div>
       <div class="meta"><span class="pillm" id="tBest">BEST 0</span><span class="pillm" id="tCoins">₦ 0 saved</span></div>
       </div>
-    <button class="small sound" id="soundBtn" type="button">Sound: ON</button>
-    <button class="small lang" id="langBtn" type="button" aria-label="Language">EN</button>
+    <div class="topbar"><button class="tb" id="langBtn" type="button" aria-label="Change language">EN</button><button class="tb name" id="nameBtn" type="button"><span id="nameTxt">Add your name</span> ✎</button><span class="sp"></span><button class="tb" id="soundBtn" type="button" aria-label="Sound on"></button></div>
   </div>
 
   <div class="overlay" id="over" hidden>
@@ -218,6 +228,7 @@
   </div>
   <div class="overlay" id="quiz" hidden>
     <div class="card qcard">
+      <button class="xbtn" id="quizX" type="button" aria-label="Quit quiz">✕</button>
       <span class="qtag">AFRICA QUIZ</span>
       <div class="qbar"><i id="qTime"></i></div>
       <p class="qq" id="qQ"></p>
@@ -227,7 +238,7 @@
     </div>
   </div>
   <div class="overlay" id="sheet" hidden>
-    <div class="card sheetc"><h2 class="sh" id="sheetT"></h2><div class="sbody" id="sheetB"></div><button class="play" id="sheetClose" type="button">OK</button></div>
+    <div class="card sheetc"><button class="xbtn" id="sheetX" type="button" aria-label="Close">✕</button><h2 class="sh" id="sheetT"></h2><div class="sbody" id="sheetB"></div><button class="play" id="sheetClose" type="button">OK</button></div>
   </div>
   <div class="overlay" id="paused" hidden>
     <div class="card"><h2 style="color:var(--danfo)">PAUSED</h2><button class="play" id="resumeBtn" type="button">RESUME</button><button class="small" id="pHomeBtn" type="button">Home</button></div>
@@ -827,7 +838,7 @@ stage.addEventListener('pointermove', e => {
   else if (dy < -26 && Math.abs(dy) > Math.abs(dx)) { jump(); sw.used = true; }
 });
 stage.addEventListener('pointerup', e => {
-  if (mode === 'title' && !e.target.closest('button, input, label') && sw) { start(); sw = null; return; }
+  if (mode === 'title' && !e.target.closest('button, input, label, .card, #sheet, #quiz') && $('sheet').hidden && $('quiz').hidden && sw) { start(); sw = null; return; }
   if (sw && !sw.used && mode === 'play') { const dx = e.clientX - sw.x, dy = e.clientY - sw.y; if (Math.abs(dx) < 10 && Math.abs(dy) < 10) { if (e.clientX < W * .33) lane(-1); else if (e.clientX > W * .67) lane(1); else jump(); } }
   sw = null;
 });
@@ -835,7 +846,7 @@ stage.addEventListener('pointerup', e => {
 // ---------------------------------------------------------------- flow
 function show(id, on) { $(id).hidden = !on; }
 function refreshTitle() {
-  const d = daily(); $('mDot').hidden = d.ids.every(id => d.done[id]); document.querySelectorAll('.dsel').forEach(b => b.setAttribute('aria-checked', b.dataset.d === diff)); $('tBest').textContent = `BEST ${best.toLocaleString()}`; $('tCoins').innerHTML = `<span class="coin-i sm">₦</span>${bank.toLocaleString()} saved`; $('soundBtn').textContent = `Sound: ${A.on ? 'ON' : 'OFF'}`; }
+  const d = daily(); $('mDot').hidden = d.ids.every(id => d.done[id]); document.querySelectorAll('.dsel').forEach(b => b.setAttribute('aria-checked', b.dataset.d === diff)); $('tBest').textContent = `BEST ${best.toLocaleString()}`; $('tCoins').innerHTML = `<span class="coin-i sm">₦</span>${bank.toLocaleString()} saved`; $('soundBtn').innerHTML = A.on ? '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>' : '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="m17 9 5 6M22 9l-5 6"/></svg>'; $('soundBtn').setAttribute('aria-label', A.on ? 'Sound on' : 'Sound off'); const nk0 = store.get('nick', ''); $('nameTxt').textContent = nk0 ? 'Hi, ' + nk0 : 'Add your name'; }
 function start() {
   audioInit(); newGame(false); mode = 'play'; musicStart(); track('runs'); G.beatShown = false;
   show('title', false); show('over', false); show('paused', false); show('hud', true); $('dchip').textContent = DIFFS[diff].name; $('toasts').innerHTML = '';
@@ -887,7 +898,7 @@ const t = (k, n) => (STR[lang][k] ?? STR.en[k]).replace('{n}', n);
 function applyLang() {
   $('playBtn').textContent = t('play'); $('againBtn').textContent = t('again'); $('homeBtn').textContent = t('home'); $('pHomeBtn').textContent = t('home');
   $('resumeBtn').textContent = t('resume'); document.querySelector('#paused h2').textContent = t('paused');
-  $('howto').innerHTML = t('howto'); document.querySelector('.nick span').textContent = t('name'); $('tag2').textContent = t('tag');
+  $('tag2').textContent = t('tag');
   document.querySelectorAll('[data-t]').forEach(el => el.textContent = t(el.dataset.t)); document.querySelector('#quizBtn b').textContent = t('quiz');
   $('langBtn').textContent = LANG_LABEL[lang]; document.documentElement.lang = lang === 'fr' ? 'fr' : 'en';
 }
@@ -925,18 +936,24 @@ function loginStreak() {
   const bonus = Math.min(streak, 7) * 20; store.set('streak', streak); store.set('lastDay', today); bank += bonus; store.set('bank', bank);
   return { streak, bonus };
 }
-function openSheet(title, html) { $('sheetT').textContent = title; $('sheetB').innerHTML = html; show('sheet', true); $('sheetClose').focus(); }
+let sheetAction = null;
+function openSheet(title, html, btn = 'CLOSE', action = null) { $('sheetT').textContent = title; $('sheetB').innerHTML = html; $('sheetClose').textContent = btn; sheetAction = action; show('sheet', true); $('sheetX').focus(); }
+function closeSheet(run) { show('sheet', false); refreshTitle(); const a = sheetAction; sheetAction = null; if (run && a) a(); }
+function showName() {
+  openSheet('Your name', `<p style="margin:0;font-weight:700">This name shows on your score, challenges and the leaderboard.</p><input id="nick" class="nickin" type="text" maxlength="14" autocomplete="nickname" placeholder="Enter nickname" enterkeyhint="done" value="${(store.get('nick', '') || '').replace(/"/g, '')}">`, 'SAVE', () => { const v = ($('nick') || {}).value || ''; store.set('nick', v.trim().slice(0, 14)); refreshTitle(); });
+  const i = $('nick'); i.addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Enter') closeSheet(true); }); setTimeout(() => i.focus(), 50);
+}
 function showMissions() {
   const d = daily(), st = store.get('streak', 1);
   openSheet(t('missions'), `<p style="margin:0;font-weight:800">Today's missions. New ones every day. Day streak: ${st} 🔥</p>` + d.ids.map(id => { const m = MISSIONS.find(x => x.id === id), p = Math.min(m.n, d.prog[id] || 0), done = d.done[id];
-    return `<div class="mis ${done ? 'done' : ''}"><div class="top"><span>${done ? '✓ ' : ''}${m.t}</span><span class="rw">+${m.r}</span></div><div class="pbar"><i style="width:${p / m.n * 100}%"></i></div><small>${m.k === 'distRun' ? (p / 1000).toFixed(1) + ' / ' + m.n / 1000 + ' km' : p.toLocaleString() + ' / ' + m.n.toLocaleString()}</small></div>`; }).join(''));
+    return `<div class="mis ${done ? 'done' : ''}"><div class="top"><span>${done ? '✓ ' : ''}${m.t}</span><span class="rw">+${m.r}</span></div><div class="pbar"><i style="width:${p / m.n * 100}%"></i></div><small>${m.k === 'distRun' ? (p / 1000).toFixed(1) + ' / ' + m.n / 1000 + ' km' : p.toLocaleString() + ' / ' + m.n.toLocaleString()}</small></div>`; }).join(''), "LET'S GO", start);
 }
 
 // ---- garage: buy and choose your danfo
 function mySkin() { const id = store.get('skin', 'classic'); return BUS_SKINS.find(s => s.id === id) || BUS_SKINS[0]; }
 function showGarage() {
   const owned = store.get('owned', ['classic']), cur = mySkin().id;
-  openSheet(t('garage'), `<p style="margin:0;font-weight:800">Coins saved: ₦ ${bank.toLocaleString()}</p><div class="skins">` + BUS_SKINS.map(sk => `<button class="skin ${sk.id === cur ? 'on' : ''}" data-skin="${sk.id}" type="button"><canvas width="220" height="170"></canvas>${sk.name}<small>${sk.id === cur ? 'DRIVING' : owned.includes(sk.id) ? 'Tap to drive' : '₦ ' + sk.price.toLocaleString()}</small></button>`).join('') + '</div>');
+  openSheet(t('garage'), `<p style="margin:0;font-weight:800">Coins saved: ₦ ${bank.toLocaleString()}</p><div class="skins">` + BUS_SKINS.map(sk => `<button class="skin ${sk.id === cur ? 'on' : ''}" data-skin="${sk.id}" type="button"><canvas width="220" height="170"></canvas>${sk.name}<small>${sk.id === cur ? 'DRIVING' : owned.includes(sk.id) ? 'Tap to drive' : '₦ ' + sk.price.toLocaleString()}</small></button>`).join('') + '</div>', 'DONE');
   document.querySelectorAll('.skin').forEach(el => {
     const sk = BUS_SKINS.find(s => s.id === el.dataset.skin), c = el.querySelector('canvas'), keep = ctx; ctx = c.getContext('2d');
     ctx.fillStyle = '#bfe6ff'; ctx.fillRect(0, 0, 220, 170); danfo(110, 160, 250, 0, { heads: 4, skin: sk, slogan: sk.slogan }); ctx = keep;
@@ -951,7 +968,7 @@ function showGarage() {
 function showJourney() {
   const md = store.get('maxDist', 0);
   openSheet(t('journey'), ZONES.map((z, i) => { const need = i * ZONE_LEN, on = md >= need;
-    return `<div class="stop ${on ? 'on' : ''}"><span class="pin">${on ? '✓' : i + 1}</span><span>${z.name}<small>${on ? 'Reached' : `Drive ${(need / 1000).toFixed(1)} km in one run`}</small></span></div>`; }).join('') + '<p style="margin:0;font-weight:700;opacity:.7">More African cities coming soon.</p>');
+    return `<div class="stop ${on ? 'on' : ''}"><span class="pin">${on ? '✓' : i + 1}</span><span>${z.name}<small>${on ? 'Reached' : `Drive ${(need / 1000).toFixed(1)} km in one run`}</small></span></div>`; }).join('') + '<p style="margin:0;font-weight:700;opacity:.7">More African cities coming soon.</p>', 'CLOSE');
 }
 
 // ---- challenge a friend (share link + on-screen target)
@@ -999,7 +1016,7 @@ function answerQuiz(k) {
   if (practice) {
     practice.left--; if (ok) { practice.right++; bank += 10; store.set('bank', bank); }
     nb.textContent = practice.left > 0 ? `NEXT (${5 - practice.left}/5)` : 'FINISH';
-    nb.onclick = () => { show('quiz', false); if (practice.left > 0) openQuizCard(); else { const r = practice.right; practice = null; refreshTitle(); show('title', true); openSheet(t('quizmode'), `<p style="margin:0;font-weight:800;font-size:18px">You got ${r} of 5 right! +${r * 10} coins.</p><p style="margin:0">Come back any time to learn more about Africa.</p>`); } };
+    nb.onclick = () => { show('quiz', false); if (practice.left > 0) openQuizCard(); else { const r = practice.right; practice = null; refreshTitle(); show('title', true); openSheet(t('quizmode'), `<p style="margin:0;font-weight:800;font-size:18px">You got ${r} of 5 right! +${r * 10} coins.</p><p style="margin:0">Come back any time to learn more about Africa.</p>`, 'CLOSE'); } };
     return;
   }
   nb.onclick = () => { show('quiz', false); if (ok) continueRun(); else { G.quizFailed = true; gameOver(); } };
@@ -1017,12 +1034,14 @@ function pause(on) {
 function home() { musicStop(); if (A.ctx && A.ctx.state === 'suspended') A.ctx.resume(); mode = 'title'; newGame(true); show('over', false); show('paused', false); show('hud', false); show('hint', false); refreshTitle(); show('title', true); }
 document.querySelectorAll('.dsel').forEach(b => b.onclick = () => { diff = b.dataset.d; store.set('diff', diff); best = store.get('best.' + diff, 0); refreshTitle(); });
 $('quizBtn').onclick = openQuiz;
-$('chalBtn').onclick = shareChallenge;
+$('chalBtn').onclick = () => { if (!store.get('nick', '')) { show('over', false); openSheet('Your name', `<p style="margin:0;font-weight:700">Add your name so your friend knows who to beat.</p><input id="nick" class="nickin" type="text" maxlength="14" placeholder="Enter nickname">`, 'SHARE', () => { store.set('nick', ($('nick').value || '').trim().slice(0, 14)); show('title', false); show('over', true); shareChallenge(); }); } else shareChallenge(); };
 $('mMissions').onclick = showMissions; $('mGarage').onclick = showGarage; $('mJourney').onclick = showJourney; $('mQuiz').onclick = startPractice;
-$('sheetClose').onclick = () => { show('sheet', false); refreshTitle(); };
+$('sheetClose').onclick = () => closeSheet(true); $('sheetX').onclick = () => closeSheet(false);
+$('sheet').addEventListener('click', e => { if (e.target.id === 'sheet') closeSheet(false); });
+$('nameBtn').onclick = showName;
+$('quizX').onclick = () => { clearInterval(quizTimer); show('quiz', false); if (practice) { practice = null; refreshTitle(); show('title', true); } else { G.quizFailed = true; gameOver(); } };
+addEventListener('keydown', e => { if (e.key === 'Escape') { if (!$('sheet').hidden) closeSheet(false); else if (!$('quiz').hidden) $('quizX').click(); } });
 $('langBtn').onclick = () => { lang = LANGS[(LANGS.indexOf(lang) + 1) % LANGS.length]; store.set('lang', lang); applyLang(); };
-$('nick').value = store.get('nick', ''); $('nick').addEventListener('input', e => store.set('nick', e.target.value.trim().slice(0, 14)));
-$('nick').addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Enter') e.target.blur(); });
 $('playBtn').onclick = start; $('againBtn').onclick = start; $('homeBtn').onclick = home; $('pHomeBtn').onclick = home;
 $('pauseBtn').onclick = () => pause(true); $('resumeBtn').onclick = () => pause(false);
 $('soundBtn').onclick = () => { A.on = !A.on; store.set('sound', A.on); if (A.master) A.master.gain.value = A.on ? .8 : 0; refreshTitle(); };
