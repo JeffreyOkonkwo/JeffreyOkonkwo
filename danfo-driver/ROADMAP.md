@@ -79,13 +79,13 @@ The leaderboard shows the licence photo and the custom bus, so items 5 and 8 shi
 
 ### 7. New city card and trip card
 - **New city card, during the run.** The first time a player reaches a city, the game pauses and the card pops up with:
-  - the city name
+  - "WELCOME TO ACCRA!" with the city's own greeting and its language, for example "Akwaaba! Welcome, in Twi"
   - one "Did you know?" fact with its source, sized to fit its box
   - the player's bus with its tag and plate
   - the licence photo, name and rank
 - **Three buttons:** Share, Save or Keep driving.
 - **Settling back in:** after the card closes, a blinking 3, 2, 1 counts down. The road ahead is cleared and the bus is safe for a moment, so nobody crashes right after the pause.
-- **Opt out:** "Next time, just show a banner" switches to today's method (a short banner, no pause). It can be switched back on in settings.
+- **Opt out:** "Next time, just show a banner" switches to a short "WELCOME TO ACCRA!" banner with no pause. It can be switched back on in settings.
 - **Only for new cities:** cities already reached get the banner, so the card stays special and does not break every run.
 - **Trip card, after the run:** a small "Trip card" link on the game over screen lists every city the run touched, with the new ones marked, and one fact about the newest city.
 - **Sharing:** players can save either card to the phone or share it to WhatsApp, Instagram or TikTok. The image is made on the phone, and nothing is uploaded unless the player shares it.
