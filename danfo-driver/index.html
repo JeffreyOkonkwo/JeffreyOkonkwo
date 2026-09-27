@@ -57,11 +57,19 @@
   #wx{position:absolute;left:50%;top:calc(env(safe-area-inset-top,0px) + 150px);transform:translateX(-50%);width:min(92vw,420px);
     background:rgba(27,16,36,.92);border:3px solid #ffe066;border-radius:18px;padding:10px 12px 12px;color:#fff;text-align:center;z-index:6}
   #wx[hidden]{display:none}
-  #ptimer{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);transform:translateX(-50%);width:min(64vw,300px);text-align:center;pointer-events:none;
+  #ptimer{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);transform:translateX(-50%);width:min(86vw,340px);text-align:center;pointer-events:none;
     font-family:"Bungee",Impact,sans-serif;font-size:13px;color:#fff;background:rgba(27,16,36,.7);border:3px solid #3fe08f;border-radius:14px;padding:4px 10px 7px}
   #ptimer[hidden]{display:none}
+  #ptimer .pt1{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:16px}
+  #ptimer .pti{width:28px;height:28px;border-radius:50%;background:#8b5cf6;display:grid;place-items:center;border:2px solid #fff;font-size:15px}
+  #ptimer .pts{font-size:26px;line-height:1;color:#ffe066;min-width:36px;text-align:right}
+  #pcount{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);font-family:"Bungee",Impact,sans-serif;font-size:clamp(70px,22vw,120px);color:#fff;pointer-events:none;
+    text-shadow:0 6px 0 #1b1024,3px 0 0 #1b1024,-3px 0 0 #1b1024,0 -3px 0 #1b1024,3px 3px 0 #1b1024,-3px 3px 0 #1b1024,3px -3px 0 #1b1024,-3px -3px 0 #1b1024}
+  #pcount[hidden]{display:none}
+  #pcount.go{animation:pcPop .9s ease-out}
+  @keyframes pcPop{0%{transform:translate(-50%,-50%) scale(1.6);opacity:0}20%{transform:translate(-50%,-50%) scale(1);opacity:1}100%{opacity:.7}}
   #ptimer small{display:block;margin-top:4px;font:800 12px/1.2 "Baloo 2",sans-serif;color:#d9ffe9}
-  #ptimer i{display:block;height:8px;border-radius:6px;background:rgba(255,255,255,.2);margin-top:4px;overflow:hidden}
+  #ptimer i{display:block;height:12px;border-radius:6px;background:rgba(255,255,255,.2);margin-top:4px;overflow:hidden}
   #ptimer b{display:block;height:100%;background:linear-gradient(90deg,#3fe08f,#ffe066);transform-origin:left;border-radius:6px}
   #ptimer.end{border-color:#ff4d4d;animation:fcPulse .4s ease-in-out infinite}
   .shbox{display:grid;gap:12px}
@@ -85,6 +93,7 @@
   .toast{position:absolute;left:50%;transform:translateX(-50%);font-family:"Bungee",Impact,sans-serif;font-size:clamp(17px,4.6vw,26px);line-height:1.1;
     color:#FFC91A;background:rgba(27,16,36,.9);border:3px solid #FFC91A;border-radius:14px;padding:6px 16px 7px;box-shadow:0 5px 0 rgba(27,16,36,.5);
     white-space:nowrap;animation:toast 1.8s ease-out forwards}
+  .toast.big{font-size:clamp(22px,6.4vw,34px);color:#fff;background:#18b86b;border-color:#1b1024;white-space:normal;width:max-content;max-width:92vw;text-align:center;animation-duration:2.6s}
   .toast.tsub{font-size:clamp(13px,3.6vw,17px);top:52px;color:#fff;border-color:rgba(255,255,255,.35)}
   @keyframes toast{0%{opacity:0;transform:translate(-50%,10px) scale(.7)}14%{opacity:1;transform:translate(-50%,0) scale(1.06)}24%{transform:translate(-50%,0) scale(1)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-16px)}}
 
@@ -229,7 +238,7 @@
     <div class="rcol"><div class="right"><div class="coins pax" aria-label="Passengers"><span class="pax-i"></span><span id="paxN">0</span></div><div class="coins"><span class="coin-i">A</span><span id="coins">0</span></div><button class="pause" id="pauseBtn" type="button" aria-label="Pause">II</button></div>
       <div class="clock" id="clock" aria-label="Time and weather"><span class="dial" id="dial"><i id="hand"></i></span><span id="clockT">7:00 AM</span><span class="fc" id="fc" hidden></span></div></div>
   </div>
-  <div id="ptimer" hidden><span id="ptLbl">FREE RIDE</span><i><b id="ptFill"></b></i><small id="ptHow"></small></div>
+  <div id="ptimer" hidden><div class="pt1"><span class="pti">♪</span><span id="ptLbl">FREE RIDE</span><span class="pts" id="ptSec">12</span></div><i><b id="ptFill"></b></i><small id="ptHow"></small></div><div id="pcount" hidden></div>
   <div id="wx" hidden><div class="wt" id="wxT">SUN COIN!</div><div class="wb" id="wxB"></div><div class="bar" id="wxBar"></div></div>
   <div class="hint" id="hint" hidden><div class="arrows ol" id="hintArrows">←&nbsp;→</div><div class="txt" id="hintTxt">SWIPE TO DODGE</div></div>
   <div id="toasts"></div>
@@ -306,7 +315,7 @@ const OUT = '#1b1024';
 // ---------------------------------------------------------------- world
 const LANES = [-0.62, 0, 0.62];
 const D = 6, FAR = 90, ZP = 2, JT = .55, JH = .26;
-const DIFFS = { easy: { name: 'JJC', start: 16, max: 36, acc: .14, gap: 1.25, two: .08, party: 40, pdur: 10 }, normal: { name: 'AREA DRIVER', start: 20, max: 46, acc: .2, gap: 1, two: .2, party: 60, pdur: 8 }, hard: { name: 'AGBERO', start: 25, max: 56, acc: .28, gap: .85, two: .32, party: 85, pdur: 7 } };
+const DIFFS = { easy: { name: 'JJC', start: 16, max: 36, acc: .14, gap: 1.25, two: .08, party: 35, pdur: 14 }, normal: { name: 'AREA DRIVER', start: 20, max: 46, acc: .2, gap: 1, two: .2, party: 50, pdur: 12 }, hard: { name: 'AGBERO', start: 25, max: 56, acc: .28, gap: .85, two: .32, party: 75, pdur: 10 } };
 let diff = 'normal';
 const START = 20;
 const ZONE_LEN = 650;
@@ -895,7 +904,7 @@ function zoneAt(z) { const n = ZONES.length; return ZONES[((Math.floor((G.dist +
 function startZone() { const i = store.get('startZone', 0); return i > 0 && i < ZONES.length && reachedZones().includes(ZONES[i].k) ? i : 0; }
 function reachedZones() { const md = store.get('maxDist', 0), r = store.get('reached', []); return ZONES.filter((z, i) => md >= i * ZONE_LEN || r.includes(z.k)).map(z => z.k); }
 function newGame(demo) {
-  $('ptimer').hidden = true;
+  $('ptimer').hidden = true; $('pcount').hidden = true;
   const zi = startZone();
   $('wx').hidden = true; $('wx').style.visibility = '';
   objs.length = props.length = walls.length = parts.length = 0;
@@ -938,7 +947,7 @@ function spawnRow() {
     return;
   }
   G.free = F;
-  if (G.partyT > 1.5) { addO({ type: 'pax', lane: ri(3), z, look: randomLook() }); coinLine(ri(3), z + 1, 6); return; }
+  if (G.partyT > 2.5) { addO({ type: 'pax', lane: ri(3), z, look: randomLook() }); coinLine(ri(3), z + 1, 6); return; }
   if (G.sunPending) { G.sunPending = false; addO({ type: 'sun', lane: F, z: z + 3 }); }
   const copsOn = diff === 'hard' || (diff === 'normal' && G.time > 40);
   if (copsOn && Math.random() < .2) { addO({ type: 'cop', lane: B[0], z, look: COP }); addO({ type: 'pax', lane: F, z: z + 1, look: randomLook() }); if (Math.random() < .5) addV(veh(), B[1], z); return; }
@@ -953,7 +962,7 @@ function spawnRow() {
   else { for (let i = 0; i < 9; i++) addO({ type: 'coin', lane: [0, 1, 2, 1][i % 4], z: z + i * 1.2 }); }
   if (r < .84 && Math.random() < .5) addO({ type: 'pax', lane: F, z: z - 3, look: randomLook() });
   if (G.time - G.lastPow > 20 && Math.random() < .4) {
-    const rare = G.time - G.lastParty > G.D.party && Math.random() < .35;
+    const rare = G.time - G.lastParty > G.D.party && (!G.lastParty || Math.random() < .35);
     addO({ type: rare ? 'speaker' : 'magnet', lane: F, z: z + 5 }); G.lastPow = G.time; if (rare) G.lastParty = G.time; }
 }
 function stepScenery(mv) {
@@ -1004,8 +1013,8 @@ function stepScenery(mv) {
 }
 
 // ---------------------------------------------------------------- effects
-function toast(text, small) {
-  if (G && G.demo) return; const d = document.createElement('div'); d.className = 'toast' + (small ? ' tsub' : ''); const busy = $('toasts').children.length; if (busy) d.style.marginTop = (busy * 50) + 'px'; d.textContent = text;
+function toast(text, small, cls = '') {
+  if (G && G.demo) return; const d = document.createElement('div'); d.className = 'toast' + (small ? ' tsub' : '') + (cls ? ' ' + cls : ''); const busy = $('toasts').children.length; if (busy) d.style.marginTop = (busy * 50) + 'px'; d.textContent = text;
   $('toasts').append(d); d.addEventListener('animationend', () => d.remove());
 }
 function popText(text, sub, cls = '') {
@@ -1303,6 +1312,7 @@ function update(dt) {
       }
     } else if (G.tut.on === 'pax') finishTutStep();
   }
+  if (G.slowT > 0) { G.slowT -= dt; ws = Math.min(ws, .35); }
   if (G.wxOpen) { ws = Math.min(ws, .2); G.wxT -= dt; $('wxBar').style.transform = `scaleX(${Math.max(0, G.wxT / 6)})`; if (G.wxT <= 0 || G.dead) chooseWx('keep'); }
   const wdt = dt * ws;
   if (!G.dead) {
@@ -1317,7 +1327,7 @@ function update(dt) {
   P.tilt += ((LANES[P.lane] - P.x) * .35 - P.tilt) * Math.min(1, dt * 12);
   if (P.jt > 0) { P.jt -= wdt; P.y = Math.max(0, Math.sin(Math.PI * (1 - P.jt / JT))) * JH; if (P.jt <= 0) { P.y = 0; P.sq = .8; if (!G.demo) sfx.land(); const p = P3(P.x, 0, ZP); burstParts(p.x, p.y, 8, ['#e8dcc8', '#fff'], 90, .4, 200, 5); } }
   P.sq += (1 - P.sq) * Math.min(1, dt * 12);
-  if (G.partyT > 1.5 && G.partyT - wdt <= 1.5 && !G.demo) toast(t('partyEnd'), true);
+  if (G.partyT > 3.2 && G.partyT - wdt <= 3.2 && !G.demo) toast(t('partyEnd'), true);
   if (G.partyT > 0 && G.partyT - wdt <= 0) { partyMusic(false); G.invT = Math.max(G.invT, 1.2); }
   if (G.partyT > 0 && G.chase.t > 0) { G.chase.t = 0; G.chase.recover = false; }
   if (G.partyT > 0) { G.partyT -= wdt; if (Math.random() < dt * 7) confetti(Math.random() < .5 ? rand(W * .22) : W - rand(W * .22), -10); }
@@ -1359,7 +1369,7 @@ function update(dt) {
     if (G.partyT > 0 && !G.demo && o.type === 'pax' && !o.done && o.z < ZP + 30 && o.z > ZP - .5) { o.x += (P.x - o.x) * Math.min(1, dt * (o.z < ZP + 10 ? 8 : 3)); o.lane = P.lane; }
     if ((G.magnetT > 0 || G.partyT > 0) && o.type === 'coin' && o.z < ZP + 12 && o.z > ZP - .5) { o.x += (P.x - o.x) * Math.min(1, dt * 8); o.y += (P.y - o.y) * Math.min(1, dt * 8); o.z -= mv * .6; }
     o.z -= (G.speed - o.v) * wdt;
-    if (o.exit) { o.x += o.exit * dt * 3.2; o.z -= G.speed * wdt * .4; }
+    if (o.exit) { o.x += o.exit * dt * 5; o.z -= G.speed * wdt * .4; }
     else if (o.type === 'okada') { o.x += (LANES[o.lane] - o.x) * dt * 3; }
     if (!G.dead && !o.done && !o.fly) {
       const reach = (LEN[o.type] || .3) / 2 + .3, dz = Math.abs(o.z - ZP), dx = o.type === 'bump' ? 0 : Math.abs(o.x - P.x);
@@ -1393,7 +1403,7 @@ function hit(o) {
   if (o.type === 'pax') { track('pax'); if (G.tut.on === 'pax') finishTutStep(); o.done = true; o.gone = true; G.pax++; G.chain = Math.min(5, G.chain + 1); G.chainT = 6; const pts = 100 * G.chain * (G.partyT > 0 ? 2 : 1); G.score += pts;
     sfx.pax(); popText(`+${pts}`, G.chain > 1 ? `PASSENGER x${G.chain}` : 'PASSENGER', 'green'); burstParts(p.x, p.y - p.s * .6, 10, ['#3fe08f', '#fff', '#FFC91A'], 160, .5, 200, 5); say(pick(['Enter! Enter!', 'Oya enter, e remain one!', 'Shift for back!', 'Welcome, sit down!'])); return; }
   if (o.type === 'speaker') { o.done = true; o.gone = true; G.partyT = G.D.pdur; G.partyLen = G.D.pdur; clearRoad();
-    for (let i = 0; i < 26; i++) confetti(rand(W), rand(-40, H * .15)); sfx.power(); toast(t('partyGo')); say('Bus jam party! Oya dance!'); partyMusic(true); track('party'); return; }
+    for (let i = 0; i < 26; i++) confetti(rand(W), rand(-40, H * .15)); sfx.power(); toast(t('partyGo'), false, 'big'); say('Bus jam party! Oya dance!'); partyMusic(true); track('party'); return; }
   if (o.type === 'magnet') { o.done = true; o.gone = true; G.magnetT = 9; sfx.power(); toast('COIN MAGNET!'); return; }
   if (o.type === 'sun') { o.done = true; o.gone = true; sfx.power(); burstParts(p.x, p.y - p.s * .6, 14, ['#ffe066', '#fff', '#ffb000'], 180, .5, 200, 5); openWx(); return; }
   if (G.invT > 0 && (JUMP.has(o.type) || BLOCK.has(o.type))) return;
@@ -1585,6 +1595,8 @@ function render() {
   ctx.restore();
   lightsAndWeather();
   if (G.chase.t > 0 && !G.demo) { const on = Math.floor(T * 6) % 2, vg = ctx.createRadialGradient(cx, H / 2, H * .35, cx, H / 2, H * .9); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, on ? 'rgba(47,91,255,.28)' : 'rgba(255,42,31,.28)'); ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H); }
+  if (G.waveT > 0) { G.waveT -= 1 / 60; const k = 1 - G.waveT / .9, b = P3(G.P.x, 0, ZP); ctx.strokeStyle = `rgba(63,224,143,${(1 - k) * .9})`; ctx.lineWidth = 6 * (1 - k) + 2;
+    ctx.beginPath(); ctx.ellipse(b.x, b.y - b.s * .1, b.s * (.4 + k * 3), b.s * (.12 + k * .9), 0, 0, 7); ctx.stroke(); ctx.strokeStyle = `rgba(255,224,102,${(1 - k) * .8})`; ctx.beginPath(); ctx.ellipse(b.x, b.y - b.s * .1, b.s * (.3 + k * 2.2), b.s * (.09 + k * .66), 0, 0, 7); ctx.stroke(); }
   if (G.partyT > 0 && !G.demo) { const a = .22 * Math.min(1, G.partyT, (8 - G.partyT) * 3), hu = (T * 40) % 360, pg = ctx.createRadialGradient(cx, H * .55, Math.min(W, H) * .42, cx, H * .55, Math.max(W, H) * .75);
     pg.addColorStop(0, `hsla(${hu},90%,60%,0)`); pg.addColorStop(1, `hsla(${hu},90%,60%,${a})`); ctx.fillStyle = pg; ctx.fillRect(0, 0, W, H); }
   if (flashA > 0) { ctx.fillStyle = `rgba(255,255,255,${flashA})`; ctx.fillRect(0, 0, W, H); }
@@ -1604,18 +1616,19 @@ const ICO = {
   moon: '<svg viewBox="0 0 24 24"><path d="M20 15A8.5 8.5 0 0 1 9 4a8.5 8.5 0 1 0 11 11z" fill="#f1f4ff" stroke="#1b1024" stroke-width="2"/></svg>',
   sun: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5" fill="#ffe066" stroke="#1b1024" stroke-width="2"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="#ffb000" stroke-width="2.2" stroke-linecap="round"/></svg>' };
 function partyHud() {
-  const on = G.partyT > 0 && !G.dead, el = $('ptimer'); if (el.hidden === on) { el.hidden = !on; $('ptHow').textContent = t('partyHow'); } if (!on) return;
-  $('ptFill').style.transform = `scaleX(${G.partyT / (G.partyLen || 8)})`; el.classList.toggle('end', G.partyT < 1.6);
-  const secs = Math.ceil(G.partyT), k = t('partyBar') + ' · ' + secs + 's'; if ($('ptLbl').textContent !== k) $('ptLbl').textContent = k;
+  const on = G.partyT > 0 && !G.dead, el = $('ptimer'); if (el.hidden === on) { el.hidden = !on; $('ptHow').textContent = t('partyHow'); if (!on) $('pcount').hidden = true; } if (!on) return;
+  $('ptFill').style.transform = `scaleX(${G.partyT / (G.partyLen || 8)})`; el.classList.toggle('end', G.partyT < 3.2);
+  const secs = Math.ceil(G.partyT); if ($('ptSec').textContent !== secs + 's') { $('ptSec').textContent = secs + 's'; $('ptLbl').textContent = t('partyBar');
+    const pc = $('pcount'); if (secs <= 3) { pc.hidden = false; pc.textContent = secs; pc.classList.remove('go'); void pc.offsetWidth; pc.classList.add('go'); } else pc.hidden = true; }
 }
 // party start: every car, keke, okada and police steps aside; obstacles are swept away
 function clearRoad() {
   for (const o of objs) {
     if (o.done || o.z < ZP - 1) continue;
-    if (BLOCK.has(o.type)) { o.exit = o.x < 0 || (o.x === 0 && Math.random() < .5) ? -1 : 1; o.done = true; }
+    if (BLOCK.has(o.type)) { o.exit = o.x < 0 || (o.x === 0 && Math.random() < .5) ? -1 : 1; o.done = true; if (o.z < 40) { const q = P3(o.x, 0, o.z); burstParts(q.x, q.y - q.s * .3, 8, ['#fff', '#3fe08f', '#FFC91A'], 140, .5, 150, 4); } }
     else if (JUMP.has(o.type)) { const q = P3(o.x, 0, Math.max(o.z, ZP)); burstParts(q.x, q.y, 6, ['#FFC91A', '#fff', '#3fe08f'], 120, .4, 200, 4); o.done = true; o.gone = true; }
   }
-  G.chase.t = 0; G.chase.recover = false;
+  G.chase.t = 0; G.chase.recover = false; G.waveT = .9; G.slowT = .7; sfx.horn(0, .1); setTimeout(() => sfx.horn(.3, .08), 180);
 }
 let clockAcc = 1, fcKey = '';
 function clockHud(dt) {
