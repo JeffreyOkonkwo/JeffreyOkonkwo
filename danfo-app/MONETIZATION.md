@@ -15,7 +15,7 @@ This page lists every piece in case you need to check, rebuild or switch somethi
 5. Update the privacy policy and store answers to "no data collected".
 
 ## 1. Master switch
-`enabled` in `../danfo-driver/monetize/config.js`. All the ad unit IDs, product IDs, entitlements and flags are in that file. The Oga Driver Club subscription stays hidden while `flags.ogaClub` is `false`.
+`enabled` in `../danfo-driver/monetize/config.js`. All the ad unit IDs, product IDs, entitlements and flags are in that file.
 
 ## 2. Plugins
 `scripts/plugins-entry.js` bundles AdMob, Purchases, Share and App into `www/monetize/plugins.js` at build time.
@@ -244,7 +244,7 @@ Do not add `NSUserTrackingUsageDescription`: the game never asks to track.
 ## 4. RevenueCat keys (never committed)
 1. In RevenueCat, connect the Apple and Google apps to project **Danfo Craze**.
 2. Create the products in both stores (see `README.md`).
-3. Set up the entitlements: `no_ads` gets `remove_ads`, and `oga_club` gets `oga_driver_club_monthly`.
+3. Set up the entitlement: `no_ads` gets `remove_ads`. There is no subscription in version 1.0.
 4. Copy `keys.example.json` to `keys.local.json` and paste the **public** keys (`appl_...`, `goog_...`). This file is git-ignored.
 
 ## 5. Build and test

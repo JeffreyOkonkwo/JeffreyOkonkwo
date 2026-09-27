@@ -40,8 +40,10 @@ window.DC_MONEY_CONFIG = {
     appleKey: (window.DC_BUILD && window.DC_BUILD.revenuecatAppleKey) || 'PASTE_REVENUECAT_APPLE_PUBLIC_KEY_IN_danfo-app/keys.local.json',
     googleKey: (window.DC_BUILD && window.DC_BUILD.revenuecatGoogleKey) || 'PASTE_REVENUECAT_GOOGLE_PUBLIC_KEY_IN_danfo-app/keys.local.json',
   },
-  entitlements: { noAds: 'no_ads', ogaClub: 'oga_club' },
+  entitlements: { noAds: 'no_ads' },
   // what each product gives; prices shown in the shop come from the store (localised)
+  // Paid items are looks only: nothing paid can raise a score. Coins buy bus colours only.
+  // One subscription is planned for version 1.1 (the Danfo Pass, see ROADMAP.md); none ships in 1.0.
   products: [
     { id: 'remove_ads', type: 'non_consumable', grants: { entitlement: 'no_ads' }, fallbackPrice: '$2.99' },
     { id: 'starter_pack', type: 'non_consumable', grants: { coins: 1500, skin: 'gold' }, fallbackPrice: '$0.99' },
@@ -51,12 +53,10 @@ window.DC_MONEY_CONFIG = {
     { id: 'route_lekki', type: 'non_consumable', grants: { route: 'lekki' } },
     { id: 'route_ikorodu', type: 'non_consumable', grants: { route: 'ikorodu' } },
     { id: 'route_third_mainland', type: 'non_consumable', grants: { route: 'mainland' } },
-    { id: 'oga_driver_club_monthly', type: 'subscription', grants: { entitlement: 'oga_club' }, flag: 'ogaClub' },
   ],
 
   // --- feature flags ---------------------------------------------------------------------
   flags: {
-    ogaClub: false,       // subscription is built but hidden until you switch this on
     rewardedAds: true,
     menuBanner: true,
   },

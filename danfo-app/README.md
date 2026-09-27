@@ -48,12 +48,11 @@ Without keys, the game still runs normally. The shop just says it is connecting 
 | `remove_ads` | non-consumable, $2.99 | entitlement **no_ads**: no menu banner (rewarded ads stay optional) |
 | `starter_pack` | non-consumable, $0.99 | 1,500 coins + Owambe Gold bus |
 | `coins_small` / `coins_medium` / `coins_large` | consumable | 1,000 / 3,500 / 10,000 coins |
-| `route_lekki` | non-consumable | Lekki route (new Lagos area, +25% coins there) |
+| `route_lekki` | non-consumable | Lekki route (new Lagos area, looks only) |
 | `route_ikorodu` | non-consumable | Ikorodu route |
 | `route_third_mainland` | non-consumable | Third Mainland at sunset route |
-| `oga_driver_club_monthly` | subscription | entitlement **oga_club**. **Hidden** until `flags.ogaClub = true` in `config.js` |
 
-In RevenueCat, attach `remove_ads` to the entitlement **no_ads**, and `oga_driver_club_monthly` to **oga_club**. You set the coin pack prices in the store consoles; the shop shows the local price from the store.
+In RevenueCat, attach `remove_ads` to the entitlement **no_ads**. There is no subscription in version 1.0 (the Danfo Pass is planned for 1.1, see `../danfo-driver/ROADMAP.md`). You set the coin pack prices in the store consoles; the shop shows the local price from the store.
 
 ## Build
 ```bash

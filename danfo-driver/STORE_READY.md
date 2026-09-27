@@ -22,6 +22,10 @@ The step by step build and upload list is in `../danfo-app/LAUNCH_CHECKLIST.md`.
 - [x] Fits small phones (iPhone SE, 320 px wide) and large ones. Portrait layout only.
 - [x] Store app project (`../danfo-app`, Capacitor 8, app ID `com.hegenius.danfocraze`) for Android and iOS, with AdMob and RevenueCat built in.
 - [x] Money: rewarded ads (continue, double coins, Honk Boost), a menu banner, a shop (Remove Ads, Starter Pack, coin packs, 3 Lagos routes, Restore Purchases) and sponsor slots. All IDs are in `monetize/config.js`. Development builds use Google's test ads.
+- [x] **Fair play rules:** paid items are looks only, and nothing paid can raise a score. Coins buy bus colours only. The paid Lagos routes give no extra points or coins. The quiz is never sold: continuing by quiz is free, limited to 3 chances a run, and there are no paid answers or skips. Each continue costs 5% of the score (10% for an ad), and the result shows a clean run or the number of continues.
+- [x] **Game over screen:** one main action (Continue, by quiz or by ad), then Play Again, then Challenge a Friend. Double coins is a small link.
+- [x] **Quiz:** after every answer, a one-line "Did you know?" fact with its source. All 561 questions have a source.
+- [x] **Driver look:** Oga Driver or Madam Driver, chosen free in the Garage (looks only).
 
 ## Accounts
 - [x] D-U-N-S number issued to God Push Inc.
@@ -72,7 +76,7 @@ The step by step build and upload list is in `../danfo-app/LAUNCH_CHECKLIST.md`.
   - `starter_pack` (non-consumable)
   - `coins_small`, `coins_medium`, `coins_large` (consumable)
   - `route_lekki`, `route_ikorodu`, `route_third_mainland` (non-consumable)
-  - The subscription `oga_driver_club_monthly` stays off for now.
+  - There is no subscription in version 1.0. The Danfo Pass is planned for 1.1 (see `ROADMAP.md`).
 - [ ] **Suggested prices:** Remove Ads $2.99, Starter Pack $0.99, coins $0.99, $2.99 and $6.99, routes $0.99 each.
 - [ ] In RevenueCat, connect both apps using the bundle ID `com.hegenius.danfocraze`, attach `remove_ads` to the entitlement **no_ads**, and paste the two public keys into `../danfo-app/keys.local.json` (never committed).
 
@@ -89,9 +93,10 @@ The step by step build and upload list is in `../danfo-app/LAUNCH_CHECKLIST.md`.
   >
   > • Road trip from Lagos to Accra, Dakar, Marrakech, Cairo, Addis Ababa, Nairobi, Kigali, Kinshasa and Johannesburg, each with its own buses, landmarks and street life
   > • Rare Bus Jam Party: the road clears, the music drops, and passengers and coins come to you
-  > • Crashed? Answer an Africa quiz question to keep driving. More than 560 fact-checked questions about all 54 countries
+  > • Crashed? Answer an Africa quiz question to keep driving, and learn a new fact with its source every time. More than 560 fact-checked questions about all 54 countries
   > • Day and night, rain, and Sun Coins that clear the sky
-  > • Daily missions, bus colours to unlock, and challenge links to beat your friends
+  > • Choose your driver, Oga Driver or Madam Driver, and unlock bus colours
+  > • Daily missions, and challenge links to beat your friends
   > • Play in English, Pidgin or French. Works offline
 - **Category:** Games, Racing (or Arcade). Secondary category: Education.
 - **Developer:** Hegenius
