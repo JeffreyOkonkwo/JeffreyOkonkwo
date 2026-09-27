@@ -529,7 +529,8 @@ const SHOPS = ['SUYA SPOT', 'MAMA PUT', "GOD'S GRACE PHONES", 'AMALA JOINT', 'PO
 const TOWERS = ['EKO TOWER', 'LEKKI MALL', 'TECH HUB', 'ISLAND BANK', 'OCEAN VIEW'];
 const BOARDS = ['BUY LAND FOR EPE', 'JOLLOF WARS · SAT', 'LAGOS · CENTRE OF EXCELLENCE', 'WAKE UP NAIJA · 99.1FM'];
 const STOPNAMES = ZSTOPS.lagos;
-const CALLS = ['Enter with your change!', 'Shift for back abeg!', 'Space still dey for back!', 'Who never pay?', 'Owa! Owa!', 'Driver, go jeje!', 'Oya enter, we dey go!', 'No story, pay your money!'];
+// everyday calls are in English; a few Pidgin ones stay for flavour
+const CALLS = ['Enter with your change!', 'Move to the back, please!', 'Space at the back!', 'Who has not paid?', 'Hold on tight!', 'Driver, easy!', 'Oya, we dey go!', 'Shine your eye!'];
 
 let W, H, DPR, U, cx, hy, gy, skyline = [];
 const clouds = Array.from({ length: 6 }, () => ({ x: rand(), y: rand(.05, .24), s: rand(.7, 1.3), v: rand(.004, .012) }));
@@ -1162,7 +1163,9 @@ function musicStart() { if (!A.ctx || A.t) return; A.step = 0; A.next = A.ctx.cu
 function musicStop() { clearInterval(A.t); A.t = null; partyMusic(false); }
 // conductor calls are shown as speech bubbles only
 const calm = v => String(v).charAt(0) + String(v).slice(1).toLowerCase().replace(' · ', '. ');
-function say(text) { if (!G || G.demo) return; G.call = text; G.callT = 2.2; }
+// the conductor talks now and then: police and new places come first (pri 2 and 1), small chatter never talks over them
+function say(text, pri = 0) { if (!G || G.demo || !text) return; if (G.callT > 0 && (G.callPri || 0) > pri) return; if (!pri && G.time - (G.saidAt ?? -99) < 9) return; G.call = text; G.callT = 2.2; G.callPri = pri; G.saidAt = G.time; }
+const sentence = v => { const l = String(v).toLowerCase(); return l.charAt(0).toUpperCase() + l.slice(1); };
 
 // ---------------------------------------------------------------- game state
 let G = null, mode = 'title', T = 0, shake = 0, flashA = 0, last = 0;
@@ -1188,7 +1191,7 @@ function newGame(demo) {
   objs.length = props.length = walls.length = parts.length = 0;
   G = { zl, zi, demo, D: DIFFS[demo ? 'normal' : diff], dist: 0, time: 0, speed: START, score: 0, coins: 0, streak: 0, P: { lane: 1, x: 0, y: 0, jt: 0, sq: 1, tilt: 0 },
     chase: { d: .3, t: demo ? 0 : 3 }, partyT: 0, magnetT: 0, dead: false, deadT: 0, rowAcc: 0, edge: [-1.3, -1.3], propAcc: 0,
-    invT: 0, slowT: 0, waveT: 0, heat: 0, heatT: 0, lastPow: 0, lastParty: 0, nextSpeed: 25, zone: 'market', call: '', callT: 0, callNext: 8, hornT: 2, slogan: pick(SLOGANS), tut: { dodge: demo || tutSteps.dodge, jump: demo || tutSteps.jump, pax: demo || tutSteps.pax, cop: demo || tutSteps.cop, on: null },
+    invT: 0, slowT: 0, waveT: 0, heat: 0, heatT: 0, lastPow: 0, lastParty: 0, nextSpeed: 25, zone: 'market', call: '', callT: 0, callNext: 16, hornT: 2, slogan: pick(SLOGANS), tut: { dodge: demo || tutSteps.dodge, jump: demo || tutSteps.jump, pax: demo || tutSteps.pax, cop: demo || tutSteps.cop, on: null },
     stopName: pick(STOPNAMES), stopAcc: 0, free: 1, swerveT: 9, rain: 0, rainT: 0, nextRain: rand(120, 170), todOff: 0, ff: 0, badEp: false, sunN: 0, nextSun: 0, trip: [], fresh: [], boltT: 0, nextBolt: 4, pax: 0, chain: 0, chainT: 0 };
   for (let i = 0; i < 60; i++) stepScenery(1.6);
 }
@@ -1363,14 +1366,14 @@ function readyToRace() {
   const b = $('drvBadge'), look = myLook(), nm = store.get('nick', '') || t('driverWord');
   b.querySelector('img').src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(portraitSvg(look)); b.querySelector('span').textContent = nm;
   b.classList.toggle('gold', hasPass()); b.hidden = false; b.classList.remove('hello'); void b.offsetWidth; b.classList.add('hello');
-  say(t('readyRace', nm));
+  say(t('readyRace', nm), 1);
 }
 function start() {
   loadFlags(); moneyBanner(false); audioInit(); stopPartyClip(0); if (A.music) A.music.gain.value = .45; preloadParty(); newGame(false); mode = 'play'; musicStart(); track('runs'); G.beatShown = false;
   show('title', false); show('over', false); show('paused', false); show('sheet', false); show('quiz', false); show('hud', true); $('dchip').textContent = DIFFS[diff].name; $('toasts').innerHTML = '';
   if (store.get('honk', false) && !learning()) { store.set('honk', false); setTimeout(honkGo, 1400); moneyUI(); }
-  if (learning()) G.chase.t = 0; else { say('Police dey follow us!'); sfx.siren(); setTimeout(() => sfx.siren(), 900); }
-  readyToRace(); setTimeout(() => say(myLines().move), 2300); setTimeout(() => { const zk = zoneAt(ZP); say(pick(ZCALLS[zk] || (CITY[zk] && CITY[zk].calls) || ['Oshodi! Oshodi! Enter!'])); }, 5000);
+  if (learning()) G.chase.t = 0; else { setTimeout(() => { if (mode === 'play' && G.chase.t > 0) say('Police are behind us! Drive!', 1); }, 4800); sfx.siren(); setTimeout(() => sfx.siren(), 900); }
+  readyToRace(); setTimeout(() => say(myLines().move, 1), 2300);
 }
 // Police catch you: settle with coins, else with points; with nothing left it's jail.
 function policeCatch(checkpoint) {
@@ -1381,7 +1384,7 @@ function policeCatch(checkpoint) {
   else { die('caught', checkpoint ? 'cop' : undefined); return; }
   G.chase.t = 0; G.chase.recover = false; G.chase.d = .05; G.chain = 0; G.streak = 0; shake = .4; flashA = .25; G.heat = 0; G.heatT = 0;
   toast(t('settled', paid), true);
-  sfx.siren(); say(pick(['Oga abeg, take am!', 'Na so dem dey do!', 'Officer, we dey go!']));
+  sfx.siren(); say(pick(['Officer, please, we are going!', 'Police stopped us!', 'Na so dem dey do!']), 2);
 }
 function die(kind, what) {
   if (G.dead) return; G.dead = true; G.deadT = 0; G.deadKind = kind; G.deadWhat = what;
@@ -1595,7 +1598,7 @@ const CONDUCTORS = [
 const condOpen = c => c.lock === LF || (c.lock === 'earn' && c.ok()) || (c.lock === 'pass' && hasPass());
 function myConductor() { const c = CONDUCTORS.find(x => x.id === store.get('cond', 'boy')); return c && condOpen(c) ? c : CONDUCTORS[0]; }
 const LINE_MAX = 24, LINE_SLOTS = ['call', 'move', 'close'];
-const LINE_STARTERS = { Pidgin: { call: 'Come in! Come in!', move: 'Oya, we dey go!', close: 'Driver, shine your eye!' }, English: { call: 'Come in! Come in!', move: 'Hold on, we are moving!', close: 'Whoa, that was close!' }, 'Français': { call: 'Montez! Montez!', move: 'On y va!', close: 'Attention, chauffeur!' } };
+const LINE_STARTERS = { Pidgin: { call: 'Come in! Come in!', move: 'Oya, we dey go!', close: 'Driver, shine your eye!' }, English: { call: 'Come in! Come in!', move: 'Hold on, we are moving!', close: 'Comot for road!' }, 'Français': { call: 'Montez! Montez!', move: 'On y va!', close: 'Attention, chauffeur!' } };
 const cleanLine = v => String(v || '').replace(/[<>]/g, '').replace(/\s+/g, ' ').trim().slice(0, LINE_MAX);
 const lineOk = v => { const c = cleanLine(v); return c.length >= 2 && !TAG_BLOCK.test(c.toUpperCase().replace(/[^A-Z ]/g, '')) && !TAG_BLOCK.test(c.toUpperCase().replace(/[^A-Z]/g, '')); };
 function myLines() { const d = LINE_STARTERS[lang === 'fr' ? 'Français' : lang === 'en' ? 'English' : 'Pidgin'], sv = store.get('clines', {}), out = {}; for (const k of LINE_SLOTS) out[k] = lineOk(sv[k]) ? cleanLine(sv[k]) : d[k]; return out; }
@@ -1667,7 +1670,8 @@ const CC_NAME = { en: { NG: 'Nigeria', GH: 'Ghana', SN: 'Senegal', MA: 'Morocco'
 const ccName = c => (CC_NAME[lang] || CC_NAME.en)[c] || c;
 function newCityReached(zn) {
   const card = CITYCARD[zn], cc = zoneCC(zn);
-  if (!card || G.dead || G.demo) { say(titleCase(t('welcomeTo', zoneName(zn).split(' · ')[0]))); return; }
+  if (!card || G.dead || G.demo) { if (G.time > 3) say(calm(t('welcomeTo', '@')).replace('@', titleCase(zoneName(zn).split(' · ')[0])), 1); return; }
+  say(card.hi[0], 1); // the local greeting, for example Akwaaba!
   const before = new Set(['NG', ...reachedZones().filter(k => k !== zn).map(zoneCC)]);
   cityPop(zn, card, before.has(cc) ? null : cc);
 }
@@ -2254,14 +2258,13 @@ function update(dt) {
   P.tilt += ((LANES[P.lane] - P.x) * .35 - P.tilt) * Math.min(1, dt * 12);
   if (P.jt > 0) { P.jt -= wdt; P.y = Math.max(0, Math.sin(Math.PI * (1 - P.jt / JT))) * JH; if (P.jt <= 0) { P.y = 0; P.sq = .8; if (!G.demo) sfx.land(); const p = P3(P.x, 0, ZP); burstParts(p.x, p.y, 8, ['#e8dcc8', '#fff'], 90, .4, 200, 5); } }
   P.sq += (1 - P.sq) * Math.min(1, dt * 12);
-  if (G.partyT > 3.2 && G.partyT - wdt <= 3.2 && !G.demo) say(calm(t('partyEnd')));
   if (G.partyT > 0 && G.partyT - wdt <= 0) { partyMusic(false); G.invT = Math.max(G.invT, 1.2); }
   if (G.partyT > 0 && G.chase.t > 0) { G.chase.t = 0; G.chase.recover = false; }
   if (G.partyT > 0) { G.partyT -= wdt; if (Math.random() < dt * 7) confetti(Math.random() < .5 ? rand(W * .22) : W - rand(W * .22), -10); }
   if (G.magnetT > 0) G.magnetT -= wdt;
   if (G.invT > 0) G.invT -= wdt;
   // weather: now and then it rains for a while
-  if (!G.demo) { G.nextRain -= wdt; if (G.nextRain <= 0 && G.rainT <= 0) { G.rainT = rand(12, 18); G.nextRain = rand(90, 140); say('Rain dey fall! Road don wet.'); } }
+  if (!G.demo) { G.nextRain -= wdt; if (G.nextRain <= 0 && G.rainT <= 0) { G.rainT = rand(12, 18); G.nextRain = rand(90, 140); } }
   if (G.rainT > 0) G.rainT -= wdt;
   if (G.rain > .02) for (const d of drops) { d.y += d.v * dt; d.x -= d.v * .2 * dt; if (d.y > H) { d.y = -d.l - Math.random() * 60; d.x = Math.random() * (W + 120); } if (d.x < -20) d.x += W + 40; }
   G.rain += ((G.rainT > 0 ? 1 : 0) - G.rain) * Math.min(1, dt * .6);
@@ -2274,7 +2277,7 @@ function update(dt) {
     if (bad && !G.badEp) { G.badEp = true; G.sunN = 0; G.nextSun = rand(4, 8); }
     else if (!bad && G.badEp && TOD.dark < .3 && G.rain < .3) G.badEp = false;
     if (G.badEp && G.sunN < 1) { G.nextSun -= wdt; if (G.nextSun <= 0) { G.sunPending = true; G.sunN = 1; G.nextSun = rand(14, 22); } }
-    if (TOD.dark > .7 && !G.nightSaid) { G.nightSaid = true; say(calm(t('nightOn'))); } else if (TOD.dark < .2) G.nightSaid = false;
+    if (TOD.dark > .7 && !G.nightSaid) { G.nightSaid = true; } else if (TOD.dark < .2) G.nightSaid = false;
   }
   if (!G.demo && !G.dead) { G.trackT = (G.trackT || 0) - dt; if (G.trackT <= 0) { G.trackT = 1; track('distRun', G.dist, true); track('scoreRun', G.score, true); if (TOD.dark > .8) track('night', 1, true); if (G.rain > .5) { track('rain', 1, true); if (!G.rainCounted) { G.rainCounted = true; store.set('rainRuns', store.get('rainRuns', 0) + 1); } } const md = store.get('maxDist', 0); if (G.dist > md) store.set('maxDist', G.dist); } }
   if (A.rain) A.rain.gain.setTargetAtTime(G.rain * .12, A.ctx.currentTime, .3);
@@ -2289,7 +2292,7 @@ function update(dt) {
   const gap = Math.max(.75, 1.15 - (G.speed - G.D.start) * .012) * (G.speed - 5) * G.D.gap;
   if (!G.dead && G.rowAcc > gap) { G.rowAcc = 0; spawnRow(); }
 
-  const zn = zoneAt(ZP); if (zn !== G.zone) { G.zone = zn; if ((store.get('reached', [])).includes(zn)) say(titleCase(ZONES.find(z => z.k === zn).name.split(' · ')[0]) + '!');
+  const zn = zoneAt(ZP); if (zn !== G.zone) { G.zone = zn; if ((store.get('reached', [])).includes(zn)) say(titleCase(ZONES.find(z => z.k === zn).name.split(' · ')[0]) + '!', 1);
     if (!G.demo) { G.trip.push(zn); const r = store.get('reached', []); if (!r.includes(zn)) { r.push(zn); store.set('reached', r); G.fresh.push(zn); newCityReached(zn); } } }
 
   for (let i = objs.length - 1; i >= 0; i--) {
@@ -2306,14 +2309,14 @@ function update(dt) {
     }
     if (!G.dead && !G.demo && BLOCK.has(o.type) && !o.fly && !o.done && !o.passed && o.z < ZP - (LEN[o.type] || .3) / 2) {
       o.passed = true;
-      if (Math.abs(o.x - P.x) < .75 && G.swerveT < .9) { G.score += 30; G.coins += 2; popText('CHANCE AM!', '+30'); track('chance'); if (Math.random() < .5) say(myLines().close); sfx.pax(); const pp = P3(P.x, 0, ZP); burstParts(pp.x, pp.y - pp.s * .5, 8, ['#FFC91A', '#fff'], 140, .4, 150, 4); }
+      if (Math.abs(o.x - P.x) < .75 && G.swerveT < .9) { G.score += 30; G.coins += 2; popText('CHANCE AM!', '+30'); track('chance'); if (Math.random() < .35) say(myLines().close); sfx.pax(); const pp = P3(P.x, 0, ZP); burstParts(pp.x, pp.y - pp.s * .5, 8, ['#FFC91A', '#fff'], 140, .4, 150, 4); }
     }
     if (o.z < -2.5 || o.fly > 2.2 || (o.done && o.gone) || Math.abs(o.x) > 2.6) objs.splice(i, 1);
   }
 
   if (!G.demo && !G.dead) {
     G.hornT -= dt; if (G.hornT <= 0) { G.hornT = rand(1.8, 4.5); sfx.horn(rand(-1, 1), rand(.025, .055)); if (Math.random() < .25) sfx.crowd(); }
-    G.callNext -= dt; if (G.callNext <= 0) { G.callNext = rand(6, 11); const zk = zoneAt(ZP), zc = ZCALLS[zk] || (CITY[zk] && CITY[zk].calls); say(Math.random() < (CITY[zk] ? .7 : .5) && zc ? pick(zc) : pick(CALLS)); }
+    G.callNext -= dt; if (G.callNext <= 0) { G.callNext = rand(20, 32); const zk = zoneAt(ZP), zc = ZCALLS[zk] || (CITY[zk] && CITY[zk].calls), r = Math.random(); say(r < .45 ? sentence(myTag()) + '!' : r < .75 && zc ? pick(zc) : pick(CALLS)); }
   }
   if (G.callT > 0) G.callT -= dt;
   G.swerveT += dt;
@@ -2331,10 +2334,10 @@ function hit(o) {
     burstParts(p.x, p.y - p.s * .55 - P.y * p.s, 5, ['#FFC91A', '#fff3a6'], 120, .35, 150, 4); return;
   }
   if (o.type === 'pax') { track('pax'); store.set('paxTotal', store.get('paxTotal', 0) + 1); learn('pax'); o.done = true; o.gone = true; G.pax++; G.chain = Math.min(5, G.chain + 1); G.chainT = 6; const pts = 100 * G.chain * (G.partyT > 0 ? 2 : 1); G.score += pts;
-    sfx.pax(); popText(`+${pts}`, G.chain > 1 ? `PASSENGER x${G.chain}` : 'PASSENGER', 'green'); burstParts(p.x, p.y - p.s * .6, 10, ['#3fe08f', '#fff', '#FFC91A'], 160, .5, 200, 5); say(Math.random() < .6 ? myLines().call : pick(['Enter! Enter!', 'Oya enter, e remain one!', 'Shift for back!', 'Welcome, sit down!'])); return; }
+    sfx.pax(); popText(`+${pts}`, G.chain > 1 ? `PASSENGER x${G.chain}` : 'PASSENGER', 'green'); burstParts(p.x, p.y - p.s * .6, 10, ['#3fe08f', '#fff', '#FFC91A'], 160, .5, 200, 5); if (Math.random() < .2) say(myLines().call); return; }
   if (o.type === 'speaker') { o.done = true; o.gone = true; G.partyT = G.D.pdur; G.partyLen = G.D.pdur; clearRoad();
-    for (let i = 0; i < 26; i++) confetti(rand(W), rand(-40, H * .15)); sfx.power(); toast(t('partyGo'), false, 'big'); say('Bus jam party! Oya dance!'); partyMusic(true); track('party'); return; }
-  if (o.type === 'magnet') { o.done = true; o.gone = true; G.magnetT = 9; sfx.power(); say('Coin magnet! Coins dey come!'); return; }
+    for (let i = 0; i < 26; i++) confetti(rand(W), rand(-40, H * .15)); sfx.power(); toast(t('partyGo'), false, 'big'); say('Party bus! Dance!', 1); partyMusic(true); track('party'); return; }
+  if (o.type === 'magnet') { o.done = true; o.gone = true; G.magnetT = 9; sfx.power(); return; }
   if (o.type === 'sun') { o.done = true; o.gone = true; sfx.power(); burstParts(p.x, p.y - p.s * .6, 14, ['#ffe066', '#fff', '#ffb000'], 180, .5, 200, 5); sunGrab(); return; }
   if (G.invT > 0 && (JUMP.has(o.type) || BLOCK.has(o.type))) return;
   if (JUMP.has(o.type)) {
