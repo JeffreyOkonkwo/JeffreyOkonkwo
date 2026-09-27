@@ -29,8 +29,11 @@
   button:focus-visible{outline:3px solid #fff;outline-offset:3px}
   .ol{text-shadow:0 4px 0 var(--ink),2px 0 0 var(--ink),-2px 0 0 var(--ink),0 -2px 0 var(--ink),2px 2px 0 var(--ink),-2px 2px 0 var(--ink),2px -2px 0 var(--ink),-2px -2px 0 var(--ink)}
 
-  .hud{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-start;gap:10px;
-    padding:calc(env(safe-area-inset-top,0px) + 12px) 14px 0;pointer-events:none}
+  .hud{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-start;gap:6px;
+    padding:calc(env(safe-area-inset-top,0px) + 12px) 10px 0;pointer-events:none}.hud>div{min-width:0}.hud .rcol{flex-shrink:1}
+  /* big numbers never push the pause button or the place chip off a small phone */
+  @media (max-width:430px){.hud .score{font-size:clamp(22px,7vw,34px)}.hud .score.long{font-size:clamp(20px,6vw,28px)}.hud .coins{font-size:clamp(14px,4.2vw,19px);padding:2px 9px 2px 3px;gap:4px;border-width:2.5px}.hud .coin-i{width:22px;height:22px;font-size:11px;border-width:2.5px}.hud .pax-i{transform:scale(.8)}.hud .coins.pax{padding-left:5px}.hud .right{gap:5px}.hud .pause{width:38px;height:38px;font-size:14px;border-radius:12px}.hud .chip{font-size:11px;padding:1px 8px;white-space:nowrap}}
+  @media (max-width:340px){.hud .coins{font-size:13px;padding-right:7px}.hud .score,.hud .score.long{font-size:20px}.hud .chip{font-size:10px}}
   .score{font-family:"Bungee",Impact,sans-serif;font-size:clamp(30px,8vw,44px);line-height:1;color:#fff;font-variant-numeric:tabular-nums}
   .best{font-weight:800;font-size:14px;color:var(--danfo);margin-top:2px}
   .chips{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
@@ -115,6 +118,7 @@
   .drvbadge img{width:54px;height:54px;border-radius:50%;border:3px solid var(--ink);background:#bfe3ff;object-fit:cover;object-position:50% 20%;box-shadow:0 3px 0 var(--ink)}
   .drvbadge.gold img{border-color:#e6a800;box-shadow:0 0 0 3px #FFC91A,0 3px 0 var(--ink)}
   .drvbadge span{max-width:80px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;background:rgba(27,16,36,.78);color:#fff;border-radius:999px;padding:1px 8px;font:800 11px "Baloo 2",sans-serif}
+  .drvbadge img{transition:width .4s,height .4s}.drvbadge.mini img{width:34px;height:34px;border-width:2px}.drvbadge.mini span{display:none}
   .drvbadge.hello img{animation:drvhi 1.4s ease-out}
   @keyframes drvhi{0%{transform:scale(.3)}40%{transform:scale(1.35)}70%{transform:scale(.95)}100%{transform:scale(1)}}
   .cpflag{display:inline-block;width:24px;height:16px;margin-right:6px;vertical-align:-1px;border-radius:3px;overflow:hidden;box-shadow:0 0 0 1.5px var(--ink)}.cpflag .flagimg{width:100%;height:100%}
@@ -767,7 +771,7 @@ function danfo(x, y, s, t, o = {}) {
   if (w > 60) label(o.plate || 'AFRIKA 1', 0, top + h * .8, w * .05, '#0e8f52', w * .3, '"Baloo 2", sans-serif');
   for (const sx of [-1, 1]) { ball(sx * w * .41, top + h * .77, w * .05, o.brake ? '#ff2a1f' : '#d9261c'); ball(sx * w * .41, top + h * .66, w * .032, '#ffb000'); }
   blob(-w * .49, top + h * .87, w * .98, h * .1, h * .04, '#4a4458', false);
-  if (o.conductor) person(w * .54, -h * .06, s * .95, o.cLook || CONDUCTOR, o.party ? 'dance' : 'hang', t);
+  if (o.conductor) { ctx.save(); if (o.cSide < 0) ctx.scale(-1, 1); person(w * .54, -h * .06, s * .95, o.cLook || CONDUCTOR, o.party ? 'dance' : 'hang', t); ctx.restore(); } // hangs on the side away from the screen edge
   ctx.restore();
 }
 function car(x, y, s, col) {
@@ -1376,7 +1380,8 @@ function refreshTitle() {
 function readyToRace() {
   const b = $('drvBadge'), look = myLook(), nm = store.get('nick', '') || t('driverWord');
   b.querySelector('img').src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(portraitSvg(look)); b.querySelector('span').textContent = nm;
-  b.classList.toggle('gold', hasPass()); b.hidden = false; b.classList.remove('hello'); void b.offsetWidth; b.classList.add('hello');
+  b.classList.toggle('gold', hasPass()); b.hidden = false; b.classList.remove('hello', 'mini'); void b.offsetWidth; b.classList.add('hello');
+  clearTimeout(readyToRace.tm); readyToRace.tm = setTimeout(() => b.classList.add('mini'), 5000); // then a small circle, so it never covers the road
   say(t('readyRace', nm), 1);
 }
 function start() {
@@ -2503,11 +2508,11 @@ function drawPlayer() {
   const P = G.P, p = P3(P.x, 0, ZP), air = P.y * p.s;
   shadowE(p.x, p.y, .64 * p.s * (1 - P.y * .8), .32);
   if (G.invT > 0 && Math.floor(T * 12) % 2) ctx.globalAlpha = .45;
-  danfo(p.x, p.y - air, p.s, T, { heads: 6, conductor: true, cLook: myConductor().look, party: G.partyT > 0, tilt: P.tilt, sq: P.sq, slogan: myTag(), plate: myPlate(), skin: mySkin(), brake: G.dead });
+  danfo(p.x, p.y - air, p.s, T, { heads: 6, conductor: true, cSide: P.x > .3 ? -1 : 1, cLook: myConductor().look, party: G.partyT > 0, tilt: P.tilt, sq: P.sq, slogan: myTag(), plate: myPlate(), skin: mySkin(), brake: G.dead });
   if (G.partyT > 0) for (let i = 0; i < 3; i++) label('♪', p.x - p.s * .35 + i * p.s * .35, p.y - p.s * .78 - air - Math.abs(Math.sin(T * 4 + i)) * p.s * .12, p.s * .12, NOTE_COLS[i], p.s);
   if (G.magnetT > 0) { ctx.strokeStyle = `rgba(255,90,90,${.35 + .2 * Math.sin(T * 10)})`; ctx.lineWidth = 4; ctx.beginPath(); ctx.ellipse(p.x, p.y - air - p.s * .3, p.s * .42, p.s * .42, 0, 0, 7); ctx.stroke(); }
   ctx.globalAlpha = 1;
-  if (G.callT > 0 && G.call) bubble(p.x + p.s * .36, p.y - p.s * .7 - air, G.call);
+  if (G.callT > 0 && G.call) bubble(p.x + (P.x > .3 ? -1 : 1) * p.s * .36, p.y - p.s * .7 - air, G.call);
 }
 function bubble(x, y, text) {
   ctx.font = `800 ${clamp(W * .036, 13, 18)}px "Baloo 2", sans-serif`;
@@ -2585,11 +2590,13 @@ function render() {
   if (flashA > 0) { ctx.fillStyle = `rgba(255,255,255,${flashA})`; ctx.fillRect(0, 0, W, H); }
 }
 let hudKey = '';
+// very big numbers in the top bar: 1.29M, 12.3K (the full numbers show on the result card)
+const short = n => n >= 1e6 ? (n / 1e6).toFixed(n >= 1e7 ? 1 : 2).replace(/\.?0+$/, '') + 'M' : (n / 1e3).toFixed(1).replace(/\.0$/, '') + 'K';
 function hud() {
   const s = Math.floor(G.score), key = [s, G.coins, G.pax, G.partyT > 0, G.magnetT > 0, G.chase.t > 0, G.heat].join();
   if (key === hudKey) return; hudKey = key;
-  $('score').textContent = s.toLocaleString(); $('best').textContent = s > best && best > 0 ? t('newBest') : `${t('bestPill')} ${best.toLocaleString()}`;
-  $('coins').textContent = G.coins.toLocaleString(); $('paxN').textContent = G.pax;
+  $('score').textContent = s >= 1e6 ? short(s) : s.toLocaleString(); $('score').classList.toggle('long', s >= 100000); $('best').textContent = s > best && best > 0 ? t('newBest') : `${t('bestPill')} ${best.toLocaleString()}`;
+  $('coins').textContent = G.coins >= 1e4 ? short(G.coins) : G.coins.toLocaleString(); $('paxN').textContent = G.pax >= 1e4 ? short(G.pax) : G.pax;
   if (beat) { const bc = $('beatChip'); bc.hidden = false; bc.textContent = s > beat.score ? `YOU BEAT ${beat.name.toUpperCase()}!` : `BEAT ${beat.name.toUpperCase()}: ${beat.score.toLocaleString()}`; if (s > beat.score && !G.beatShown) { G.beatShown = true; toast(`YOU DON BEAT ${beat.name.toUpperCase()}!`); sfx.speed(); } }
   $('mult').hidden = !(G.chain > 1) || G.partyT > 0; $('mult').textContent = 'x' + Math.max(G.chain, 1); $('pwP').hidden = true; $('heat').hidden = !(G.heat > 0 || G.chase.t > 0); $('pwM').hidden = !(G.magnetT > 0); $('cop').hidden = true; const hs = $('heat').children; for (let i = 0; i < 3; i++) hs[i].classList.toggle('on', i < (G.heat || 0)); $('heat').classList.toggle('chase', G.chase.t > 0);
 }
