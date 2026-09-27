@@ -1,0 +1,5 @@
+{
+  "_readme": "Copy this file to keys.local.json (never committed) and paste the RevenueCat PUBLIC SDK keys from app.revenuecat.com > Project settings > API keys.",
+  "revenuecatAppleKey": "PASTE_REVENUECAT_APPLE_PUBLIC_KEY_HERE (starts with appl_)",
+  "revenuecatGoogleKey": "PASTE_REVENUECAT_GOOGLE_PUBLIC_KEY_HERE (starts with goog_)"
+}

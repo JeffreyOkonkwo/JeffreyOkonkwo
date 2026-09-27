@@ -1,0 +1,15 @@
+node_modules/
+www/
+# RevenueCat keys live only on your computer, never in git
+keys.local.json
+android/app/build/
+android/.gradle/
+android/build/
+android/local.properties
+android/app/src/main/assets/public/
+ios/App/Pods/
+ios/App/App/public/
+ios/App/build/
+ios/DerivedData/
+*.keystore
+*.jks

@@ -1,0 +1,8 @@
+{
+  "appId": "app.godpush.danfocraze",
+  "appName": "Danfo Craze",
+  "webDir": "www",
+  "backgroundColor": "#0E8F52",
+  "android": { "backgroundColor": "#0E8F52" },
+  "ios": { "backgroundColor": "#0E8F52", "contentInset": "never" }
+}

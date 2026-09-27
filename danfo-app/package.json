@@ -1,0 +1,25 @@
+{
+  "name": "danfo-craze-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Danfo Craze native app (Android + iOS) wrapping the web game in ../danfo-driver",
+  "scripts": {
+    "web:dev": "node scripts/build-web.mjs",
+    "web:release": "node scripts/build-web.mjs --release",
+    "sync": "npm run web:dev && npx cap sync",
+    "sync:release": "npm run web:release && npx cap sync",
+    "android": "npx cap open android",
+    "ios": "npx cap open ios"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/app": "^8.1.1",
+    "@capacitor/core": "^8.5.2",
+    "@capacitor/ios": "^8.5.2",
+    "@capacitor/share": "^8.0.2"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.5.2",
+    "esbuild": "^0.28.2"
+  }
+}

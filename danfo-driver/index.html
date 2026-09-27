@@ -83,6 +83,15 @@
   #ptimer b{display:block;height:100%;background:linear-gradient(90deg,#3fe08f,#ffe066);transform-origin:left;border-radius:6px}
   #ptimer.end{border-color:#ff4d4d;animation:fcPulse .4s ease-in-out infinite}
   .shbox{display:grid;gap:12px}
+  .honk{pointer-events:auto;border:3px solid var(--ink);border-radius:14px;padding:5px 14px 6px;background:#ff5a3c;color:#fff;display:grid;justify-items:center;line-height:1.05;box-shadow:0 3px 0 var(--ink);margin-top:-4px}
+  .honk b{font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:15px}.honk small{font-weight:800;font-size:11px;opacity:.9}.honk.ready{background:var(--green)}
+  .adrow{display:flex;gap:8px;width:100%}.adbtn{flex:1;border:3px solid var(--ink);border-radius:14px;padding:6px 4px;background:#8b5cf6;color:#fff;display:grid;justify-items:center;line-height:1.05;box-shadow:0 3px 0 var(--ink)}
+  .adbtn b{font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:14px}.adbtn small{font-weight:800;font-size:11px;opacity:.9}.adbtn b::before{content:"▶ "}
+  html.has-banner .title{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 64px)}
+  .shopl{display:grid;gap:8px}.prod{display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:center;border:3px solid var(--ink);border-radius:14px;padding:8px 10px;background:#fff8e7}
+  .prod b{font-weight:800;font-size:16px}.prod small{grid-column:1;font-weight:700;opacity:.75;font-size:13px}.prod button{grid-row:1/3;grid-column:2;border:3px solid var(--ink);border-radius:12px;padding:8px 12px;background:var(--green);color:#fff;font:800 15px "Baloo 2",sans-serif;box-shadow:0 3px 0 var(--ink);min-width:78px}
+  .prod button:disabled{background:#d0cbd8;color:var(--ink);box-shadow:none}.prod.own{opacity:.75}
+  .shopnote{margin:0;font-size:13px;font-weight:700;opacity:.75}.restore{justify-self:center;border:0;background:none;font:800 14px "Baloo 2",sans-serif;text-decoration:underline;color:var(--ink)}
   .shscore{display:grid;justify-items:center;background:var(--danfo);border:3px solid var(--ink);border-radius:18px;padding:8px 10px 10px;box-shadow:0 4px 0 var(--ink)}
   .shscore small{font-weight:800;font-size:13px;opacity:.75}.shscore b{font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:40px;line-height:1.05}.shscore span{font-weight:800;font-size:13px}
   .shmain{display:flex;align-items:center;justify-content:center;gap:8px;border:3px solid var(--ink);border-radius:14px;padding:10px;background:#fff;color:var(--ink);font:800 16px/1 "Baloo 2",sans-serif;box-shadow:0 3px 0 var(--ink)}
@@ -268,6 +277,7 @@
         <button class="dsel" type="button" role="radio" data-d="hard" aria-checked="false"><b>AGBERO</b><small data-t="hard">HARD</small></button>
       </div>
       <button class="play" id="playBtn" type="button">PLAY</button>
+      <button class="honk" id="honkBtn" type="button" hidden><b id="honkT">HONK BOOST</b><small id="honkS">Watch an ad · start with a free ride</small></button>
       <div class="menu4">
         <button class="mbtn m1" id="mMissions" type="button"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2.5"/><path d="M9.5 2.8h5v3h-5z"/><path d="m8.5 13.2 2.4 2.4 4.6-5"/></svg></span><span data-t="missions">Missions</span><i class="dot" id="mDot" hidden></i></button>
         <button class="mbtn m2" id="mGarage" type="button"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.8 5.2a4.2 4.2 0 0 0-5.5 5.4L3.8 16.1a1.9 1.9 0 0 0 2.7 2.7l5.5-5.5a4.2 4.2 0 0 0 5.4-5.5l-2.6 2.6-2.4-.5-.5-2.4z"/></svg></span><span data-t="garage">Garage</span></button>
@@ -276,7 +286,7 @@
       </div>
       <div class="meta"><span class="pillm" id="tBest">BEST 0</span><span class="pillm" id="tCoins">A 0 saved</span></div>
       </div>
-    <div class="topbar"><button class="tb" id="langBtn" type="button" aria-label="Change language">EN</button><button class="tb name" id="nameBtn" type="button"><span id="nameTxt">Add your name</span> ✎</button><span class="sp"></span><button class="tb" id="soundBtn" type="button" aria-label="Sound on"></button></div>
+    <div class="topbar"><button class="tb" id="langBtn" type="button" aria-label="Change language">EN</button><button class="tb name" id="nameBtn" type="button"><span id="nameTxt">Add your name</span> ✎</button><button class="tb" id="shopBtn" type="button" aria-label="Shop" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 10V7a3 3 0 0 1 6 0v3"/></svg></button><span class="sp"></span><button class="tb" id="soundBtn" type="button" aria-label="Sound on"></button></div>
   </div>
 
   <div class="overlay" id="over" hidden>
@@ -287,6 +297,7 @@
       <div><div class="lbl" data-t="lblScore">Score</div><div class="big" id="oScore">0</div></div>
       <div class="row"><div><div class="lbl" data-t="lblPax">Passengers</div><b id="oPax">0</b></div><div><div class="lbl" data-t="lblCoins">Coins</div><b id="oCoins">0</b></div><div><div class="lbl" data-t="lblBest">Best</div><b id="oBest">0</b></div></div>
       <button class="quizbtn" id="quizBtn" type="button"><b>QUIZ TO CONTINUE</b><small id="quizCost">Answer right, keep driving · FREE</small></button>
+      <div class="adrow" id="adRow" hidden><button class="adbtn" id="adCont" type="button"><b id="adContT">CONTINUE</b><small data-t="watchAd">Watch an ad</small></button><button class="adbtn" id="adDouble" type="button"><b id="adDoubleT">DOUBLE COINS</b><small data-t="watchAd">Watch an ad</small></button></div>
       <button class="chal" id="chalBtn" type="button" data-t="challenge">CHALLENGE A FRIEND</button>
       <button class="play" id="againBtn" type="button">PLAY AGAIN</button>
       <button class="small" id="homeBtn" type="button">Home</button>
@@ -311,6 +322,8 @@
   </div>
 </div>
 
+<script src="monetize/config.js"></script>
+<script src="monetize/monetize.js"></script>
 <script src="quiz.js"></script>
 <script>
 (() => {
@@ -347,7 +360,13 @@ const ZONES = [{ k: 'lagos', name: 'LAGOS · OSHODI' }, { k: 'bridge', name: 'TH
   { k: 'abuja', name: 'ABUJA' }, { k: 'ph', name: 'PORT HARCOURT' }, { k: 'kano', name: 'KANO' },
   { k: 'accra', name: 'ACCRA · GHANA' }, { k: 'dakar', name: 'DAKAR · SENEGAL' }, { k: 'marrakech', name: 'MARRAKECH · MOROCCO' }, { k: 'cairo', name: 'CAIRO · EGYPT' },
   { k: 'addis', name: 'ADDIS ABABA · ETHIOPIA' }, { k: 'nairobi', name: 'NAIROBI · KENYA' }, { k: 'kigali', name: 'KIGALI · RWANDA' }, { k: 'kinshasa', name: 'KINSHASA · DR CONGO' },
-  { k: 'joburg', name: 'JOHANNESBURG · SOUTH AFRICA' }];
+  { k: 'joburg', name: 'JOHANNESBURG · SOUTH AFRICA' },
+  { k: 'lekki', name: 'LEKKI · LAGOS', premium: 'route_lekki' }, { k: 'ikorodu', name: 'IKORODU · LAGOS', premium: 'route_ikorodu' }, { k: 'mainland', name: 'THIRD MAINLAND · SUNSET', premium: 'route_third_mainland' }];
+// the drive goes through the paid Lagos routes (only if you own them) before heading out of Lagos
+const ROUTE_ORDER = ['lagos', 'lekki', 'mainland', 'bridge', 'ikorodu', 'village', 'abuja', 'ph', 'kano', 'accra', 'dakar', 'marrakech', 'cairo', 'addis', 'nairobi', 'kigali', 'kinshasa', 'joburg'];
+const zoneOf = k => ZONES.find(z => z.k === k);
+function ownsRoute(k) { const z = zoneOf(k); return !z || !z.premium || store.get('routes', []).includes(k) || !!(window.DC_MONEY && DC_MONEY.owns(z.premium)); }
+function zoneList() { return ROUTE_ORDER.filter(ownsRoute); }
 const ZSHOPS = {
   lagos: ['SUYA SPOT', 'MAMA PUT', "GOD'S GRACE PHONES", 'AMALA JOINT', 'POS · CASH OUT', 'VULCANIZER', 'BLESSED HANDS SALON', 'IYA BASIRAT BUKKA'],
   abuja: ['WUSE MARKET', 'ASO VILLA ROAD', 'JABI LAKE MALL', 'CAPITAL HOTEL', 'NATIONAL STADIUM', 'GARKI PLAZA', 'CBD TOWERS'],
@@ -471,6 +490,22 @@ const CITY = {
     taxi: ['#e8e8f0', '#3a3346'], keke: null, brt: ['#de3831', '#fff', 'CITY BUS'], low: ['pothole', 'pothole', 'barrier'],
     hatsF: ['braids', 'none', 'gele'], hatsM: ['cap', 'none'] },
 };
+// paid Lagos routes
+const LAGOS_BUS = [{ body: '#FFC91A', stripe: '#1b1024', slogan: 'NO FOOD FOR LAZY MAN' }, { body: '#FFC91A', stripe: '#1b1024', slogan: 'MONEY MISS ROAD' }, { body: '#FFC91A', stripe: '#1b1024', slogan: "GOD'S TIME IS THE BEST" }];
+Object.assign(CITY, {
+  lekki: { busName: 'danfo', premium: true, hello: 'WELCOME TO LEKKI', side: ['#e8e2d6', '#dcd5c8'], curb: ['#FFC91A', '#1b1024'], walls: ['#f2efe8', '#d9e4ec', '#f5e1c8', '#cfe3d6', '#e6d9f2'], h: [1.3, 2.3], glass: .5, palm: .32,
+    awn: ['#18b86b', '#2f7bff', '#ff5a3c', '#8b5cf6'], shops: ['SUYA & CHILL', 'PHASE 1 MALL', 'BEACH BAR', 'TECH HUB', 'SHAWARMA SPOT', 'SMALL CHOPS'], stops: ['LEKKI PHASE 1', 'ADMIRALTY', 'CHEVRON', 'AJAH', 'VGC'],
+    calls: ['Ajah! Ajah! Enter!', 'Lekki Phase One!', 'Chevron, Chevron!', 'VGC straight!'], bus: LAGOS_BUS, taxi: ['#e8e8f0', '#3a3346', '#2f7bff'], keke: null, brt: ['#2f6bff', '#ff4d4d', 'CITY BUS'],
+    low: ['barrier', 'pothole', 'branches'], hatsF: ['gele', 'braids', 'none'], hatsM: ['cap', 'none', 'fila'], gown: true },
+  ikorodu: { busName: 'danfo', premium: true, hello: 'WELCOME TO IKORODU', side: ['#e9cfa6', '#dcc196'], curb: ['#FFC91A', '#1b1024'], walls: ['#ff9f7a', '#ffd166', '#7ad0c9', '#b39ddb', '#f6c28b'], h: [.95, 1.45], glass: .03, palm: .16,
+    awn: ['#ff5a3c', '#ffb000', '#18b86b', '#2f7bff'], shops: ['ABULE MARKET', 'OFADA RICE JOINT', 'GARAGE BUKKA', 'FURNITURE PALACE', 'PHONE ACCESSORIES', 'POS · CASH OUT'],
+    stops: ['IKORODU GARAGE', 'MAJIDUN', 'AGRIC', 'OWUTU', 'MILE 12'], calls: ['Ikorodu Garage! Enter!', 'Mile 12! Mile 12!', 'Agric, Owutu, enter!', 'Majidun straight!'],
+    bus: LAGOS_BUS, taxi: ['#FFC91A', '#e8e8f0'], keke: ['#FFC91A', '#18b86b'], brt: ['#2f6bff', '#ff4d4d', 'BRT'], low: ['pothole', 'pothole', 'branches', 'barrier'], animal: true,
+    hatsF: ['gele', 'gele', 'braids'], hatsM: ['fila', 'cap', 'none'], gown: true },
+  mainland: { busName: 'danfo', premium: true, bridge: true, sunset: true, hello: 'THIRD MAINLAND AT SUNSET', side: ['#2fb3e8', '#39c0f2'], curb: ['#FFC91A', '#1b1024'], walls: ['#ffffff'], h: [1, 1.5], glass: 0, palm: 0,
+    awn: ['#ff5a3c'], shops: ['LAGOS'], stops: ['THIRD MAINLAND'], calls: ['Third Mainland! No stopping!', 'CMS! Obalende! Enter!', 'Oya, bridge dey free today!', 'See sunset for Lagos!'],
+    bus: LAGOS_BUS, taxi: ['#e8e8f0', '#FFC91A'], keke: null, brt: ['#2f6bff', '#ff4d4d', 'BRT'], low: ['pothole', 'barrier'], hatsF: ['gele'], hatsM: ['cap'] },
+});
 function cityLook(C) {
   const f = Math.random() < .5, hat = pick(f ? C.hatsF : C.hatsM);
   return { skin: pick(C.skins || SKINS), shirt: pick(SHIRTS), dots: pick(['#ffe066', '#ffffff', '#1b1024']), pants: pick(PANTS), hat, hatCol: hat === 'scarf' && C.scarfCol && Math.random() < .6 ? C.scarfCol : pick(SHIRTS), gown: f && C.gown && Math.random() < .5 };
@@ -805,6 +840,29 @@ function cityLandmark(zone, base, W2) {
       const tx = W2 * .66, th = m * .36; shape([[tx - m * .035, base], [tx - m * .012, base - th], [tx + m * .012, base - th], [tx + m * .035, base]], '#d8d2c6');
       ctx.strokeStyle = 'rgba(27,16,36,.4)'; ctx.lineWidth = 1.5; for (const f of [-.5, 0, .5]) { ctx.beginPath(); ctx.moveTo(tx + f * m * .05, base); ctx.lineTo(tx + f * m * .016, base - th); ctx.stroke(); }
       ball(tx, base - th - m * .012, m * .014, nc('#ffb000')); break; }
+    case 'lekki': { // Lekki-Ikoyi Link Bridge: one tall pylon with fanned cables over the lagoon
+      ctx.fillStyle = nc('#4fb3e8'); ctx.fillRect(0, base - H * .016, W2, H * .016);
+      const px = W2 * .64, ph = m * .2, deck = base - m * .035;
+      ctx.strokeStyle = nc('#f4f4f6'); ctx.lineWidth = 1.2;
+      for (let i = 1; i <= 7; i++) for (const sd of [-1, 1]) { ctx.beginPath(); ctx.moveTo(px, deck - ph * (.55 + i * .06)); ctx.lineTo(px + sd * m * .05 * i, deck); ctx.stroke(); }
+      flat(W2 * .12, deck - m * .012, W2 * .88, m * .016, 2, nc('#e6e3dc'), 1.5);
+      shape([[px - m * .018, deck + m * .03], [px - m * .01, deck - ph], [px + m * .01, deck - ph], [px + m * .018, deck + m * .03]], '#f2f0ea', 2); break; }
+    case 'ikorodu': { // Ikorodu garage terminal with its roadside sign
+      hills(base, '#6b9f5e', .045, 6, 2, true);
+      const gx = W2 * .3, gw = m * .5, gh = m * .07;
+      shape([[gx - gw / 2, base], [gx - gw / 2, base - gh], [gx + gw / 2, base - gh], [gx + gw / 2, base]], '#e6dcc8', 2);
+      shape([[gx - gw * .56, base - gh], [gx - gw * .5, base - gh * 1.6], [gx + gw * .5, base - gh * 1.6], [gx + gw * .56, base - gh]], '#2f6bff', 2);
+      const sx = W2 * .78; flat(sx - 1.5, base - m * .2, 3, m * .2, 1, nc('#6a6f7e'), 0); flat(sx - m * .12, base - m * .27, m * .24, m * .08, 3, nc('#0e8f52'), 2);
+      label('IKORODU', sx, base - m * .23, m * .035, '#fff', m * .22); break; }
+    case 'mainland': { // Lagos Island skyline across the lagoon, Makoko stilt houses in front
+      ctx.fillStyle = nc('#3aa7d8'); ctx.fillRect(0, base - H * .03, W2, H * .03);
+      for (const [x, w, h] of [[.58, .05, .2], [.64, .04, .26], [.69, .05, .17], [.74, .035, .3], [.79, .05, .21], [.85, .04, .15], [.9, .05, .23]]) {
+        const bx = W2 * x, bw = m * w * 2, bh = m * h; ctx.fillStyle = nc(mixHex('#5b4b7a', '#ff9a4d', .25)); ctx.fillRect(bx, base - H * .03 - bh, bw, bh);
+        ctx.fillStyle = TOD.dark > .4 ? 'rgba(255,214,120,.85)' : 'rgba(255,220,170,.55)'; for (let y = base - H * .03 - bh + 5; y < base - H * .03 - 4; y += 8) for (let xx = bx + 3; xx < bx + bw - 3; xx += 6) ctx.fillRect(xx, y, 2, 3); }
+      for (let i = 0; i < 6; i++) { const hx = W2 * (.06 + i * .075), hy2 = base - H * .012 - (i % 2) * m * .01, hw = m * .045;
+        ctx.strokeStyle = nc('#5a3a22'); ctx.lineWidth = 1.5; for (const dx of [-.35, .35]) { ctx.beginPath(); ctx.moveTo(hx + dx * hw, hy2); ctx.lineTo(hx + dx * hw, hy2 + m * .02); ctx.stroke(); }
+        shape([[hx - hw / 2, hy2], [hx - hw / 2, hy2 - hw * .6], [hx + hw / 2, hy2 - hw * .6], [hx + hw / 2, hy2]], '#8a5a34', 1.2);
+        shape([[hx - hw * .62, hy2 - hw * .6], [hx, hy2 - hw * 1.05], [hx + hw * .62, hy2 - hw * .6]], '#a9b3bd', 1.2); } break; }
     case 'joburg': { // mine dumps, Ponte and Hillbrow Tower
       for (const [x, w, h] of [[.08, .22, .06], [.9, .26, .07]]) softShape([[W2 * x - m * w, base], [W2 * x - m * w * .6, base - m * h], [W2 * x + m * w * .6, base - m * h], [W2 * x + m * w, base]], '#d9bd62');
       const hx = W2 * .66, hh = m * .4; shape([[hx - m * .012, base], [hx - m * .012, base - hh], [hx + m * .012, base - hh], [hx + m * .012, base]], '#d6d0c4', 2);
@@ -954,20 +1012,20 @@ const BLOCK = new Set(['car', 'danfo', 'keke', 'brt', 'okada', 'cop']), JUMP = n
 const LEN = { sand: .35, car: .95, danfo: 1.2, keke: .7, brt: 2.2, okada: .5, pothole: .3, branches: .35, barrier: .2, bump: .2, goat: .35, cop: .3, coin: .2, pax: .3, speaker: .3, magnet: .3, sun: .3 };
 // what you crashed into, in each language (shown on the game-over card)
 const NAMES = {
-  en: { car: 'a car', danfo: 'another danfo', minibus: 'a minibus', keke: 'a keke (tricycle taxi)', brt: 'a city bus', okada: 'an okada (motorbike taxi)' },
-  pcm: { car: 'motor', danfo: 'another danfo', minibus: 'bus', keke: 'keke', brt: 'BRT bus', okada: 'okada' },
-  fr: { car: 'une voiture', danfo: 'un autre danfo', minibus: 'un minibus', keke: 'un tricycle-taxi', brt: 'un bus', okada: 'une moto-taxi' } };
+  en: { car: 'a car', danfo: 'another danfo', minibus: 'a minibus', keke: 'a keke (tricycle taxi)', brt: 'a BRT bus', citybus: 'a city bus', okada: 'an okada (motorbike taxi)' },
+  pcm: { car: 'motor', danfo: 'another danfo', minibus: 'bus', keke: 'keke', brt: 'BRT bus', citybus: 'city bus', okada: 'okada' },
+  fr: { car: 'une voiture', danfo: 'un autre danfo', minibus: 'un minibus', keke: 'un tricycle-taxi', brt: 'un bus BRT', citybus: 'un bus', okada: 'une moto-taxi' } };
 const COP = { skin: '#5a3320', shirt: '#1b1b24', dots: '#1b1b24', pants: '#1b1b24', hat: 'police' };
 
-function zoneAt(z) { const n = ZONES.length; return ZONES[((Math.floor((G.dist + z) / ZONE_LEN + (G.zi || 0)) % n) + n) % n].k; }
-function startZone() { const i = store.get('startZone', 0); return i > 0 && i < ZONES.length && reachedZones().includes(ZONES[i].k) ? i : 0; }
-function reachedZones() { const md = store.get('maxDist', 0), r = store.get('reached', []); return ZONES.filter((z, i) => md >= i * ZONE_LEN || r.includes(z.k)).map(z => z.k); }
+function zoneAt(z) { const L = (G && G.zl) || ROUTE_ORDER, n = L.length; return L[((Math.floor((G.dist + z) / ZONE_LEN + (G.zi || 0)) % n) + n) % n]; }
+function startZone() { const i = store.get('startZone', 0); return i > 0 && i < ZONES.length && ownsRoute(ZONES[i].k) && reachedZones().includes(ZONES[i].k) ? i : 0; }
+function reachedZones() { const md = store.get('maxDist', 0), r = store.get('reached', []); return ZONES.filter((z, i) => z.premium ? ownsRoute(z.k) : md >= i * ZONE_LEN || r.includes(z.k)).map(z => z.k); }
 function newGame(demo) {
   $('ptimer').hidden = true; $('pcount').hidden = true;
-  const zi = startZone();
+  const zl = zoneList(), zi = Math.max(0, zl.indexOf(ZONES[startZone()].k));
   $('wx').hidden = true; $('wx').style.visibility = '';
   objs.length = props.length = walls.length = parts.length = 0;
-  G = { zi, demo, D: DIFFS[demo ? 'normal' : diff], dist: 0, time: 0, speed: START, score: 0, coins: 0, streak: 0, P: { lane: 1, x: 0, y: 0, jt: 0, sq: 1, tilt: 0 },
+  G = { zl, zi, demo, D: DIFFS[demo ? 'normal' : diff], dist: 0, time: 0, speed: START, score: 0, coins: 0, streak: 0, P: { lane: 1, x: 0, y: 0, jt: 0, sq: 1, tilt: 0 },
     chase: { d: .3, t: demo ? 0 : 3 }, partyT: 0, magnetT: 0, dead: false, deadT: 0, rowAcc: 0, edge: [-1.3, -1.3], propAcc: 0,
     invT: 0, slowT: 0, waveT: 0, heat: 0, heatT: 0, lastPow: 0, lastParty: 0, nextSpeed: 25, zone: 'market', call: '', callT: 0, callNext: 3, hornT: 2, slogan: pick(SLOGANS), tut: (() => { const k = demo || (tutDone && diff !== 'easy'); return { dodge: k, jump: k, pax: k, cop: k, on: null }; })(),
     stopName: pick(STOPNAMES), stopAcc: 0, free: 1, swerveT: 9, rain: 0, rainT: 0, nextRain: rand(120, 170), todOff: 0, ff: 0, badEp: false, sunN: 0, nextSun: 0, wxOpen: false, wxT: 0, boltT: 0, nextBolt: 4, pax: 0, chain: 0, chainT: 0 };
@@ -1032,7 +1090,7 @@ function stepScenery(mv) {
     G.edge[s] -= mv; const side = s ? 1 : -1;
     while (G.edge[s] < FAR + 4) {
       const zone = zoneAt(G.edge[s]);
-      if (zone === 'bridge') { if (Math.random() < .25) props.push({ kind: 'boat', z: G.edge[s] + 2, x: side * rand(2.6, 4.5) }); if (Math.random() < .2) props.push({ kind: 'billboard', z: G.edge[s] + 1, x: side * 2.1, col: pick(['#2f7bff', '#ff5a3c', '#8b5cf6', '#18b86b']), text: pick(BOARDS) }); G.edge[s] += 4; continue; }
+      if (zone === 'bridge' || (CITY[zone] && CITY[zone].bridge)) { if (Math.random() < .25) props.push({ kind: 'boat', z: G.edge[s] + 2, x: side * rand(2.6, 4.5) }); if (Math.random() < .2) props.push({ kind: 'billboard', z: G.edge[s] + 1, x: side * 2.1, col: pick(['#2f7bff', '#ff5a3c', '#8b5cf6', '#18b86b']), text: pick(BOARDS) }); G.edge[s] += 4; continue; }
       if (zone === 'village') { const e = G.edge[s]; props.push({ kind: Math.random() < .6 ? 'hut' : 'tree', z: e + 1, x: side * rand(1.7, 2.3), roof: Math.random() < .5 ? 'zinc' : 'thatch', wall: pick(['#b86b3c', '#c47a45', '#a95f33']) });
         if (Math.random() < .35) props.push({ kind: 'tree', z: e + 2.4, x: side * rand(2.6, 3.4) }); if (Math.random() < .2) props.push({ kind: 'sign', z: e + .5, x: side * 1.5, side, col: pick(['#18b86b', '#2f7bff', '#ff5a3c']), text: pick(ZSHOPS.village) }); G.edge[s] += rand(2.4, 3.6); continue; }
       const CZ = CITY[zone], glass = zone === 'abuja' || (CZ && Math.random() < CZ.glass), kano = zone === 'kano' || (CZ && !glass && CZ.flat), len = rand(1.2, 2), b = { side, z: G.edge[s], len, glass, kano, h: glass ? rand(1.6, 2.6) : CZ ? rand(CZ.h[0], CZ.h[1]) : kano ? rand(.9, 1.3) : rand(1.05, 1.7), floors: 1 + ri(3),
@@ -1049,7 +1107,7 @@ function stepScenery(mv) {
     G.propAcc -= 2.2; const z = FAR + rand(0, 2), zone = zoneAt(z);
     for (const side of [-1, 1]) {
       const r = Math.random();
-      if (zone === 'bridge') { if (r < .35) props.push({ kind: 'lamp', z, x: side * 1.14, side }); continue; }
+      if (zone === 'bridge' || (CITY[zone] && CITY[zone].bridge)) { if (r < .35) props.push({ kind: 'lamp', z, x: side * 1.14, side }); continue; }
       if (zone === 'village') { if (r < .25) props.push({ kind: 'goat', z, x: side * rand(1.2, 1.6) }); else if (r < .5) props.push({ kind: 'person', z, x: side * rand(1.2, 1.5), look: randomLook(), pose: Math.random() < .5 ? 'tray' : 'idle' }); continue; }
       const CZ = CITY[zone];
       if (CZ) {
@@ -1124,10 +1182,12 @@ stage.addEventListener('pointerup', e => {
 // ---------------------------------------------------------------- flow
 function show(id, on) { $(id).hidden = !on; }
 function refreshTitle() {
+  if (typeof moneyUI === 'function') moneyUI();
   const d = daily(); $('mDot').hidden = d.ids.every(id => d.done[id]); document.querySelectorAll('.dsel').forEach(b => b.setAttribute('aria-checked', b.dataset.d === diff)); $('tBest').textContent = `${t('bestPill')} ${best.toLocaleString()}`; $('tCoins').innerHTML = `<span class="coin-i sm">A</span>${bank.toLocaleString()} ${t('saved')}`; $('soundBtn').innerHTML = A.on ? '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>' : '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="m17 9 5 6M22 9l-5 6"/></svg>'; $('soundBtn').setAttribute('aria-label', A.on ? 'Sound on' : 'Sound off'); const nk0 = store.get('nick', ''); $('nameTxt').textContent = nk0 ? t('hi') + ', ' + nk0 : t('addName'); }
 function start() {
-  audioInit(); stopPartyClip(0); if (A.music) A.music.gain.value = .45; preloadParty(); newGame(false); mode = 'play'; musicStart(); track('runs'); G.beatShown = false;
+  moneyBanner(false); audioInit(); stopPartyClip(0); if (A.music) A.music.gain.value = .45; preloadParty(); newGame(false); mode = 'play'; musicStart(); track('runs'); G.beatShown = false;
   show('title', false); show('over', false); show('paused', false); show('sheet', false); show('quiz', false); show('hud', true); $('dchip').textContent = DIFFS[diff].name; $('toasts').innerHTML = '';
+  if (store.get('honk', false) && !learning()) { store.set('honk', false); setTimeout(honkGo, 1400); moneyUI(); }
   if (learning()) G.chase.t = 0; else { toast('POLICE DEY FOLLOW YOU!'); sfx.siren(); setTimeout(() => sfx.siren(), 900); }
   setTimeout(() => { const zk = zoneAt(ZP); say(pick(ZCALLS[zk] || (CITY[zk] && CITY[zk].calls) || ['Oshodi! Oshodi! Enter!'])); }, 1200);
 }
@@ -1156,7 +1216,7 @@ function gameOver() {
   $('overT').textContent = G.deadKind === 'caught' ? t('jail') : t('crash');
   $('overWhy').textContent = G.deadKind === 'caught' ? t('whyCaught') : t('whyCrash', /^bus:/.test(G.deadWhat || '') ? { en: 'a ', fr: 'un ', pcm: '' }[lang] + G.deadWhat.slice(4) : (NAMES[lang] || NAMES.en)[G.deadWhat] || (NAMES[lang] || NAMES.en).car);
   $('oScore').textContent = score.toLocaleString(); $('oCoins').textContent = G.coins.toLocaleString(); $('oPax').textContent = G.pax; $('oBest').textContent = best.toLocaleString();
-  $('newBest').hidden = !isBest; show('over', true); (qb.hidden || qb.disabled ? $('againBtn') : qb).focus();
+  moneyOver(); $('newBest').hidden = !isBest; show('over', true); (qb.hidden || qb.disabled ? $('againBtn') : qb).focus();
 }
 // ================================================================ features
 // ---- language (menus and hints). The catchphrase stays in pidgin everywhere.
@@ -1164,17 +1224,17 @@ const STR = {
   en: { play: 'PLAY', again: 'PLAY AGAIN', home: 'Home', quiz: 'QUIZ TO CONTINUE', free: 'Answer right, keep driving · FREE', cost: 'Answer right, keep driving · {n} coins', need: 'You need {n} coins to try',
     howto: 'Pick up passengers for points.<br>Swipe ← → to dodge · Swipe ↑ to hop potholes', name: 'Your name', missions: 'Missions', garage: 'Garage', journey: 'Journey', quizmode: 'Africa Quiz',
     challenge: 'CHALLENGE A FRIEND', crash: 'CRASH!', jail: 'JAIL!', dodge: 'SWIPE TO DODGE', jump: 'SWIPE UP TO HOP', pax: 'PICK UP PASSENGERS!', cop: 'POLICE! AVOID THEM', tag: 'We never finish last!', resume: 'RESUME', paused: 'PAUSED',
-    sun: 'SUN COIN! PICK ONE', mkday: 'MAKE IT DAY', dry: 'STOP THE RAIN', keep: 'KEEP IT', rainSoon: 'Rain soon', raining: 'Raining', nightSoon: 'Night soon', daySoon: 'Dawn soon', nightOn: 'NIGHT DON FALL · HEADLIGHTS ON', partyGo: 'BUS JAM PARTY! ROAD CLEAR!', partyHow: 'No traffic · no police · passengers and coins come to you', partyEnd: 'PARTY ENDING · TRAFFIC DEY COME BACK', partyBar: 'FREE RIDE', chalT: 'Beat my score', chalSub: 'CAN YOU BEAT', chalPax: 'passengers carried', chalShare: 'Share to any app', chalCopy: 'COPY', chalDone: 'DONE', correct: 'Correct!', timeUp: 'Time up!', notQuite: 'Not quite.', keepDriving: 'KEEP DRIVING', ok: 'OK', next: 'NEXT', finish: 'FINISH', youGot: 'You got {n} of 5 right!', plusCoins: '+{n} coins', capHit: 'You reached today\'s quiz coin limit. Keep learning for fun!', comeBack: 'Come back any time to learn more about Africa.', close: 'CLOSE', letsgo: 'LET\'S GO', save: 'SAVE', share: 'SHARE', lblScore: 'Score', lblPax: 'Passengers', lblCoins: 'Coins', lblBest: 'Best', newBest: 'NEW BEST!', bestPill: 'BEST', saved: 'saved', todayMis: 'Today\'s missions. New ones every day. Day streak: {n}', coinsSaved: 'Coins saved', driving: 'DRIVING', tapDrive: 'Tap to drive', needMore: 'Need A {n} more', addName: 'Add your name', hi: 'Hi', easy: 'EASY', normal: 'NORMAL', hard: 'HARD', dailyBonus: 'Daily bonus +{n} coins', dayN: 'Day {n} streak', missionDone: 'MISSION DONE! +{n} COINS', backOnRoad: 'BACK ON THE ROAD!', quizTag: 'AFRICA QUIZ', journeyIntro: 'Drive across Africa. Tap any place you have reached to start your next run there.', reachedTap: 'Reached · tap to start here', startsHere: 'Your next run starts here', keepAfter: 'Keep driving after {n}', nameInfo: 'This name shows on your score and on challenges you send to friends.', nameChal: 'Add your name so your friend knows who to beat.', namePh: 'Enter nickname', whyCrash: 'You crashed into {n}!', gateT: 'Before you share', gateMsg: 'Sharing opens other apps like WhatsApp. What year were you born?', gatePh: 'Year of birth', gateGo: 'CONTINUE', gateBad: 'Please enter a year, like 1990.', gateKid: 'Ask a grown-up to share your score for you. Keep driving!', whyCaught: 'The police caught you and you had no money to settle.',
+    sun: 'SUN COIN! PICK ONE', mkday: 'MAKE IT DAY', dry: 'STOP THE RAIN', keep: 'KEEP IT', rainSoon: 'Rain soon', raining: 'Raining', nightSoon: 'Night soon', daySoon: 'Dawn soon', nightOn: 'NIGHT DON FALL · HEADLIGHTS ON', partyGo: 'BUS JAM PARTY! ROAD CLEAR!', partyHow: 'No traffic · no police · passengers and coins come to you', partyEnd: 'PARTY ENDING · TRAFFIC DEY COME BACK', partyBar: 'FREE RIDE', chalT: 'Beat my score', chalSub: 'CAN YOU BEAT', chalPax: 'passengers carried', chalShare: 'Share to any app', chalCopy: 'COPY', chalDone: 'DONE', correct: 'Correct!', timeUp: 'Time up!', notQuite: 'Not quite.', keepDriving: 'KEEP DRIVING', ok: 'OK', next: 'NEXT', finish: 'FINISH', youGot: 'You got {n} of 5 right!', plusCoins: '+{n} coins', capHit: 'You reached today\'s quiz coin limit. Keep learning for fun!', comeBack: 'Come back any time to learn more about Africa.', close: 'CLOSE', letsgo: 'LET\'S GO', save: 'SAVE', share: 'SHARE', lblScore: 'Score', lblPax: 'Passengers', lblCoins: 'Coins', lblBest: 'Best', newBest: 'NEW BEST!', bestPill: 'BEST', saved: 'saved', todayMis: 'Today\'s missions. New ones every day. Day streak: {n}', coinsSaved: 'Coins saved', driving: 'DRIVING', tapDrive: 'Tap to drive', needMore: 'Need A {n} more', addName: 'Add your name', hi: 'Hi', easy: 'EASY', normal: 'NORMAL', hard: 'HARD', dailyBonus: 'Daily bonus +{n} coins', dayN: 'Day {n} streak', missionDone: 'MISSION DONE! +{n} COINS', backOnRoad: 'BACK ON THE ROAD!', quizTag: 'AFRICA QUIZ', journeyIntro: 'Drive across Africa. Tap any place you have reached to start your next run there.', reachedTap: 'Reached · tap to start here', startsHere: 'Your next run starts here', keepAfter: 'Keep driving after {n}', nameInfo: 'This name shows on your score and on challenges you send to friends.', nameChal: 'Add your name so your friend knows who to beat.', namePh: 'Enter nickname', watchAd: 'Watch an ad', adCont: 'CONTINUE', adDouble: 'DOUBLE COINS', adNA: 'No ad right now. Try again soon.', doubled: '+{n} coins doubled!', honk: 'HONK BOOST', honkS: 'Watch an ad · start with a free ride', honkReady: 'HONK BOOST READY', honkReadyS: 'Your next run starts with a free ride', honkGo: 'HONK BOOST! FREE RIDE!', shop: 'Shop', shopWeb: 'Purchases are available in the Danfo Craze app.', shopWait: 'Connecting to the store…', restore: 'Restore purchases', restored: 'Purchases restored', buyFail: 'Could not finish. Please try again.', gotCoins: '+{n} COINS!', paidRoute: 'Paid route · tap to see it in the shop', whyCrash: 'You crashed into {n}!', gateT: 'Before you share', gateMsg: 'Sharing opens other apps like WhatsApp. What year were you born?', gatePh: 'Year of birth', gateGo: 'CONTINUE', gateBad: 'Please enter a year, like 1990.', gateKid: 'Ask a grown-up to share your score for you. Keep driving!', whyCaught: 'The police caught you and you had no money to settle.',
     siren: 'SIREN {n}/3 · DRIVE CLEAN TO LOSE THEM', sirenOff: 'SIREN OFF', settled: 'SETTLED POLICE: {n}' },
   pcm: { play: 'OYA DRIVE', again: 'TRY AM AGAIN', home: 'Go house', quiz: 'ANSWER QUIZ, CONTINUE', free: 'Answer am correct, continue · FREE', cost: 'Answer am correct, continue · {n} coins', need: 'You need {n} coins to try',
     howto: 'Carry passengers, collect point.<br>Swipe ← → dodge motor · Swipe ↑ jump pothole', name: 'Your name', missions: 'Wetin to do', garage: 'Mechanic', journey: 'Our road', quizmode: 'Africa Quiz',
     challenge: 'CHALLENGE YOUR PADI', crash: 'E DON HAPPEN!', jail: 'DEM DON LOCK YOU!', dodge: 'SWIPE, DODGE AM', jump: 'SWIPE UP, JUMP AM', pax: 'CARRY PASSENGER!', cop: 'POLICE! NO JAM DEM', tag: '', resume: 'CONTINUE', paused: 'HOLD ON',
-    sun: 'SUN COIN! WETIN YOU WAN?', mkday: 'MAKE AM DAY', dry: 'STOP DI RAIN', keep: 'KEEP AM', rainSoon: 'Rain dey come', raining: 'Rain dey fall', nightSoon: 'Night dey come', daySoon: 'Day don near', nightOn: 'NIGHT DON FALL · ON YOUR LIGHT', partyGo: 'BUS JAM PARTY! ROAD DON CLEAR!', partyHow: 'No motor · no police · passenger and coin go come meet you', partyEnd: 'PARTY DON DEY END · MOTOR DEY COME BACK', partyBar: 'FREE RIDE', chalT: 'Beat my score', chalSub: 'YOU FIT BEAT', chalPax: 'passengers carried', chalShare: 'Share for any app', chalCopy: 'COPY', chalDone: 'I DON FINISH', correct: 'Correct!', timeUp: 'Time don finish!', notQuite: 'E no correct.', keepDriving: 'CONTINUE DRIVE', ok: 'OK', next: 'NEXT', finish: 'FINISH', youGot: 'You get {n} out of 5 correct!', plusCoins: '+{n} coins', capHit: 'You don reach today quiz coin limit. Continue to learn for fun!', comeBack: 'Come back anytime, learn more about Africa.', close: 'CLOSE', letsgo: 'OYA GO', save: 'SAVE', share: 'SHARE', lblScore: 'Score', lblPax: 'Passengers', lblCoins: 'Coins', lblBest: 'Best', newBest: 'NEW BEST!', bestPill: 'BEST', saved: 'for bank', todayMis: 'Wetin to do today. New ones every day. Day streak: {n}', coinsSaved: 'Coins for bank', driving: 'YOU DEY DRIVE AM', tapDrive: 'Tap to drive am', needMore: 'You need A {n} more', addName: 'Put your name', hi: 'How far', easy: 'EASY', normal: 'NORMAL', hard: 'HARD', dailyBonus: 'Daily bonus +{n} coins', dayN: 'Day {n} streak', missionDone: 'MISSION DON COMPLETE! +{n} COINS', backOnRoad: 'WE DON RETURN FOR ROAD!', quizTag: 'AFRICA QUIZ', journeyIntro: 'Drive across Africa. Tap any place wey you don reach, make your next run start from there.', reachedTap: 'You don reach here · tap to start here', startsHere: 'Your next run go start here', keepAfter: 'Continue to drive pass {n}', nameInfo: 'This name go show for your score and the challenge wey you send your padi.', nameChal: 'Put your name make your padi know who to beat.', namePh: 'Your nickname', whyCrash: 'You don jam {n}!', gateT: 'Before you share', gateMsg: 'Sharing go open other apps like WhatsApp. Which year dem born you?', gatePh: 'Year wey dem born you', gateGo: 'CONTINUE', gateBad: 'Abeg put correct year, like 1990.', gateKid: 'Make big person share your score for you. Continue to drive!', whyCaught: 'No money to settle. Na station be that!',
+    sun: 'SUN COIN! WETIN YOU WAN?', mkday: 'MAKE AM DAY', dry: 'STOP DI RAIN', keep: 'KEEP AM', rainSoon: 'Rain dey come', raining: 'Rain dey fall', nightSoon: 'Night dey come', daySoon: 'Day don near', nightOn: 'NIGHT DON FALL · ON YOUR LIGHT', partyGo: 'BUS JAM PARTY! ROAD DON CLEAR!', partyHow: 'No motor · no police · passenger and coin go come meet you', partyEnd: 'PARTY DON DEY END · MOTOR DEY COME BACK', partyBar: 'FREE RIDE', chalT: 'Beat my score', chalSub: 'YOU FIT BEAT', chalPax: 'passengers carried', chalShare: 'Share for any app', chalCopy: 'COPY', chalDone: 'I DON FINISH', correct: 'Correct!', timeUp: 'Time don finish!', notQuite: 'E no correct.', keepDriving: 'CONTINUE DRIVE', ok: 'OK', next: 'NEXT', finish: 'FINISH', youGot: 'You get {n} out of 5 correct!', plusCoins: '+{n} coins', capHit: 'You don reach today quiz coin limit. Continue to learn for fun!', comeBack: 'Come back anytime, learn more about Africa.', close: 'CLOSE', letsgo: 'OYA GO', save: 'SAVE', share: 'SHARE', lblScore: 'Score', lblPax: 'Passengers', lblCoins: 'Coins', lblBest: 'Best', newBest: 'NEW BEST!', bestPill: 'BEST', saved: 'for bank', todayMis: 'Wetin to do today. New ones every day. Day streak: {n}', coinsSaved: 'Coins for bank', driving: 'YOU DEY DRIVE AM', tapDrive: 'Tap to drive am', needMore: 'You need A {n} more', addName: 'Put your name', hi: 'How far', easy: 'EASY', normal: 'NORMAL', hard: 'HARD', dailyBonus: 'Daily bonus +{n} coins', dayN: 'Day {n} streak', missionDone: 'MISSION DON COMPLETE! +{n} COINS', backOnRoad: 'WE DON RETURN FOR ROAD!', quizTag: 'AFRICA QUIZ', journeyIntro: 'Drive across Africa. Tap any place wey you don reach, make your next run start from there.', reachedTap: 'You don reach here · tap to start here', startsHere: 'Your next run go start here', keepAfter: 'Continue to drive pass {n}', nameInfo: 'This name go show for your score and the challenge wey you send your padi.', nameChal: 'Put your name make your padi know who to beat.', namePh: 'Your nickname', watchAd: 'Watch ad', adCont: 'CONTINUE', adDouble: 'DOUBLE COINS', adNA: 'No ad now. Try again small time.', doubled: '+{n} coins don double!', honk: 'HONK BOOST', honkS: 'Watch ad · start with free ride', honkReady: 'HONK BOOST DEY READY', honkReadyS: 'Your next run go start with free ride', honkGo: 'HONK BOOST! FREE RIDE!', shop: 'Shop', shopWeb: 'You fit buy for inside Danfo Craze app.', shopWait: 'We dey connect to store…', restore: 'Restore wetin you buy', restored: 'We don restore wetin you buy', buyFail: 'E no work. Abeg try again.', gotCoins: '+{n} COINS!', paidRoute: 'Paid route · tap make you see am for shop', whyCrash: 'You don jam {n}!', gateT: 'Before you share', gateMsg: 'Sharing go open other apps like WhatsApp. Which year dem born you?', gatePh: 'Year wey dem born you', gateGo: 'CONTINUE', gateBad: 'Abeg put correct year, like 1990.', gateKid: 'Make big person share your score for you. Continue to drive!', whyCaught: 'No money to settle. Na station be that!',
     siren: 'SIREN {n}/3 · DRIVE WELL MAKE DEM COMOT', sirenOff: 'SIREN DON OFF', settled: 'YOU DON SETTLE: {n}' },
   fr: { play: 'JOUER', again: 'REJOUER', home: 'Accueil', quiz: 'QUIZ POUR CONTINUER', free: 'Bonne réponse, tu continues · GRATUIT', cost: 'Bonne réponse, tu continues · {n} pièces', need: 'Il te faut {n} pièces',
     howto: 'Prends des passagers pour gagner des points.<br>Glisse ← → pour esquiver · Glisse ↑ pour sauter', name: 'Ton nom', missions: 'Missions', garage: 'Garage', journey: 'Voyage', quizmode: 'Quiz Afrique',
     challenge: 'DÉFIE UN AMI', crash: 'ACCIDENT !', jail: 'PRISON !', dodge: 'GLISSE POUR ESQUIVER', jump: 'GLISSE ↑ POUR SAUTER', pax: 'PRENDS LES PASSAGERS !', cop: 'POLICE ! ÉVITE-LES', tag: 'On ne finit jamais dernier !', resume: 'REPRENDRE', paused: 'PAUSE',
-    sun: 'PIÈCE SOLEIL ! CHOISIS', mkday: 'FAIS LE JOUR', dry: 'STOP LA PLUIE', keep: 'GARDE-LA', rainSoon: 'Pluie bientôt', raining: 'Il pleut', nightSoon: 'Nuit bientôt', daySoon: 'Aube bientôt', nightOn: 'LA NUIT TOMBE · PHARES ALLUMÉS', partyGo: 'BUS JAM PARTY ! ROUTE LIBRE !', partyHow: 'Pas de trafic · pas de police · passagers et pièces viennent à toi', partyEnd: 'FIN DE LA FÊTE · LE TRAFIC REVIENT', partyBar: 'TRAJET LIBRE', chalT: 'Bats mon score', chalSub: 'PEUX-TU BATTRE', chalPax: 'passagers transportés', chalShare: 'Partager vers une app', chalCopy: 'COPIER', chalDone: 'TERMINÉ', correct: 'Bonne réponse !', timeUp: 'Temps écoulé !', notQuite: 'Pas tout à fait.', keepDriving: 'CONTINUER', ok: 'OK', next: 'SUIVANT', finish: 'TERMINER', youGot: 'Tu as {n} bonnes réponses sur 5 !', plusCoins: '+{n} pièces', capHit: 'Limite de pièces du quiz atteinte pour aujourd\'hui. Continue à apprendre pour le plaisir !', comeBack: 'Reviens quand tu veux pour découvrir l\'Afrique.', close: 'FERMER', letsgo: 'C\'EST PARTI', save: 'ENREGISTRER', share: 'PARTAGER', lblScore: 'Score', lblPax: 'Passagers', lblCoins: 'Pièces', lblBest: 'Record', newBest: 'NOUVEAU RECORD !', bestPill: 'RECORD', saved: 'gagnées', todayMis: 'Missions du jour. De nouvelles chaque jour. Série de jours : {n}', coinsSaved: 'Pièces gagnées', driving: 'EN SERVICE', tapDrive: 'Touche pour conduire', needMore: 'Il manque A {n}', addName: 'Ajoute ton nom', hi: 'Salut', easy: 'FACILE', normal: 'NORMAL', hard: 'DIFFICILE', dailyBonus: 'Bonus du jour +{n} pièces', dayN: 'Série de jours : {n}', missionDone: 'MISSION RÉUSSIE ! +{n} PIÈCES', backOnRoad: 'DE RETOUR SUR LA ROUTE !', quizTag: 'QUIZ AFRIQUE', journeyIntro: 'Traverse l\'Afrique. Touche un lieu déjà atteint pour y commencer ta prochaine course.', reachedTap: 'Atteint · touche pour commencer ici', startsHere: 'Ta prochaine course commence ici', keepAfter: 'Continue après {n}', nameInfo: 'Ce nom apparaît sur ton score et sur les défis envoyés à tes amis.', nameChal: 'Ajoute ton nom pour que ton ami sache qui battre.', namePh: 'Ton pseudo', whyCrash: 'Tu as percuté {n} !', gateT: 'Avant de partager', gateMsg: 'Le partage ouvre d\'autres applis comme WhatsApp. En quelle année es-tu né(e) ?', gatePh: 'Année de naissance', gateGo: 'CONTINUER', gateBad: 'Entre une année, par exemple 1990.', gateKid: 'Demande à un adulte de partager ton score pour toi. Continue à rouler !', whyCaught: 'La police t\'a arrêté et tu n\'avais pas de quoi payer.',
+    sun: 'PIÈCE SOLEIL ! CHOISIS', mkday: 'FAIS LE JOUR', dry: 'STOP LA PLUIE', keep: 'GARDE-LA', rainSoon: 'Pluie bientôt', raining: 'Il pleut', nightSoon: 'Nuit bientôt', daySoon: 'Aube bientôt', nightOn: 'LA NUIT TOMBE · PHARES ALLUMÉS', partyGo: 'BUS JAM PARTY ! ROUTE LIBRE !', partyHow: 'Pas de trafic · pas de police · passagers et pièces viennent à toi', partyEnd: 'FIN DE LA FÊTE · LE TRAFIC REVIENT', partyBar: 'TRAJET LIBRE', chalT: 'Bats mon score', chalSub: 'PEUX-TU BATTRE', chalPax: 'passagers transportés', chalShare: 'Partager vers une app', chalCopy: 'COPIER', chalDone: 'TERMINÉ', correct: 'Bonne réponse !', timeUp: 'Temps écoulé !', notQuite: 'Pas tout à fait.', keepDriving: 'CONTINUER', ok: 'OK', next: 'SUIVANT', finish: 'TERMINER', youGot: 'Tu as {n} bonnes réponses sur 5 !', plusCoins: '+{n} pièces', capHit: 'Limite de pièces du quiz atteinte pour aujourd\'hui. Continue à apprendre pour le plaisir !', comeBack: 'Reviens quand tu veux pour découvrir l\'Afrique.', close: 'FERMER', letsgo: 'C\'EST PARTI', save: 'ENREGISTRER', share: 'PARTAGER', lblScore: 'Score', lblPax: 'Passagers', lblCoins: 'Pièces', lblBest: 'Record', newBest: 'NOUVEAU RECORD !', bestPill: 'RECORD', saved: 'gagnées', todayMis: 'Missions du jour. De nouvelles chaque jour. Série de jours : {n}', coinsSaved: 'Pièces gagnées', driving: 'EN SERVICE', tapDrive: 'Touche pour conduire', needMore: 'Il manque A {n}', addName: 'Ajoute ton nom', hi: 'Salut', easy: 'FACILE', normal: 'NORMAL', hard: 'DIFFICILE', dailyBonus: 'Bonus du jour +{n} pièces', dayN: 'Série de jours : {n}', missionDone: 'MISSION RÉUSSIE ! +{n} PIÈCES', backOnRoad: 'DE RETOUR SUR LA ROUTE !', quizTag: 'QUIZ AFRIQUE', journeyIntro: 'Traverse l\'Afrique. Touche un lieu déjà atteint pour y commencer ta prochaine course.', reachedTap: 'Atteint · touche pour commencer ici', startsHere: 'Ta prochaine course commence ici', keepAfter: 'Continue après {n}', nameInfo: 'Ce nom apparaît sur ton score et sur les défis envoyés à tes amis.', nameChal: 'Ajoute ton nom pour que ton ami sache qui battre.', namePh: 'Ton pseudo', watchAd: 'Regarder une pub', adCont: 'CONTINUER', adDouble: 'DOUBLER LES PIÈCES', adNA: 'Pas de pub pour le moment. Réessaie bientôt.', doubled: '+{n} pièces doublées !', honk: 'HONK BOOST', honkS: 'Regarde une pub · départ en trajet libre', honkReady: 'HONK BOOST PRÊT', honkReadyS: 'Ta prochaine course commence en trajet libre', honkGo: 'HONK BOOST ! TRAJET LIBRE !', shop: 'Boutique', shopWeb: 'Les achats sont disponibles dans l\'appli Danfo Craze.', shopWait: 'Connexion à la boutique…', restore: 'Restaurer les achats', restored: 'Achats restaurés', buyFail: 'Échec. Réessaie.', gotCoins: '+{n} PIÈCES !', paidRoute: 'Route payante · touche pour la voir en boutique', whyCrash: 'Tu as percuté {n} !', gateT: 'Avant de partager', gateMsg: 'Le partage ouvre d\'autres applis comme WhatsApp. En quelle année es-tu né(e) ?', gatePh: 'Année de naissance', gateGo: 'CONTINUER', gateBad: 'Entre une année, par exemple 1990.', gateKid: 'Demande à un adulte de partager ton score pour toi. Continue à rouler !', whyCaught: 'La police t\'a arrêté et tu n\'avais pas de quoi payer.',
     siren: 'SIRÈNE {n}/3 · CONDUIS BIEN POUR LES SEMER', sirenOff: 'SIRÈNE ÉTEINTE', settled: 'POLICE PAYÉE : {n}' },
 };
 const LANGS = ['en', 'pcm', 'fr'], LANG_LABEL = { en: 'EN', pcm: 'PIDGIN', fr: 'FR' };
@@ -1185,6 +1245,7 @@ function applyLang() {
   $('resumeBtn').textContent = t('resume'); document.querySelector('#paused h2').textContent = t('paused');
   $('tag2').textContent = t('tag');
   document.querySelectorAll('[data-t]').forEach(el => el.textContent = t(el.dataset.t)); document.querySelector('#quizBtn b').textContent = t('quiz');
+  $('adContT').textContent = t('adCont'); $('adDoubleT').textContent = t('adDouble'); if (typeof moneyUI === 'function') moneyUI();
   $('langBtn').textContent = LANG_LABEL[lang]; document.documentElement.lang = lang;
 }
 
@@ -1256,9 +1317,70 @@ function showGarage() {
 function showJourney() {
   const got = reachedZones(), cur = startZone();
   openSheet(t('journey'), `<p style="margin:0;font-weight:700">${t('journeyIntro')}</p>` + ZONES.map((z, i) => { const on = got.includes(z.k), prev = ZONES[(i + ZONES.length - 1) % ZONES.length].name.split(' · ')[0];
+    const locked = z.premium && !ownsRoute(z.k); if (locked && !(M() && M().enabled && M().native)) return ''; if (locked) return `<button type="button" class="stop paid" data-zi="${i}"><span class="pin">🔒</span><span>${z.name}<small>${t('paidRoute')}</small></span></button>`;
     return `<button type="button" class="stop ${on ? 'on' : ''} ${i === cur ? 'cur' : ''}" data-zi="${i}" ${on ? '' : 'disabled'}><span class="pin">${i === cur ? '▶' : on ? '✓' : i + 1}</span><span>${z.name}<small>${i === cur ? t('startsHere') : on ? t('reachedTap') : t('keepAfter', prev)}</small></span></button>`; }).join(''));
+  $('sheetB').querySelectorAll('.stop.paid').forEach(b => b.onclick = showShop);
   $('sheetB').querySelectorAll('.stop.on').forEach(b => b.onclick = () => { store.set('startZone', +b.dataset.zi); newGame(true); for (let i = 0; i < 90; i++) update(1 / 30); showJourney(); });
 }
+
+// ---- ads and shop (store apps only; on the website these stay hidden)
+const M = () => window.DC_MONEY || null;
+const PROD = {
+  remove_ads: { en: ['Remove ads', 'No more banner on the menu. Rewarded ads stay optional.'], fr: ['Supprimer les pubs', 'Plus de bannière au menu. Les pubs récompensées restent au choix.'] },
+  starter_pack: { en: ['Starter Pack', '1,500 coins + Owambe Gold bus'], fr: ['Pack de départ', '1 500 pièces + le bus Owambe Gold'] },
+  coins_small: { en: ['Coin bag', '1,000 coins'], fr: ['Sac de pièces', '1 000 pièces'] },
+  coins_medium: { en: ['Coin box', '3,500 coins'], fr: ['Boîte de pièces', '3 500 pièces'] },
+  coins_large: { en: ['Coin bank', '10,000 coins'], fr: ['Coffre de pièces', '10 000 pièces'] },
+  route_lekki: { en: ['Lekki route', 'New area: Lekki-Ikoyi bridge, beach and estates. +25% coins there.'], fr: ['Route de Lekki', 'Nouveau quartier : pont Lekki-Ikoyi, plage. +25 % de pièces.'] },
+  route_ikorodu: { en: ['Ikorodu route', 'New area: garages, markets and BRT. +25% coins there.'], fr: ['Route d' + "'" + 'Ikorodu', 'Nouveau quartier : gares routières et marchés. +25 % de pièces.'] },
+  route_third_mainland: { en: ['Third Mainland sunset', 'The long bridge at golden hour, Lagos skyline and Makoko. +25% coins there.'], fr: ['Third Mainland au coucher du soleil', 'Le grand pont à l' + "'" + 'heure dorée. +25 % de pièces.'] },
+  oga_driver_club_monthly: { en: ['Oga Driver Club', 'Monthly membership'], fr: ['Club Oga Driver', 'Abonnement mensuel'] },
+};
+const prodTxt = id => (PROD[id] && (PROD[id][lang] || PROD[id].en)) || [id, ''];
+function moneyUI() {
+  const m = M(), native = !!(m && m.enabled && m.native);
+  $('shopBtn').hidden = !native;
+  const armed = store.get('honk', false), hb = $('honkBtn');
+  hb.hidden = !(m && m.adsReady) && !armed; hb.classList.toggle('ready', armed);
+  $('honkT').textContent = armed ? t('honkReady') : t('honk'); $('honkS').textContent = armed ? t('honkReadyS') : t('honkS');
+}
+function moneyBanner(on) { const m = M(); if (m) m.banner(on); }
+function moneyOver() {
+  const m = M(), ads = !!(m && m.adsReady && !G.demo);
+  $('adCont').hidden = !ads || !!G.adSaved; $('adDouble').hidden = !ads || !!G.doubled || G.coins <= 0;
+  $('adRow').hidden = $('adCont').hidden && $('adDouble').hidden;
+}
+function adFail() { toast(t('adNA'), true, '', true); }
+$('adCont').onclick = () => { const m = M(); if (!m) return; m.rewarded('rewardedContinue').then(ok => { if (!ok) return adFail(); G.adSaved = true; show('over', false); continueRun(true); }); };
+$('adDouble').onclick = () => { const m = M(); if (!m) return; m.rewarded('rewardedDouble').then(ok => { if (!ok) return adFail();
+  const extra = G.coins; G.coins += extra; bank += G.coins - G.banked; G.banked = G.coins; store.set('bank', bank); G.doubled = true;
+  $('oCoins').textContent = G.coins.toLocaleString(); toast(t('doubled', extra), true, '', true); sfx.power(); moneyOver(); refreshTitle(); }); };
+$('honkBtn').onclick = () => { if (store.get('honk', false)) return start(); const m = M(); if (!m) return;
+  m.rewarded('rewardedHonk').then(ok => { if (!ok) return adFail(); store.set('honk', true); sfx.horn(0, .1); moneyUI(); }); };
+function honkGo() { if (mode !== 'play' || G.dead) return; G.partyT = 10; G.partyLen = 10; clearRoad(); partyMusic(true); track('party'); for (let i = 0; i < 26; i++) confetti(rand(W), rand(-40, H * .15));
+  sfx.horn(-.3, .1); setTimeout(() => sfx.horn(.3, .1), 200); toast(t('honkGo'), false, 'big'); }
+// what a purchase gives in the game (called by monetize.js)
+window.DC_ON_GRANT = g => {
+  if (g.coins) { bank += g.coins; store.set('bank', bank); toast(t('gotCoins', g.coins.toLocaleString()), false, '', true); }
+  if (g.skin) { const own = store.get('owned', ['classic']); if (!own.includes(g.skin)) own.push(g.skin); store.set('owned', own); store.set('skin', g.skin); }
+  if (g.route) { const r = store.get('routes', []); if (!r.includes(g.route)) r.push(g.route); store.set('routes', r); }
+  if (mode === 'title') { newGame(true); for (let i = 0; i < 30; i++) update(1 / 30); }
+  refreshTitle();
+};
+function showShop() {
+  const m = M(); if (!m) return;
+  const list = m.products().map(p => { const [name, desc] = prodTxt(p.id), own = p.type !== 'consumable' && (m.owns(p.id) || (p.grants.entitlement && m.has(p.grants.entitlement)) || (p.grants.route && ownsRoute(p.grants.route)));
+    const price = m.price(p.id); return `<div class="prod ${own ? 'own' : ''}"><b>${name}</b><small>${desc}</small><button type="button" data-buy="${p.id}" ${own || !price ? 'disabled' : ''}>${own ? '✓' : price || '…'}</button></div>`; }).join('');
+  openSheet(t('shop'), `<div class="shopl">${list}</div>${m.storeReady ? '' : `<p class="shopnote">${m.native ? t('shopWait') : t('shopWeb')}</p>`}<button type="button" class="restore" id="restoreBtn">${t('restore')}</button>`);
+  $('sheetB').querySelectorAll('[data-buy]').forEach(b => b.onclick = async () => { b.disabled = true; b.textContent = '…'; const r = await m.buy(b.dataset.buy);
+    if (!r.ok && r.reason !== 'cancelled') toast(t('buyFail'), true, '', true); if (!$('sheet').hidden) showShop(); });
+  $('restoreBtn').onclick = async () => { const ok = await m.restore(); toast(ok ? t('restored') : t('buyFail'), true, '', true); if (!$('sheet').hidden) showShop(); };
+}
+$('shopBtn').onclick = showShop;
+if (M()) M().onChange(() => { moneyUI(); if (mode === 'over' && G) moneyOver(); if (mode === 'title') moneyBanner(true); });
+// Android back button and app background/foreground (store apps)
+window.DC_BACK = () => { if (!$('sheet').hidden) closeSheet(false); else if (!$('quiz').hidden) return; else if (mode === 'play') pause(true); else if (mode === 'paused') pause(false); else if (mode === 'over') home(); };
+window.DC_APP_HIDDEN = () => appHidden(); window.DC_APP_SHOWN = () => appShown();
 
 // ---- challenge a friend (share link + on-screen target)
 const SHARE_URL = 'https://danfo-craze.vercel.app/';
@@ -1296,10 +1418,10 @@ function shareChallenge() {
     ['Telegram', '#29a9eb', I.tg, `https://t.me/share/url?url=${U}&text=${T}`], ['SMS', '#3fb94d', I.sms, 'sms:?&body=' + TU], ['Email', '#ff7a45', I.mail, `mailto:?subject=${encodeURIComponent('Beat me in Danfo Craze')}&body=${TU}`]];
   show('over', false);
   openSheet(t('chalT'), `<div class="shbox"><div class="shscore"><small>${t('chalSub')}</small><b>${sc.toLocaleString()}</b><span>${G.pax} ${t('chalPax')}</span></div>
-    ${navigator.share ? `<button type="button" class="shmain" id="shMore">${I.share}<span>${t('chalShare')}</span></button>` : ''}
+    ${navigator.share || (window.DCPlugins && DCPlugins.native) ? `<button type="button" class="shmain" id="shMore">${I.share}<span>${t('chalShare')}</span></button>` : ''}
     <div class="shapps">${APPS.map(([n, c, ic, h]) => `<a class="shapp" href="${h}" target="_blank" rel="noopener"><i style="background:${c}">${ic}</i><span>${n}</span></a>`).join('')}</div>
     <div class="shcopy"><input readonly value="${url}" aria-label="Challenge link"><button type="button" id="shCopy">${t('chalCopy')}</button></div></div>`, t('chalDone'));
-  if ($('shMore')) $('shMore').onclick = () => navigator.share({ title: 'Danfo Craze', text, url }).catch(() => {});
+  if ($('shMore')) $('shMore').onclick = () => (window.DCPlugins && DCPlugins.native ? DCPlugins.Share.share({ title: 'Danfo Craze', text, url, dialogTitle: t('chalT') }) : navigator.share({ title: 'Danfo Craze', text, url })).catch(() => {});
   $('shCopy').onclick = () => { const done = () => { $('shCopy').textContent = '✓'; $('shCopy').classList.add('ok'); }; const inp = $('sheetB').querySelector('input');
     try { navigator.clipboard.writeText(text + ' ' + url).then(done, () => { inp.select(); document.execCommand('copy'); done(); }); } catch (e) { inp.select(); document.execCommand('copy'); done(); } };
 }
@@ -1360,8 +1482,8 @@ function answerQuiz(k) {
   }
   nb.onclick = () => { show('quiz', false); if (ok) continueRun(); else { G.quizFailed = true; gameOver(); } };
 }
-function continueRun() {
-  G.coins -= saveCost(); G.saves = (G.saves || 0) + 1;
+function continueRun(byAd) {
+  if (!byAd) { G.coins -= saveCost(); G.saves = (G.saves || 0) + 1; }
   for (let i = objs.length - 1; i >= 0; i--) if (objs[i].z < ZP + 30 && objs[i].type !== 'coin') objs.splice(i, 1);
   G.dead = false; G.deadT = 0; G.invT = 3; G.chase.t = 0; G.chase.d = 1.3; G.chase.recover = false; flashA = .5; G.heat = 0; G.heatT = 0; G.tut.on = null; $('hint').hidden = true;
   mode = 'play'; show('hud', true); hudKey = ''; audioInit(); musicStart(); last = performance.now(); toast(t('backOnRoad'));
@@ -1370,7 +1492,7 @@ function pause(on) {
   if (on && mode === 'play') { mode = 'paused'; show('paused', true); setTimeout(() => $('resumeBtn').focus(), 0); $('wx').style.visibility = 'hidden'; if (A.ctx) A.ctx.suspend(); }
   else if (!on && mode === 'paused') { mode = 'play'; show('paused', false); $('wx').style.visibility = ''; if (A.ctx) A.ctx.resume(); last = performance.now(); }
 }
-function home() { musicStop(); if (A.ctx && A.ctx.state !== 'running') A.ctx.resume(); mode = 'title'; newGame(true); show('over', false); show('paused', false); show('hud', false); show('hint', false); refreshTitle(); show('title', true); }
+function home() { moneyBanner(true); musicStop(); if (A.ctx && A.ctx.state !== 'running') A.ctx.resume(); mode = 'title'; newGame(true); show('over', false); show('paused', false); show('hud', false); show('hint', false); refreshTitle(); show('title', true); }
 document.querySelectorAll('.dsel').forEach(b => b.onclick = () => { diff = b.dataset.d; store.set('diff', diff); best = store.get('best.' + diff, 0); refreshTitle(); });
 $('quizBtn').onclick = openQuiz;
 $('chalBtn').onclick = () => grownUps(() => { if (!store.get('nick', '')) { show('over', false); openSheet(t('name'), `<p style="margin:0;font-weight:700">${t('nameChal')}</p><input id="nick" class="nickin" type="text" maxlength="14" placeholder="${t('namePh')}">`, t('share'), () => { store.set('nick', cleanNick($('nick').value || '')); show('title', false); show('over', true); shareChallenge(); }); } else shareChallenge(); });
@@ -1506,7 +1628,7 @@ function hit(o) {
   const P = G.P, p = P3(P.x, 0, ZP), air = P.y > .12;
   if (o.type === 'coin') {
     if (Math.abs(o.y - P.y) > .22 && G.magnetT <= 0 && G.partyT <= 0) return;
-    o.done = true; o.gone = true; const v = G.partyT > 0 ? 2 : 1; G.coins += v; G.score += v; track('coins', v); G.streak++; sfx.coin(G.streak);
+    o.done = true; o.gone = true; let v = G.partyT > 0 ? 2 : 1; const cz = CITY[zoneAt(ZP)]; if (cz && cz.premium) { G.coinBonus = (G.coinBonus || 0) + v * .25; if (G.coinBonus >= 1) { v++; G.coinBonus--; } } G.coins += v; G.score += v; track('coins', v); G.streak++; sfx.coin(G.streak);
     burstParts(p.x, p.y - p.s * .55 - P.y * p.s, 5, ['#FFC91A', '#fff3a6'], 120, .35, 150, 4); return;
   }
   if (o.type === 'pax') { track('pax'); if (G.tut.on === 'pax') finishTutStep(); o.done = true; o.gone = true; G.pax++; G.chain = Math.min(5, G.chain + 1); G.chainT = 6; const pts = 100 * G.chain * (G.partyT > 0 ? 2 : 1); G.score += pts;
@@ -1530,7 +1652,7 @@ function hit(o) {
   if (o.type === 'cop') { o.done = true; o.dodge = true; if (G.partyT > 0 || G.demo) return; policeCatch(true); return; }
   if (BLOCK.has(o.type)) {
     if (G.partyT > 0 || G.demo) { o.fly = 1; o.flyDir = o.x < P.x ? -1 : 1; o.done = true; if (!G.demo) { G.score += 10; sfx.horn(0, .06); burstParts(p.x, p.y - p.s * .4, 10, ['#FFC91A', '#18b86b', '#fff'], 200, .5); } return; }
-    const C = CITY[zoneAt(o.z)]; die('crash', o.type === 'danfo' && o.skin ? (C ? 'bus:' + C.busName : 'minibus') : o.type);
+    const C = CITY[zoneAt(o.z)]; die('crash', o.type === 'danfo' && o.skin && C && C.busName !== 'danfo' ? 'bus:' + C.busName : o.type === 'danfo' ? 'danfo' : o.type === 'brt' && o.bcol && o.bcol[2] !== 'BRT' ? 'citybus' : o.type);
   }
 }
 
@@ -1546,7 +1668,9 @@ function timeOfDay() {
   const u = cycleU(); let i = 0; while (i < KEYS.length - 2 && KEYS[i + 1][0] <= u) i++;
   const [t0, k0, d0] = KEYS[i], [t1, k1, d1] = KEYS[i + 1], f = t1 > t0 ? (u - t0) / (t1 - t0) : 0;
   const col = [0, 1, 2].map(j => { const c = mixHex(SKY[k0][j], SKY[k1][j], f); return G && G.rain > 0 ? mixHex(toHex(c), SKY.rain[j], G.rain * .45) : c; });
-  return { col, dark: d0 + (d1 - d0) * f };
+  const dark = d0 + (d1 - d0) * f, sz = G && CITY[zoneAt(30)];
+  if (sz && sz.sunset && dark < .6) return { col: col.map((c, j) => mixHex(c[0] === '#' ? c : toHex(c), SKY.sunset[j], .6 * (1 - dark))), dark: Math.max(dark, .12) };
+  return { col, dark };
 }
 let TOD = { col: SKY.day, dark: 0 };
 function drawSky() {
@@ -1565,7 +1689,7 @@ function drawSky() {
 const SIDE = { lagos: ['#f6e0bd', '#ead2aa'], abuja: ['#8fd46a', '#84ca5f'], ph: ['#e6dcc6', '#d9ceb6'], kano: ['#efd49d', '#e3c68b'], village: ['#d9844c', '#cc7843'] };
 function drawGround() {
   landmark(zoneAt(30));
-  { const z = zoneAt(30), sc = z === 'bridge' ? ['#2fb3e8', '#2fb3e8'] : SIDE[z] || (CITY[z] && CITY[z].side) || SIDE.lagos, gc = sc[1], hz = hazeHex(), night = c => TOD.dark > .02 ? mixHex(toHex(c), '#2a2f5a', TOD.dark * .5) : c;
+  { const z = zoneAt(30), sc = z === 'bridge' || (CITY[z] && CITY[z].bridge) ? ['#2fb3e8', '#2fb3e8'] : SIDE[z] || (CITY[z] && CITY[z].side) || SIDE.lagos, gc = sc[1], hz = hazeHex(), night = c => TOD.dark > .02 ? mixHex(toHex(c), '#2a2f5a', TOD.dark * .5) : c;
     const gg = ctx.createLinearGradient(0, hy, 0, hy + (gy - hy) * .3); gg.addColorStop(0, night(mixHex(gc, hz, .55))); gg.addColorStop(1, night(mixHex(gc, '#1b1024', .08))); ctx.fillStyle = gg; ctx.fillRect(0, hy, W, H - hy); }
   const seg = 1.5, z0s = -1.4;
   poly([P3(-1, 0, FAR), P3(1, 0, FAR), P3(1, 0, z0s), P3(-1, 0, z0s)], '#5a5670');
@@ -1575,7 +1699,7 @@ function drawGround() {
     const za = Math.max(z, z0s), zb = Math.min(z + seg, FAR); if (zb <= za) continue;
     const par = ((k % 2) + 2) % 2, zone = zoneAt(z);
     for (const sd of [-1, 1]) {
-      if (zone === 'bridge') {
+      if (zone === 'bridge' || (CITY[zone] && CITY[zone].bridge)) {
         poly([P3(sd * 1.1, 0, za), P3(sd * 12, 0, za), P3(sd * 12, 0, zb), P3(sd * 1.1, 0, zb)], par ? '#2fb3e8' : '#39c0f2');
         poly([P3(sd * 1.1, 0, za), P3(sd * 1.1, .13, za), P3(sd * 1.1, .13, zb), P3(sd * 1.1, 0, zb)], par ? '#eef3f8' : '#dfe7ef', 1.2);
       } else {
@@ -1801,7 +1925,7 @@ resize(); newGame(true); for (let i = 0; i < 90; i++) update(1 / 30);
 const lb = loginStreak(); if (lb) { const dn = $('dailyNote'); dn.hidden = false; dn.textContent = `${t('dailyBonus', lb.bonus)} · ${t('dayN', lb.streak)}`; }
 applyLang(); refreshTitle();
 if ('serviceWorker' in navigator && location.protocol === 'https:' && /vercel\.app$|danfo/i.test(location.hostname)) { try { navigator.serviceWorker.register('sw.js').catch(() => {}); } catch (e) {} }
-if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname) || location.protocol === 'file:') window.__dc = { popText, clear() { objs.length = 0; }, counts() { return { objs: objs.length, props: props.length, walls: walls.length, parts: parts.length, drops: drops.length, heads: headSpots.length, lamps: lampSpots.length }; }, spawn(t, l, z) { if (BLOCK.has(t) && t !== 'cop') addV(t, l, z); else addO({ type: t, lane: l, z, look: t === 'cop' ? COP : randomLook() }); }, get G() { return G; } };
+if ((/^(localhost|127\.0\.0\.1)$/.test(location.hostname) || location.protocol === 'file:') && !window.Capacitor) window.__dc = { popText, clear() { objs.length = 0; }, counts() { return { objs: objs.length, props: props.length, walls: walls.length, parts: parts.length, drops: drops.length, heads: headSpots.length, lamps: lampSpots.length }; }, spawn(t, l, z) { if (BLOCK.has(t) && t !== 'cop') addV(t, l, z); else addO({ type: t, lane: l, z, look: t === 'cop' ? COP : randomLook() }); }, get G() { return G; } };
 requestAnimationFrame(frame);
 })();
 </script>
