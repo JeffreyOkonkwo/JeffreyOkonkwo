@@ -717,7 +717,7 @@ function newGame(demo) {
   G = { demo, D: DIFFS[demo ? 'normal' : diff], dist: 0, time: 0, speed: START, score: 0, coins: 0, streak: 0, P: { lane: 1, x: 0, y: 0, jt: 0, sq: 1, tilt: 0 },
     chase: { d: .3, t: demo ? 0 : 3 }, partyT: 0, magnetT: 0, dead: false, deadT: 0, rowAcc: 0, edge: [-1.3, -1.3], propAcc: 0,
     lastPow: 0, nextSpeed: 25, zone: 'market', call: '', callT: 0, callNext: 3, hornT: 2, slogan: pick(SLOGANS), tut: (() => { const k = demo || (tutDone && diff !== 'easy'); return { dodge: k, jump: k, pax: k, cop: k, on: null }; })(),
-    stopName: pick(STOPNAMES), stopAcc: 0, free: 1, swerveT: 9, rain: 0, rainT: 0, nextRain: rand(35, 70), pax: 0, chain: 0, chainT: 0 };
+    stopName: pick(STOPNAMES), stopAcc: 0, free: 1, swerveT: 9, rain: 0, rainT: 0, nextRain: rand(60, 100), pax: 0, chain: 0, chainT: 0 };
   for (let i = 0; i < 60; i++) stepScenery(1.6);
 }
 function addO(o) { o.x ??= LANES[o.lane]; o.v ??= 0; o.y ??= 0; objs.push(o); return o; }
@@ -797,7 +797,7 @@ function stepScenery(mv) {
 
 // ---------------------------------------------------------------- effects
 function toast(text, small) {
-  if (G && G.demo) return; const d = document.createElement('div'); d.className = 'toast' + (small ? ' tsub' : ''); d.textContent = text;
+  if (G && G.demo) return; const d = document.createElement('div'); d.className = 'toast' + (small ? ' tsub' : ''); const busy = $('toasts').children.length; if (busy) d.style.marginTop = (busy * 50) + 'px'; d.textContent = text;
   $('toasts').append(d); d.addEventListener('animationend', () => d.remove());
 }
 function popText(text, sub, cls = '') {
@@ -1092,7 +1092,7 @@ function update(dt) {
   if (G.magnetT > 0) G.magnetT -= wdt;
   if (G.invT > 0) G.invT -= wdt;
   // weather: now and then it rains for a while
-  if (!G.demo) { G.nextRain -= wdt; if (G.nextRain <= 0 && G.rainT <= 0) { G.rainT = rand(18, 30); G.nextRain = rand(50, 90); toast('RAIN DEY FALL! ROAD DON WET', true); } }
+  if (!G.demo) { G.nextRain -= wdt; if (G.nextRain <= 0 && G.rainT <= 0) { G.rainT = rand(12, 18); G.nextRain = rand(80, 130); toast('RAIN DEY FALL! ROAD DON WET', true); } }
   if (G.rainT > 0) G.rainT -= wdt;
   G.rain += ((G.rainT > 0 ? 1 : 0) - G.rain) * Math.min(1, dt * .6);
   if (!G.demo && !G.dead) { G.trackT = (G.trackT || 0) - dt; if (G.trackT <= 0) { G.trackT = 1; track('distRun', G.dist, true); track('scoreRun', G.score, true); if (TOD.dark > .8) track('night', 1, true); if (G.rain > .5) track('rain', 1, true); const md = store.get('maxDist', 0); if (G.dist > md) store.set('maxDist', G.dist); } }
@@ -1166,14 +1166,14 @@ function hit(o) {
 
 // ---------------------------------------------------------------- render
 // ---- time of day: the longer you drive, the day turns to sunset, night, then dawn
-const CYCLE = 170, SKY = { day: ['#3fb4f5', '#a6e4ff', '#ffe9b0'], sunset: ['#3b2a6b', '#ff7a59', '#ffc46b'], night: ['#070b26', '#18204f', '#35306a'], rain: ['#5d6b7c', '#8b98a8', '#b7c0c9'] };
+const CYCLE = 170, SKY = { day: ['#3fb4f5', '#a6e4ff', '#ffe9b0'], sunset: ['#3b2a6b', '#ff7a59', '#ffc46b'], night: ['#141a4a', '#2a3372', '#4a4486'], rain: ['#5d6b7c', '#8b98a8', '#b7c0c9'] };
 const KEYS = [[0, 'day', 0], [55, 'day', 0], [72, 'sunset', .25], [88, 'night', 1], [140, 'night', 1], [155, 'sunset', .3], [170, 'day', 0]];
 function mixHex(a, b, t) { const A = parseInt(a.slice(1), 16), B = parseInt(b.slice(1), 16), m = s => Math.round(((A >> s) & 255) + (((B >> s) & 255) - ((A >> s) & 255)) * t); return `rgb(${m(16)},${m(8)},${m(0)})`; }
 function toHex(rgb) { const [r, g, b] = rgb.match(/\d+/g).map(Number); return '#' + ((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1); }
 function timeOfDay() {
   const u = ((G ? G.time : 0) + 12) % CYCLE; let i = 0; while (i < KEYS.length - 2 && KEYS[i + 1][0] <= u) i++;
   const [t0, k0, d0] = KEYS[i], [t1, k1, d1] = KEYS[i + 1], f = t1 > t0 ? (u - t0) / (t1 - t0) : 0;
-  const col = [0, 1, 2].map(j => { const c = mixHex(SKY[k0][j], SKY[k1][j], f); return G && G.rain > 0 ? mixHex(toHex(c), SKY.rain[j], G.rain * .7) : c; });
+  const col = [0, 1, 2].map(j => { const c = mixHex(SKY[k0][j], SKY[k1][j], f); return G && G.rain > 0 ? mixHex(toHex(c), SKY.rain[j], G.rain * .45) : c; });
   return { col, dark: d0 + (d1 - d0) * f };
 }
 let TOD = { col: SKY.day, dark: 0 };
@@ -1284,21 +1284,19 @@ const lampSpots = [];
 function lightsAndWeather() {
   const dk = TOD.dark;
   if (dk > .02) {
-    ctx.fillStyle = `rgba(8,10,40,${dk * .5})`; ctx.fillRect(0, hy - H * .2, W, H);
     ctx.save(); ctx.globalCompositeOperation = 'lighter';
     const p = P3(G.P.x, 0, ZP), top = P3(G.P.x, 0, ZP + 14);
-    const hl = ctx.createLinearGradient(0, p.y - p.s * .3, 0, top.y); hl.addColorStop(0, `rgba(255,240,180,${.28 * dk})`); hl.addColorStop(1, 'rgba(255,240,180,0)');
+    const hl = ctx.createLinearGradient(0, p.y - p.s * .3, 0, top.y); hl.addColorStop(0, `rgba(255,240,180,${.18 * dk})`); hl.addColorStop(1, 'rgba(255,240,180,0)');
     ctx.fillStyle = hl; ctx.beginPath(); ctx.moveTo(p.x - p.s * .25, p.y - p.s * .35); ctx.lineTo(p.x + p.s * .25, p.y - p.s * .35); ctx.lineTo(top.x + top.s * .5, top.y); ctx.lineTo(top.x - top.s * .5, top.y); ctx.fill();
     for (const l of lampSpots) { const r = l.s * .5, lg = ctx.createRadialGradient(l.x, l.y, 0, l.x, l.y, r); lg.addColorStop(0, `rgba(255,220,130,${.5 * dk})`); lg.addColorStop(1, 'rgba(255,220,130,0)'); ctx.fillStyle = lg; ctx.fillRect(l.x - r, l.y - r, r * 2, r * 2); }
     ctx.restore();
   }
   lampSpots.length = 0;
   if (G.rain > .02) {
-    ctx.strokeStyle = `rgba(210,225,245,${.55 * G.rain})`; ctx.lineWidth = 1.5; ctx.beginPath();
-    const n = Math.floor((lowFx ? 35 : 90) * G.rain);
+    ctx.strokeStyle = `rgba(225,235,250,${.32 * G.rain})`; ctx.lineWidth = 1.2; ctx.beginPath();
+    const n = Math.floor((lowFx ? 20 : 45) * G.rain);
     for (let i = 0; i < n; i++) { const x = Math.random() * W, y = Math.random() * H; ctx.moveTo(x, y); ctx.lineTo(x - 4, y + 18); }
     ctx.stroke();
-    ctx.fillStyle = `rgba(160,190,230,${.08 * G.rain})`; ctx.fillRect(0, hy, W, H - hy);
   }
 }
 function render() {
@@ -1307,6 +1305,7 @@ function render() {
   const flatT = new Set(['pothole', 'bump']);
   for (const o of objs) if (flatT.has(o.type) && o.z < FAR + 1 && !o.gone) drawEntity(o);
   const ws = walls.slice().sort((a, b) => (b.z + b.len) - (a.z + a.len)); for (const b of ws) if (b.z < FAR) { ctx.globalAlpha = fade(b.z); wall(b); ctx.globalAlpha = 1; }
+  if (TOD.dark > .02) { ctx.fillStyle = `rgba(8,10,40,${TOD.dark * .38})`; ctx.fillRect(-20, hy - H * .25, W + 40, H * 1.3); }
   const list = props.concat(objs.filter(o => !flatT.has(o.type) && !o.gone));
   list.push({ type: 'player', z: ZP });
   if (G.chase.d < 1.1) list.push({ type: 'police', x: clamp(G.P.x + (G.P.x > .3 ? -.55 : .55), -.7, .7), z: ZP - .35 - G.chase.d * 2.6 });
