@@ -34,18 +34,18 @@ Tips:
 
 ## Brand policy (strict)
 
-Danfo Craze is played by children as well as adults. **Only family-friendly brands.** Say no to:
+Danfo Craze is for players aged 13 and over, and younger players may still see it. **Only brands suitable for everyone.** Say no to:
 - betting, lotteries or gambling
 - alcohol, tobacco or vaping
 - loans, crypto or "get rich" schemes
 - dating
 - politics or religion campaigns
 - weapons
-- anything the stores' Families or Kids policies would reject
+- anything that Google Play or App Store ad policies would reject
 
 Good fits: food and drinks (non-alcoholic), transport, telecoms, schools, books, sports, music, local shops, fashion.
 
-No links, phone numbers or website addresses go on signs. The signs are brand names and short slogans only. This keeps the game within Google Families and Apple rules, since players cannot tap out to a brand's site.
+No links, phone numbers or website addresses go on signs. The signs are brand names and short slogans only, so players cannot tap out to a brand's site.
 
 ## How to change the signs
 

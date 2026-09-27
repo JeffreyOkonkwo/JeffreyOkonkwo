@@ -27,7 +27,7 @@ This page lists every piece in case you need to check, rebuild or switch somethi
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-4606547282835953~1503749311" />
-        <!-- kid-safe ads for everyone (also set in code): child-directed, rated G -->
+        <!-- ad settings live in code: 13+ audience, rated PG at most, not personalised -->
         <meta-data android:name="com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION" android:value="true" />
         <meta-data android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING" android:value="true" />
 ```
@@ -239,7 +239,7 @@ This page lists every piece in case you need to check, rebuild or switch somethi
 		</dict>
 	</array>
 ```
-Don't add `NSUserTrackingUsageDescription`: the game never asks to track.
+Do not add `NSUserTrackingUsageDescription`: the game never asks to track.
 
 ## 4. RevenueCat keys (never committed)
 1. In RevenueCat, connect the Apple and Google apps to project **Danfo Craze**.
@@ -251,7 +251,6 @@ Don't add `NSUserTrackingUsageDescription`: the game never asks to track.
 - `npm run sync` gives a **development** build with Google's **test** ads. Test the rewarded continue, double coins, Honk Boost, the menu banner, every product in the shop, and Restore Purchases.
 - `npm run sync:release` gives the store build with the **real** ad units.
 
-## 6. Paperwork (under-13s are in the audience)
-- Follow Google Play Families and Apple rules: see the end of `../danfo-driver/STORE_READY.md`.
-- Update the privacy policy to add AdMob (kid-safe, non-personalised) and RevenueCat.
-- Update the Data safety form, App Privacy labels and the "Contains ads" answer.
+## 6. Paperwork (audience 13 and over)
+- Store answers (Data safety, App Privacy labels, ads, audience): see `../danfo-driver/STORE_READY.md`.
+- The privacy policy (`../danfo-driver/privacy.html`) already covers AdMob and RevenueCat.

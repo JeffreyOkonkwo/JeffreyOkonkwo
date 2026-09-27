@@ -6,7 +6,7 @@
   const native = isApp && on && !!(P.AdMob || P.Purchases), os = isApp ? P.platform : 'web';
   const release = !!(window.DC_BUILD && window.DC_BUILD.mode === 'release');
   const listeners = new Set(), owned = new Set(JSON.parse(localStorage.getItem('danfocraze.iap') || '[]'));
-  let adsReady = false, rcReady = false, entitlements = new Set(JSON.parse(localStorage.getItem('danfocraze.ent') || '[]')), storeProducts = {}, busy = false;
+  let adsReady = false, privacyChoices = false, rcReady = false, entitlements = new Set(JSON.parse(localStorage.getItem('danfocraze.ent') || '[]')), storeProducts = {}, busy = false;
   const save = () => { try { localStorage.setItem('danfocraze.iap', JSON.stringify([...owned])); localStorage.setItem('danfocraze.ent', JSON.stringify([...entitlements])); } catch (e) {} };
   const emit = () => listeners.forEach(f => { try { f(); } catch (e) {} });
   const unit = kind => { // kind: rewardedContinue | rewardedDouble | rewardedHonk | bannerMenu
@@ -19,6 +19,13 @@
     if (!native || !P.AdMob) return;
     try {
       await P.AdMob.initialize({ initializeForTesting: !release, tagForChildDirectedTreatment: S.childDirected, tagForUnderAgeOfConsent: S.underAgeOfConsent, maxAdContentRating: S.maxAdContentRating });
+      // Google's consent message (Europe, UK and other places that need it). No ads until it allows them.
+      if (S.consent && P.AdMob.requestConsentInfo) {
+        let ci = await P.AdMob.requestConsentInfo({ tagForUnderAgeOfConsent: S.underAgeOfConsent });
+        if (ci.status === 'REQUIRED' && ci.isConsentFormAvailable) ci = await P.AdMob.showConsentForm();
+        privacyChoices = ci.privacyOptionsRequirementStatus === 'REQUIRED';
+        if (ci.canRequestAds === false) { emit(); return; }
+      }
       adsReady = true; emit();
     } catch (e) { console.warn('AdMob init failed', e); }
   }
@@ -105,6 +112,12 @@
     price: id => (storeProducts[id] && storeProducts[id].priceString) || null,
     products: () => C.products.filter(p => !p.flag || C.flags[p.flag]),
     rewarded, banner, buy, restore, onChange: f => listeners.add(f),
+    // players who saw the consent message must be able to change their answer (link in the name sheet)
+    get privacyChoices() { return privacyChoices; },
+    showPrivacyChoices: async () => {
+      if (!(P && P.AdMob && P.AdMob.showPrivacyOptionsForm)) return;
+      try { await P.AdMob.showPrivacyOptionsForm(); const ci = await P.AdMob.requestConsentInfo({ tagForUnderAgeOfConsent: S.underAgeOfConsent }); adsReady = ci.canRequestAds !== false; emit(); } catch (e) {}
+    },
   };
   // native extras: Android back button pauses/returns home instead of closing the game
   if (isApp && P.App) {

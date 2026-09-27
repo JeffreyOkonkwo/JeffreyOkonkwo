@@ -31,8 +31,9 @@ window.DC_MONEY_CONFIG = {
     android: { rewarded: 'ca-app-pub-3940256099942544/5224354917', banner: 'ca-app-pub-3940256099942544/9214589741' },
     ios: { rewarded: 'ca-app-pub-3940256099942544/1712485313', banner: 'ca-app-pub-3940256099942544/2435281174' },
   },
-  // Kid-safe ads for everyone: family-rated, no personalised or tracking ads, no Apple tracking pop-up
-  adSafety: { childDirected: true, underAgeOfConsent: true, maxAdContentRating: 'General', nonPersonalized: true },
+  // Audience is 13 and over (not directed to children). Ads are rated PG at most and never personalised,
+  // there is no Apple tracking pop-up, and players in Europe and the UK see Google's consent message first.
+  adSafety: { childDirected: false, underAgeOfConsent: false, maxAdContentRating: 'ParentalGuidance', nonPersonalized: true, consent: true },
 
   // --- RevenueCat --------------------------------------------------------------------------
   revenuecat: {
