@@ -2,9 +2,8 @@
 // Ad unit IDs are not secrets. RevenueCat API keys are never committed: they come from
 // danfo-app/keys.local.json at build time (see danfo-app/README.md) and arrive here as window.DC_BUILD.
 window.DC_MONEY_CONFIG = {
-  // MASTER SWITCH. Version 1.0 ships with no ads and no purchases: keep this false.
-  // Version 1.1: set true and follow danfo-app/V1.1_MONETIZATION.md (plugins, native App IDs, RevenueCat keys).
-  enabled: false,
+  // MASTER SWITCH for ads + purchases (on from version 1.0). Set false to ship a build with neither.
+  enabled: true,
 
   // --- AdMob -------------------------------------------------------------------------------
   // App IDs go in native files: android/app/src/main/AndroidManifest.xml and ios/App/App/Info.plist

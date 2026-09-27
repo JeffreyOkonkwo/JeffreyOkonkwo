@@ -1,4 +1,4 @@
-package app.godpush.danfocraze;
+package com.afrocade.danfocraze;
 
 import com.getcapacitor.BridgeActivity;
 

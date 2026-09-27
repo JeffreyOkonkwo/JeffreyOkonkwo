@@ -1,25 +1,26 @@
-# Danfo Craze version 1.1: turning on ads and purchases
+# Danfo Craze monetization reference
 
-Version 1.0 ships with **no ads and no purchases**: the 1.0 app build contains no ad or purchase SDKs. Everything for 1.1 is already written and tested. Follow these steps to switch it on.
+Ads and purchases are **on from version 1.0**:
+- **Master switch:** `enabled: true` in `../danfo-driver/monetize/config.js`
+- **Plugins:** `@capacitor-community/admob` and `@revenuecat/purchases-capacitor`
+- **Native settings:** applied by `scripts/patch-native.py`
 
-## 1. Switch it on in the game
-In `../danfo-driver/monetize/config.js`, set `enabled: true`. All the ad unit IDs, product IDs, entitlements and flags are already in that file. The Oga Driver Club subscription stays hidden while `flags.ogaClub` is `false`.
+This page lists every piece in case you need to check, rebuild or switch something off.
 
-## 2. Add the plugins
-```bash
-npm install @capacitor-community/admob@^8.1.0 @revenuecat/purchases-capacitor@^13.6.1
-```
-Then replace `scripts/plugins-entry.js` with:
-```js
-import { Capacitor } from '@capacitor/core';
-import { AdMob } from '@capacitor-community/admob';
-import { Purchases } from '@revenuecat/purchases-capacitor';
-import { Share } from '@capacitor/share';
-import { App } from '@capacitor/app';
-window.DCPlugins = { Capacitor, AdMob, Purchases, Share, App, platform: Capacitor.getPlatform(), native: Capacitor.isNativePlatform() };
-```
+**To ship a build with NO ads or purchases:**
+1. Set `enabled: false` in the config.
+2. Run `npm uninstall @capacitor-community/admob @revenuecat/purchases-capacitor`.
+3. Remove AdMob and Purchases from `scripts/plugins-entry.js`.
+4. Delete the AdMob blocks below from the native files.
+5. Update the privacy policy and store answers to "no data collected".
 
-## 3. AdMob App IDs in the native files
+## 1. Master switch
+`enabled` in `../danfo-driver/monetize/config.js`. All the ad unit IDs, product IDs, entitlements and flags are in that file. The Oga Driver Club subscription stays hidden while `flags.ogaClub` is `false`.
+
+## 2. Plugins
+`scripts/plugins-entry.js` bundles AdMob, Purchases, Share and App into `www/monetize/plugins.js` at build time.
+
+## 3. AdMob App IDs in the native files (already applied)
 **Android.** In `android/app/src/main/AndroidManifest.xml`, add this inside `<application ...>`, just before `<activity`:
 ```xml
         <!-- AdMob App ID (Android). Ad unit IDs live in danfo-driver/monetize/config.js -->
@@ -250,7 +251,7 @@ Don't add `NSUserTrackingUsageDescription`: the game never asks to track.
 - `npm run sync` gives a **development** build with Google's **test** ads. Test the rewarded continue, double coins, Honk Boost, the menu banner, every product in the shop, and Restore Purchases.
 - `npm run sync:release` gives the store build with the **real** ad units.
 
-## 6. Paperwork before releasing 1.1 (under-13s are in the audience)
+## 6. Paperwork (under-13s are in the audience)
 - Follow Google Play Families and Apple rules: see the end of `../danfo-driver/STORE_READY.md`.
 - Update the privacy policy to add AdMob (kid-safe, non-personalised) and RevenueCat.
 - Update the Data safety form, App Privacy labels and the "Contains ads" answer.

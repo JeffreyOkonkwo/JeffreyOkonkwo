@@ -2,8 +2,8 @@
 // - Pages: network first (3 s limit on weak connections), then the cached copy.
 // - Game files: served from the cache straight away and refreshed in the background.
 // - Party music: kept in its own small cache (last few clips only) that survives updates.
-const CACHE = 'danfo-craze-v20', MUSIC = 'danfo-music', MUSIC_MAX = 6;
-const CORE = ['./', 'index.html', 'quiz.js', 'monetize/config.js', 'monetize/monetize.js', 'music/tracks.json', 'manifest.webmanifest', 'brand/logo.svg', 'favicon.png', 'apple-touch-icon.png', 'icon-192.png', 'icon-512.png',
+const CACHE = 'danfo-craze-v21', MUSIC = 'danfo-music', MUSIC_MAX = 6;
+const CORE = ['./', 'index.html', 'quiz.js', 'monetize/config.js', 'monetize/monetize.js', 'sponsors.json', 'music/tracks.json', 'manifest.webmanifest', 'brand/logo.svg', 'favicon.png', 'apple-touch-icon.png', 'icon-192.png', 'icon-512.png',
   'fonts/bungee-latin-400-normal.woff2', 'fonts/bungee-latin-ext-400-normal.woff2', 'fonts/baloo-2-latin-600-normal.woff2', 'fonts/baloo-2-latin-ext-600-normal.woff2',
   'fonts/baloo-2-latin-800-normal.woff2', 'fonts/baloo-2-latin-ext-800-normal.woff2'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting())); });

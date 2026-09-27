@@ -9,14 +9,17 @@
     "sync": "npm run web:dev && npx cap sync",
     "sync:release": "npm run web:release && npx cap sync",
     "android": "npx cap open android",
-    "ios": "npx cap open ios"
+    "ios": "npx cap open ios",
+    "native:setup": "npx cap add android; npx cap add ios; python3 scripts/patch-native.py && node scripts/make-icons.cjs && npx cap sync"
   },
   "dependencies": {
+    "@capacitor-community/admob": "^8.1.0",
     "@capacitor/android": "^8.5.2",
     "@capacitor/app": "^8.1.1",
     "@capacitor/core": "^8.5.2",
     "@capacitor/ios": "^8.5.2",
-    "@capacitor/share": "^8.0.2"
+    "@capacitor/share": "^8.0.2",
+    "@revenuecat/purchases-capacitor": "^13.6.1"
   },
   "devDependencies": {
     "@capacitor/cli": "^8.5.2",

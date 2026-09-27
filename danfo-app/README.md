@@ -2,19 +2,25 @@
 
 Published by **Hegenius, a business name of God Push Inc.** Support: support@godpush.app
 
-This folder wraps the web game in `../danfo-driver` as a native app with **Capacitor 8**, adding native share, back-button handling and pause handling.
+App ID: **`com.afrocade.danfocraze`** (permanent once published; players never see it).
 
-> **Version 1.0 has no ads and no purchases.** The ad and purchase plugins are *not* installed, and the AdMob App IDs are *not* in the native files. Everything for 1.1 (AdMob rewarded ads and menu banner; RevenueCat purchases) is built and switched off. To turn it on, follow **`V1.1_MONETIZATION.md`**. The rest of this README describes the 1.1 setup.
+This folder wraps the web game in `../danfo-driver` as a native app with **Capacitor 8**. It adds:
+- **AdMob:** kid-safe rewarded ads (continue, double coins, Honk Boost) and a banner on the menu screen.
+- **RevenueCat:** in-app purchases (Remove Ads, Starter Pack, coin packs, Lagos routes, Restore Purchases).
+- **Brand sponsors:** billboards, shop signs, bus-stop banners and a "Presented by" line, controlled from `../danfo-driver/sponsors.json` on the website. See `../danfo-driver/SPONSORS.md`.
+- **Native share, back-button handling and pause handling.**
+
+To make a build with no ads or purchases, see `MONETIZATION.md`.
 
 ## Where things live
 | What | File |
 |---|---|
 | All ad unit IDs, product IDs, entitlements, feature flags | `../danfo-driver/monetize/config.js` |
 | Ads + purchases code | `../danfo-driver/monetize/monetize.js` |
-| AdMob App ID, Android (1.1) | added to `AndroidManifest.xml` in 1.1: exact snippet in `V1.1_MONETIZATION.md` |
-| AdMob App ID, iOS (1.1) | added to `Info.plist` (`GADApplicationIdentifier`) in 1.1: exact snippet in `V1.1_MONETIZATION.md` |
+| AdMob App ID, Android | `android/app/src/main/AndroidManifest.xml` (applied by `scripts/patch-native.py`) |
+| AdMob App ID, iOS | `ios/App/App/Info.plist` `GADApplicationIdentifier` (applied by `scripts/patch-native.py`) |
 | RevenueCat API keys | `keys.local.json`: **never committed** (git-ignored) |
-| App name / bundle ID | `capacitor.config.json` (`app.godpush.danfocraze`) |
+| App name / bundle ID | `capacitor.config.json` (`com.afrocade.danfocraze`) |
 
 ## Test ads vs real ads
 - `npm run sync` gives a **development** build. It always uses **Google's official test ad units**. Use this build for all testing: tapping your own real ads can get the AdMob account banned.
@@ -56,7 +62,7 @@ npm run sync            # or: npm run sync:release
 npm run android         # opens Android Studio, then Build > Generate Signed Bundle (.aab)
 npm run ios             # opens Xcode (on a Mac), then Product > Archive
 ```
-Icons and splash screens are already generated from `../danfo-driver/brand`. To regenerate them: `node scripts/make-icons.cjs`.
+Icons and splash screens are already generated from `../danfo-driver/brand`. If you ever delete and re-add the `android/` or `ios/` folders, run `npm run native:setup`. It reapplies the portrait lock, the AdMob App IDs, the kid-safe settings and the icons.
 
 ## Before you submit
-See `../danfo-driver/STORE_READY.md`. For 1.0: no ads, no purchases, "Data not collected", all ages. Publisher / developer name: **Hegenius** (God Push Inc., organization accounts with a D-U-N-S number).
+See `../danfo-driver/STORE_READY.md`. Publisher / developer name: **Hegenius** (God Push Inc., organization accounts with a D-U-N-S number). Support: support@godpush.app.

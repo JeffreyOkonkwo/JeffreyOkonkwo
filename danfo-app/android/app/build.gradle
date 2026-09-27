@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace = "app.godpush.danfocraze"
+    namespace = "com.afrocade.danfocraze"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "app.godpush.danfocraze"
+        applicationId "com.afrocade.danfocraze"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

@@ -1,0 +1,8 @@
+
+        <!-- AdMob App ID (Android). Ad unit IDs live in danfo-driver/monetize/config.js -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-4606547282835953~1503749311" />
+        <!-- kid-safe ads for everyone (also set in code): child-directed, rated G -->
+        <meta-data android:name="com.google.android.gms.ads.flag.OPTIMIZE_INITIALIZATION" android:value="true" />
+        <meta-data android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING" android:value="true" />

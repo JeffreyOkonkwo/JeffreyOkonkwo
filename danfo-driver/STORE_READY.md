@@ -2,7 +2,7 @@
 
 **Publisher:** Hegenius, a business name of God Push Inc. (federal corporation 1822561-3, Toronto, Ontario, Canada). Afrocade is the marketing brand that promotes the game; it is not the publisher, so don't list it as developer or seller.
 **Support email:** support@godpush.app
-**Version 1.0:** no ads and no in-app purchases. Ads and purchases arrive in version 1.1 (see the end of this file).
+**Version 1.0 earns from day one:** kid-safe rewarded ads and a menu banner (AdMob), in-app purchases (RevenueCat), and brand sponsorships on in-game signs (see `SPONSORS.md`).
 
 **Status:** the game code has been reviewed and tested, and the store app project is in `../danfo-app`. The items below that are not ticked are for God Push Inc. to do in the store consoles.
 
@@ -18,7 +18,8 @@
 - [x] One-time year-of-birth check before Challenge a friend opens WhatsApp or other apps. The year itself is not stored, only "18+ yes".
 - [x] English, Pidgin and French for all menus, missions, quiz and game-over text.
 - [x] Fits small phones (iPhone SE, 320 px wide) and large ones. Portrait layout.
-- [x] Store app project (`../danfo-app`, Capacitor 8) for Android and iOS, locked to portrait. The 1.0 build contains no ad or purchase SDKs.
+- [x] Store app project (`../danfo-app`, Capacitor 8, app ID `com.afrocade.danfocraze`) for Android and iOS, locked to portrait, with AdMob and RevenueCat built in.
+- [x] Money: rewarded ads (continue, double coins, Honk Boost), a menu banner, a shop (Remove Ads, Starter Pack, coin packs, 3 Lagos routes, Restore Purchases) and sponsor slots. All IDs are in `monetize/config.js`, and development builds use Google's test ads.
 
 ## Accounts
 - [ ] **Organization accounts under God Push Inc.**, not personal accounts, for both stores. Both need the company's **D-U-N-S number** (free from Dun & Bradstreet; allow a few days to a couple of weeks).
@@ -26,15 +27,49 @@
   - **Apple Developer Program:** enrol as an organization (God Push Inc., with its D-U-N-S number). The fee is US$99 a year. The seller name on the App Store is the legal entity.
 - [ ] **Support email:** use **support@godpush.app** in both store listings (it's already on the privacy page).
 
-## Store console answers for version 1.0 (no ads, no purchases)
-- [ ] **Privacy policy URL:** `https://danfo-craze.vercel.app/privacy.html`. You can also host it on a God Push domain (for example godpush.app/danfo-craze/privacy).
-- [ ] **Data safety (Google):** no data collected; no data shared. Everything stays on the device, and sharing only happens when the player chooses to.
-- [ ] **App Privacy (Apple):** "Data Not Collected".
-- [ ] **Ads:** "No, my app does not contain ads".
-- [ ] **Age rating:** use the questionnaires. There is no violence (cars bump and fly off), no gambling, no chat, no ads and no purchases. Expect **Everyone / 4+**.
-- [ ] **Audience: all ages.**
-  - **Google Play:** select every age group, including under 13 (Families programme). Version 1.0 has no ads or purchases. "Challenge a friend" asks for a year of birth the first time, before it opens any other app.
-  - **Apple:** rated 4+, so anyone can download it. The Kids category is possible for 1.0, but it would restrict version 1.1's ads, so it's simpler not to choose it.
+## Store console answers for version 1.0 (kid-safe ads + purchases)
+- [ ] **Privacy policy URL:** `https://danfo-craze.vercel.app/privacy.html`. It covers the ads, purchases and sponsor signs.
+- [ ] **RevenueCat keys:** once both store accounts exist, connect the apps in RevenueCat and create the products (see `../danfo-app/README.md`). Then paste the public keys into `../danfo-app/keys.local.json`. Until then, the shop shows "Connecting to the store…" and the ads still work.
+- [ ] **AdMob:**
+  - Once the store listings exist, link the app to them in AdMob (Apps › App settings › Link to app store). Ads fill properly only after the account review passes and the app is linked.
+  - In AdMob › Blocking controls, set the **max ad content rating to G** and turn off sensitive categories (gambling, dating, alcohol, politics).
+- [ ] **Data safety (Google):**
+  - **Collected, by AdMob:**
+    - Approximate location (from IP address)
+    - App interactions
+    - Diagnostics
+    - Device or other IDs (for advertising and fraud prevention, shared with Google)
+  - **Collected, by RevenueCat:** purchase history, plus an app-generated user ID (for app functionality).
+  - **Other answers:** data is encrypted in transit.
+  - Cross-check against Google's "AdMob data disclosure" guide and RevenueCat's data safety guide.
+- [ ] **App Privacy (Apple):**
+  - Tracking: **No**.
+  - **Data not linked to you:**
+    - Coarse Location, Device ID, Product Interaction and Advertising Data (third-party advertising, via AdMob)
+    - Purchase History (app functionality, via RevenueCat)
+- [ ] **Ads:** "Yes, my app contains ads".
+- [ ] **In-app purchases:** create the products in both consoles with these IDs:
+  - `remove_ads`
+  - `starter_pack`
+  - `coins_small`, `coins_medium`, `coins_large`
+  - `route_lekki`, `route_ikorodu`, `route_third_mainland`
+  - The subscription stays off.
+  - **Suggested prices:**
+    - Remove Ads $2.99
+    - Starter Pack $0.99
+    - Coins $0.99 / $2.99 / $6.99
+    - Routes $0.99 each
+- [ ] **Age rating:** use the questionnaires. There is no violence (cars bump and fly off), no gambling and no chat. It contains ads and in-app purchases. Expect **Everyone / 4+**.
+- [ ] **Audience and ad rules (under-13s play this game):**
+  - **Google Play:** select every age group, including under 13 (Families programme). Families rules the game already follows:
+    - AdMob, a Families self-certified ad SDK
+    - every ad request child-directed (COPPA), rated G and non-personalised
+    - no Android advertising ID
+    - rewarded ads opt-in only; the banner on the menu only, never during play
+    - no ads that mimic gameplay
+    - purchases clearly priced by the store
+  - **Apple:** rate 4+. **Don't choose the Kids category**, because Apple doesn't allow third-party ads there. No tracking prompt, and purchases through Apple with Restore Purchases.
+  - **Sponsor signs:** family-friendly brands only (see `SPONSORS.md`). No betting, alcohol, loans, crypto, dating or political ads.
 - [ ] **Music rights:** keep proof that the 78 party clips were made on a **paid Suno plan** (Pro or Premier). A screenshot of the plan and the song list is enough.
 
 ## Building the app
@@ -74,25 +109,5 @@ See `../danfo-app/README.md`. In short: `npm install`, `npm run sync`, then `npm
   - A missing file no longer returns the game page by mistake.
 - **Battery:** the game redraws much less often behind the pause and game-over screens. Cheap-phone mode also draws simpler shading.
 
-## Version 1.1: ads and purchases (built, switched off in 1.0)
-The code is ready. AdMob and RevenueCat accounts are set up, and the IDs are in `monetize/config.js`. To turn it on, follow `../danfo-app/V1.1_MONETIZATION.md`:
-1. Set `enabled: true` in `monetize/config.js`.
-2. Add the AdMob and RevenueCat plugins.
-3. Add the AdMob App IDs to the native files.
-4. Paste the RevenueCat keys.
-
-**Because under-13s are in the audience, ads in 1.1 must follow Google Play Families and Apple Kids rules:**
-- **Google Families:**
-  - Use only Families self-certified ad SDKs. AdMob qualifies.
-  - Tag every ad request as child-directed (COPPA) with max rating **G**, and show non-personalised ads only.
-  - Don't use the Android advertising ID. The manifest removes the `AD_ID` permission.
-  - Keep ads clearly separate from gameplay, and don't use deceptive or interruptive formats. Rewarded ads are opt-in only, and the banner shows on the menu only.
-  - In-app purchases must be clear about what they cost. Children's purchases go through Google's family approval.
-- **Apple:**
-  - The Kids category doesn't allow third-party ads, so keep the app **out of the Kids category** and rate it 4+.
-  - Don't show the tracking (ATT) prompt and don't track.
-  - Keep the kid-safe ad settings above for everyone.
-  - Purchases must use Apple in-app purchase (RevenueCat does), with a **Restore Purchases** button (built).
-- **Updates:**
-  - Update the privacy policy, the Data safety form and Apple's App Privacy labels **before** 1.1 is released. They must list AdMob (device and ad data, coarse location, for advertising and fraud prevention) and RevenueCat (purchase history and an app user ID, for app functionality).
-  - Change the Google "Contains ads" answer to **Yes**.
+## Turning ads or purchases off
+To ship a build with no ads and no purchases, set `enabled: false` in `monetize/config.js`, remove the two plugins and the native AdMob IDs (steps in `../danfo-app/MONETIZATION.md`), and switch the privacy policy and store answers back to "no data collected".

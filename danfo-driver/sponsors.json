@@ -1,0 +1,7 @@
+{
+  "_readme": "Brand placements shown in the game. Edit, commit and deploy the website: players get the new list next time they open the game (the app fetches it from https://danfo-craze.vercel.app/sponsors.json). Only family-friendly brands: see SPONSORS.md. Leave a list empty to use the game's own signs.",
+  "title": null,
+  "billboards": [],
+  "shopSigns": [],
+  "stopBanners": []
+}
