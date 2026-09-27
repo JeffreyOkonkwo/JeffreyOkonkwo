@@ -25,7 +25,6 @@ The step by step build and upload list is in `../danfo-app/LAUNCH_CHECKLIST.md`.
 - [x] **Fair play rules:** paid items are looks only, and nothing paid can raise a score. Coins buy bus colours only. The paid Lagos routes give no extra points or coins. The quiz is never sold: continuing by quiz is free, limited to 3 chances a run, and there are no paid answers or skips. Each continue costs 5% of the score (10% for an ad), and the result shows a clean run or the number of continues.
 - [x] **Game over screen:** one main action (Continue, by quiz or by ad), then Play Again, then Challenge a Friend. Double coins is a small link.
 - [x] **Quiz:** after every answer, a one-line "Did you know?" fact with its source. All 561 questions have a source.
-- [x] **Driver look:** Oga Driver or Madam Driver, chosen free in the Garage (looks only).
 - [x] **Bus tag:** the slogan on the player's bus. The default is GOD IS KING. Players can pick another from a list or write their own (20 characters maximum, with a basic word filter). Free and looks only.
 
 ## Accounts
@@ -96,7 +95,7 @@ The step by step build and upload list is in `../danfo-app/LAUNCH_CHECKLIST.md`.
   > • Rare Bus Jam Party: the road clears, the music drops, and passengers and coins come to you
   > • Crashed? Answer an Africa quiz question to keep driving, and learn a new fact with its source every time. More than 560 fact-checked questions about all 54 countries
   > • Day and night, rain, and Sun Coins that clear the sky
-  > • Choose your driver, Oga Driver or Madam Driver, write your own bus tag, and unlock bus colours
+  > • Write your own bus tag and unlock bus colours
   > • Daily missions, and challenge links to beat your friends
   > • Play in English, Pidgin or French. Works offline
 - **Category:** Games, Racing (or Arcade). Secondary category: Education.

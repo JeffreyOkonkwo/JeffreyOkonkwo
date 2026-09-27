@@ -1,6 +1,6 @@
 # Danfo Craze: roadmap
 
-Version 1.0 is items 1 to 4 plus the bus tag (done). Items 5 to 8 are planned for versions 1.1 and 1.2 and are **not built yet**.
+Version 1.0 is items 1 to 3 plus the bus tag (done). Item 4 moved into the driver's licence (item 5). Items 5 to 8 are planned for versions 1.1 and 1.2 and are **not built yet**.
 
 ## Rules for every version
 - Paid items are looks only. Nothing paid may raise a score.
@@ -13,7 +13,7 @@ Version 1.0 is items 1 to 4 plus the bus tag (done). Items 5 to 8 are planned fo
 1. **Game over screen:** one main action (Continue, by quiz or by ad), then Play Again, then Challenge a Friend. Double coins is a small link.
 2. **Paid items are looks only:** the +25% coin bonus on paid Lagos routes is removed. Quiz continues are free (3 chances a run), so bought coins can never help a score.
 3. **Quiz facts:** after every answer, a one-line "Did you know?" fact with its source.
-4. **Driver look:** Madam Driver alongside Oga Driver, both free, chosen in the Garage.
+4. **Driver look:** moved into the driver's licence (item 5). A single Oga or Madam switch felt wrong on its own, and the bus keeps just the conductor. In the licence, players build their own driver and choose whether their rank title reads Oga or Madam.
 5. **Bus tag:** the slogan on the player's bus, GOD IS KING by default. Players pick another from a list or write their own (20 characters maximum, basic word filter). Free and looks only. When the leaderboard arrives, custom tags pass the same server word filter as nicknames.
 
 ## Version 1.1 (proposed): licence, leaderboard and Danfo Pass
@@ -33,7 +33,7 @@ The leaderboard shows the licence photo and the custom bus, so items 5 and 8 shi
   - name
   - chosen flag
   - licence number
-  - a rank title that grows with play: Learner, Driver, Oga or Madam, Legend
+  - a rank title that grows with play: Learner, Driver, Oga or Madam (the player chooses which), Legend
 - **Design notes:**
   - The licence "photo" is a drawn portrait built from the chosen options. It is never a camera photo, so no real images of players are collected.
   - Rank grows with distance driven, passengers carried and quiz answers. It never depends on money spent.
