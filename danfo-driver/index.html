@@ -2499,10 +2499,14 @@ function bubble(x, y, text) {
   ctx.font = `800 ${clamp(W * .036, 13, 18)}px "Baloo 2", sans-serif`;
   let lines = [text]; if (ctx.measureText(text).width + 22 > W * .7) { const ws = text.split(' '), half = Math.ceil(ws.length / 2); lines = [ws.slice(0, half).join(' '), ws.slice(half).join(' ')]; }
   const w = Math.max(...lines.map(l => ctx.measureText(l).width)) + 22, h = lines.length > 1 ? 50 : 32;
-  const bx = clamp(x - w * .3, 8, W - w - 8), by = y - h; flat(bx, by, w, h, 14, '#fff', 3);
+  const bx = clamp(x - w * .3, 8, W - w - 8), by = y - h;
+  // the bubble never hides the road: it fades while a car, obstacle or passenger is behind it
+  const hid = objs.some(o => !o.done && o.type !== 'coin' && o.z > ZP + .5 && o.z < ZP + 40 && (() => { const q = P3(o.x, 0, o.z); return q.x + q.s * .55 > bx && q.x - q.s * .55 < bx + w && q.y > by - 6 && q.y - q.s * 1.1 < by + h + 12; })());
+  G.bubA = (G.bubA === undefined ? 1 : G.bubA) + ((hid ? .22 : 1) - (G.bubA === undefined ? 1 : G.bubA)) * .25; ctx.save(); ctx.globalAlpha = G.bubA;
+  flat(bx, by, w, h, 14, '#fff', 3);
   const tx = clamp(x, bx + 14, bx + w - 14); ctx.beginPath(); ctx.moveTo(tx - 7, by + h - 1.5); ctx.lineTo(tx + 3, by + h + 11); ctx.lineTo(tx + 9, by + h - 1.5); ctx.fillStyle = '#fff'; ctx.fill();
   ctx.lineWidth = 3; ctx.strokeStyle = OUT; ctx.beginPath(); ctx.moveTo(tx - 7, by + h); ctx.lineTo(tx + 3, by + h + 11); ctx.lineTo(tx + 9, by + h); ctx.stroke();
-  ctx.fillStyle = OUT; ctx.textAlign = 'left'; ctx.textBaseline = 'middle'; lines.forEach((l, i) => ctx.fillText(l, bx + 11, by + h / 2 + 1 + (i - (lines.length - 1) / 2) * 18));
+  ctx.fillStyle = OUT; ctx.textAlign = 'left'; ctx.textBaseline = 'middle'; lines.forEach((l, i) => ctx.fillText(l, bx + 11, by + h / 2 + 1 + (i - (lines.length - 1) / 2) * 18)); ctx.restore();
 }
 const drops = Array.from({ length: 150 }, (_, i) => ({ x: Math.random() * 1200, y: Math.random() * 1000, l: i % 2 ? rand(22, 34) : rand(12, 20), v: i % 2 ? rand(1100, 1400) : rand(700, 950) }));
 const lampSpots = [], headSpots = [], HL = { car: [.15, .09], danfo: [.2, .12], keke: [.1, .12], brt: [.22, .1], okada: [0, .2] };
