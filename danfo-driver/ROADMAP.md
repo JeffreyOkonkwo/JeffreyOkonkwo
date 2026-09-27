@@ -20,24 +20,28 @@ Version 1.0 is items 1 to 3 plus the bus tag (done). Item 4 moved into the drive
 The leaderboard shows the licence photo and the custom bus, so items 5 and 8 ship together.
 
 ### 5. Driver's licence
-- **The player is the driver.** Options to customise:
-  - name
-  - face and skin tone
-  - hair, facial hair or braids
-  - headwear (cap, gele)
-  - glasses
-  - outfit
-- **Unlocking:** a few free starter options. The rest unlock through play, the Danfo Pass or the shop.
-- **The licence shows:**
-  - photo
-  - name
-  - chosen flag
-  - licence number
-  - a rank title that grows with play: Learner, Driver, Oga or Madam (the player chooses which), Legend
+- **The player is the driver.** The look is set in five simple groups, one at a time, with big buttons:
+  - **Face:** skin tone, lashes, lip colour, facial hair
+  - **Hair:** afro, afro puff, braids, long braids, locs, bun, low cut, bald, and hair colour
+  - **Headwear:** cap, head wrap, beanie, bucket hat, gele, and headwear colour
+  - **Outfit:** plain shirt, football jersey, hoodie, dashiki, kitenge, suit and tie, Ankara print, kente, track jacket, boubou, agbada, denim jacket
+  - **Extras:** glasses (round, square, shades) and earrings (studs, hoops)
+- **No boy or girl labels.** Long hair, lashes, lip colour, earrings and head wraps are free for everyone, so any player can build any look without choosing a gender.
+- **Unlocking:** every group has free options. More outfits, hair colours (auburn, blonde, blue, purple) and headwear colours unlock through play, the Danfo Pass or the shop. Looks only.
+- **The licence shows:** photo, name, flag, licence number, plate number, rank and the furthest city reached.
+- **Ranks are earned from the player's record, never picked.** Four ranks, based on the furthest city reached on the journey:
+
+  | Rank | Earned by | Where the word comes from |
+  |---|---|---|
+  | JJC | Everyone starts here | West African Pidgin, "Johnny Just Come": a newcomer |
+  | Area Driver | Reach Kano | Knows the roads; matches the game's middle level |
+  | Pilot | Reach Cairo | Nairobi matatu slang (Sheng) for the driver |
+  | Legend | Reach Johannesburg | Plain English, understood everywhere |
+
+  None of the titles says anything about gender. Money never changes a rank.
 - **Design notes:**
   - The licence "photo" is a drawn portrait built from the chosen options. It is never a camera photo, so no real images of players are collected.
-  - Rank grows with distance driven, passengers carried and quiz answers. It never depends on money spent.
-  - Options include a wide range of skin tones, hair types and headwear, with no option tied to a tribe or religion.
+  - No option is tied to a tribe or religion.
 
 ### Custom plate number
 - The bus plate (now "AFRIKA 1") can be changed by the player: up to 8 letters and numbers.
@@ -56,30 +60,40 @@ The leaderboard shows the licence photo and the custom bus, so items 5 and 8 shi
 
 ### Danfo Pass (the only subscription)
 - The Danfo Pass replaces the planned Oga Driver Club, which has been removed from the code.
-- It unlocks looks only (licence options, bus colours, plate styles, conductor looks). It never raises a score and never includes quiz help.
+- It unlocks looks only (licence options, hair and headwear colours, bus colours, plate styles, conductor looks and voice styles). It never raises a score and never includes quiz help.
 - **Store setup:** create one subscription product in both stores and one entitlement in RevenueCat when this version is built.
 
 ## Version 1.2 (proposed): conductor and city cards
 
 ### 6. Conductor as a sidekick
 - **Look:** a conductor with a separate look and outfit.
-- **Voice packs:**
+- **Voice packs, picked by the player:**
   - languages: Pidgin, English, French
   - styles: calm, loud, comedy
-- **Unlocking:** one conductor is free. More can be unlocked through play or bought.
-- **Voice notes:** recorded by real voice actors. Accents are never used as the joke, and comedy lines come from situations on the road, not from people's background.
+- **Unlocking:** one conductor and the calm voice in each language are free. More looks and the loud and comedy voices unlock through play, the Danfo Pass or the shop.
+- **No typed lines.** Players cannot type what the conductor says: typed lines would need checking for rude words, and a computer voice reading them sounds flat.
+- **Recording:** Suno makes songs, not short spoken lines, so it is not the right tool here. Use voice actors from Lagos, Accra, Nairobi and Dakar, or a licensed voice tool. Record a few lines first and test them with players.
+- **Voice notes:** accents are never used as the joke, and comedy lines come from situations on the road, not from people's background.
 
 ### 7. City card
-- When a player reaches a new city, the game makes a shareable image with:
+- **The run is never interrupted.** When a player reaches a new city during a run, a short banner shows (as the game does today) and the run keeps going.
+- After the run, the game over screen shows one small link, "New city card". Tapping it opens a shareable image with:
   - the city fact (with its source)
   - the player's custom bus and plate number
   - the licence photo
   - the score
-  - the rank, if the player has one
+  - the rank
 - Players can save it to the phone or share it to WhatsApp, Instagram or TikTok.
 - The image is made on the phone. Nothing is uploaded unless the player shares it.
+
+## Keep it simple
+Every new screen must be easy for a young player to use without help:
+- one main button per screen
+- big buttons with short words
+- at most one level of tabs
+- no typing needed to play
 
 ## Open questions for Jeff
 - **Leaderboard sign-in:** should players sign in (Google, Apple) or use an anonymous device ID?
 - **Danfo Pass:** the price, and whether it runs monthly or by season.
-- **Rank titles:** confirm the titles and the thresholds for each one.
+- **Ranks:** confirm JJC, Area Driver, Pilot and Legend, and the cities that earn them.
