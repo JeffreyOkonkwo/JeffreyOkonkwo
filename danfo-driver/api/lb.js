@@ -62,7 +62,7 @@ export default async function handler(req, res) {
     const q = req.query || {}, b = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
     if (req.method === 'GET') {
       const { data } = await load();
-      res.setHeader('Cache-Control', 'public, s-maxage=20, stale-while-revalidate=60');
+      res.setHeader('Cache-Control', q.t ? 'no-store' : 'public, s-maxage=15, stale-while-revalidate=30');
       return res.status(200).json(boards(data, clip(q.cc, 6).toUpperCase()));
     }
     const pid = clip(b.pid, 40);
