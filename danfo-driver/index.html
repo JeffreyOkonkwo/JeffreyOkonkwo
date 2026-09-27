@@ -1400,14 +1400,15 @@ function loginStreak() {
   return { streak, bonus };
 }
 let sheetAction = null;
-function openSheet(title, html, btn = t('close'), action = null, compact = false) { document.querySelector('.sheetc').classList.toggle('compact', !!compact); $('sheet').classList.remove('focus'); $('sheetT').textContent = title; $('sheetB').innerHTML = html; $('sheetClose').textContent = btn; sheetAction = action; show('sheet', true); $('sheetX').focus(); }
+let sheetDismiss = null; // runs when a sheet is closed with X, Escape or the back button
+function openSheet(title, html, btn = t('close'), action = null, compact = false) { sheetDismiss = null; document.querySelector('.sheetc').classList.toggle('compact', !!compact); $('sheet').classList.remove('focus'); $('sheetT').textContent = title; $('sheetB').innerHTML = html; $('sheetClose').textContent = btn; sheetAction = action; show('sheet', true); $('sheetX').focus(); }
 // an in-game yes or no question (works the same in the phone apps and the browser)
 function askSheet(title, text, yes, onYes, onNo) {
   openSheet(title, `<p style="margin:0;font-weight:700">${escHtml(text)}</p><button type="button" class="askbtn" id="askYes">${escHtml(yes)}</button>`, t('cancel'), onNo || null, true);
   sheetFocus(); $('askYes').onclick = () => { sheetAction = null; closeSheet(); onYes(); };
 }
 const sheetFocus = () => $('sheet').classList.add('focus'); // private things (players, licence, delete): blur the game more
-function closeSheet(run) { show('sheet', false); if (mode === 'over') show('over', true); refreshTitle(); const a = sheetAction; sheetAction = null; if (run && a) a(); }
+function closeSheet(run) { const dm = sheetDismiss; sheetDismiss = null; if (!run && dm) dm(); show('sheet', false); if (mode === 'over') show('over', true); refreshTitle(); const a = sheetAction; sheetAction = null; if (run && a) a(); }
 // ================================================================ driver's licence
 // The player is the driver: a drawn portrait (never a camera photo), a flag, a plate and a rank earned from the record.
 // Looks are Free, Earn (unlocked by playing, kept forever) or Pass (Danfo Pass). Nothing here changes a score.
@@ -1774,10 +1775,10 @@ function showSetup() {
   openSheet(t('whoDrives'), `<label class="lopt"><span class="lbl">${t('lblName')}</span><input id="setName" class="nickin" type="text" maxlength="14" autocomplete="off" placeholder="${t('namePh')}"></label>
     <div class="lopt"><span class="lbl">${t('pickCountry')}</span>${ccPicker('setFlag', 'AFRICA')}</div>
     <p class="lnote">${t('setupNote')}</p>`, t('letsGo'), () => {
-      const n = cleanNick($('setName').value).slice(0, 14); if (n) store.set('nick', n); store.set('flag', flag); refreshTitle(); }, true); sheetFocus();
+      const n = cleanNick($('setName').value).slice(0, 14); if (n) store.set('nick', n); store.set('flag', flag); store.set('setup', true); refreshTitle(); }, true); sheetFocus();
   wireCcPicker('setFlag', v => { flag = v; });
+  sheetDismiss = () => store.set('setup', true);
   $('setName').addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Enter') $('setName').blur(); });
-  store.set('setup', true);
 }
 
 function showMissions() {

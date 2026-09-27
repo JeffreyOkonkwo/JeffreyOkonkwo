@@ -4,6 +4,7 @@
   "private": true,
   "description": "Danfo Craze native app (Android + iOS) wrapping the web game in ../danfo-driver",
   "scripts": {
+    "build": "npm run web:dev",
     "web:dev": "node scripts/build-web.mjs",
     "web:release": "node scripts/build-web.mjs --release",
     "sync": "npm run web:dev && npx cap sync",
