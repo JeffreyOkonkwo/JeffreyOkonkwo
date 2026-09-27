@@ -29,6 +29,7 @@ The leaderboard shows the licence photo and the custom bus, so items 5 and 8 shi
 - **No boy or girl labels.** Long hair, lashes, lip colour, earrings and head wraps are free for everyone, so any player can build any look without choosing a gender.
 - **Unlocking:** every group has free options. More outfits, hair colours (auburn, blonde, blue, purple) and headwear colours unlock through play, the Danfo Pass or the shop. Looks only.
 - **The licence shows:** photo, name, flag, licence number, plate number, rank and the furthest city reached.
+- **Flags:** every country and territory (249), grouped as Africa first and then the rest of the world, plus "Africa (no country)". Use the open flag-icons set (MIT licence), about 540 KB compressed.
 - **Ranks are earned from the player's record, never picked.** Four ranks, based on the furthest city reached on the journey:
 
   | Rank | Earned by | Where the word comes from |
@@ -49,12 +50,13 @@ The leaderboard shows the licence photo and the custom bus, so items 5 and 8 shi
 - Editing the plate is free and is looks only. It passes the same word filter as nicknames.
 
 ### 8. Online leaderboard
-- Each entry shows the player's flag, licence photo, custom bus and plate number next to their score.
+- **Three boards:** World, Clean runs (scores with no continues) and My country.
+- Each entry shows the player's flag, licence photo, custom bus, plate number and rank next to their score.
 - Challenge links open straight into the challenge.
 - **Basic cheat checks:**
   - The server checks that a score is possible for the run time and speed.
   - It limits how often one device can submit scores.
-  - It keeps the continue count with each score. Clean runs can have their own board.
+  - It keeps the continue count with each score, for the Clean runs board.
 - **Names:** nicknames pass a word filter, and there is a way to report a name.
 - **Privacy work before launch:** accounts or a device ID, an update to the privacy policy, new Data safety and App Privacy answers, and a way for players to delete their leaderboard entry.
 
@@ -75,15 +77,18 @@ The leaderboard shows the licence photo and the custom bus, so items 5 and 8 shi
 - **"Start from" buttons** fill in ready-made lines in Pidgin, English or French, so nobody has to type.
 - **Safety:** each line passes the same word filter as the bus tag. Custom lines only show on the player's own phone; other players never see them.
 
-### 7. Trip card
-- **The run is never interrupted.** When a player reaches a new city during a run, a short banner shows (as the game does today) and the run keeps going.
-- After the run, the game over screen shows one small link, "Trip card". It opens a shareable image with:
-  - every city the run touched, with the new ones marked
-  - one "Did you know?" fact about the newest city, with its source, sized to fit its box
-  - the player's bus with its tag and plate number
-  - the licence photo, name, rank and score
-- Players can save it to the phone or share it to WhatsApp, Instagram or TikTok.
-- The image is made on the phone. Nothing is uploaded unless the player shares it.
+### 7. New city card and trip card
+- **New city card, during the run.** The first time a player reaches a city, the game pauses and the card pops up with:
+  - the city name
+  - one "Did you know?" fact with its source, sized to fit its box
+  - the player's bus with its tag and plate
+  - the licence photo, name and rank
+- **Three buttons:** Share, Save or Keep driving.
+- **Settling back in:** after the card closes, a blinking 3, 2, 1 counts down. The road ahead is cleared and the bus is safe for a moment, so nobody crashes right after the pause.
+- **Opt out:** "Next time, just show a banner" switches to today's method (a short banner, no pause). It can be switched back on in settings.
+- **Only for new cities:** cities already reached get the banner, so the card stays special and does not break every run.
+- **Trip card, after the run:** a small "Trip card" link on the game over screen lists every city the run touched, with the new ones marked, and one fact about the newest city.
+- **Sharing:** players can save either card to the phone or share it to WhatsApp, Instagram or TikTok. The image is made on the phone, and nothing is uploaded unless the player shares it.
 
 ## Keep it simple
 Every new screen must be easy for a young player to use without help:
