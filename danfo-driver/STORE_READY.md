@@ -70,7 +70,7 @@
     - purchases clearly priced by the store
   - **Apple:** rate 4+. **Don't choose the Kids category**, because Apple doesn't allow third-party ads there. No tracking prompt, and purchases through Apple with Restore Purchases.
   - **Sponsor signs:** family-friendly brands only (see `SPONSORS.md`). No betting, alcohol, loans, crypto, dating or political ads.
-- [ ] **Music rights:** keep proof that the 78 party clips were made on a **paid Suno plan** (Pro or Premier). A screenshot of the plan and the song list is enough.
+- [ ] **Music rights:** keep proof that the 5 party songs (danfo-v2-03a, 03b, 04b, 08a, 08b) were made on a **paid Suno plan** (Pro or Premier). A screenshot of the plan and the song list is enough.
 
 ## Building the app
 See `../danfo-app/README.md`. In short: `npm install`, `npm run sync`, then `npm run android` (Android Studio, then a signed `.aab`) or `npm run ios` (Xcode on a Mac, then Archive).

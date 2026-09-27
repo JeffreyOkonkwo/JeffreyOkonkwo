@@ -976,11 +976,12 @@ function scheduleMusic() {
 // custom party clips listed in music/tracks.json (MP3s). They play through the game's own audio
 // engine (unlocked when you tap Play), because phones block <audio> that starts without a tap.
 // One clip is downloaded and decoded ahead of time so the party starts on the beat.
-let partyTracks = [], partyBuf = null, partySrc = null, partyGain = null, partyLoading = false;
+let partyTracks = [], lastTrack = '', partyBuf = null, partySrc = null, partyGain = null, partyLoading = false;
 fetch('music/tracks.json').then(r => r.json()).then(j => { partyTracks = (j.tracks || []).filter(Boolean); preloadParty(); }).catch(() => {});
 function preloadParty() {
   if (partyLoading || partyBuf || !partyTracks.length || !A.ctx) return; partyLoading = true;
-  fetch('music/' + pick(partyTracks)).then(r => { if (!r.ok) throw new Error('clip'); return r.arrayBuffer(); })
+  const pool = partyTracks.length > 1 ? partyTracks.filter(x => x !== lastTrack) : partyTracks; lastTrack = pick(pool);
+  fetch('music/' + lastTrack).then(r => { if (!r.ok) throw new Error('clip'); return r.arrayBuffer(); })
     .then(b => new Promise((res, rej) => A.ctx.decodeAudioData(b, res, rej)))
     .then(buf => { partyBuf = buf; }).catch(() => {}).then(() => { partyLoading = false; });
 }
