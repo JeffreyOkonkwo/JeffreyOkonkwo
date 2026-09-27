@@ -329,7 +329,9 @@
   .rcard{display:grid;grid-template-columns:96px 1fr;gap:8px;background:#fff;border:3px solid var(--ink);border-radius:14px;padding:6px;box-shadow:0 3px 0 var(--ink)}.rcard.far{background:#f6f5f8}.rcard.far .rpic{filter:grayscale(.6)}
   .rpic{position:relative;align-self:start;height:62px;border:2px solid var(--ink);border-radius:10px;background:#bfe6ff center bottom/cover no-repeat}.rpic i{position:absolute;top:-8px;left:-8px;width:24px;height:24px;border-radius:50%;background:var(--danfo);border:2px solid var(--ink);display:grid;place-items:center;font:400 11px "Bungee",Impact,sans-serif;font-style:normal}
   .rinfo{display:grid;gap:4px;align-content:start;min-width:0}.rinfo>b{font:400 15px "Bungee",Impact,sans-serif}
-  .rpills{display:flex;flex-wrap:wrap;gap:4px}.rpill{display:grid;border:2px solid var(--ink);border-radius:10px;padding:2px 7px;text-align:left;color:var(--ink);font:700 12px/1.15 "Baloo 2",sans-serif}.rpill small{font-weight:800;font-size:10.5px;opacity:.85}.rpill.sel{box-shadow:0 0 0 3px var(--danfo)}.rpill.own small{color:#0e8f52}.rpill.buy small{color:#9a6400}
+  .rpills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}.rpills .rpill{width:100%;box-sizing:border-box;min-height:38px;align-content:center}
+  @media (max-width:380px){.rcard{grid-template-columns:78px minmax(0,1fr);gap:6px}.rpic{height:54px}.rpill{padding:2px 5px;font-size:11.5px}.rpill small{font-size:10px}}
+  .rpill{display:grid;border:2px solid var(--ink);border-radius:10px;padding:2px 7px;text-align:left;color:var(--ink);font:700 12px/1.15 "Baloo 2",sans-serif}.rpill small{font-weight:800;font-size:10.5px;opacity:.85}.rpill.sel{box-shadow:0 0 0 3px var(--danfo)}.rpill.own small{color:#0e8f52}.rpill.buy small{color:#9a6400}
   .rintro{margin:0;font-weight:800;text-align:center}.rrule{margin:4px auto;font-size:12.5px;font-weight:700;text-align:center;background:#eef6ff;border:2px solid var(--ink);border-radius:12px;padding:2px 10px;width:fit-content;max-width:100%;box-sizing:border-box}.rbank{margin:0;text-align:center;font-weight:800;font-size:13px}
   .rcountry{border:3px solid var(--ink);border-radius:16px;background:#fff8e7;padding:6px;display:grid;gap:6px}.rcountry h3{margin:0;display:flex;align-items:center;gap:8px;font:400 17px "Bungee",Impact,sans-serif}
   .rtiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;align-items:start}
@@ -529,6 +531,18 @@ const SHOPS = ['SUYA SPOT', 'MAMA PUT', "GOD'S GRACE PHONES", 'AMALA JOINT', 'PO
 const TOWERS = ['EKO TOWER', 'LEKKI MALL', 'TECH HUB', 'ISLAND BANK', 'OCEAN VIEW'];
 const BOARDS = ['BUY LAND FOR EPE', 'JOLLOF WARS · SAT', 'LAGOS · CENTRE OF EXCELLENCE', 'WAKE UP NAIJA · 99.1FM'];
 const STOPNAMES = ZSTOPS.lagos;
+// now and then the conductor makes a small, friendly remark about the place (said at most once per run each)
+const CITY_TALK = {
+  lagos: ['I will buy suya after this trip.', 'Lagos, we move!'], bridge: ['Look at the lagoon!'], mainland: ['This sunset is beautiful.'],
+  lekki: ['I like the beach here.'], ikorodu: ['The lagoon breeze is nice.'], village: ['Fresh air in the village!'],
+  abuja: ['Look, Aso Rock!'], ph: ['They call this the Garden City.'], kano: ['I will buy fabric at Kurmi Market.'],
+  accra: ['I like the beach here.'], kumasi: ['Kejetia Market is so busy!'], capecoast: ['The sea breeze here is sweet.'],
+  abidjan: ['I will eat attiéké later.'], dakar: ['Thieboudienne for lunch!'], marrakech: ['Mint tea after this trip!'],
+  cairo: ['Look, the Nile!'], addis: ['Coffee break soon!'], kampala: ['So many hills here!'], nairobi: ['Nyama choma later!'],
+  mombasa: ['I like the beach here.'], dar: ['The ocean breeze is nice.'], kigali: ['So clean and green here!'],
+  kinshasa: ['Put on some rumba!'], douala: ['Ndolé for lunch today!'], joburg: ['Busy city, eyes on the road!'],
+  soweto: ['I like the energy here.'], capetown: ['Look at Table Mountain!'] };
+function cityTalk(zk) { if (lang === 'fr' || !G) return null; const z = zoneOf(zk), c = z && z.road ? z.road.city : zk, l = (CITY_TALK[c] || []).filter(b => !(G.bits || []).includes(b)); if (!l.length) return null; const b = pick(l); (G.bits = G.bits || []).push(b); return b; }
 // everyday calls are in English; a few Pidgin ones stay for flavour
 const CALLS = ['Enter with your change!', 'Move to the back, please!', 'Space at the back!', 'Who has not paid?', 'Hold on tight!', 'Driver, easy!', 'Oya, we dey go!', 'Shine your eye!'];
 
@@ -1165,7 +1179,6 @@ function musicStop() { clearInterval(A.t); A.t = null; partyMusic(false); }
 const calm = v => String(v).charAt(0) + String(v).slice(1).toLowerCase().replace(' · ', '. ');
 // the conductor talks now and then: police and new places come first (pri 2 and 1), small chatter never talks over them
 function say(text, pri = 0) { if (!G || G.demo || !text) return; if (G.callT > 0 && (G.callPri || 0) > pri) return; if (!pri && G.time - (G.saidAt ?? -99) < 9) return; G.call = text; G.callT = 2.2; G.callPri = pri; G.saidAt = G.time; }
-const sentence = v => { const l = String(v).toLowerCase(); return l.charAt(0).toUpperCase() + l.slice(1); };
 
 // ---------------------------------------------------------------- game state
 let G = null, mode = 'title', T = 0, shake = 0, flashA = 0, last = 0;
@@ -1963,7 +1976,7 @@ function showJourney() {
   loadRoads(); if (!FLAGSET) loadFlags().then(() => { if (FLAGSET && !$('sheet').hidden && $('roadsWrap')) showJourney(); });
   const got = reachedZones(), cur = roadPick || startKey(), pass = hasPass(), cityName = k => titleCase(ZONES.find(z => z.k === k).name.split(' · ')[0]);
   // every road gets one of three states: ready (green), buy with coins (gold), or reach the city first (grey)
-  const pill = (k, label, state, note) => `<button type="button" class="rpill ${state} ${k === cur ? 'sel' : ''}" data-road="${k}" ${state === 'wait' ? 'disabled' : ''}><span>${k === cur ? '▶ ' : state === 'own' ? '✓ ' : state === 'wait' ? '🔒 ' : ''}${escHtml(label)}</span><small>${note}</small></button>`;
+  const pill = (k, label, state, note) => `<button type="button" class="rpill ${state} ${k === cur ? 'sel' : ''}" data-road="${k}" ${state === 'wait' ? 'disabled' : ''}><span>${k === cur ? '▶ ' : state === 'own' ? '✓ ' : state === 'wait' ? '🔒 ' : ''}${escHtml(label).replace(/ · /g, '&nbsp;· ')}</span><small>${note}</small></button>`;
   let next = null;
   const card = (k, n) => {
     const here = got.includes(k), pic = cityThumb(k);
@@ -2292,7 +2305,7 @@ function update(dt) {
   const gap = Math.max(.75, 1.15 - (G.speed - G.D.start) * .012) * (G.speed - 5) * G.D.gap;
   if (!G.dead && G.rowAcc > gap) { G.rowAcc = 0; spawnRow(); }
 
-  const zn = zoneAt(ZP); if (zn !== G.zone) { G.zone = zn; if ((store.get('reached', [])).includes(zn)) say(titleCase(ZONES.find(z => z.k === zn).name.split(' · ')[0]) + '!', 1);
+  const zn = zoneAt(ZP); if (zn !== G.zone) { G.zone = zn; 
     if (!G.demo) { G.trip.push(zn); const r = store.get('reached', []); if (!r.includes(zn)) { r.push(zn); store.set('reached', r); G.fresh.push(zn); newCityReached(zn); } } }
 
   for (let i = objs.length - 1; i >= 0; i--) {
@@ -2316,7 +2329,7 @@ function update(dt) {
 
   if (!G.demo && !G.dead) {
     G.hornT -= dt; if (G.hornT <= 0) { G.hornT = rand(1.8, 4.5); sfx.horn(rand(-1, 1), rand(.025, .055)); if (Math.random() < .25) sfx.crowd(); }
-    G.callNext -= dt; if (G.callNext <= 0) { G.callNext = rand(20, 32); const zk = zoneAt(ZP), zc = ZCALLS[zk] || (CITY[zk] && CITY[zk].calls), r = Math.random(); say(r < .45 ? sentence(myTag()) + '!' : r < .75 && zc ? pick(zc) : pick(CALLS)); }
+    G.callNext -= dt; if (G.callNext <= 0) { G.callNext = rand(25, 40); const zk = zoneAt(ZP), zc = ZCALLS[zk] || (CITY[zk] && CITY[zk].calls), r = Math.random(); say((r < .35 && cityTalk(zk)) || (r < .7 && zc ? pick(zc) : pick(CALLS))); }
   }
   if (G.callT > 0) G.callT -= dt;
   G.swerveT += dt;
