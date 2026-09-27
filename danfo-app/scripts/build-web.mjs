@@ -8,7 +8,7 @@ import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..'), src = join(root, '..', 'danfo-driver'), out = join(root, 'www');
 const release = process.argv.includes('--release');
-const skip = new Set(['screenshots', 'SUNO_BRIEF.md', 'quiz-sources.json', 'sw.js', 'README.md', 'RESEARCH.md', 'STORE_READY.md']);
+const skip = new Set(['api', 'package.json', 'package-lock.json', 'node_modules', '.gitignore', 'screenshots', 'SUNO_BRIEF.md', 'quiz-sources.json', 'sw.js', 'README.md', 'RESEARCH.md', 'STORE_READY.md']);
 rmSync(out, { recursive: true, force: true }); mkdirSync(out, { recursive: true });
 cpSync(src, out, { recursive: true, filter: p => !skip.has(basename(p)) && !(p.endsWith('.md') && p !== src) });
 let keys = {}; const kf = join(root, 'keys.local.json');

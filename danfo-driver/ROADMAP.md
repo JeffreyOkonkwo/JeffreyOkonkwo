@@ -1,6 +1,6 @@
 # Danfo Craze: roadmap
 
-Version 1.0 is items 1 to 3 plus the bus tag (done). Item 4 moved into the driver's licence (item 5). Items 5 to 8 are planned for versions 1.1 and 1.2 and are **not built yet**.
+All items below are **built** and in the game: version 1.0 (items 1 to 3 and the bus tag), plus the driver's licence, conductor, city cards, online leaderboard and Danfo Pass. Item 4 moved into the driver's licence.
 
 ## Rules for every version
 - Paid items are looks only. Nothing paid may raise a score.
@@ -13,10 +13,10 @@ Version 1.0 is items 1 to 3 plus the bus tag (done). Item 4 moved into the drive
 1. **Game over screen:** one main action (Continue, by quiz or by ad), then Play Again, then Challenge a Friend. Double coins is a small link.
 2. **Paid items are looks only:** the +25% coin bonus on paid Lagos routes is removed. Quiz continues are free (3 chances a run), so bought coins can never help a score.
 3. **Quiz facts:** after every answer, a one-line "Did you know?" fact with its source.
-4. **Driver look:** moved into the driver's licence (item 5). A single Oga or Madam switch felt wrong on its own, and the bus keeps just the conductor. In the licence, players build their own driver and choose whether their rank title reads Oga or Madam.
-5. **Bus tag:** the slogan on the player's bus, GOD IS KING by default. Players pick another from a list or write their own (20 characters maximum, basic word filter). Free and looks only. When the leaderboard arrives, custom tags pass the same server word filter as nicknames.
+4. **Driver look:** moved into the driver's licence (item 5). A single Oga or Madam switch felt wrong on its own, and the bus keeps just the conductor. In the licence, players build their own driver. Ranks are earned, never picked, and say nothing about gender.
+5. **Bus tag:** the slogan on the player's bus, GOD IS KING by default. Players can write their own, and one tap brings back GOD IS KING (20 characters maximum, basic word filter). Free and looks only. When the leaderboard arrives, custom tags pass the same server word filter as nicknames.
 
-## Version 1.1 (proposed): licence, leaderboard and Danfo Pass
+## Version 1.1 (built): licence, leaderboard and Danfo Pass
 The leaderboard shows the licence photo and the custom bus, so items 5 and 8 ship together.
 
 ### 5. Driver's licence
@@ -62,16 +62,16 @@ The leaderboard shows the licence photo and the custom bus, so items 5 and 8 shi
   - It limits how often one device can submit scores.
   - It keeps the continue count with each score, for the Clean runs board.
 - **Names:** nicknames pass a word filter, and there is a way to report a name.
-- **Privacy work before launch:** accounts or a device ID, an update to the privacy policy, new Data safety and App Privacy answers, and a way for players to delete their leaderboard entry.
+- **Privacy:** no sign-in. The game makes a random player number, asks before the first score is sent, and players can take themselves off at any time. The privacy policy and store answers are updated.
 
 ### Danfo Pass (the only subscription)
 - The Danfo Pass replaces the planned Oga Driver Club, which has been removed from the code.
 - It unlocks looks only (licence options, hair and headwear colours, bus colours, plate styles, conductor looks and speech bubble styles). It never raises a score and never includes quiz help.
 - **What makes players want it:** a gold licence frame that also shows on their leaderboard row, new looks every month, and the flashiest outfits and colours.
-- **Shop vs Pass:** the shop keeps what it sells in 1.0 (coin packs, Remove Ads, the Starter Pack and the Lagos routes), and coins still buy bus colours in the Garage. Licence looks are never sold one by one; they are free, earned or in the Pass.
-- **Store setup:** create one subscription product in both stores and one entitlement in RevenueCat when this version is built.
+- **Shop vs Pass:** the shop keeps what it sells in 1.0 (coin packs, Remove Ads, the Starter Pack and the Lagos routes), and coins still buy the 8 buses in the Garage. The Pass adds stripe colours for any bus you own. Licence looks are never sold one by one; they are free, earned or in the Pass.
+- **Store setup:** create the subscription `danfo_pass_monthly` in both stores and the entitlement `danfo_pass` in RevenueCat (see `STORE_READY.md`).
 
-## Version 1.2 (proposed): conductor and trip cards
+## Version 1.2 (built): conductor and trip cards
 
 ### 6. Conductor as a sidekick
 - **Look:** a conductor with a separate look and outfit. One is free; more unlock through play, the Danfo Pass or the shop.
@@ -84,17 +84,13 @@ The leaderboard shows the licence photo and the custom bus, so items 5 and 8 shi
 - **Safety:** each line passes the same word filter as the bus tag. Custom lines only show on the player's own phone; other players never see them.
 
 ### 7. New city card and trip card
-- **New city card, during the run.** The first time a player reaches a city, the game pauses and the card pops up with:
-  - "WELCOME TO ACCRA!" with the city's own greeting and its language, for example "Akwaaba! Welcome, in Twi"
-  - one "Did you know?" fact with its source, sized to fit its box
-  - the player's bus with its tag and plate
-  - the licence photo, name and rank
-- **Three buttons:** Share, Save or Keep driving.
-- **Settling back in:** after the card closes, a blinking 3, 2, 1 counts down. The road ahead is cleared and the bus is safe for a moment, so nobody crashes right after the pause.
-- **Opt out:** "Next time, just show a banner" switches to a short "WELCOME TO ACCRA!" banner with no pause. It can be switched back on in settings.
-- **Only for new cities:** cities already reached get the banner, so the card stays special and does not break every run.
-- **Trip card, after the run:** a small "Trip card" link on the game over screen lists every city the run touched, with the new ones marked, and one fact about the newest city.
-- **Sharing:** players can save either card to the phone or share it to WhatsApp, Instagram or TikTok. The image is made on the phone, and nothing is uploaded unless the player shares it.
+- **New city card, during the run.** The first time a player reaches a city, the game pauses and a small card appears at the top of the screen, so the road and the bus stay in view. It says "WELCOME TO ACCRA!" with the city's own greeting and its language, for example "Akwaaba! Welcome, in Twi".
+- **Three buttons:** Share, Save or Keep driving. Share and Save make a full picture with the bus, the licence photo, and one "Did you know?" fact with its source.
+- **Settling back in:** after the card closes, a blinking 3, 2, 1 counts down. The road ahead is cleared and the bus is safe for a moment.
+- **Opt out:** "Next time, no pause" switches to a small welcome pop that does not stop the game and fades after about 3 seconds. It can be switched back in Journey.
+- **Only for new cities:** cities already reached get a short banner, so the card stays special.
+- **Trip card, after the run:** a small "Trip card" link on the game over screen lists every city the run touched, with the new ones marked, one "Did you know?" fact about the newest city with its source, the player's bus and licence photo, and Share and Save buttons.
+- **Sharing:** players can save the trip card to the phone or share it to WhatsApp, Instagram or TikTok. The image is made on the phone, and nothing is uploaded unless the player shares it.
 
 ## Keep it simple
 Every new screen must be easy for a young player to use without help:
@@ -104,6 +100,5 @@ Every new screen must be easy for a young player to use without help:
 - no typing needed to play
 
 ## Open questions for Jeff
-- **Leaderboard sign-in:** should players sign in (Google, Apple) or use an anonymous device ID?
-- **Danfo Pass:** the price, and whether it runs monthly or by season.
-- **Ranks:** confirm JJC, Area Driver, Pilot and Legend, and the cities that earn them.
+- **Danfo Pass price:** the code suggests $2.99 a month. Change it in the store consoles if you want another price.
+- **Leaderboard sign-in:** built with an anonymous player number and no sign-in. Google or Apple sign-in can come later if players want their place on a new phone.

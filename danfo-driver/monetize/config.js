@@ -40,11 +40,12 @@ window.DC_MONEY_CONFIG = {
     appleKey: (window.DC_BUILD && window.DC_BUILD.revenuecatAppleKey) || 'PASTE_REVENUECAT_APPLE_PUBLIC_KEY_IN_danfo-app/keys.local.json',
     googleKey: (window.DC_BUILD && window.DC_BUILD.revenuecatGoogleKey) || 'PASTE_REVENUECAT_GOOGLE_PUBLIC_KEY_IN_danfo-app/keys.local.json',
   },
-  entitlements: { noAds: 'no_ads' },
+  entitlements: { noAds: 'no_ads', pass: 'danfo_pass' },
   // what each product gives; prices shown in the shop come from the store (localised)
   // Paid items are looks only: nothing paid can raise a score. Coins buy bus colours only.
-  // One subscription is planned for version 1.1 (the Danfo Pass, see ROADMAP.md); none ships in 1.0.
+  // The Danfo Pass is the only subscription: looks only (gold frame, Pass looks, stripe colours, monthly looks).
   products: [
+    { id: 'danfo_pass_monthly', type: 'subscription', grants: { entitlement: 'danfo_pass' }, fallbackPrice: '$2.99' },
     { id: 'remove_ads', type: 'non_consumable', grants: { entitlement: 'no_ads' }, fallbackPrice: '$2.99' },
     { id: 'starter_pack', type: 'non_consumable', grants: { coins: 1500, skin: 'gold' }, fallbackPrice: '$0.99' },
     { id: 'coins_small', type: 'consumable', grants: { coins: 1000 } },

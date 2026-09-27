@@ -52,7 +52,7 @@ Without keys, the game still runs normally. The shop just says it is connecting 
 | `route_ikorodu` | non-consumable | Ikorodu route |
 | `route_third_mainland` | non-consumable | Third Mainland at sunset route |
 
-In RevenueCat, attach `remove_ads` to the entitlement **no_ads**. There is no subscription in version 1.0 (the Danfo Pass is planned for 1.1, see `../danfo-driver/ROADMAP.md`). You set the coin pack prices in the store consoles; the shop shows the local price from the store.
+In RevenueCat, attach `remove_ads` to the entitlement **no_ads** and the subscription `danfo_pass_monthly` to the entitlement **danfo_pass** (the Danfo Pass: looks only).
 
 ## Build
 ```bash

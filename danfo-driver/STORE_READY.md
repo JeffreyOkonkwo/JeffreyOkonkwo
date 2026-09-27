@@ -25,7 +25,13 @@ The step by step build and upload list is in `../danfo-app/LAUNCH_CHECKLIST.md`.
 - [x] **Fair play rules:** paid items are looks only, and nothing paid can raise a score. Coins buy bus colours only. The paid Lagos routes give no extra points or coins. The quiz is never sold: continuing by quiz is free, limited to 3 chances a run, and there are no paid answers or skips. Each continue costs 5% of the score (10% for an ad), and the result shows a clean run or the number of continues.
 - [x] **Game over screen:** one main action (Continue, by quiz or by ad), then Play Again, then Challenge a Friend. Double coins is a small link.
 - [x] **Quiz:** after every answer, a one-line "Did you know?" fact with its source. All 561 questions have a source.
-- [x] **Bus tag:** the slogan on the player's bus. The default is GOD IS KING. Players can pick another from a list or write their own (20 characters maximum, with a basic word filter). Free and looks only.
+- [x] **Bus tag:** the slogan on the player's bus. The default is GOD IS KING. Players can write their own, and one tap brings back GOD IS KING (20 characters maximum, with a basic word filter). Free and looks only.
+- [x] **Driver's licence:** the player builds a drawn driver (never a camera photo), picks a flag (all 249 countries and territories), a plate number and a name. The rank (JJC, Area Driver, Pilot, Legend) is earned from the furthest city reached. Looks are Free, Earn or Danfo Pass.
+- [x] **Conductor:** one conductor on the bus with three looks (Classic free, Sunset earned, Party on the Pass) and three lines the player writes, with a word filter. No voices.
+- [x] **New city welcome and trip card:** a small card at the top of the screen with WELCOME TO and the local greeting when a new city is reached, with Share, Save and Keep driving (the game pauses, the road stays in view, then a 3, 2, 1 countdown). Players can switch it to a small pop with no pause. After the run, a trip card with every city, one fact, and Share and Save.
+- [x] **Garage:** 8 buses bought with coins, and stripe colours for Danfo Pass holders.
+- [x] **Online leaderboard:** World, Clean runs and My country, only for players who say yes. Server checks that a score is possible, limits how often a device can submit, filters names and hides a name after 3 reports. Players can take themselves off at any time.
+- [x] **Danfo Pass:** the only subscription (monthly). Looks only: gold licence frame and gold ring on the leaderboard, the flashiest looks, stripe colours, the Party conductor and new looks every month.
 
 ## Accounts
 - [x] D-U-N-S number issued to God Push Inc.
@@ -53,8 +59,13 @@ The step by step build and upload list is in `../danfo-app/LAUNCH_CHECKLIST.md`.
     - Device or other IDs
   - **Data collected (by RevenueCat), for app functionality, not shared:**
     - Financial info: purchase history
+  - **Data collected (by us, for the online leaderboard, only when the player says yes), for app functionality, not shared:**
+    - Personal info: name (the nickname the player types)
+    - App activity: other user-generated content (plate number and drawn driver look) and in-game scores
+    - Device or other IDs: a random player number made by the app
+    - Mark this data as **optional** (players can play without the leaderboard) and say players can ask for it to be deleted (they can remove it in the game).
   - **Data is encrypted in transit:** yes.
-  - **Players can ask for data to be deleted:** yes, by email to support@godpush.app.
+  - **Players can ask for data to be deleted:** yes, in the game (Ranks, Take me off the board) or by email to support@godpush.app.
   - Check these answers against Google's current "AdMob data disclosure" page and the RevenueCat data safety guide before you submit, because both pages are updated from time to time.
 
 ## Apple App Store Connect answers
@@ -67,6 +78,11 @@ The step by step build and upload list is in `../danfo-app/LAUNCH_CHECKLIST.md`.
     - Usage data: product interaction and advertising data (third party advertising, analytics)
     - Diagnostics: crash data and performance data (third party advertising, analytics)
     - Purchases: purchase history (app functionality)
+  - **Data linked to you (online leaderboard, only when the player says yes), for app functionality:**
+    - Contact info: name (the nickname)
+    - Identifiers: user ID (a random player number made by the app)
+    - User content: gameplay content (score, plate number and drawn driver look)
+    - None of it is used for tracking.
 - [ ] **Age rating:** answer the questionnaire truthfully. If App Store Connect lets you choose a higher age rating than the calculated one, choose **13+**. Do not select "Made for Kids", and do not choose the Kids category.
 - [ ] **Encryption:** already answered in the app (`ITSAppUsesNonExemptEncryption` is false), so uploads are not held for this question.
 
@@ -76,11 +92,12 @@ The step by step build and upload list is in `../danfo-app/LAUNCH_CHECKLIST.md`.
   - `starter_pack` (non-consumable)
   - `coins_small`, `coins_medium`, `coins_large` (consumable)
   - `route_lekki`, `route_ikorodu`, `route_third_mainland` (non-consumable)
-  - There is no subscription in version 1.0. The Danfo Pass is planned for 1.1 (see `ROADMAP.md`).
-- [ ] **Suggested prices:** Remove Ads $2.99, Starter Pack $0.99, coins $0.99, $2.99 and $6.99, routes $0.99 each.
-- [ ] In RevenueCat, connect both apps using the bundle ID `com.hegenius.danfocraze`, attach `remove_ads` to the entitlement **no_ads**, and paste the two public keys into `../danfo-app/keys.local.json` (never committed).
+  - `danfo_pass_monthly` (auto-renewing subscription, 1 month). On Google Play, create it under Subscriptions with a monthly base plan. On the App Store, create a subscription group called Danfo Pass and add it there.
+- [ ] **Suggested prices:** Danfo Pass $2.99 a month, Remove Ads $2.99, Starter Pack $0.99, coins $0.99, $2.99 and $6.99, routes $0.99 each.
+- [ ] In RevenueCat, connect both apps using the bundle ID `com.hegenius.danfocraze`, attach `remove_ads` to the entitlement **no_ads** and `danfo_pass_monthly` to the entitlement **danfo_pass**, and paste the two public keys into `../danfo-app/keys.local.json` (never committed).
 
 ## Other
+- [ ] **Leaderboard storage (one time):** in Vercel, open the danfo-craze project, Storage, Create, Blob, name it danfo-leaderboard and connect it to the project (all environments). Then redeploy. Until this is done the Ranks screen says the board is not open, and the rest of the game works as normal.
 - [ ] **Sponsor signs:** brands suitable for a 13+ audience only (see `SPONSORS.md`). No betting, alcohol, loans, crypto, dating or political ads.
 - [ ] **Music rights:** keep proof that the 5 party songs (danfo-v2-03a, 03b, 04b, 08a and 08b) were made on a **paid Suno plan** (Pro or Premier). A screenshot of the plan and the song list is enough.
 
@@ -95,7 +112,9 @@ The step by step build and upload list is in `../danfo-app/LAUNCH_CHECKLIST.md`.
   > • Rare Bus Jam Party: the road clears, the music drops, and passengers and coins come to you
   > • Crashed? Answer an Africa quiz question to keep driving, and learn a new fact with its source every time. More than 560 fact-checked questions about all 54 countries
   > • Day and night, rain, and Sun Coins that clear the sky
-  > • Write your own bus tag and unlock bus colours
+  > • Build your own driver's licence, earn your rank from JJC to Legend, and write your own bus tag and conductor lines
+  > • A welcome in the local language in every new city, and a trip card to share after the run
+  > • Online leaderboard: World, Clean runs and My country
   > • Daily missions, and challenge links to beat your friends
   > • Play in English, Pidgin or French. Works offline
 - **Category:** Games, Racing (or Arcade). Secondary category: Education.
@@ -112,7 +131,7 @@ The step by step build and upload list is in `../danfo-app/LAUNCH_CHECKLIST.md`.
 - **Challenge links:** they broke for nicknames containing `~` or `%`.
 - **Practice quiz:** coins could be earned without limit. It now pays at most 100 coins a day.
 - **Daily bonus:** changing the phone clock could collect it again and again.
-- **Minor:** "SPEED UP!" kept showing at top speed, "CHANCE AM" paid out for cars that a party had already pushed aside, and the name screen promised a leaderboard that does not exist yet.
+- **Minor:** "SPEED UP!" kept showing at top speed, "CHANCE AM" paid out for cars that a party had already pushed aside, and the name screen promised a leaderboard before it existed.
 - **Offline cache:** pages load from the saved copy if the network takes longer than 3 seconds, music keeps at most 6 clips, and a missing file no longer returns the game page by mistake.
 - **Battery:** the game redraws much less often behind the pause and game over screens, and cheap phone mode draws simpler shading.
 

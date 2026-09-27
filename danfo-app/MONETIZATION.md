@@ -244,7 +244,7 @@ Do not add `NSUserTrackingUsageDescription`: the game never asks to track.
 ## 4. RevenueCat keys (never committed)
 1. In RevenueCat, connect the Apple and Google apps to project **Danfo Craze**.
 2. Create the products in both stores (see `README.md`).
-3. Set up the entitlement: `no_ads` gets `remove_ads`. There is no subscription in version 1.0.
+3. Set up the entitlements: `no_ads` gets `remove_ads`, and `danfo_pass` gets the subscription `danfo_pass_monthly` (Danfo Pass, monthly).
 4. Copy `keys.example.json` to `keys.local.json` and paste the **public** keys (`appl_...`, `goog_...`). This file is git-ignored.
 
 ## 5. Build and test
