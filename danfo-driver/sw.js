@@ -2,7 +2,7 @@
 // - Pages: network first (3 s limit on weak connections), then the cached copy.
 // - Game files: served from the cache straight away and refreshed in the background.
 // - Party music: kept in its own small cache (last few clips only) that survives updates.
-const CACHE = 'danfo-craze-v25', MUSIC = 'danfo-music', MUSIC_MAX = 6;
+const CACHE = 'danfo-craze-v26', MUSIC = 'danfo-music', MUSIC_MAX = 6;
 const CORE = ['./', 'index.html', 'quiz.js', 'monetize/config.js', 'monetize/monetize.js', 'sponsors.json', 'music/tracks.json', 'manifest.webmanifest', 'brand/logo.svg', 'favicon.png', 'apple-touch-icon.png', 'icon-192.png', 'icon-512.png',
   'fonts/bungee-latin-400-normal.woff2', 'fonts/bungee-latin-ext-400-normal.woff2', 'fonts/baloo-2-latin-600-normal.woff2', 'fonts/baloo-2-latin-ext-600-normal.woff2',
   'fonts/baloo-2-latin-800-normal.woff2', 'fonts/baloo-2-latin-ext-800-normal.woff2'];
@@ -18,7 +18,7 @@ self.addEventListener('fetch', e => {
       .catch(() => caches.match('index.html')));
     return;
   }
-  if (/\/music\/party-\d+\.mp3$/.test(url.pathname)) {
+  if (/\/music\/[^/]+\.mp3$/.test(url.pathname)) {
     e.respondWith(caches.open(MUSIC).then(c => c.match(req).then(m => m || fetch(req).then(r => { if (r.ok) c.put(req, r.clone()).then(() => trimMusic(c)); return r; }))).catch(() => Response.error()));
     return;
   }

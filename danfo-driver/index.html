@@ -205,6 +205,51 @@
   .chip.beat{background:#25d366;color:#fff}
   .sheetc{max-width:460px;max-height:86vh;grid-template-rows:auto 1fr auto}
   .sh{padding:0 44px;color:var(--ink)!important;-webkit-text-stroke:0!important;font-size:clamp(26px,7vw,34px)!important}
+  .ccover{z-index:30;background:rgba(27,16,36,.6)}
+  .ccwrap{width:min(400px,100%);display:grid;gap:10px}
+  .ccard{border:4px solid var(--ink);border-radius:22px;overflow:hidden;background:var(--cream);color:var(--ink);box-shadow:0 8px 0 var(--ink)}
+  .cc-top{background:var(--green);color:#fff;padding:12px 16px 12px;border-bottom:7px solid var(--danfo);display:grid;gap:2px}
+  .cc-lbl{font-weight:800;font-size:12px;letter-spacing:.1em;color:#e4ffef;text-transform:uppercase}
+  .cc-top b{font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:clamp(20px,6.2vw,27px);line-height:1.08;text-wrap:balance}
+  .cc-hi{font-weight:800;font-size:17px;color:var(--danfo)}.cc-hi small{font-size:12px;color:#e4ffef}
+  .cc-body{padding:12px 14px 14px;display:grid;gap:10px}
+  .cc-route{display:flex;flex-wrap:wrap;gap:5px}.cc-stop{display:inline-flex;align-items:center;gap:4px;border:2px solid var(--ink);border-radius:999px;background:#fff;padding:0 9px 0 3px;font-weight:800;font-size:12px}
+  .cc-stop i{width:15px;height:15px;border-radius:50%;background:var(--green);color:#fff;font-style:normal;font-size:10px;display:grid;place-items:center}.cc-stop.new{background:var(--danfo)}
+  .cc-stop em{font-style:normal;font-family:"Bungee",Impact,sans-serif;font-size:9px;background:var(--ink);color:var(--danfo);border-radius:4px;padding:0 3px}
+  .cc-fact{background:#fff;border:3px solid var(--ink);border-radius:14px;padding:9px 12px;display:grid;gap:3px}
+  .cc-fact b{color:#9a6400;font-weight:800}.cc-fact p{margin:0;font-weight:700;font-size:15px;line-height:1.35;overflow-wrap:anywhere}.cc-fact small{font-size:11px;font-weight:600;opacity:.65}
+  .cc-big{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:10px;align-items:end}.cc-bus{width:100%;height:auto;display:block}
+  .cc-ph{aspect-ratio:120/140;border:3px solid var(--ink);border-radius:14px;overflow:hidden;background:#cfe9ff}.cc-ph svg{display:block;width:100%;height:100%}
+  .cc-name{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:2px 10px}.cc-name b{font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:17px}.cc-name span{font-weight:800;font-size:13px}
+  .cc-btns{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:8px}
+  .ccb{border:3px solid var(--ink);border-radius:14px;padding:9px 4px;background:#fff;color:var(--ink);font-weight:800;font-size:15px;box-shadow:0 4px 0 var(--ink)}.ccb.go{background:var(--green);color:#fff}
+  .cc-opt{display:flex;gap:8px;align-items:center;color:#fff;font-weight:700;font-size:14px}.cc-opt input{width:20px;height:20px}
+  .cc-msg{margin:0;min-height:1em;color:#fff;font-weight:700;font-size:13px}
+  #pcount.blink{animation:pcPop .7s ease-out,ccBlink .35s steps(2) 2}
+  @keyframes ccBlink{50%{opacity:.4}}
+  .licwrap{display:grid;gap:10px}
+  .lic{position:relative;border:3px solid var(--ink);border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#fffbe9,#ffe9a6);display:grid;grid-template-columns:96px minmax(0,1fr);gap:10px;padding:10px;color:var(--ink)}
+  .lic .lhead{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:8px;background:var(--green);color:#fff;margin:-10px -10px 0;padding:5px 10px;border-bottom:3px solid var(--ink)}
+  .lic .lhead b{font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:13px}.lic .lhr{display:flex;gap:6px;align-items:center}
+  .lic.gold{box-shadow:0 0 0 3px #FFC91A;background:linear-gradient(135deg,#fff6cc,#ffd66b)}.lic.gold .lhead{background:linear-gradient(90deg,#b8860b,#FFC91A,#b8860b);color:var(--ink)}
+  .passchip{font-family:"Bungee",Impact,sans-serif;font-size:10px;background:var(--ink);color:var(--danfo);border-radius:6px;padding:1px 6px}
+  .flagbox{display:inline-block;width:28px;height:19px;border:2px solid var(--ink);border-radius:3px;overflow:hidden;background:#fff}.flagimg{display:block;width:100%;height:100%;object-fit:cover}
+  .lphoto{width:96px;height:112px;border:3px solid var(--ink);border-radius:12px;overflow:hidden;background:#cfe9ff}.lphoto svg{display:block;width:100%;height:100%}
+  .lic dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:1px 8px;align-content:start;font-size:13px}
+  .lic dt{font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;opacity:.6;align-self:center}.lic dd{margin:0;font-weight:800;overflow-wrap:anywhere}
+  .lic .lrank{font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:15px}.lic .lno{font-variant-numeric:tabular-nums}
+  .lmsg{margin:0;font-weight:700;font-size:13px;opacity:.75}.lmsg.warn{color:#9a5b00;opacity:1}
+  .lcats{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}
+  .lcats button{flex:0 0 auto;border:3px solid var(--ink);border-radius:12px;background:#fff;color:var(--ink);padding:5px 11px;font-weight:800;font-size:14px}.lcats button[aria-selected="true"]{background:var(--danfo)}
+  .lbody{display:grid;gap:10px}.lopt{display:grid;gap:5px}.lopt .lbl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.65}
+  .lchips{display:flex;flex-wrap:wrap;gap:6px}
+  .lchip{border:2px solid var(--ink);border-radius:10px;background:#fff;color:var(--ink);padding:5px 10px;font-weight:800;font-size:14px;display:inline-flex;gap:6px;align-items:center}
+  .lchip[aria-pressed="true"]{background:var(--danfo);box-shadow:inset 0 0 0 2px var(--ink)}
+  .lk{font-size:10px;font-weight:800;border:1.5px solid var(--ink);border-radius:6px;padding:0 5px}.lk.earn{background:#d9f5e6}.lk.pass{background:var(--danfo)}
+  .lsw{position:relative;width:34px;height:34px;border-radius:50%;border:3px solid var(--ink);padding:0}.lsw[aria-pressed="true"]{outline:3px solid #2f7bff;outline-offset:2px}
+  .lsw.locked{opacity:.75}.lsw i{position:absolute;right:-6px;bottom:-6px;font-style:normal;font-size:10px;font-weight:800;background:#fff;border:1.5px solid var(--ink);border-radius:6px;padding:0 3px}
+  .lnote{margin:0;font-size:13px;opacity:.75}
+  .passbtn{border:3px solid var(--ink);border-radius:14px;padding:9px;background:linear-gradient(#ffe066,var(--danfo));color:var(--ink);font-family:"Bungee",Impact,sans-serif;font-size:16px;box-shadow:0 4px 0 var(--ink)}
   .sbody{overflow:auto;width:100%;display:grid;gap:8px;text-align:left}
   .mis{display:grid;gap:4px;border:3px solid var(--ink);border-radius:14px;padding:8px 12px;background:#fff8e1}
   .mis.done{background:#d9fbe8}
@@ -214,6 +259,9 @@
   .tagrow{display:flex;gap:6px}.tagrow .nickin{flex:1;min-width:0;font-size:16px;padding:8px 10px;text-transform:uppercase}
   .tagbtn{border:3px solid var(--ink);border-radius:12px;padding:0 14px;background:var(--green);color:#fff;font:800 15px "Baloo 2",sans-serif;box-shadow:0 3px 0 var(--ink)}
   .tagnote{font-weight:700;font-size:12px;opacity:.7;margin-top:-4px}.tagnote.bad{color:#d62828;opacity:1}
+  .conds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.condb{display:grid;justify-items:center;gap:2px;border:3px solid var(--ink);border-radius:14px;background:#eef6ff;padding:6px;font-weight:800;font-size:13px;color:var(--ink)}
+  .condb canvas{width:100%;max-width:90px;height:auto;border-radius:10px}.condb small{font-size:11px;opacity:.75;text-align:center}.condb.on{background:#fff3b0;box-shadow:0 0 0 3px var(--danfo) inset}.condb.locked{opacity:.7}
+  .lopt small.bad{color:#d62828}
   .tags{display:flex;flex-wrap:wrap;gap:6px}.tagchip{border:2px solid var(--ink);border-radius:999px;padding:3px 10px;background:#fff;color:var(--ink);font:800 12px/1.3 "Baloo 2",sans-serif}.tagchip.on{background:var(--danfo)}
   .skins{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
   .skin{display:grid;justify-items:center;gap:2px;border:3px solid var(--ink);border-radius:14px;padding:6px;background:#eef6ff;color:var(--ink);font-weight:800;font-size:13px}
@@ -305,7 +353,7 @@
       </div>
       <button class="play" id="againBtn" type="button">PLAY AGAIN</button>
       <button class="chal" id="chalBtn" type="button" data-t="challenge">CHALLENGE A FRIEND</button>
-      <div class="minor"><button class="linkbtn" id="adDouble" type="button" hidden data-t="doubleLink">Double your coins (watch an ad)</button><button class="linkbtn" id="homeBtn" type="button">Home</button></div>
+      <div class="minor"><button class="linkbtn" id="adDouble" type="button" hidden data-t="doubleLink">Double your coins (watch an ad)</button><button class="linkbtn" id="tripBtn" type="button" hidden data-t="tripLink">Trip card</button><button class="linkbtn" id="homeBtn" type="button">Home</button></div>
     </div>
   </div>
   <div class="overlay" id="quiz" hidden>
@@ -322,6 +370,7 @@
   <div class="overlay" id="sheet" hidden>
     <div class="card sheetc"><button class="xbtn" id="sheetX" type="button" aria-label="Close">✕</button><h2 class="sh" id="sheetT"></h2><div class="sbody" id="sheetB"></div><button class="play" id="sheetClose" type="button">OK</button></div>
   </div>
+  <div class="overlay ccover" id="ccOver" hidden></div>
   <div class="overlay" id="paused" hidden>
     <div class="card"><h2 style="color:var(--danfo)">PAUSED</h2><button class="play" id="resumeBtn" type="button">RESUME</button><button class="small" id="pHomeBtn" type="button">Home</button></div>
   </div>
@@ -606,10 +655,10 @@ function danfo(x, y, s, t, o = {}) {
   ctx.restore(); rr(wx, wy, ww, wh, w * .06); ctx.lineWidth = lwOf(w, h) * .8; ctx.strokeStyle = OUT; ctx.stroke();
   if (w > 40) label(o.slogan || SLOGANS[0], 0, top + h * .47, w * .066, sk.body === '#2a2d5a' || sk.body === '#8b5cf6' || sk.body === '#2f7bff' || sk.body === '#18b86b' ? '#fff' : OUT, w * .9);
   flat(-w * .16, top + h * .745, w * .32, h * .1, w * .02, '#fff', 1.2);
-  if (w > 60) label('AFRIKA 1', 0, top + h * .8, w * .05, '#0e8f52', w * .3, '"Baloo 2", sans-serif');
+  if (w > 60) label(o.plate || 'AFRIKA 1', 0, top + h * .8, w * .05, '#0e8f52', w * .3, '"Baloo 2", sans-serif');
   for (const sx of [-1, 1]) { ball(sx * w * .41, top + h * .77, w * .05, o.brake ? '#ff2a1f' : '#d9261c'); ball(sx * w * .41, top + h * .66, w * .032, '#ffb000'); }
   blob(-w * .49, top + h * .87, w * .98, h * .1, h * .04, '#4a4458', false);
-  if (o.conductor) person(w * .54, -h * .06, s * .95, CONDUCTOR, o.party ? 'dance' : 'hang', t);
+  if (o.conductor) person(w * .54, -h * .06, s * .95, o.cLook || CONDUCTOR, o.party ? 'dance' : 'hang', t);
   ctx.restore();
 }
 function car(x, y, s, col) {
@@ -1034,7 +1083,7 @@ function newGame(demo) {
   G = { zl, zi, demo, D: DIFFS[demo ? 'normal' : diff], dist: 0, time: 0, speed: START, score: 0, coins: 0, streak: 0, P: { lane: 1, x: 0, y: 0, jt: 0, sq: 1, tilt: 0 },
     chase: { d: .3, t: demo ? 0 : 3 }, partyT: 0, magnetT: 0, dead: false, deadT: 0, rowAcc: 0, edge: [-1.3, -1.3], propAcc: 0,
     invT: 0, slowT: 0, waveT: 0, heat: 0, heatT: 0, lastPow: 0, lastParty: 0, nextSpeed: 25, zone: 'market', call: '', callT: 0, callNext: 3, hornT: 2, slogan: pick(SLOGANS), tut: (() => { const k = demo || (tutDone && diff !== 'easy'); return { dodge: k, jump: k, pax: k, cop: k, on: null }; })(),
-    stopName: pick(STOPNAMES), stopAcc: 0, free: 1, swerveT: 9, rain: 0, rainT: 0, nextRain: rand(120, 170), todOff: 0, ff: 0, badEp: false, sunN: 0, nextSun: 0, boltT: 0, nextBolt: 4, pax: 0, chain: 0, chainT: 0 };
+    stopName: pick(STOPNAMES), stopAcc: 0, free: 1, swerveT: 9, rain: 0, rainT: 0, nextRain: rand(120, 170), todOff: 0, ff: 0, badEp: false, sunN: 0, nextSun: 0, trip: [], fresh: [], boltT: 0, nextBolt: 4, pax: 0, chain: 0, chainT: 0 };
   for (let i = 0; i < 60; i++) stepScenery(1.6);
 }
 function addO(o) { o.x ??= LANES[o.lane]; o.v ??= 0; o.y ??= 0; objs.push(o); return o; }
@@ -1190,13 +1239,13 @@ stage.addEventListener('pointerup', e => {
 function show(id, on) { $(id).hidden = !on; }
 function refreshTitle() {
   if (typeof moneyUI === 'function') moneyUI();
-  const d = daily(); $('mDot').hidden = d.ids.every(id => d.done[id]); document.querySelectorAll('.dsel').forEach(b => b.setAttribute('aria-checked', b.dataset.d === diff)); $('tBest').textContent = `${t('bestPill')} ${best.toLocaleString()}${best && store.get('bestClean.' + diff, false) ? ' ★' : ''}`; $('tCoins').innerHTML = `<span class="coin-i sm">A</span>${bank.toLocaleString()} ${t('saved')}`; $('soundBtn').innerHTML = A.on ? '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>' : '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="m17 9 5 6M22 9l-5 6"/></svg>'; $('soundBtn').setAttribute('aria-label', A.on ? 'Sound on' : 'Sound off'); const nk0 = store.get('nick', ''); $('nameTxt').textContent = nk0 ? t('hi') + ', ' + nk0 : t('addName'); }
+  const d = daily(); $('mDot').hidden = d.ids.every(id => d.done[id]); document.querySelectorAll('.dsel').forEach(b => b.setAttribute('aria-checked', b.dataset.d === diff)); $('tBest').textContent = `${t('bestPill')} ${best.toLocaleString()}${best && store.get('bestClean.' + diff, false) ? ' ★' : ''}`; $('tCoins').innerHTML = `<span class="coin-i sm">A</span>${bank.toLocaleString()} ${t('saved')}`; $('soundBtn').innerHTML = A.on ? '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>' : '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="m17 9 5 6M22 9l-5 6"/></svg>'; $('soundBtn').setAttribute('aria-label', A.on ? 'Sound on' : 'Sound off'); const nk0 = store.get('nick', ''); $('nameTxt').textContent = (nk0 ? nk0 : t('addName')) + ' · ' + myRank(); }
 function start() {
   moneyBanner(false); audioInit(); stopPartyClip(0); if (A.music) A.music.gain.value = .45; preloadParty(); newGame(false); mode = 'play'; musicStart(); track('runs'); G.beatShown = false;
   show('title', false); show('over', false); show('paused', false); show('sheet', false); show('quiz', false); show('hud', true); $('dchip').textContent = DIFFS[diff].name; $('toasts').innerHTML = '';
   if (store.get('honk', false) && !learning()) { store.set('honk', false); setTimeout(honkGo, 1400); moneyUI(); }
   if (learning()) G.chase.t = 0; else { toast('POLICE DEY FOLLOW YOU!'); sfx.siren(); setTimeout(() => sfx.siren(), 900); }
-  setTimeout(() => { const zk = zoneAt(ZP); say(pick(ZCALLS[zk] || (CITY[zk] && CITY[zk].calls) || ['Oshodi! Oshodi! Enter!'])); }, 1200);
+  setTimeout(() => say(myLines().move), 900); setTimeout(() => { const zk = zoneAt(ZP); say(pick(ZCALLS[zk] || (CITY[zk] && CITY[zk].calls) || ['Oshodi! Oshodi! Enter!'])); }, 4200);
 }
 // Police catch you: settle with coins, else with points; with nothing left it's jail.
 function policeCatch(checkpoint) {
@@ -1217,7 +1266,7 @@ function die(kind, what) {
 function gameOver() {
   mode = 'over'; musicStop(); show('hud', false); show('hint', false);
   if (!G.banked) { bank += G.coins; store.set('bank', bank); G.banked = G.coins; } else { bank += G.coins - G.banked; store.set('bank', bank); G.banked = G.coins; }
-  quizBtnState(); $('chalBtn').textContent = t('challenge');
+  quizBtnState(); $('chalBtn').textContent = t('challenge'); $('tripBtn').hidden = new Set(G.trip).size < 2;
   const score = Math.floor(G.score), isBest = score > best; if (isBest) { best = score; store.set('best.' + diff, best); store.set('bestClean.' + diff, !G.conts); }
   const oc = $('oCont'), nc = G.conts || 0; oc.className = 'contnote' + (nc ? '' : ' clean'); oc.textContent = nc ? t(nc === 1 ? 'contOne' : 'contMany', nc) : t('cleanRun');
   $('overT').textContent = G.deadKind === 'caught' ? t('jail') : t('crash');
@@ -1228,17 +1277,17 @@ function gameOver() {
 // ================================================================ features
 // ---- language (menus and hints). The catchphrase stays in pidgin everywhere.
 const STR = {
-  en: { play: 'PLAY', busTag: 'Bus tag', tagPh: 'Write your own tag', tagUse: 'USE', tagBad: 'Please choose different words.', again: 'PLAY AGAIN', home: 'Home', quiz: 'CONTINUE', free: 'Answer one Africa quiz question', orAd: 'Or watch an ad to continue', doubleLink: 'Double your coins (watch an ad)', didYouKnow: 'Did you know?', source: 'Source', looksOnly: 'Looks only',
+  en: { play: 'PLAY', newCity: 'New city', welcomeTo: 'WELCOME TO {n}!', welcomeIn: 'Welcome, in {n}', helloIn: 'Hello, in {n}', tripTitle: 'Trip card', tripLink: 'Trip card', newTag: 'NEW', pointsWord: 'points', saveImg: 'SAVE', bannerOnly: 'Next time, just show a banner', goWord: 'GO!', savedImg: 'Saved.', cityCardsOn: 'City cards: ON', cityCardsOff: 'City cards: OFF (banner only)', conductorH: 'Conductor', condLines: 'What your conductor shouts (tap a language to start, then change any line)', slot_call: 'Calling passengers', slot_move: 'Bus is moving', slot_close: 'Close call', cond_classic: 'Classic', cond_sunset: 'Sunset', cond_party: 'Party', licTitle: 'My licence', licHead: 'DRIVER\'S LICENCE', lblName: 'Name', lblRank: 'Rank', lblLic: 'Licence', lblPlate: 'Plate', lblFar: 'Furthest', driverWord: 'Driver', noCountry: 'Africa (no country)', restWorld: 'Rest of the world', plateLbl: 'Plate number (8 letters and numbers)', flagLbl: 'Flag', lg_skin: 'Skin tone', lg_lashes: 'Lashes', lg_lips: 'Lip colour', lg_face: 'Facial hair', lg_hair: 'Hair', lg_hairCol: 'Hair colour', lg_hat: 'Headwear', lg_hatCol: 'Headwear colour', lg_outfit: 'Outfit', lg_glasses: 'Glasses', lg_earrings: 'Earrings', lc_face: 'Face', lc_hair: 'Hair', lc_hat: 'Headwear', lc_outfit: 'Outfit', lc_extras: 'Extras', lc_details: 'Name and plate', earnTag: 'Earn', passTag: 'Pass', passName: 'Danfo Pass', colourWord: 'Colour', tryOn: 'Trying on: {n}. Locked looks are not saved.', nextRank: 'Next rank: {n}. Reach {m}.', topRank: 'You are a Legend. You drove all the way to Johannesburg!', tryOnEnd: 'Locked looks were not saved. Earn them or get the Danfo Pass.', getPass: 'GET THE DANFO PASS', busTag: 'Bus tag', tagPh: 'Write your own tag', tagUse: 'USE', tagBad: 'Please choose different words.', again: 'PLAY AGAIN', home: 'Home', quiz: 'CONTINUE', free: 'Answer one Africa quiz question', orAd: 'Or watch an ad to continue', doubleLink: 'Double your coins (watch an ad)', didYouKnow: 'Did you know?', source: 'Source', looksOnly: 'Looks only',
     howto: 'Pick up passengers for points.<br>Swipe ← → to dodge · Swipe ↑ to hop potholes', name: 'Your name', missions: 'Missions', garage: 'Garage', journey: 'Journey', quizmode: 'Africa Quiz',
     challenge: 'CHALLENGE A FRIEND', crash: 'CRASH!', jail: 'JAIL!', dodge: 'SWIPE TO DODGE', jump: 'SWIPE UP TO HOP', pax: 'PICK UP PASSENGERS!', cop: 'POLICE! AVOID THEM', tag: 'We never finish last!', resume: 'RESUME', paused: 'PAUSED',
     sunCoin: 'SUN COIN!', sunDry: 'RAIN STOPPED', sunDay: 'DAY IS BACK', sunBoth: 'RAIN STOPPED · DAY IS BACK', rainSoon: 'Rain soon', raining: 'Raining', nightSoon: 'Night soon', daySoon: 'Dawn soon', nightOn: 'NIGHT DON FALL · HEADLIGHTS ON', partyGo: 'BUS JAM PARTY! ROAD CLEAR!', partyHow: 'No traffic · no police · passengers and coins come to you', partyEnd: 'PARTY ENDING · TRAFFIC DEY COME BACK', partyBar: 'FREE RIDE', chalT: 'Beat my score', chalSub: 'CAN YOU BEAT', chalPax: 'passengers carried', chalShare: 'Share to any app', chalCopy: 'COPY', chalDone: 'DONE', correct: 'Correct!', timeUp: 'Time up!', notQuite: 'Not quite.', keepDriving: 'KEEP DRIVING', ok: 'OK', next: 'NEXT', finish: 'FINISH', youGot: 'You got {n} of 5 right!', plusCoins: '+{n} coins', capHit: 'You reached today\'s quiz coin limit. Keep learning for fun!', comeBack: 'Come back any time to learn more about Africa.', close: 'CLOSE', letsgo: 'LET\'S GO', save: 'SAVE', share: 'SHARE', lblScore: 'Score', lblPax: 'Passengers', lblCoins: 'Coins', lblBest: 'Best', newBest: 'NEW BEST!', bestPill: 'BEST', saved: 'saved', todayMis: 'Today\'s missions. New ones every day. Day streak: {n}', coinsSaved: 'Coins saved', driving: 'DRIVING', tapDrive: 'Tap to drive', needMore: 'Need A {n} more', addName: 'Add your name', hi: 'Hi', easy: 'EASY', normal: 'NORMAL', hard: 'HARD', dailyBonus: 'Daily bonus +{n} coins', dayN: 'Day {n} streak', missionDone: 'MISSION DONE! +{n} COINS', backOnRoad: 'BACK ON THE ROAD!', quizTag: 'AFRICA QUIZ', journeyIntro: 'Drive across Africa. Tap any place you have reached to start your next run there.', reachedTap: 'Reached · tap to start here', startsHere: 'Your next run starts here', keepAfter: 'Keep driving after {n}', nameInfo: 'This name shows on your score and on challenges you send to friends.', nameChal: 'Add your name so your friend knows who to beat.', namePh: 'Enter nickname', watchAd: 'Watch an ad', presentedBy: 'Presented by', adCont: 'CONTINUE', adDouble: 'DOUBLE COINS', adNA: 'No ad right now. Try again soon.', doubled: '+{n} coins doubled!', honk: 'HONK BOOST', honkS: 'Watch an ad · start with a free ride', honkReady: 'HONK BOOST READY', honkReadyS: 'Your next run starts with a free ride', honkGo: 'HONK BOOST! FREE RIDE!', shop: 'Shop', shopWeb: 'Purchases are available in the Danfo Craze app.', shopWait: 'Connecting to the store…', restore: 'Restore purchases', restored: 'Purchases restored', buyFail: 'Could not finish. Please try again.', gotCoins: '+{n} COINS!', paidRoute: 'Paid route · tap to see it in the shop', whyCrash: 'You crashed into {n}!', privacy: 'Privacy policy', privacyChoices: 'Privacy choices', whyCaught: 'The police caught you and you had no money to settle.', cleanRun: '★ Clean run: no continues', chancesLeft: '{n} chances left', lastChance: 'last chance', contOne: '1 continue used', contMany: '{n} continues used', contCost: 'CONTINUE: −{n} POINTS',
     siren: 'SIREN {n}/3 · DRIVE CLEAN TO LOSE THEM', sirenOff: 'SIREN OFF', settled: 'SETTLED POLICE: {n}' },
-  pcm: { play: 'OYA DRIVE', busTag: 'Bus tag', tagPh: 'Write your own tag', tagUse: 'USE AM', tagBad: 'Abeg choose another word.', again: 'TRY AM AGAIN', home: 'Go house', quiz: 'CONTINUE', free: 'Answer one Africa quiz question', orAd: 'Or watch ad make you continue', doubleLink: 'Double your coins (watch ad)', didYouKnow: 'You know say?', source: 'Source', looksOnly: 'Na only for fine',
+  pcm: { play: 'OYA DRIVE', newCity: 'New city', welcomeTo: 'WELCOME TO {n}!', welcomeIn: 'Welcome, for {n}', helloIn: 'Hello, for {n}', tripTitle: 'Trip card', tripLink: 'Trip card', newTag: 'NEW', pointsWord: 'points', saveImg: 'SAVE', bannerOnly: 'Next time, just show small banner', goWord: 'GO!', savedImg: 'E don save.', cityCardsOn: 'City cards: ON', cityCardsOff: 'City cards: OFF (only banner)', conductorH: 'Conductor', condLines: 'Wetin your conductor go shout (tap one language, then change any line)', slot_call: 'Call passengers', slot_move: 'Bus don move', slot_close: 'E near jam', cond_classic: 'Classic', cond_sunset: 'Sunset', cond_party: 'Party', licTitle: 'My licence', licHead: 'DRIVER LICENCE', lblName: 'Name', lblRank: 'Rank', lblLic: 'Licence', lblPlate: 'Plate', lblFar: 'Furthest', driverWord: 'Driver', noCountry: 'Africa (no country)', restWorld: 'Other countries', plateLbl: 'Plate number (8 letters and numbers)', flagLbl: 'Flag', lg_skin: 'Skin colour', lg_lashes: 'Lashes', lg_lips: 'Lip colour', lg_face: 'Beard and moustache', lg_hair: 'Hair', lg_hairCol: 'Hair colour', lg_hat: 'Cap and head tie', lg_hatCol: 'Cap colour', lg_outfit: 'Cloth', lg_glasses: 'Glasses', lg_earrings: 'Earring', lc_face: 'Face', lc_hair: 'Hair', lc_hat: 'Head', lc_outfit: 'Cloth', lc_extras: 'Extra', lc_details: 'Name and plate', earnTag: 'Earn', passTag: 'Pass', passName: 'Danfo Pass', colourWord: 'Colour', tryOn: 'You dey try: {n}. Locked ones no go save.', nextRank: 'Next rank: {n}. Reach {m}.', topRank: 'You be Legend. You don drive reach Johannesburg!', tryOnEnd: 'Locked looks no save. Earn am or get Danfo Pass.', getPass: 'GET DANFO PASS', busTag: 'Bus tag', tagPh: 'Write your own tag', tagUse: 'USE AM', tagBad: 'Abeg choose another word.', again: 'TRY AM AGAIN', home: 'Go house', quiz: 'CONTINUE', free: 'Answer one Africa quiz question', orAd: 'Or watch ad make you continue', doubleLink: 'Double your coins (watch ad)', didYouKnow: 'You know say?', source: 'Source', looksOnly: 'Na only for fine',
     howto: 'Carry passengers, collect point.<br>Swipe ← → dodge motor · Swipe ↑ jump pothole', name: 'Your name', missions: 'Wetin to do', garage: 'Mechanic', journey: 'Our road', quizmode: 'Africa Quiz',
     challenge: 'CHALLENGE YOUR PADI', crash: 'E DON HAPPEN!', jail: 'DEM DON LOCK YOU!', dodge: 'SWIPE, DODGE AM', jump: 'SWIPE UP, JUMP AM', pax: 'CARRY PASSENGER!', cop: 'POLICE! NO JAM DEM', tag: '', resume: 'CONTINUE', paused: 'HOLD ON',
     sunCoin: 'SUN COIN!', sunDry: 'RAIN DON STOP', sunDay: 'SUN DON COME OUT', sunBoth: 'RAIN DON STOP · SUN DON COME OUT', rainSoon: 'Rain dey come', raining: 'Rain dey fall', nightSoon: 'Night dey come', daySoon: 'Day don near', nightOn: 'NIGHT DON FALL · ON YOUR LIGHT', partyGo: 'BUS JAM PARTY! ROAD DON CLEAR!', partyHow: 'No motor · no police · passenger and coin go come meet you', partyEnd: 'PARTY DON DEY END · MOTOR DEY COME BACK', partyBar: 'FREE RIDE', chalT: 'Beat my score', chalSub: 'YOU FIT BEAT', chalPax: 'passengers carried', chalShare: 'Share for any app', chalCopy: 'COPY', chalDone: 'I DON FINISH', correct: 'Correct!', timeUp: 'Time don finish!', notQuite: 'E no correct.', keepDriving: 'CONTINUE DRIVE', ok: 'OK', next: 'NEXT', finish: 'FINISH', youGot: 'You get {n} out of 5 correct!', plusCoins: '+{n} coins', capHit: 'You don reach today quiz coin limit. Continue to learn for fun!', comeBack: 'Come back anytime, learn more about Africa.', close: 'CLOSE', letsgo: 'OYA GO', save: 'SAVE', share: 'SHARE', lblScore: 'Score', lblPax: 'Passengers', lblCoins: 'Coins', lblBest: 'Best', newBest: 'NEW BEST!', bestPill: 'BEST', saved: 'for bank', todayMis: 'Wetin to do today. New ones every day. Day streak: {n}', coinsSaved: 'Coins for bank', driving: 'YOU DEY DRIVE AM', tapDrive: 'Tap to drive am', needMore: 'You need A {n} more', addName: 'Put your name', hi: 'How far', easy: 'EASY', normal: 'NORMAL', hard: 'HARD', dailyBonus: 'Daily bonus +{n} coins', dayN: 'Day {n} streak', missionDone: 'MISSION DON COMPLETE! +{n} COINS', backOnRoad: 'WE DON RETURN FOR ROAD!', quizTag: 'AFRICA QUIZ', journeyIntro: 'Drive across Africa. Tap any place wey you don reach, make your next run start from there.', reachedTap: 'You don reach here · tap to start here', startsHere: 'Your next run go start here', keepAfter: 'Continue to drive pass {n}', nameInfo: 'This name go show for your score and the challenge wey you send your padi.', nameChal: 'Put your name make your padi know who to beat.', namePh: 'Your nickname', watchAd: 'Watch ad', presentedBy: 'Presented by', adCont: 'CONTINUE', adDouble: 'DOUBLE COINS', adNA: 'No ad now. Try again small time.', doubled: '+{n} coins don double!', honk: 'HONK BOOST', honkS: 'Watch ad · start with free ride', honkReady: 'HONK BOOST DEY READY', honkReadyS: 'Your next run go start with free ride', honkGo: 'HONK BOOST! FREE RIDE!', shop: 'Shop', shopWeb: 'You fit buy for inside Danfo Craze app.', shopWait: 'We dey connect to store…', restore: 'Restore wetin you buy', restored: 'We don restore wetin you buy', buyFail: 'E no work. Abeg try again.', gotCoins: '+{n} COINS!', paidRoute: 'Paid route · tap make you see am for shop', whyCrash: 'You don jam {n}!', privacy: 'Privacy policy', privacyChoices: 'Privacy choices', whyCaught: 'No money to settle. Na station be that!', cleanRun: '★ Clean run: you no continue', chancesLeft: '{n} chance remain', lastChance: 'last chance', contOne: 'You continue 1 time', contMany: 'You continue {n} times', contCost: 'CONTINUE: −{n} POINTS',
     siren: 'SIREN {n}/3 · DRIVE WELL MAKE DEM COMOT', sirenOff: 'SIREN DON OFF', settled: 'YOU DON SETTLE: {n}' },
-  fr: { play: 'JOUER', busTag: 'Slogan du bus', tagPh: 'Écris ton slogan', tagUse: 'OK', tagBad: 'Choisis d\'autres mots.', again: 'REJOUER', home: 'Accueil', quiz: 'CONTINUER', free: 'Réponds à une question du quiz Afrique', orAd: 'Ou regarde une pub pour continuer', doubleLink: 'Double tes pièces (pub)', didYouKnow: 'Le savais-tu ?', source: 'Source', looksOnly: 'Décor seulement',
+  fr: { play: 'JOUER', newCity: 'Nouvelle ville', welcomeTo: 'BIENVENUE À {n} !', welcomeIn: 'Bienvenue, en {n}', helloIn: 'Bonjour, en {n}', tripTitle: 'Carte du voyage', tripLink: 'Carte du voyage', newTag: 'NOUVEAU', pointsWord: 'points', saveImg: 'ENREGISTRER', bannerOnly: 'La prochaine fois, juste une bannière', goWord: 'GO !', savedImg: 'Enregistré.', cityCardsOn: 'Cartes des villes : OUI', cityCardsOff: 'Cartes des villes : NON (bannière)', conductorH: 'Apprenti', condLines: 'Ce que crie ton apprenti (choisis une langue, puis change chaque phrase)', slot_call: 'Appeler les passagers', slot_move: 'Le bus démarre', slot_close: 'Presque un accident', cond_classic: 'Classique', cond_sunset: 'Coucher de soleil', cond_party: 'Fête', licTitle: 'Mon permis', licHead: 'PERMIS DE CONDUIRE', lblName: 'Nom', lblRank: 'Rang', lblLic: 'Permis', lblPlate: 'Plaque', lblFar: 'Plus loin', driverWord: 'Chauffeur', noCountry: 'Afrique (sans pays)', restWorld: 'Reste du monde', plateLbl: 'Plaque (8 lettres et chiffres)', flagLbl: 'Drapeau', lg_skin: 'Teint', lg_lashes: 'Cils', lg_lips: 'Lèvres', lg_face: 'Barbe', lg_hair: 'Coiffure', lg_hairCol: 'Couleur des cheveux', lg_hat: 'Couvre-chef', lg_hatCol: 'Couleur du couvre-chef', lg_outfit: 'Tenue', lg_glasses: 'Lunettes', lg_earrings: 'Boucles d\'oreilles', lc_face: 'Visage', lc_hair: 'Cheveux', lc_hat: 'Tête', lc_outfit: 'Tenue', lc_extras: 'Extras', lc_details: 'Nom et plaque', earnTag: 'À gagner', passTag: 'Pass', passName: 'Danfo Pass', colourWord: 'Couleur', tryOn: 'Essai : {n}. Les looks verrouillés ne sont pas gardés.', nextRank: 'Rang suivant : {n}. Atteins {m}.', topRank: 'Tu es une Légende. Tu as roulé jusqu\'à Johannesburg !', tryOnEnd: 'Les looks verrouillés ne sont pas gardés. Gagne-les ou prends le Danfo Pass.', getPass: 'PRENDRE LE DANFO PASS', busTag: 'Slogan du bus', tagPh: 'Écris ton slogan', tagUse: 'OK', tagBad: 'Choisis d\'autres mots.', again: 'REJOUER', home: 'Accueil', quiz: 'CONTINUER', free: 'Réponds à une question du quiz Afrique', orAd: 'Ou regarde une pub pour continuer', doubleLink: 'Double tes pièces (pub)', didYouKnow: 'Le savais-tu ?', source: 'Source', looksOnly: 'Décor seulement',
     howto: 'Prends des passagers pour gagner des points.<br>Glisse ← → pour esquiver · Glisse ↑ pour sauter', name: 'Ton nom', missions: 'Missions', garage: 'Garage', journey: 'Voyage', quizmode: 'Quiz Afrique',
     challenge: 'DÉFIE UN AMI', crash: 'ACCIDENT !', jail: 'PRISON !', dodge: 'GLISSE POUR ESQUIVER', jump: 'GLISSE ↑ POUR SAUTER', pax: 'PRENDS LES PASSAGERS !', cop: 'POLICE ! ÉVITE-LES', tag: 'On ne finit jamais dernier !', resume: 'REPRENDRE', paused: 'PAUSE',
     sunCoin: 'PIÈCE SOLEIL !', sunDry: 'LA PLUIE S\'ARRÊTE', sunDay: 'LE JOUR REVIENT', sunBoth: 'PLUIE FINIE · LE JOUR REVIENT', rainSoon: 'Pluie bientôt', raining: 'Il pleut', nightSoon: 'Nuit bientôt', daySoon: 'Aube bientôt', nightOn: 'LA NUIT TOMBE · PHARES ALLUMÉS', partyGo: 'BUS JAM PARTY ! ROUTE LIBRE !', partyHow: 'Pas de trafic · pas de police · passagers et pièces viennent à toi', partyEnd: 'FIN DE LA FÊTE · LE TRAFIC REVIENT', partyBar: 'TRAJET LIBRE', chalT: 'Bats mon score', chalSub: 'PEUX-TU BATTRE', chalPax: 'passagers transportés', chalShare: 'Partager vers une app', chalCopy: 'COPIER', chalDone: 'TERMINÉ', correct: 'Bonne réponse !', timeUp: 'Temps écoulé !', notQuite: 'Pas tout à fait.', keepDriving: 'CONTINUER', ok: 'OK', next: 'SUIVANT', finish: 'TERMINER', youGot: 'Tu as {n} bonnes réponses sur 5 !', plusCoins: '+{n} pièces', capHit: 'Limite de pièces du quiz atteinte pour aujourd\'hui. Continue à apprendre pour le plaisir !', comeBack: 'Reviens quand tu veux pour découvrir l\'Afrique.', close: 'FERMER', letsgo: 'C\'EST PARTI', save: 'ENREGISTRER', share: 'PARTAGER', lblScore: 'Score', lblPax: 'Passagers', lblCoins: 'Pièces', lblBest: 'Record', newBest: 'NOUVEAU RECORD !', bestPill: 'RECORD', saved: 'gagnées', todayMis: 'Missions du jour. De nouvelles chaque jour. Série de jours : {n}', coinsSaved: 'Pièces gagnées', driving: 'EN SERVICE', tapDrive: 'Touche pour conduire', needMore: 'Il manque A {n}', addName: 'Ajoute ton nom', hi: 'Salut', easy: 'FACILE', normal: 'NORMAL', hard: 'DIFFICILE', dailyBonus: 'Bonus du jour +{n} pièces', dayN: 'Série de jours : {n}', missionDone: 'MISSION RÉUSSIE ! +{n} PIÈCES', backOnRoad: 'DE RETOUR SUR LA ROUTE !', quizTag: 'QUIZ AFRIQUE', journeyIntro: 'Traverse l\'Afrique. Touche un lieu déjà atteint pour y commencer ta prochaine course.', reachedTap: 'Atteint · touche pour commencer ici', startsHere: 'Ta prochaine course commence ici', keepAfter: 'Continue après {n}', nameInfo: 'Ce nom apparaît sur ton score et sur les défis envoyés à tes amis.', nameChal: 'Ajoute ton nom pour que ton ami sache qui battre.', namePh: 'Ton pseudo', watchAd: 'Regarder une pub', presentedBy: 'Présenté par', adCont: 'CONTINUER', adDouble: 'DOUBLER LES PIÈCES', adNA: 'Pas de pub pour le moment. Réessaie bientôt.', doubled: '+{n} pièces doublées !', honk: 'HONK BOOST', honkS: 'Regarde une pub · départ en trajet libre', honkReady: 'HONK BOOST PRÊT', honkReadyS: 'Ta prochaine course commence en trajet libre', honkGo: 'HONK BOOST ! TRAJET LIBRE !', shop: 'Boutique', shopWeb: 'Les achats sont disponibles dans l\'appli Danfo Craze.', shopWait: 'Connexion à la boutique…', restore: 'Restaurer les achats', restored: 'Achats restaurés', buyFail: 'Échec. Réessaie.', gotCoins: '+{n} PIÈCES !', paidRoute: 'Route payante · touche pour la voir en boutique', whyCrash: 'Tu as percuté {n} !', privacy: 'Confidentialité', privacyChoices: 'Choix de confidentialité', whyCaught: 'La police t\'a arrêté et tu n\'avais pas de quoi payer.', cleanRun: '★ Course parfaite : aucune reprise', chancesLeft: 'encore {n} essais', lastChance: 'dernier essai', contOne: '1 reprise utilisée', contMany: '{n} reprises utilisées', contCost: 'REPRISE : −{n} POINTS',
@@ -1246,7 +1295,7 @@ const STR = {
 };
 const LANGS = ['en', 'pcm', 'fr'], LANG_LABEL = { en: 'EN', pcm: 'PIDGIN', fr: 'FR' };
 let lang = store.get('lang', 'en'); if (!STR[lang]) lang = 'en';
-const t = (k, n) => (STR[lang][k] ?? STR.en[k]).replace('{n}', n);
+const t = (k, n, m) => (STR[lang][k] ?? STR.en[k]).replace('{n}', n).replace('{m}', m);
 function applyLang() {
   $('playBtn').textContent = t('play'); $('againBtn').textContent = t('again'); $('homeBtn').textContent = t('home'); $('pHomeBtn').textContent = t('home');
   $('resumeBtn').textContent = t('resume'); document.querySelector('#paused h2').textContent = t('paused');
@@ -1295,11 +1344,287 @@ function loginStreak() {
 let sheetAction = null;
 function openSheet(title, html, btn = t('close'), action = null) { $('sheetT').textContent = title; $('sheetB').innerHTML = html; $('sheetClose').textContent = btn; sheetAction = action; show('sheet', true); $('sheetX').focus(); }
 function closeSheet(run) { show('sheet', false); if (mode === 'over') show('over', true); refreshTitle(); const a = sheetAction; sheetAction = null; if (run && a) a(); }
-function showName() {
-  openSheet(t('name'), `<p style="margin:0;font-weight:700">${t('nameInfo')}</p><input id="nick" class="nickin" type="text" maxlength="14" autocomplete="nickname" placeholder="${t('namePh')}" enterkeyhint="done" value="${(store.get('nick', '') || '').replace(/"/g, '')}"><p style="margin:0;font-size:13px;opacity:.75"><a href="privacy.html" target="_blank" rel="noopener">${t('privacy')}</a>${M() && M().privacyChoices ? ` · <a href="#" id="privChoices">${t('privacyChoices')}</a>` : ''}</p>`, t('save'), () => { const v = ($('nick') || {}).value || ''; store.set('nick', cleanNick(v).slice(0, 14)); refreshTitle(); });
-  const i = $('nick'); i.addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Enter') closeSheet(true); }); setTimeout(() => i.focus(), 50);
-  if ($('privChoices')) $('privChoices').onclick = e => { e.preventDefault(); M().showPrivacyChoices(); };
+// ================================================================ driver's licence
+// The player is the driver: a drawn portrait (never a camera photo), a flag, a plate and a rank earned from the record.
+// Looks are Free, Earn (unlocked by playing, kept forever) or Pass (Danfo Pass). Nothing here changes a score.
+const LSKIN = ['#f1c7a0', '#d9a066', '#b57a4c', '#8e5836', '#6b3f27', '#4a2a1a'];
+const LHAIR = ['#1b1024', '#3b2417', '#b8b0a6', '#8a3b1e', '#e8c15a', '#2f7bff', '#8b5cf6'];
+const LOOK_DEF = { skin: '#6b3f27', hairCol: '#1b1024', hair: 'low', face: 'none', lashes: false, lips: 'none', hat: 'cap', hatCol: '#e2463b', glasses: 'none', outfit: 'plain', earrings: 'none' };
+const OUTFIT_COL = { plain: '#2f7bff', jersey: '#18b86b', hoodie: '#5a5670', dashiki: '#FFC91A', kitenge: '#ff7b25', ankara: '#e2463b', kente: '#f2a900', boubou: '#2a9d8f', agbada: '#fff4d6', suit: '#2a2d5a', denim: '#3d6ea8', track: '#1b1024', month: '#ff4fa3' };
+function portraitSvg(o) {
+  const I = OUT, sk = o.skin, hc = o.hairCol || LHAIR[0], out = [], of = o.outfit || 'plain', oc = OUTFIT_COL[of] || OUTFIT_COL.plain, h = o.hair;
+  out.push(`<rect width="120" height="140" fill="#cfe9ff"/><path d="M8 140 C12 112 30 104 60 104 C90 104 108 112 112 140 Z" fill="${oc}" stroke="${I}" stroke-width="3"/>`);
+  if (of === 'ankara' || of === 'month') out.push(`<g fill="${of === 'month' ? '#fff' : '#ffd166'}">${[[30, 122], [48, 130], [72, 126], [92, 132], [60, 116], [84, 116], [38, 134]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="4"/>`).join('')}</g><g fill="${of === 'month' ? '#FFC91A' : '#18b86b'}">${[[40, 118], [64, 132], [96, 122], [24, 132]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="2.6"/>`).join('')}</g>`);
+  if (of === 'jersey') out.push(`<path d="M44 106 L60 122 L76 106" fill="none" stroke="#fff" stroke-width="4"/><text x="60" y="136" font-family="Bungee,Impact,sans-serif" font-size="12" text-anchor="middle" fill="#fff">10</text>`);
+  if (of === 'kente') out.push(`<g>${[0, 1, 2, 3, 4, 5, 6, 7].map(i => `<rect x="${12 + i * 12}" y="${112 + (i % 2) * 6}" width="12" height="6" fill="${['#18b86b', '#1b1024', '#e2463b'][i % 3]}"/>`).join('')}</g>`);
+  if (of === 'agbada') out.push(`<path d="M46 106 Q60 122 74 106" fill="none" stroke="#c9a227" stroke-width="3"/><path d="M52 112 Q60 126 68 112" fill="none" stroke="#c9a227" stroke-width="2"/>`);
+  if (of === 'suit') out.push(`<path d="M50 104 L60 124 L70 104" fill="#fff"/><path d="M57 110 L60 128 L63 110 Z" fill="#e2463b"/>`);
+  if (of === 'hoodie') out.push(`<path d="M34 108 C40 96 80 96 86 108" fill="none" stroke="${I}" stroke-width="3"/><path d="M54 112 L52 128 M66 112 L68 128" stroke="#fff" stroke-width="2.5"/>`);
+  if (of === 'dashiki') out.push(`<path d="M44 104 L60 124 L76 104" fill="none" stroke="${I}" stroke-width="3"/><path d="M46 106 L60 122 L74 106" fill="none" stroke="#e2463b" stroke-width="3"/><path d="M50 106 L60 118 L70 106" fill="none" stroke="#18b86b" stroke-width="2.5"/>`);
+  if (of === 'kitenge') out.push(`<g fill="#1b1024">${[20, 36, 52, 68, 84, 100].map((x, i) => `<path d="M${x} ${116 + (i % 2) * 8} l6 -6 l6 6 l-6 6 z"/>`).join('')}</g>`);
+  if (of === 'boubou') out.push(`<path d="M44 106 Q60 128 76 106" fill="none" stroke="#FFC91A" stroke-width="3.5"/><g fill="#FFC91A"><circle cx="36" cy="126" r="3"/><circle cx="84" cy="126" r="3"/></g>`);
+  if (of === 'denim') out.push(`<path d="M50 104 L60 118 L70 104" fill="#fff"/><path d="M40 118 L40 140 M80 118 L80 140" stroke="#e8c15a" stroke-width="2" stroke-dasharray="3 3"/>`);
+  if (of === 'track') out.push(`<path d="M60 106 L60 140" stroke="#fff" stroke-width="2"/><path d="M18 128 L30 112 M102 128 L90 112" stroke="#18b86b" stroke-width="5"/><path d="M22 132 L34 116 M98 132 L86 116" stroke="#FFC91A" stroke-width="3"/>`);
+  out.push(`<rect x="50" y="88" width="20" height="20" fill="${sk}" stroke="${I}" stroke-width="3"/>`);
+  if (h === 'afro') out.push(`<circle cx="60" cy="50" r="40" fill="${hc}" stroke="${I}" stroke-width="3"/>`);
+  if (h === 'locs') out.push(`<g fill="${hc}" stroke="${I}" stroke-width="2">${[22, 30, 86, 94].map(x => `<rect x="${x - 4}" y="40" width="9" height="60" rx="4.5"/>`).join('')}</g>`);
+  if (h === 'braids') out.push(`<g fill="${hc}" stroke="${I}" stroke-width="2">${[24, 32, 88, 96].map(x => `<rect x="${x - 3}" y="44" width="7" height="46" rx="3.5"/>`).join('')}</g>`);
+  if (h === 'longbraids') out.push(`<g fill="${hc}" stroke="${I}" stroke-width="2">${[20, 27, 34, 86, 93, 100].map(x => `<rect x="${x - 3}" y="44" width="7" height="90" rx="3.5"/>`).join('')}</g>`);
+  if (h === 'bun') out.push(`<circle cx="60" cy="18" r="13" fill="${hc}" stroke="${I}" stroke-width="3"/>`);
+  if (h === 'puff') out.push(`<circle cx="60" cy="16" r="19" fill="${hc}" stroke="${I}" stroke-width="3"/>`);
+  out.push(`<ellipse cx="30" cy="64" rx="6" ry="9" fill="${sk}" stroke="${I}" stroke-width="3"/><ellipse cx="90" cy="64" rx="6" ry="9" fill="${sk}" stroke="${I}" stroke-width="3"/><ellipse cx="60" cy="60" rx="30" ry="34" fill="${sk}" stroke="${I}" stroke-width="3"/>`);
+  if (['low', 'locs', 'braids', 'longbraids', 'bun', 'puff'].includes(h)) out.push(`<path d="M31 56 C31 30 44 25 60 25 C76 25 89 30 89 56 C84 44 76 38 60 38 C44 38 36 44 31 56 Z" fill="${hc}" stroke="${I}" stroke-width="3" stroke-linejoin="round"/>`);
+  if (h === 'braids' || h === 'longbraids') out.push(`<g stroke="${I}" stroke-width="1.5" opacity=".55">${[44, 52, 60, 68, 76].map(x => `<path d="M${x} 27 L${x + (x - 60) * .15} 38"/>`).join('')}</g>`);
+  if (o.face === 'beard') out.push(`<path d="M32 66 C34 92 46 96 60 96 C74 96 86 92 88 66 C82 80 74 84 60 84 C46 84 38 80 32 66 Z" fill="${hc}" stroke="${I}" stroke-width="2.5"/>`);
+  if (o.face === 'moustache' || o.face === 'beard') out.push(`<path d="M47 76 C52 71 58 73 60 75 C62 73 68 71 73 76 C67 78 63 78 60 77 C57 78 53 78 47 76 Z" fill="${hc}" stroke="${I}" stroke-width="2"/>`);
+  out.push(`<ellipse cx="48" cy="58" rx="6" ry="7" fill="#fff"/><ellipse cx="72" cy="58" rx="6" ry="7" fill="#fff"/><circle cx="49" cy="59" r="3.4" fill="${I}"/><circle cx="73" cy="59" r="3.4" fill="${I}"/>`);
+  if (o.lashes) out.push(`<path d="M41 53 L38 49 M44 51 L42 47 M48 50 L48 46 M79 53 L82 49 M76 51 L78 47 M72 50 L72 46" stroke="${I}" stroke-width="2.2" stroke-linecap="round"/>`);
+  out.push(`<path d="M41 46 Q48 42 55 46 M65 46 Q72 42 79 46" fill="none" stroke="${I}" stroke-width="3" stroke-linecap="round"/><path d="M57 66 Q60 70 63 66" fill="none" stroke="${I}" stroke-width="2.5" stroke-linecap="round"/>`);
+  const lip = { berry: '#9b1d4a', coral: '#f06b5b', gloss: '#c27a6a' }[o.lips];
+  if (o.face !== 'beard') out.push(lip ? `<path d="M50 80 Q60 90 70 80 Q60 84 50 80 Z" fill="${lip}" stroke="${I}" stroke-width="2.2" stroke-linejoin="round"/>` : `<path d="M50 80 Q60 88 70 80" fill="none" stroke="${I}" stroke-width="3" stroke-linecap="round"/>`);
+  if (o.glasses === 'round') out.push(`<g fill="rgba(255,255,255,.25)" stroke="${I}" stroke-width="2.5"><circle cx="48" cy="58" r="9"/><circle cx="72" cy="58" r="9"/></g><path d="M57 57 L63 57" stroke="${I}" stroke-width="2.5"/>`);
+  if (o.glasses === 'square') out.push(`<g fill="rgba(255,255,255,.25)" stroke="${I}" stroke-width="2.5"><rect x="38" y="50" width="19" height="15" rx="3"/><rect x="63" y="50" width="19" height="15" rx="3"/></g><path d="M57 56 L63 56" stroke="${I}" stroke-width="2.5"/>`);
+  if (o.glasses === 'shades') out.push(`<g fill="#1b1024" stroke="${I}" stroke-width="2"><rect x="37" y="51" width="21" height="13" rx="5"/><rect x="62" y="51" width="21" height="13" rx="5"/></g><path d="M58 56 L62 56" stroke="${I}" stroke-width="3"/>`);
+  if (o.earrings === 'studs') out.push(`<circle cx="29" cy="75" r="3.5" fill="#FFC91A" stroke="${I}" stroke-width="1.5"/><circle cx="91" cy="75" r="3.5" fill="#FFC91A" stroke="${I}" stroke-width="1.5"/>`);
+  if (o.earrings === 'hoops') out.push(`<g fill="none" stroke="#FFC91A" stroke-width="3"><circle cx="28" cy="80" r="6"/><circle cx="92" cy="80" r="6"/></g>`);
+  const hw = o.hatCol || '#e2463b';
+  if (o.hat === 'cap') out.push(`<path d="M30 46 C30 22 44 16 60 16 C76 16 90 22 90 46 Z" fill="${hw}" stroke="${I}" stroke-width="3"/><path d="M24 46 L96 46 C96 52 90 53 60 52 C30 53 24 52 24 46 Z" fill="${hw}" stroke="${I}" stroke-width="3"/>`);
+  if (o.hat === 'wrap') out.push(`<path d="M28 48 C24 24 40 12 60 12 C80 12 96 24 92 48 C80 42 40 42 28 48 Z" fill="${hw}" stroke="${I}" stroke-width="3" stroke-linejoin="round"/>`);
+  if (o.hat === 'gele') out.push(`<path d="M22 44 C14 26 30 6 52 12 C60 2 82 4 90 16 C104 16 108 36 96 46 C80 38 40 38 22 44 Z" fill="${hw}" stroke="${I}" stroke-width="3" stroke-linejoin="round"/><path d="M34 34 C46 22 62 24 70 14 M58 38 C70 28 84 30 92 22" fill="none" stroke="${I}" stroke-width="2" opacity=".5"/>`);
+  if (o.hat === 'bucket') out.push(`<path d="M34 44 L38 18 C46 12 74 12 82 18 L86 44 Z" fill="${hw}" stroke="${I}" stroke-width="3"/><path d="M22 44 C22 50 98 50 98 44 C98 40 22 40 22 44 Z" fill="${hw}" stroke="${I}" stroke-width="3"/>`);
+  if (o.hat === 'beanie') out.push(`<path d="M30 48 C28 22 44 14 60 14 C76 14 92 22 90 48 Z" fill="${hw}" stroke="${I}" stroke-width="3"/><rect x="28" y="40" width="64" height="10" rx="5" fill="${hw}" stroke="${I}" stroke-width="3"/><circle cx="60" cy="12" r="6" fill="#fff" stroke="${I}" stroke-width="2.5"/>`);
+  return `<svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">${out.join('')}</svg>`;
 }
+// records used to earn looks and ranks
+const FREE_ROUTE = ['lagos', 'bridge', 'village', 'abuja', 'ph', 'kano', 'accra', 'dakar', 'marrakech', 'cairo', 'addis', 'nairobi', 'kigali', 'kinshasa', 'joburg'];
+function furthest() { const got = reachedZones(); let f = 0; FREE_ROUTE.forEach((k, i) => { if (got.includes(k)) f = i; }); return f; }
+const RANKS = [['JJC', 0], ['Area Driver', 5], ['Pilot', 9], ['Legend', 14]];
+function myRank() { const f = furthest(); return RANKS.filter(r => f >= r[1]).pop()[0]; }
+function nextRank() { const f = furthest(), n = RANKS.find(r => r[1] > f); return n ? { name: n[0], city: ZONES.find(z => z.k === FREE_ROUTE[n[1]]).name.split(' · ')[0] } : null; }
+const reached = k => reachedZones().includes(k);
+const hasPass = () => !!(M() && M().has('danfo_pass'));
+const monthsLive = () => { const d = new Date(), s = new Date(2026, 9, 1); return Math.max(0, (d.getFullYear() - s.getFullYear()) * 12 + d.getMonth() - s.getMonth()); };
+// [value, label, lock, earn test, earn text]; lock: LF (free) | 'earn' | 'pass'
+const LF = 'free';
+const E = (txt, ok) => ['earn', ok, txt];
+const LOOKS = [
+  { id: 'face', groups: [
+    { key: 'skin', sw: LSKIN.map(c => [c, '', LF]) },
+    { key: 'lashes', items: [[false, 'None', LF], [true, 'Lashes', LF]] },
+    { key: 'lips', items: [['none', 'None', LF], ['gloss', 'Gloss', LF], ['berry', 'Berry', LF], ['coral', 'Coral', ...E('Carry 100 passengers', () => store.get('paxTotal', 0) >= 100)]] },
+    { key: 'face', items: [['none', 'None', LF], ['moustache', 'Moustache', LF], ['beard', 'Beard', ...E('Answer 30 quiz questions right', () => store.get('qright', 0) >= 30)]] } ] },
+  { id: 'hair', groups: [
+    { key: 'hair', items: [['low', 'Low cut', LF], ['afro', 'Afro', LF], ['puff', 'Afro puff', LF], ['braids', 'Braids', LF], ['longbraids', 'Long braids', LF], ['bald', 'Bald', LF], ['locs', 'Locs', ...E('Reach Abuja', () => reached('abuja'))], ['bun', 'Bun', ...E('Carry 200 passengers', () => store.get('paxTotal', 0) >= 200)]] },
+    { key: 'hairCol', sw: [[LHAIR[0], '', LF], [LHAIR[1], '', LF], [LHAIR[2], '', LF], [LHAIR[3], '', ...E('Reach Dakar', () => reached('dakar'))], [LHAIR[4], '', 'pass'], [LHAIR[5], '', 'pass'], [LHAIR[6], '', 'pass']] } ] },
+  { id: 'hat', groups: [
+    { key: 'hat', items: [['none', 'None', LF], ['cap', 'Cap', LF], ['wrap', 'Head wrap', LF], ['beanie', 'Beanie', ...E('Drive in the rain 5 times', () => store.get('rainRuns', 0) >= 5)], ['bucket', 'Bucket hat', ...E('Carry 300 passengers', () => store.get('paxTotal', 0) >= 300)], ['gele', 'Gele', 'pass']] },
+    { key: 'hatCol', sw: [['#e2463b', '', LF], ['#1b1024', '', LF], ['#18b86b', '', LF], ['#2f7bff', '', ...E('Answer 50 quiz questions right', () => store.get('qright', 0) >= 50)], ['#FFC91A', '', 'pass'], ['#8b5cf6', '', 'pass']] } ] },
+  { id: 'outfit', groups: [
+    { key: 'outfit', items: [['plain', 'Plain shirt', LF], ['jersey', 'Football jersey', LF], ['hoodie', 'Hoodie', LF], ['dashiki', 'Dashiki', ...E('Reach Accra', () => reached('accra'))], ['kitenge', 'Kitenge', ...E('Reach Nairobi', () => reached('nairobi'))], ['suit', 'Suit and tie', ...E('Reach the rank of Area Driver', () => furthest() >= 5)], ['denim', 'Denim jacket', ...E('Carry 500 passengers', () => store.get('paxTotal', 0) >= 500)], ['ankara', 'Ankara print', 'pass'], ['kente', 'Kente', 'pass'], ['track', 'Track jacket', 'pass'], ['boubou', 'Boubou', 'pass'], ['agbada', 'Agbada', 'pass'], ['month', 'Look of the month', 'pass']] } ] },
+  { id: 'extras', groups: [
+    { key: 'glasses', items: [['none', 'None', LF], ['round', 'Round', LF], ['square', 'Square', LF], ['shades', 'Shades', 'pass']] },
+    { key: 'earrings', items: [['none', 'None', LF], ['studs', 'Studs', LF], ['hoops', 'Hoops', LF]] } ] },
+  { id: 'details', groups: [] },
+];
+const lookGroups = () => LOOKS.flatMap(c => c.groups);
+const lookItem = (k, v) => { const g = lookGroups().find(g => g.key === k); return g && (g.items || g.sw).find(i => i[0] === v); };
+const lookOpen = it => !it || it[2] === LF || (it[2] === 'earn' && it[3]()) || (it[2] === 'pass' && hasPass());
+function myLook() { const l = Object.assign({}, LOOK_DEF, store.get('look', {})); for (const k of Object.keys(LOOK_DEF)) { const it = lookItem(k, l[k]); if (!it || !lookOpen(it)) l[k] = LOOK_DEF[k]; } return l; }
+// plate number on your bus (up to 8 letters and numbers, same word filter as the bus tag)
+const cleanPlate = v => String(v || '').toUpperCase().replace(/[^A-Z0-9 ]/g, '').replace(/\s+/g, ' ').trim().slice(0, 8);
+function myPlate() { const p = cleanPlate(store.get('plate', 'AFRIKA 1')); return p.length >= 2 && tagOk(p) ? p : 'AFRIKA 1'; }
+// flags: every country and territory (flag-icons, MIT licence), loaded the first time the licence opens
+let FLAGSET = null, flagLoad = null;
+function loadFlags() { if (!flagLoad) flagLoad = fetch('flags.json').then(r => r.ok ? r.json() : null).then(j => { FLAGSET = j; return j; }).catch(() => { flagLoad = null; return null; }); return flagLoad; }
+const AFRICA_FLAG = '<svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#138a36"/><circle cx="15" cy="10" r="6" fill="#f7c600"/><circle cx="15" cy="10" r="3.4" fill="#138a36"/></svg>';
+function flagSvgOf(code) { const c = String(code || 'AFRICA').toLowerCase(), f = FLAGSET && FLAGSET[c]; return f ? f.s : AFRICA_FLAG; }
+const flagImg = code => `<img class="flagimg" alt="" src="data:image/svg+xml;charset=utf-8,${encodeURIComponent(flagSvgOf(code))}">`;
+function flagName(code) { const c = String(code || 'AFRICA').toLowerCase(), f = FLAGSET && FLAGSET[c]; return f ? f.n : t('noCountry'); }
+function licNo() { let h = 7; const src = (store.get('nick', '') || '') + store.get('lid', ''); for (const c of src) h = (h * 31 + c.charCodeAt(0)) >>> 0; const d = String(h % 10000000).padStart(7, '0'); return `DC ${d.slice(0, 3)} ${d.slice(3)}`; }
+if (!store.get('lid', '')) store.set('lid', Math.random().toString(36).slice(2, 10));
+
+function licenceCard(look, name, plate, flag) {
+  const gold = hasPass();
+  return `<div class="lic ${gold ? 'gold' : ''}"><div class="lhead"><b>${t('licHead')}</b><span class="lhr">${gold ? '<span class="passchip">PASS</span>' : ''}<span class="flagbox">${flagImg(flag)}</span></span></div>
+    <div class="lphoto">${portraitSvg(look)}</div>
+    <dl><dt>${t('lblName')}</dt><dd>${escHtml(name || t('driverWord'))}</dd><dt>${t('lblRank')}</dt><dd class="lrank">${myRank()}</dd>
+    <dt>${t('lblLic')}</dt><dd class="lno">${licNo()}</dd><dt>${t('lblPlate')}</dt><dd>${escHtml(plate)}</dd><dt>${t('lblFar')}</dt><dd>${ZONES.find(z => z.k === FREE_ROUTE[furthest()]).name.split(' · ')[0]}</dd></dl></div>`;
+}
+const escHtml = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+// ---- conductor: three looks and three lines the player writes (speech bubbles, no voices)
+const CONDUCTORS = [
+  { id: 'classic', look: CONDUCTOR, lock: LF },
+  { id: 'sunset', look: { skin: '#8e5836', shirt: '#18b86b', dots: '#ffe066', pants: '#3d2a1e', hat: 'fila', hatCol: '#ff7b25' }, lock: 'earn', txt: 'Reach Accra', ok: () => reached('accra') },
+  { id: 'party', look: { skin: '#4a2a1a', shirt: '#e2463b', dots: '#FFC91A', pants: '#1b1024', hat: 'gele', hatCol: '#8b5cf6' }, lock: 'pass' },
+];
+const condOpen = c => c.lock === LF || (c.lock === 'earn' && c.ok()) || (c.lock === 'pass' && hasPass());
+function myConductor() { const c = CONDUCTORS.find(x => x.id === store.get('cond', 'classic')); return c && condOpen(c) ? c : CONDUCTORS[0]; }
+const LINE_MAX = 24, LINE_SLOTS = ['call', 'move', 'close'];
+const LINE_STARTERS = { Pidgin: { call: 'Come in! Come in!', move: 'Oya, we dey go!', close: 'Driver, shine your eye!' }, English: { call: 'Come in! Come in!', move: 'Hold on, we are moving!', close: 'Whoa, that was close!' }, 'Français': { call: 'Montez! Montez!', move: 'On y va!', close: 'Attention, chauffeur!' } };
+const cleanLine = v => String(v || '').replace(/[<>]/g, '').replace(/\s+/g, ' ').trim().slice(0, LINE_MAX);
+const lineOk = v => { const c = cleanLine(v); return c.length >= 2 && !TAG_BLOCK.test(c.toUpperCase().replace(/[^A-Z ]/g, '')) && !TAG_BLOCK.test(c.toUpperCase().replace(/[^A-Z]/g, '')); };
+function myLines() { const d = LINE_STARTERS[lang === 'fr' ? 'Français' : lang === 'en' ? 'English' : 'Pidgin'], sv = store.get('clines', {}), out = {}; for (const k of LINE_SLOTS) out[k] = lineOk(sv[k]) ? cleanLine(sv[k]) : d[k]; return out; }
+
+// ---- new city card (pauses the run the first time you reach a city) and trip card (after the run)
+const W_ = 'welcome', H_ = 'hello';
+const CITYCARD = {
+  bridge: { hi: ['E kaabo!', 'Yoruba', W_], f: 'When it opened in 1990, the Third Mainland Bridge was the longest bridge in Africa, about 11.8 km long.', s: 'Wikipedia, Third Mainland Bridge' },
+  abuja: { hi: ['Sannu da zuwa!', 'Hausa', W_], f: 'Abuja replaced Lagos as Nigeria\'s capital in 1991.', s: 'Wikipedia, Abuja' },
+  ph: { hi: ['Welcome o!', 'Pidgin', W_], f: 'Port Harcourt is known as the Garden City.', s: 'Wikipedia, Port Harcourt' },
+  kano: { hi: ['Barka da zuwa!', 'Hausa', W_], f: 'Kano\'s Kurmi Market was started in the 1400s and is one of the oldest markets in Africa.', s: 'Wikipedia, Kurmi Market' },
+  accra: { hi: ['Akwaaba!', 'Twi', W_], f: 'Accra sits on Ghana\'s Atlantic coast.', s: 'Wikipedia, Accra' },
+  dakar: { hi: ['Dalal ak jamm!', 'Wolof', W_], f: 'Dakar is the westernmost city on mainland Africa.', s: 'Wikipedia, Dakar' },
+  marrakech: { hi: ['Marhaba!', 'Arabic', W_], f: 'Marrakech\'s Jemaa el-Fnaa square is recognised by UNESCO for its storytellers, musicians and food stalls.', s: 'Wikipedia, Jemaa el-Fnaa' },
+  cairo: { hi: ['Ahlan!', 'Arabic', W_], f: 'Cairo sits on the River Nile, close to the Pyramids of Giza.', s: 'Wikipedia, Cairo' },
+  addis: { hi: ['Selam!', 'Amharic', H_], f: 'The African Union has its headquarters in Addis Ababa.', s: 'Wikipedia, African Union' },
+  nairobi: { hi: ['Karibu!', 'Swahili', W_], f: 'Nairobi National Park, opened in 1946, was Kenya\'s first national park.', s: 'Wikipedia, Nairobi National Park' },
+  kigali: { hi: ['Murakaza neza!', 'Kinyarwanda', W_], f: 'Rwanda, with Kigali as its capital, banned plastic bags in 2008.', s: 'Wikipedia, Kigali' },
+  kinshasa: { hi: ['Boyei malamu!', 'Lingala', W_], f: 'Kinshasa faces Brazzaville across the Congo River. They are the closest pair of capital cities in the world.', s: 'Wikipedia, Kinshasa' },
+  joburg: { hi: ['Sawubona!', 'Zulu', H_], f: 'The rand is named after the Witwatersrand, the gold-rich ridge near Johannesburg.', s: 'Wikipedia, South African rand' },
+  lekki: { hi: ['E kaabo!', 'Yoruba', W_], f: 'The Lekki-Ikoyi Link Bridge opened in 2013.', s: 'Wikipedia, Lekki-Ikoyi Link Bridge' },
+  ikorodu: { hi: ['E kaabo!', 'Yoruba', W_], f: 'Ikorodu sits on the shore of the Lagos Lagoon.', s: 'Wikipedia, Ikorodu' },
+  mainland: { hi: ['E kaabo!', 'Yoruba', W_], f: 'The Third Mainland Bridge crosses the Lagos Lagoon from the Mainland to Lagos Island.', s: 'Wikipedia, Third Mainland Bridge' },
+};
+const zoneName = k => ZONES.find(z => z.k === k).name.split(' · ')[0];
+const titleCase = s => s.toLowerCase().replace(/(^|[\s-])\S/g, c => c.toUpperCase());
+let ccKind = null, ccData = null;
+function cardBusHtml() { const c = document.createElement('canvas'); c.width = 240; c.height = 180; const keep = ctx; ctx = c.getContext('2d'); danfo(120, 176, 290, 0, { heads: 5, skin: mySkin(), slogan: myTag(), plate: myPlate() }); ctx = keep; return c.toDataURL(); }
+function cardHtml(kind, d) {
+  const hi = d.card && d.card.hi, head = kind === 'city'
+    ? `<div class="cc-top"><span class="cc-lbl">${t('newCity')}</span><b>${t('welcomeTo', zoneName(d.zone))}</b>${hi ? `<span class="cc-hi">${escHtml(hi[0])} <small>${t(hi[2] === H_ ? 'helloIn' : 'welcomeIn', hi[1])}</small></span>` : ''}</div>`
+    : `<div class="cc-top"><span class="cc-lbl">${t('tripTitle')}</span><b>${escHtml(titleCase(zoneName(d.trip[0])))} → ${escHtml(titleCase(zoneName(d.trip[d.trip.length - 1])))}</b></div>`;
+  const route = kind === 'trip' ? `<div class="cc-route">${d.trip.map(k => `<span class="cc-stop ${d.fresh.includes(k) ? 'new' : ''}"><i>✓</i>${escHtml(titleCase(zoneName(k)))}${d.fresh.includes(k) ? `<em>${t('newTag')}</em>` : ''}</span>`).join('')}</div>` : '';
+  const fact = d.card ? `<div class="cc-fact"><b>${t('didYouKnow')}</b><p>${escHtml(d.card.f)}</p><small>${t('source')}: ${escHtml(d.card.s)}</small></div>` : '';
+  return `<div class="ccard">${head}<div class="cc-body">${route}${fact}<div class="cc-big"><img class="cc-bus" alt="" src="${cardBusHtml()}"><div class="cc-ph">${portraitSvg(myLook())}</div></div>
+    <div class="cc-name"><b>${escHtml((store.get('nick', '') || t('driverWord')).toUpperCase())}</b><span>${myRank()} · ${Math.floor(d.score).toLocaleString()} ${t('pointsWord')}</span></div></div></div>`;
+}
+function openCard(kind, d) {
+  ccKind = kind; ccData = d; const o = $('ccOver');
+  o.innerHTML = `<div class="ccwrap">${cardHtml(kind, d)}<div class="cc-btns"><button type="button" class="ccb" id="ccShare">${t('share')}</button><button type="button" class="ccb" id="ccSave">${t('saveImg')}</button><button type="button" class="ccb go" id="ccGo">${kind === 'city' ? t('keepDriving') : t('close')}</button></div>
+    ${kind === 'city' ? `<label class="cc-opt"><input type="checkbox" id="ccOpt"> ${t('bannerOnly')}</label>` : ''}<p class="cc-msg" id="ccMsg"></p></div>`;
+  o.hidden = false; $('ccGo').focus();
+  $('ccGo').onclick = closeCard; $('ccShare').onclick = () => shareCard(false); $('ccSave').onclick = () => shareCard(true);
+}
+function closeCard() {
+  const o = $('ccOver'); if (o.hidden) return;
+  if (ccKind === 'city' && $('ccOpt') && $('ccOpt').checked) store.set('cityCards', false);
+  o.hidden = true; const k = ccKind; ccKind = null;
+  if (k === 'city') resumeAfterCard(); else if (mode === 'over') $('againBtn').focus();
+}
+// 3, 2, 1 before the road moves again; the road ahead is cleared and the bus is safe for a moment
+function resumeAfterCard() {
+  for (let i = objs.length - 1; i >= 0; i--) { const o = objs[i]; if (o.z < ZP + 30 && (BLOCK.has(o.type) || JUMP.has(o.type))) objs.splice(i, 1); }
+  const pc = $('pcount'); let n = 3; pc.hidden = false;
+  const show1 = v => { pc.textContent = v; pc.classList.remove('go'); void pc.offsetWidth; pc.classList.add('go', 'blink'); };
+  show1(n); sfx.pax();
+  const tick = setInterval(() => { n--; if (n > 0) { show1(n); sfx.pax(); } else if (n === 0) { show1(t('goWord')); sfx.speed(); } else { clearInterval(tick); pc.hidden = true; pc.classList.remove('blink');
+    G.invT = Math.max(G.invT, 2); mode = 'play'; last = performance.now(); if (A.ctx && A.ctx.state !== 'running') A.ctx.resume(); } }, 700);
+}
+function newCityReached(zn) {
+  const card = CITYCARD[zn];
+  if (!card || !store.get('cityCards', true) || G.dead || G.demo) { toast(t('welcomeTo', zoneName(zn)), false, 'big'); return; }
+  mode = 'card'; openCard('city', { zone: zn, card, score: G.score });
+}
+function showTrip() { const tr = G.trip.filter((k, i, a) => a.indexOf(k) === i), last = [...tr].reverse().find(k => CITYCARD[k]); openCard('trip', { trip: tr, fresh: G.fresh || [], card: last ? CITYCARD[last] : null, score: G.score }); }
+// the card as an image, to share or save
+function cardImage() {
+  return new Promise(res => {
+    const d = ccData, kind = ccKind, c = document.createElement('canvas'), Wc = 1080, Hc = 1350; c.width = Wc; c.height = Hc; const g = c.getContext('2d');
+    const img = new Image(); img.onload = () => draw(img); img.onerror = () => draw(null); img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(portraitSvg(myLook()));
+    function wrap(text, x, y, maxW, lh, font, col) { g.font = font; g.fillStyle = col; const words = String(text).split(' '); let line = ''; for (const w of words) { const tt = line ? line + ' ' + w : w; if (g.measureText(tt).width > maxW && line) { g.fillText(line, x, y); y += lh; line = w; } else line = tt; } if (line) { g.fillText(line, x, y); y += lh; } return y; }
+    function box(x, y, w, h, r, fill) { g.beginPath(); g.roundRect(x, y, w, h, r); g.fillStyle = fill; g.fill(); g.lineWidth = 8; g.strokeStyle = OUT; g.stroke(); }
+    function draw(ph) {
+      const title = kind === 'city' ? t('welcomeTo', zoneName(d.zone)) : `${titleCase(zoneName(d.trip[0]))} → ${titleCase(zoneName(d.trip[d.trip.length - 1]))}`;
+      g.font = '400 70px Bungee, Impact, sans-serif'; const tl = []; let tline = ''; for (const w of title.split(' ')) { const tt = tline ? tline + ' ' + w : w; if (g.measureText(tt).width > 960 && tline) { tl.push(tline); tline = w; } else tline = tt; } if (tline) tl.push(tline);
+      const hasHi = kind === 'city' && d.card, headH = 130 + tl.length * 80 + (hasHi ? 64 : 0);
+      g.fillStyle = '#fff8e7'; g.fillRect(0, 0, Wc, Hc);
+      g.fillStyle = '#18b86b'; g.fillRect(0, 0, Wc, headH); g.fillStyle = '#FFC91A'; g.fillRect(0, headH, Wc, 22); g.fillStyle = OUT; g.fillRect(0, headH + 22, Wc, 10);
+      g.textBaseline = 'alphabetic'; g.textAlign = 'left';
+      g.font = '800 40px "Baloo 2", sans-serif'; g.fillStyle = '#e4ffef'; g.fillText((kind === 'city' ? t('newCity') : t('tripTitle')).toUpperCase(), 60, 88);
+      g.font = '400 70px Bungee, Impact, sans-serif'; g.fillStyle = '#fff'; tl.forEach((l, i) => g.fillText(l, 60, 168 + i * 80));
+      if (hasHi) { const hy = 168 + tl.length * 80 + 10; g.font = '800 46px "Baloo 2", sans-serif'; g.fillStyle = '#FFC91A'; g.fillText(d.card.hi[0], 60, hy); const hw = g.measureText(d.card.hi[0] + '  ').width; g.font = '700 30px "Baloo 2", sans-serif'; g.fillStyle = '#e4ffef'; g.fillText(t(d.card.hi[2] === H_ ? 'helloIn' : 'welcomeIn', d.card.hi[1]), 60 + hw, hy); }
+      let y = headH + 100;
+      if (kind === 'trip') { g.font = '800 34px "Baloo 2", sans-serif'; let x = 60; for (const k of d.trip) { const nm = '✓ ' + titleCase(zoneName(k)), w = g.measureText(nm).width + 40; if (x + w > 1020) { x = 60; y += 64; } box(x, y - 42, w, 56, 28, d.fresh.includes(k) ? '#FFC91A' : '#fff'); g.fillStyle = OUT; g.fillText(nm, x + 20, y); x += w + 14; } y += 60; }
+      if (d.card) {
+        g.font = '700 42px "Baloo 2", sans-serif'; const lines = []; let line = ''; for (const w of d.card.f.split(' ')) { const tt = line ? line + ' ' + w : w; if (g.measureText(tt).width > 860 && line) { lines.push(line); line = w; } else line = tt; } if (line) lines.push(line);
+        const bh = 150 + lines.length * 54; box(60, y, 960, bh, 36, '#fff');
+        g.font = '800 40px "Baloo 2", sans-serif'; g.fillStyle = '#9a6400'; g.fillText(t('didYouKnow'), 100, y + 64);
+        g.font = '700 42px "Baloo 2", sans-serif'; g.fillStyle = OUT; lines.forEach((l, i) => g.fillText(l, 100, y + 120 + i * 54));
+        g.font = '600 28px "Baloo 2", sans-serif'; g.fillStyle = '#6d6480'; g.fillText(`${t('source')}: ${d.card.s}`, 100, y + bh - 30); y += bh + 36;
+      }
+      const top = Math.min(y, Hc - 380), bus = document.createElement('canvas'); bus.width = 600; bus.height = 460; const keep = ctx; ctx = bus.getContext('2d'); danfo(300, 452, 720, 0, { heads: 5, skin: mySkin(), slogan: myTag(), plate: myPlate() }); ctx = keep;
+      const sc = Math.max(.45, Math.min(1, (Hc - 170 - top) / 460)), pw = 340 * sc, phh = 397 * sc, px = 1020 - pw;
+      g.drawImage(bus, 40, top, 600 * sc, 460 * sc); box(px, top + 30 * sc, pw, phh, 40 * sc, '#cfe9ff'); if (ph) { g.save(); g.beginPath(); g.roundRect(px + 4, top + 30 * sc + 4, pw - 8, phh - 8, 36 * sc); g.clip(); g.drawImage(ph, px + 4, top + 30 * sc + 4, pw - 8, phh - 8); g.restore(); }
+      g.font = '400 50px Bungee, Impact, sans-serif'; g.fillStyle = OUT; g.fillText((store.get('nick', '') || t('driverWord')).toUpperCase().slice(0, 14), 60, Hc - 70);
+      g.font = '800 38px "Baloo 2", sans-serif'; g.textAlign = 'right'; g.fillText(`${myRank()} · ${Math.floor(d.score).toLocaleString()}`, 1020, Hc - 70);
+      g.font = '700 28px "Baloo 2", sans-serif'; g.fillStyle = '#6d6480'; g.fillText('danfo-craze.vercel.app', 1020, Hc - 24);
+      try { c.toBlob(b => res(b), 'image/png'); } catch (e) { res(null); }
+    }
+  });
+}
+async function shareCard(save) {
+  const msg = $('ccMsg'); msg.textContent = '…';
+  const blob = await cardImage(); if (!blob) { msg.textContent = t('buyFail'); return; }
+  const name = `danfo-craze-${(ccKind === 'city' ? ccData.zone : 'trip')}.png`, P = window.DCPlugins;
+  try {
+    if (P && P.native && P.Filesystem && P.Share) {
+      const b64 = await new Promise(r => { const fr = new FileReader(); fr.onload = () => r(String(fr.result).split(',')[1]); fr.readAsDataURL(blob); });
+      const f = await P.Filesystem.writeFile({ path: name, data: b64, directory: P.Directory.Cache });
+      await P.Share.share({ title: 'Danfo Craze', files: [f.uri], dialogTitle: save ? t('saveImg') : t('share') }); msg.textContent = ''; return;
+    }
+    const file = new File([blob], name, { type: 'image/png' });
+    if (!save && navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], title: 'Danfo Craze' }); msg.textContent = ''; return; }
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); msg.textContent = t('savedImg');
+  } catch (e) { msg.textContent = ''; }
+}
+
+let licCat = 'face', licDraft = null;
+function showName() {
+  loadFlags().then(() => { if (!$('sheet').hidden && $('licWrap')) drawLicence(); });
+  licDraft = { look: Object.assign({}, LOOK_DEF, store.get('look', {})), name: store.get('nick', '') || '', plate: myPlate(), flag: store.get('flag', 'AFRICA') };
+  openSheet(t('licTitle'), '<div id="licWrap" class="licwrap"></div>', t('save'), saveLicence);
+  drawLicence();
+}
+function drawLicence() {
+  const d = licDraft, w = $('licWrap'); if (!w) return;
+  const tries = lookGroups().map(g => lookItem(g.key, d.look[g.key])).filter(it => it && !lookOpen(it));
+  const nr = nextRank(), badge = it => it[2] === 'earn' ? `<span class="lk earn">${lookOpen(it) ? '✓' : t('earnTag')}</span>` : it[2] === 'pass' ? `<span class="lk pass">${t('passTag')}${hasPass() ? ' ✓' : ''}</span>` : '';
+  const C = LOOKS.find(c => c.id === licCat);
+  let body = '';
+  if (licCat === 'details') {
+    const opts = FLAGSET ? (() => { const all = Object.entries(FLAGSET).sort((a, b) => a[1].n.localeCompare(b[1].n)), o = ([k, f]) => `<option value="${k.toUpperCase()}" ${k.toUpperCase() === d.flag ? 'selected' : ''}>${escHtml(f.n)}</option>`;
+      return `<option value="AFRICA">${t('noCountry')}</option><optgroup label="Africa">${all.filter(([, f]) => f.c === 'Africa').map(o).join('')}</optgroup><optgroup label="${t('restWorld')}">${all.filter(([, f]) => f.c !== 'Africa').map(o).join('')}</optgroup>`; })() : `<option value="AFRICA">${t('noCountry')}</option>`;
+    body = `<label class="lopt"><span class="lbl">${t('lblName')}</span><input id="nick" class="nickin" type="text" maxlength="14" autocomplete="nickname" placeholder="${t('namePh')}" value="${escHtml(d.name)}"></label>
+      <label class="lopt"><span class="lbl">${t('plateLbl')}</span><input id="plateIn" class="nickin" type="text" maxlength="8" autocomplete="off" value="${escHtml(d.plate)}"></label>
+      <label class="lopt"><span class="lbl">${t('flagLbl')}</span><select id="flagIn" class="nickin">${opts}</select></label>
+      <p class="lnote"><a href="privacy.html" target="_blank" rel="noopener">${t('privacy')}</a>${M() && M().privacyChoices ? ` · <a href="#" id="privChoices">${t('privacyChoices')}</a>` : ''}</p>`;
+  } else {
+    body = C.groups.map(g => `<div class="lopt"><span class="lbl">${t('lg_' + g.key)}</span><div class="lchips">${g.sw
+      ? g.sw.map((it, i) => `<button type="button" class="lsw ${lookOpen(it) ? '' : 'locked'}" style="background:${it[0]}" data-k="${g.key}" data-i="${i}" aria-pressed="${d.look[g.key] === it[0]}" aria-label="${t('lg_' + g.key)}">${it[2] !== LF && !lookOpen(it) ? `<i>${it[2] === 'pass' ? 'P' : 'E'}</i>` : ''}</button>`).join('')
+      : g.items.map((it, i) => `<button type="button" class="lchip" data-k="${g.key}" data-i="${i}" aria-pressed="${d.look[g.key] === it[0]}">${it[1]}${badge(it)}</button>`).join('')}</div></div>`).join('');
+  }
+  w.innerHTML = licenceCard(d.look, d.name, d.plate, d.flag)
+    + `<p class="lmsg ${tries.length ? 'warn' : ''}" id="licMsg">${tries.length ? t('tryOn', tries.map(it => `${it[1] || t('colourWord')} (${it[2] === 'pass' ? t('passName') : it[4]})`).join(', ')) : nr ? t('nextRank', nr.name, nr.city) : t('topRank')}</p>`
+    + `<div class="lcats" role="tablist">${LOOKS.map(c => `<button type="button" role="tab" data-c="${c.id}" aria-selected="${c.id === licCat}">${t('lc_' + c.id)}</button>`).join('')}</div>`
+    + `<div class="lbody">${body}</div>`
+    + (M() && M().native && M().enabled && !hasPass() ? `<button type="button" class="passbtn" id="getPass">${t('getPass')}</button>` : '');
+  w.querySelectorAll('[data-c]').forEach(b => b.onclick = () => { licCat = b.dataset.c; drawLicence(); });
+  w.querySelectorAll('[data-k]').forEach(b => b.onclick = () => { const g = lookGroups().find(g => g.key === b.dataset.k), it = (g.items || g.sw)[+b.dataset.i]; d.look[g.key] = it[0]; drawLicence(); });
+  if ($('nick')) { const i = $('nick'); i.oninput = () => { d.name = cleanNick(i.value); }; i.addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Enter') i.blur(); }); }
+  if ($('plateIn')) { const i = $('plateIn'); i.oninput = () => { const v = cleanPlate(i.value); i.value = v; if (v.length >= 2 && tagOk(v)) { d.plate = v; $('licMsg').textContent = ''; } else $('licMsg').textContent = t('tagBad'); }; i.addEventListener('keydown', e => e.stopPropagation()); }
+  if ($('flagIn')) $('flagIn').onchange = e => { d.flag = e.target.value; drawLicence(); };
+  if ($('privChoices')) $('privChoices').onclick = e => { e.preventDefault(); M().showPrivacyChoices(); };
+  if ($('getPass')) $('getPass').onclick = () => { saveLicence(); showShop(); };
+}
+function saveLicence() {
+  const d = licDraft; if (!d) return;
+  const keep = Object.assign({}, LOOK_DEF, store.get('look', {})), kept = [];
+  for (const k of Object.keys(LOOK_DEF)) { const it = lookItem(k, d.look[k]); if (it && lookOpen(it)) keep[k] = d.look[k]; else kept.push(k); }
+  store.set('look', keep); store.set('nick', cleanNick(d.name).slice(0, 14)); store.set('plate', d.plate); store.set('flag', d.flag);
+  if (kept.length) toast(t('tryOnEnd'), true, '', true);
+  licDraft = null; refreshTitle();
+}
+
 function showMissions() {
   const d = daily(), st = store.get('streak', 1);
   openSheet(t('missions'), `<p style="margin:0;font-weight:800">${t('todayMis', st)} 🔥</p>` + d.ids.map(id => { const m = MISSIONS.find(x => x.id === id), p = Math.min(m.n, d.prog[id] || 0), done = d.done[id];
@@ -1318,15 +1643,23 @@ function myTag() { const v = cleanTag(store.get('tag', TAG_DEFAULT)); return tag
 function mySkin() { const id = store.get('skin', 'classic'); return BUS_SKINS.find(s => s.id === id) || BUS_SKINS[0]; }
 function showGarage() {
   const owned = store.get('owned', ['classic']), cur = mySkin().id;
-  openSheet(t('garage'), `<p style="margin:0;font-weight:800">${t('busTag')} · ${t('looksOnly')}</p><div class="tagrow"><input id="tagIn" class="nickin" type="text" maxlength="${TAG_MAX}" autocomplete="off" enterkeyhint="done" placeholder="${t('tagPh')}" value="${myTag().replace(/"/g, '&quot;')}"><button type="button" class="tagbtn" id="tagUse">${t('tagUse')}</button></div><small class="tagnote" id="tagNote">${myTag().length}/${TAG_MAX}</small><div class="tags">` + TAGS.map(x => `<button type="button" class="tagchip ${x === myTag() ? 'on' : ''}" data-tag="${x.replace(/"/g, '&quot;')}">${x}</button>`).join('') + `</div><p style="margin:0;font-weight:800">${t('coinsSaved')}: A ${bank.toLocaleString()}</p><div class="skins">` + BUS_SKINS.map(sk => `<button class="skin ${sk.id === cur ? 'on' : ''}" data-skin="${sk.id}" type="button"><canvas width="220" height="170"></canvas>${sk.name}<small>${sk.id === cur ? t('driving') : owned.includes(sk.id) ? t('tapDrive') : 'A ' + sk.price.toLocaleString()}</small></button>`).join('') + '</div>', t('chalDone'));
+  openSheet(t('garage'), `<p style="margin:0;font-weight:800">${t('busTag')} · ${t('looksOnly')}</p><div class="tagrow"><input id="tagIn" class="nickin" type="text" maxlength="${TAG_MAX}" autocomplete="off" enterkeyhint="done" placeholder="${t('tagPh')}" value="${myTag().replace(/"/g, '&quot;')}"><button type="button" class="tagbtn" id="tagUse">${t('tagUse')}</button></div><small class="tagnote" id="tagNote">${myTag().length}/${TAG_MAX}</small><div class="tags">` + TAGS.map(x => `<button type="button" class="tagchip ${x === myTag() ? 'on' : ''}" data-tag="${x.replace(/"/g, '&quot;')}">${x}</button>`).join('') + `</div><p style="margin:0;font-weight:800">${t('conductorH')} · ${t('looksOnly')}</p><div class="conds">` + CONDUCTORS.map(c => `<button type="button" class="condb ${c.id === myConductor().id ? 'on' : ''}" data-cond="${c.id}"><canvas width="120" height="120"></canvas>${t('cond_' + c.id)}<small>${c.id === myConductor().id ? t('driving') : condOpen(c) ? t('tapDrive') : c.lock === 'pass' ? t('passName') : c.txt}</small></button>`).join('') + `</div><p style="margin:0;font-weight:700;font-size:14px">${t('condLines')}</p><div class="tags">` + Object.keys(LINE_STARTERS).map(k => `<button type="button" class="tagchip" data-start="${k}">${k}</button>`).join('') + `</div>` + LINE_SLOTS.map(k => `<label class="lopt"><span class="lbl">${t('slot_' + k)} <small id="ln-${k}">${myLines()[k].length}/${LINE_MAX}</small></span><input class="nickin cline" id="li-${k}" type="text" maxlength="${LINE_MAX}" autocomplete="off" value="${escHtml(myLines()[k])}"></label>`).join('') + `<p style="margin:0;font-weight:800">${t('coinsSaved')}: A ${bank.toLocaleString()}</p><div class="skins">` + BUS_SKINS.map(sk => `<button class="skin ${sk.id === cur ? 'on' : ''}" data-skin="${sk.id}" type="button"><canvas width="220" height="170"></canvas>${sk.name}<small>${sk.id === cur ? t('driving') : owned.includes(sk.id) ? t('tapDrive') : 'A ' + sk.price.toLocaleString()}</small></button>`).join('') + '</div>', t('chalDone'));
   const useTag = v => { if (!tagOk(v)) { $('tagNote').textContent = t('tagBad'); $('tagNote').classList.add('bad'); return; } store.set('tag', cleanTag(v)); audioInit(); sfx.pax(); showGarage(); };
   const ti = $('tagIn'); ti.addEventListener('input', () => { const c = cleanTag(ti.value); $('tagNote').classList.remove('bad'); $('tagNote').textContent = `${c.length}/${TAG_MAX}`; });
   ti.addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Enter') useTag(ti.value); });
   $('tagUse').onclick = () => useTag(ti.value);
-  document.querySelectorAll('.tagchip').forEach(b => b.onclick = () => useTag(b.dataset.tag));
+  document.querySelectorAll('.tagchip[data-tag]').forEach(b => b.onclick = () => useTag(b.dataset.tag));
+  document.querySelectorAll('.condb').forEach(el => {
+    const c = CONDUCTORS.find(x => x.id === el.dataset.cond), cv = el.querySelector('canvas'), keep = ctx; ctx = cv.getContext('2d');
+    ctx.fillStyle = '#bfe6ff'; ctx.fillRect(0, 0, 120, 120); person(60, 112, 190, c.look, 'wave', 0); ctx = keep; if (!condOpen(c)) el.classList.add('locked');
+    el.onclick = () => { if (!condOpen(c)) { el.querySelector('small').textContent = c.lock === 'pass' ? t('passName') : c.txt; return; } store.set('cond', c.id); audioInit(); sfx.pax(); showGarage(); };
+  });
+  document.querySelectorAll('[data-start]').forEach(b => b.onclick = () => { store.set('clines', Object.assign({}, LINE_STARTERS[b.dataset.start])); showGarage(); });
+  LINE_SLOTS.forEach(k => { const i = $('li-' + k), n = $('ln-' + k); i.addEventListener('keydown', e => e.stopPropagation());
+    i.oninput = () => { const v = cleanLine(i.value); if (lineOk(v)) { const sv = Object.assign({}, myLines(), store.get('clines', {})); sv[k] = v; store.set('clines', sv); n.textContent = `${v.length}/${LINE_MAX}`; n.className = ''; } else { n.textContent = t('tagBad'); n.className = 'bad'; } }; });
   document.querySelectorAll('.skin[data-skin]').forEach(el => {
     const sk = BUS_SKINS.find(s => s.id === el.dataset.skin), c = el.querySelector('canvas'), keep = ctx; ctx = c.getContext('2d');
-    ctx.fillStyle = '#bfe6ff'; ctx.fillRect(0, 0, 220, 170); danfo(125, 160, 250, 0, { heads: 4, skin: sk, slogan: myTag() }); ctx = keep;
+    ctx.fillStyle = '#bfe6ff'; ctx.fillRect(0, 0, 220, 170); danfo(125, 160, 250, 0, { heads: 4, skin: sk, slogan: myTag(), plate: myPlate() }); ctx = keep;
     el.onclick = () => { const own = store.get('owned', ['classic']);
       if (own.includes(sk.id)) { store.set('skin', sk.id); showGarage(); return; }
       if (bank >= sk.price) { bank -= sk.price; store.set('bank', bank); own.push(sk.id); store.set('owned', own); store.set('skin', sk.id); audioInit(); sfx.power(); refreshTitle(); showGarage(); }
@@ -1337,9 +1670,10 @@ function showGarage() {
 // ---- journey: every area you have reached lights up
 function showJourney() {
   const got = reachedZones(), cur = startZone();
-  openSheet(t('journey'), `<p style="margin:0;font-weight:700">${t('journeyIntro')}</p>` + ZONES.map((z, i) => { const on = got.includes(z.k), prev = ZONES[(i + ZONES.length - 1) % ZONES.length].name.split(' · ')[0];
+  openSheet(t('journey'), `<p style="margin:0;font-weight:700">${t('journeyIntro')}</p><button type="button" class="small" id="ccToggle" style="justify-self:start">${store.get('cityCards', true) ? t('cityCardsOn') : t('cityCardsOff')}</button>` + ZONES.map((z, i) => { const on = got.includes(z.k), prev = ZONES[(i + ZONES.length - 1) % ZONES.length].name.split(' · ')[0];
     const locked = z.premium && !ownsRoute(z.k); if (locked && !(M() && M().enabled && M().native)) return ''; if (locked) return `<button type="button" class="stop paid" data-zi="${i}"><span class="pin">🔒</span><span>${z.name}<small>${t('paidRoute')}</small></span></button>`;
     return `<button type="button" class="stop ${on ? 'on' : ''} ${i === cur ? 'cur' : ''}" data-zi="${i}" ${on ? '' : 'disabled'}><span class="pin">${i === cur ? '▶' : on ? '✓' : i + 1}</span><span>${z.name}<small>${i === cur ? t('startsHere') : on ? t('reachedTap') : t('keepAfter', prev)}</small></span></button>`; }).join(''));
+  $('ccToggle').onclick = () => { store.set('cityCards', !store.get('cityCards', true)); showJourney(); };
   $('sheetB').querySelectorAll('.stop.paid').forEach(b => b.onclick = showShop);
   $('sheetB').querySelectorAll('.stop.on').forEach(b => b.onclick = () => { store.set('startZone', +b.dataset.zi); newGame(true); for (let i = 0; i < 90; i++) update(1 / 30); showJourney(); });
 }
@@ -1414,7 +1748,7 @@ function showShop() {
 $('shopBtn').onclick = showShop;
 if (M()) M().onChange(() => { moneyUI(); if (mode === 'over' && G) moneyOver(); if (mode === 'title') moneyBanner(true); });
 // Android back button and app background/foreground (store apps)
-window.DC_BACK = () => { if (!$('sheet').hidden) closeSheet(false); else if (!$('quiz').hidden) return; else if (mode === 'play') pause(true); else if (mode === 'paused') pause(false); else if (mode === 'over') home(); };
+window.DC_BACK = () => { if (!$('ccOver').hidden) closeCard(); else if (!$('sheet').hidden) closeSheet(false); else if (!$('quiz').hidden) return; else if (mode === 'play') pause(true); else if (mode === 'paused') pause(false); else if (mode === 'over') home(); };
 window.DC_APP_HIDDEN = () => appHidden(); window.DC_APP_SHOWN = () => appShown();
 
 // ---- challenge a friend (share link + on-screen target)
@@ -1528,7 +1862,7 @@ function continueRun(byAd) {
   const cut = Math.floor(G.score * (byAd ? .1 : .05)); G.score -= cut; G.conts = (G.conts || 0) + 1;
   for (let i = objs.length - 1; i >= 0; i--) if (objs[i].z < ZP + 30 && objs[i].type !== 'coin') objs.splice(i, 1);
   G.dead = false; G.deadT = 0; G.invT = 3; G.chase.t = 0; G.chase.d = 1.3; G.chase.recover = false; flashA = .5; G.heat = 0; G.heatT = 0; G.tut.on = null; $('hint').hidden = true;
-  mode = 'play'; show('hud', true); hudKey = ''; audioInit(); musicStart(); last = performance.now(); toast(t('backOnRoad')); if (cut > 0) toast(t('contCost', cut.toLocaleString()), true);
+  mode = 'play'; show('hud', true); hudKey = ''; audioInit(); musicStart(); last = performance.now(); toast(t('backOnRoad')); say(myLines().move); if (cut > 0) toast(t('contCost', cut.toLocaleString()), true);
 }
 function pause(on) {
   if (on && mode === 'play') { mode = 'paused'; show('paused', true); setTimeout(() => $('resumeBtn').focus(), 0); if (A.ctx) A.ctx.suspend(); }
@@ -1536,14 +1870,14 @@ function pause(on) {
 }
 function home() { moneyBanner(true); musicStop(); if (A.ctx && A.ctx.state !== 'running') A.ctx.resume(); mode = 'title'; newGame(true); show('over', false); show('paused', false); show('hud', false); show('hint', false); refreshTitle(); show('title', true); }
 document.querySelectorAll('.dsel').forEach(b => b.onclick = () => { diff = b.dataset.d; store.set('diff', diff); best = store.get('best.' + diff, 0); refreshTitle(); });
-$('quizBtn').onclick = openQuiz;
+$('quizBtn').onclick = openQuiz; $('tripBtn').onclick = showTrip;
 $('chalBtn').onclick = () => { if (!store.get('nick', '')) { show('over', false); openSheet(t('name'), `<p style="margin:0;font-weight:700">${t('nameChal')}</p><input id="nick" class="nickin" type="text" maxlength="14" placeholder="${t('namePh')}">`, t('share'), () => { store.set('nick', cleanNick($('nick').value || '')); show('title', false); show('over', true); shareChallenge(); }); } else shareChallenge(); };
 $('mMissions').onclick = showMissions; $('mGarage').onclick = showGarage; $('mJourney').onclick = showJourney; $('mQuiz').onclick = startPractice;
 $('sheetClose').onclick = () => closeSheet(true); $('sheetX').onclick = () => closeSheet(false);
 $('sheet').addEventListener('click', e => { if (e.target.id === 'sheet') closeSheet(false); });
 $('nameBtn').onclick = showName;
 $('quizX').onclick = () => { clearInterval(quizTimer); show('quiz', false); if (practice) { practice = null; refreshTitle(); show('title', true); } else { G.quizFailed = true; gameOver(); } };
-addEventListener('keydown', e => { if (e.key === 'Escape') { if (!$('sheet').hidden) closeSheet(false); else if (!$('quiz').hidden) $('quizX').click(); } });
+addEventListener('keydown', e => { if (e.key === 'Escape') { if (!$('ccOver').hidden) closeCard(); else if (!$('sheet').hidden) closeSheet(false); else if (!$('quiz').hidden) $('quizX').click(); } });
 $('langBtn').onclick = () => { lang = LANGS[(LANGS.indexOf(lang) + 1) % LANGS.length]; store.set('lang', lang); applyLang(); };
 $('playBtn').onclick = start; $('againBtn').onclick = start; $('homeBtn').onclick = home; $('pHomeBtn').onclick = home;
 $('pauseBtn').onclick = () => pause(true); $('resumeBtn').onclick = () => pause(false);
@@ -1618,7 +1952,7 @@ function update(dt) {
     if (G.badEp && G.sunN < 1) { G.nextSun -= wdt; if (G.nextSun <= 0) { G.sunPending = true; G.sunN = 1; G.nextSun = rand(14, 22); } }
     if (TOD.dark > .7 && !G.nightSaid) { G.nightSaid = true; toast(t('nightOn'), true); } else if (TOD.dark < .2) G.nightSaid = false;
   }
-  if (!G.demo && !G.dead) { G.trackT = (G.trackT || 0) - dt; if (G.trackT <= 0) { G.trackT = 1; track('distRun', G.dist, true); track('scoreRun', G.score, true); if (TOD.dark > .8) track('night', 1, true); if (G.rain > .5) track('rain', 1, true); const md = store.get('maxDist', 0); if (G.dist > md) store.set('maxDist', G.dist); } }
+  if (!G.demo && !G.dead) { G.trackT = (G.trackT || 0) - dt; if (G.trackT <= 0) { G.trackT = 1; track('distRun', G.dist, true); track('scoreRun', G.score, true); if (TOD.dark > .8) track('night', 1, true); if (G.rain > .5) { track('rain', 1, true); if (!G.rainCounted) { G.rainCounted = true; store.set('rainRuns', store.get('rainRuns', 0) + 1); } } const md = store.get('maxDist', 0); if (G.dist > md) store.set('maxDist', G.dist); } }
   if (A.rain) A.rain.gain.setTargetAtTime(G.rain * .12, A.ctx.currentTime, .3);
 
   const C = G.chase;
@@ -1632,7 +1966,7 @@ function update(dt) {
   if (!G.dead && G.rowAcc > gap) { G.rowAcc = 0; spawnRow(); }
 
   const zn = zoneAt(ZP); if (zn !== G.zone) { G.zone = zn; toast(ZONES.find(z => z.k === zn).name, true);
-    if (!G.demo) { const r = store.get('reached', []); if (!r.includes(zn)) { r.push(zn); store.set('reached', r); if (CITY[zn]) toast(`NEW CITY: ${CITY[zn].hello}!`); } } }
+    if (!G.demo) { G.trip.push(zn); const r = store.get('reached', []); if (!r.includes(zn)) { r.push(zn); store.set('reached', r); G.fresh.push(zn); newCityReached(zn); } } }
 
   for (let i = objs.length - 1; i >= 0; i--) {
     const o = objs[i];
@@ -1648,7 +1982,7 @@ function update(dt) {
     }
     if (!G.dead && !G.demo && BLOCK.has(o.type) && !o.fly && !o.done && !o.passed && o.z < ZP - (LEN[o.type] || .3) / 2) {
       o.passed = true;
-      if (Math.abs(o.x - P.x) < .75 && G.swerveT < .9) { G.score += 30; G.coins += 2; popText('CHANCE AM!', '+30'); track('chance'); sfx.pax(); const pp = P3(P.x, 0, ZP); burstParts(pp.x, pp.y - pp.s * .5, 8, ['#FFC91A', '#fff'], 140, .4, 150, 4); }
+      if (Math.abs(o.x - P.x) < .75 && G.swerveT < .9) { G.score += 30; G.coins += 2; popText('CHANCE AM!', '+30'); track('chance'); if (Math.random() < .5) say(myLines().close); sfx.pax(); const pp = P3(P.x, 0, ZP); burstParts(pp.x, pp.y - pp.s * .5, 8, ['#FFC91A', '#fff'], 140, .4, 150, 4); }
     }
     if (o.z < -2.5 || o.fly > 2.2 || (o.done && o.gone) || Math.abs(o.x) > 2.6) objs.splice(i, 1);
   }
@@ -1672,8 +2006,8 @@ function hit(o) {
     o.done = true; o.gone = true; let v = G.partyT > 0 ? 2 : 1; G.coins += v; G.score += v; track('coins', v); G.streak++; sfx.coin(G.streak);
     burstParts(p.x, p.y - p.s * .55 - P.y * p.s, 5, ['#FFC91A', '#fff3a6'], 120, .35, 150, 4); return;
   }
-  if (o.type === 'pax') { track('pax'); if (G.tut.on === 'pax') finishTutStep(); o.done = true; o.gone = true; G.pax++; G.chain = Math.min(5, G.chain + 1); G.chainT = 6; const pts = 100 * G.chain * (G.partyT > 0 ? 2 : 1); G.score += pts;
-    sfx.pax(); popText(`+${pts}`, G.chain > 1 ? `PASSENGER x${G.chain}` : 'PASSENGER', 'green'); burstParts(p.x, p.y - p.s * .6, 10, ['#3fe08f', '#fff', '#FFC91A'], 160, .5, 200, 5); say(pick(['Enter! Enter!', 'Oya enter, e remain one!', 'Shift for back!', 'Welcome, sit down!'])); return; }
+  if (o.type === 'pax') { track('pax'); store.set('paxTotal', store.get('paxTotal', 0) + 1); if (G.tut.on === 'pax') finishTutStep(); o.done = true; o.gone = true; G.pax++; G.chain = Math.min(5, G.chain + 1); G.chainT = 6; const pts = 100 * G.chain * (G.partyT > 0 ? 2 : 1); G.score += pts;
+    sfx.pax(); popText(`+${pts}`, G.chain > 1 ? `PASSENGER x${G.chain}` : 'PASSENGER', 'green'); burstParts(p.x, p.y - p.s * .6, 10, ['#3fe08f', '#fff', '#FFC91A'], 160, .5, 200, 5); say(Math.random() < .6 ? myLines().call : pick(['Enter! Enter!', 'Oya enter, e remain one!', 'Shift for back!', 'Welcome, sit down!'])); return; }
   if (o.type === 'speaker') { o.done = true; o.gone = true; G.partyT = G.D.pdur; G.partyLen = G.D.pdur; clearRoad();
     for (let i = 0; i < 26; i++) confetti(rand(W), rand(-40, H * .15)); sfx.power(); toast(t('partyGo'), false, 'big'); say('Bus jam party! Oya dance!'); partyMusic(true); track('party'); return; }
   if (o.type === 'magnet') { o.done = true; o.gone = true; G.magnetT = 9; sfx.power(); toast('COIN MAGNET!'); return; }
@@ -1810,7 +2144,7 @@ function drawPlayer() {
   const P = G.P, p = P3(P.x, 0, ZP), air = P.y * p.s;
   shadowE(p.x, p.y, .64 * p.s * (1 - P.y * .8), .32);
   if (G.invT > 0 && Math.floor(T * 12) % 2) ctx.globalAlpha = .45;
-  danfo(p.x, p.y - air, p.s, T, { heads: 6, conductor: true, party: G.partyT > 0, tilt: P.tilt, sq: P.sq, slogan: myTag(), skin: mySkin(), brake: G.dead });
+  danfo(p.x, p.y - air, p.s, T, { heads: 6, conductor: true, cLook: myConductor().look, party: G.partyT > 0, tilt: P.tilt, sq: P.sq, slogan: myTag(), plate: myPlate(), skin: mySkin(), brake: G.dead });
   if (G.partyT > 0) for (let i = 0; i < 3; i++) label('♪', p.x - p.s * .35 + i * p.s * .35, p.y - p.s * .78 - air - Math.abs(Math.sin(T * 4 + i)) * p.s * .12, p.s * .12, NOTE_COLS[i], p.s);
   if (G.magnetT > 0) { ctx.strokeStyle = `rgba(255,90,90,${.35 + .2 * Math.sin(T * 10)})`; ctx.lineWidth = 4; ctx.beginPath(); ctx.ellipse(p.x, p.y - air - p.s * .3, p.s * .42, p.s * .42, 0, 0, 7); ctx.stroke(); }
   ctx.globalAlpha = 1;
@@ -1952,7 +2286,7 @@ let slowFrames = 0, lowFx = false, idleFrame = 0;
 function frame(now) {
   const dt = Math.min(.05, (now - last) / 1000 || 0); last = now;
   if (!lowFx && mode === 'play') { slowFrames = dt > .034 ? slowFrames + 1 : Math.max(0, slowFrames - 2); if (slowFrames > 150) { lowFx = true; DPR = 1; cvs.width = W; cvs.height = H; ctx.setTransform(1, 0, 0, 1, 0, 0); } }
-  if (G && mode !== 'paused' && mode !== 'over') update(dt);
+  if (G && mode !== 'paused' && mode !== 'over' && mode !== 'card') update(dt);
   if (G && (mode === 'play' || mode === 'title' || (idleFrame = (idleFrame + 1) % 6) === 0)) render();
   if (mode === 'play') { hud(); clockHud(dt); partyHud(); }
   requestAnimationFrame(frame);
