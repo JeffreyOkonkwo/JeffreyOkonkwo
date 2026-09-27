@@ -884,13 +884,32 @@ function scheduleMusic() {
     A.next += sd; A.step++;
   }
 }
-// custom party clips listed in music/tracks.json (MP3s); falls back to the built-in beat
-let partyTracks = [], partyAudio = null;
-fetch('music/tracks.json').then(r => r.json()).then(j => { partyTracks = (j.tracks || []).filter(Boolean); }).catch(() => {});
+// custom party clips listed in music/tracks.json (MP3s). They play through the game's own audio
+// engine (unlocked when you tap Play), because phones block <audio> that starts without a tap.
+// One clip is downloaded and decoded ahead of time so the party starts on the beat.
+let partyTracks = [], partyBuf = null, partySrc = null, partyGain = null, partyLoading = false;
+fetch('music/tracks.json').then(r => r.json()).then(j => { partyTracks = (j.tracks || []).filter(Boolean); preloadParty(); }).catch(() => {});
+function preloadParty() {
+  if (partyLoading || partyBuf || !partyTracks.length || !A.ctx) return; partyLoading = true;
+  fetch('music/' + pick(partyTracks)).then(r => { if (!r.ok) throw new Error('clip'); return r.arrayBuffer(); })
+    .then(b => new Promise((res, rej) => A.ctx.decodeAudioData(b, res, rej)))
+    .then(buf => { partyBuf = buf; }).catch(() => {}).then(() => { partyLoading = false; });
+}
+function stopPartyClip(fade) {
+  if (!partySrc) return; const s = partySrc, g = partyGain, t = A.ctx.currentTime; partySrc = null;
+  g.gain.setTargetAtTime(0, t, Math.max(.01, fade / 3)); try { s.stop(t + fade + .05); } catch (e) {}
+}
 function partyMusic(on) {
-  if (on && A.on && partyTracks.length) {
-    try { if (partyAudio) partyAudio.pause(); partyAudio = new Audio('music/' + pick(partyTracks)); partyAudio.volume = .75; partyAudio.play().catch(() => {}); if (A.music) A.music.gain.setTargetAtTime(.05, A.ctx.currentTime, .2); } catch (e) {}
-  } else if (!on && partyAudio) { const a = partyAudio; partyAudio = null; let v = a.volume; const f = setInterval(() => { v -= .1; if (v <= 0) { clearInterval(f); a.pause(); } else a.volume = v; }, 60); if (A.music) A.music.gain.setTargetAtTime(.45, A.ctx.currentTime, .4); }
+  if (!A.ctx) return;
+  if (on) {
+    stopPartyClip(0);
+    if (partyBuf) {
+      partySrc = A.ctx.createBufferSource(); partySrc.buffer = partyBuf; partyGain = A.ctx.createGain(); partyGain.gain.value = .95;
+      partySrc.connect(partyGain); partyGain.connect(A.master); partySrc.start(); partyBuf = null;
+      if (A.music) A.music.gain.setTargetAtTime(0, A.ctx.currentTime, .15);
+    }
+  } else if (partySrc) { stopPartyClip(.6); if (A.music) A.music.gain.setTargetAtTime(.45, A.ctx.currentTime, .4); }
+  if (!partyBuf) setTimeout(preloadParty, 1500);
 }
 function musicStart() { if (!A.ctx || A.t) return; A.step = 0; A.next = A.ctx.currentTime + .05; A.t = setInterval(scheduleMusic, 25); }
 function musicStop() { clearInterval(A.t); A.t = null; partyMusic(false); }
@@ -1073,7 +1092,7 @@ function show(id, on) { $(id).hidden = !on; }
 function refreshTitle() {
   const d = daily(); $('mDot').hidden = d.ids.every(id => d.done[id]); document.querySelectorAll('.dsel').forEach(b => b.setAttribute('aria-checked', b.dataset.d === diff)); $('tBest').textContent = `BEST ${best.toLocaleString()}`; $('tCoins').innerHTML = `<span class="coin-i sm">A</span>${bank.toLocaleString()} saved`; $('soundBtn').innerHTML = A.on ? '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>' : '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="m17 9 5 6M22 9l-5 6"/></svg>'; $('soundBtn').setAttribute('aria-label', A.on ? 'Sound on' : 'Sound off'); const nk0 = store.get('nick', ''); $('nameTxt').textContent = nk0 ? 'Hi, ' + nk0 : 'Add your name'; }
 function start() {
-  audioInit(); newGame(false); mode = 'play'; musicStart(); track('runs'); G.beatShown = false;
+  audioInit(); preloadParty(); newGame(false); mode = 'play'; musicStart(); track('runs'); G.beatShown = false;
   show('title', false); show('over', false); show('paused', false); show('hud', true); $('dchip').textContent = DIFFS[diff].name; $('toasts').innerHTML = '';
   if (learning()) G.chase.t = 0; else { toast('POLICE DEY FOLLOW YOU!'); sfx.siren(); setTimeout(() => sfx.siren(), 900); }
   setTimeout(() => { const zk = zoneAt(ZP); say(pick(ZCALLS[zk] || (CITY[zk] && CITY[zk].calls) || ['Oshodi! Oshodi! Enter!'])); }, 1200);
@@ -1362,6 +1381,7 @@ function update(dt) {
   // weather: now and then it rains for a while
   if (!G.demo) { G.nextRain -= wdt; if (G.nextRain <= 0 && G.rainT <= 0) { G.rainT = rand(12, 18); G.nextRain = rand(90, 140); toast('RAIN DEY FALL! ROAD DON WET', true); } }
   if (G.rainT > 0) G.rainT -= wdt;
+  if (G.rain > .02) for (const d of drops) { d.y += d.v * dt; d.x -= d.v * .2 * dt; if (d.y > H) { d.y = -d.l - Math.random() * 60; d.x = Math.random() * (W + 120); } if (d.x < -20) d.x += W + 40; }
   G.rain += ((G.rainT > 0 ? 1 : 0) - G.rain) * Math.min(1, dt * .6);
   if (G.ff > 0) { const d = Math.min(G.ff, dt * 35); G.ff -= d; G.todOff += d; }
   if (G.boltT > 0) G.boltT -= dt;
@@ -1478,7 +1498,7 @@ function drawSky() {
   for (const c of clouds) { const x = c.x * W, y = c.y * H, r = H * .035 * c.s; ctx.fillStyle = G && G.rain > 0 ? mixHex('#ffffff', '#6f7c8b', G.rain) : dk > .5 ? '#3a3f6b' : '#fff';
     ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.arc(x + r * 1.1, y - r * .4, r * 1.2, 0, 7); ctx.arc(x + r * 2.3, y, r * .9, 0, 7); ctx.fill(); }
   const lz = zoneAt(30);
-  if (lz !== 'village' && !(CITY[lz] && CITY[lz].noSky)) for (const b of skyline) { ctx.fillStyle = dk > .5 ? '#2a2f5a' : b.c; ctx.fillRect(b.x, hy - b.h, b.w, b.h); ctx.fillStyle = dk > .5 ? 'rgba(255,214,120,.8)' : 'rgba(255,255,255,.45)'; for (let y = hy - b.h + 6; y < hy - 4; y += 10) for (let x = b.x + 4; x < b.x + b.w - 5; x += 9) ctx.fillRect(x, y, 3, 4); }
+  if (lz !== 'village' && !(CITY[lz] && CITY[lz].noSky)) for (const b of skyline) { ctx.fillStyle = dk > .5 ? '#2a2f5a' : G && G.rain > .02 ? mixHex(b.c, '#8d96a6', G.rain * .75) : b.c; ctx.fillRect(b.x, hy - b.h, b.w, b.h); ctx.fillStyle = dk > .5 ? 'rgba(255,214,120,.8)' : 'rgba(255,255,255,.45)'; for (let y = hy - b.h + 6; y < hy - 4; y += 10) for (let x = b.x + 4; x < b.x + b.w - 5; x += 9) ctx.fillRect(x, y, 3, 4); }
 }
 const SIDE = { lagos: ['#f6e0bd', '#ead2aa'], abuja: ['#8fd46a', '#84ca5f'], ph: ['#e6dcc6', '#d9ceb6'], kano: ['#efd49d', '#e3c68b'], village: ['#d9844c', '#cc7843'] };
 function drawGround() {
@@ -1575,6 +1595,7 @@ function bubble(x, y, text) {
   ctx.lineWidth = 3; ctx.strokeStyle = OUT; ctx.beginPath(); ctx.moveTo(tx - 7, by + h); ctx.lineTo(tx + 3, by + h + 11); ctx.lineTo(tx + 9, by + h); ctx.stroke();
   ctx.fillStyle = OUT; ctx.textAlign = 'left'; ctx.textBaseline = 'middle'; ctx.fillText(text, bx + 11, by + h / 2 + 1);
 }
+const drops = Array.from({ length: 150 }, (_, i) => ({ x: Math.random() * 1200, y: Math.random() * 1000, l: i % 2 ? rand(22, 34) : rand(12, 20), v: i % 2 ? rand(1100, 1400) : rand(700, 950) }));
 const lampSpots = [], headSpots = [], HL = { car: [.15, .09], danfo: [.2, .12], keke: [.1, .12], brt: [.22, .1], okada: [0, .2] };
 function lightsAndWeather() {
   const dk = TOD.dark;
@@ -1593,10 +1614,12 @@ function lightsAndWeather() {
     lg.addColorStop(0, `rgba(235,240,255,${.45 * k})`); lg.addColorStop(1, 'rgba(235,240,255,0)'); ctx.fillStyle = lg; ctx.fillRect(0, 0, W, hy);
     if (k === 1) { ctx.strokeStyle = 'rgba(255,255,255,.9)'; ctx.lineWidth = 2; ctx.beginPath(); let x = G.boltX * W, y = hy * .08; ctx.moveTo(x, y); while (y < hy * .7) { y += hy * .08; x += (((y * 13) | 0) % 2 ? 1 : -1) * W * .025; ctx.lineTo(x, y); } ctx.stroke(); } }
   if (G.rain > .02) {
-    ctx.strokeStyle = `rgba(225,235,250,${.32 * G.rain})`; ctx.lineWidth = 1.2; ctx.beginPath();
-    const n = Math.floor((lowFx ? 20 : 50) * G.rain);
-    for (let i = 0; i < n; i++) { const x = Math.random() * W, y = Math.random() * H; ctx.moveTo(x, y); ctx.lineTo(x - 4, y + 18); }
-    ctx.stroke();
+    const n = Math.floor(drops.length * G.rain * (lowFx ? .5 : 1)); ctx.lineCap = 'round';
+    for (const [w, a, from] of [[1, .28, 0], [2.2, .5, 1]]) { // far drops thin and faint, near drops thicker
+      ctx.strokeStyle = `rgba(215,228,250,${a * G.rain})`; ctx.lineWidth = w; ctx.beginPath();
+      for (let i = from; i < n; i += 2) { const d = drops[i]; ctx.moveTo(d.x, d.y); ctx.lineTo(d.x - d.l * .2, d.y + d.l); }
+      ctx.stroke();
+    }
     // splashes on the wet road
     ctx.strokeStyle = `rgba(230,240,255,${.45 * G.rain})`; ctx.lineWidth = 1; ctx.beginPath();
     for (let i = 0; i < (lowFx ? 5 : 12) * G.rain; i++) { const q = P3(rand(-.95, .95), 0, rand(ZP - 1, 22)), r = q.s * rand(.02, .045); ctx.moveTo(q.x + r, q.y); ctx.ellipse(q.x, q.y, r, r * .3, 0, 0, 7); }
@@ -1609,6 +1632,9 @@ function render() {
   const flatT = new Set(['pothole', 'bump']);
   for (const o of objs) if (flatT.has(o.type) && o.z < FAR + 1 && !o.gone) drawEntity(o);
   const ws = walls.slice().sort((a, b) => (b.z + b.len) - (a.z + a.len)); for (const b of ws) if (b.z < FAR) { ctx.globalAlpha = fade(b.z); wall(b); ctx.globalAlpha = 1; }
+  if (G.rain > .02) { const r = G.rain; ctx.fillStyle = `rgba(52,64,84,${.2 * r})`; ctx.fillRect(-20, -20, W + 40, H + 40);
+    const y0 = hy - H * .1, y1 = hy + (gy - hy) * .22, mg = ctx.createLinearGradient(0, y0, 0, y1); mg.addColorStop(0, 'rgba(175,186,200,0)'); mg.addColorStop(.5, `rgba(175,186,200,${.55 * r})`); mg.addColorStop(1, 'rgba(175,186,200,0)');
+    ctx.fillStyle = mg; ctx.fillRect(-20, y0, W + 40, y1 - y0); }
   if (TOD.dark > .02) { const a = TOD.dark * .36, y1 = hy + H * .06, ng = ctx.createLinearGradient(0, 0, 0, y1); ng.addColorStop(0, 'rgba(8,10,40,0)'); ng.addColorStop(1, `rgba(8,10,40,${a})`);
     ctx.fillStyle = ng; ctx.fillRect(-20, -20, W + 40, y1 + 20); ctx.fillStyle = `rgba(8,10,40,${a})`; ctx.fillRect(-20, y1, W + 40, H); }
   const list = props.concat(objs.filter(o => !flatT.has(o.type) && !o.gone));
