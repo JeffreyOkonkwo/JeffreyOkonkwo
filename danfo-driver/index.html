@@ -57,11 +57,24 @@
   #wx{position:absolute;left:50%;top:calc(env(safe-area-inset-top,0px) + 150px);transform:translateX(-50%);width:min(92vw,420px);
     background:rgba(27,16,36,.92);border:3px solid #ffe066;border-radius:18px;padding:10px 12px 12px;color:#fff;text-align:center;z-index:6}
   #wx[hidden]{display:none}
-  .shareg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-  .shareg .more{grid-column:1/-1;border:3px solid var(--ink);border-radius:12px;padding:10px;font:800 15px/1.1 "Baloo 2",sans-serif;background:var(--danfo);color:var(--ink);box-shadow:0 3px 0 var(--ink)}
-  .shb{display:grid;place-items:center;border:3px solid var(--ink);border-radius:12px;padding:10px 4px;font:800 14px/1 "Baloo 2",sans-serif;color:#fff;text-decoration:none;box-shadow:0 3px 0 var(--ink)}
-  .shcopy{grid-column:1/-1;display:flex;gap:6px}.shcopy input{flex:1;min-width:0;border:3px solid var(--ink);border-radius:12px;padding:8px;font:700 13px "Baloo 2",sans-serif}
-  .shcopy button{border:3px solid var(--ink);border-radius:12px;padding:8px 12px;font:800 14px "Baloo 2",sans-serif;background:#fff;color:var(--ink)}
+  #ptimer{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);transform:translateX(-50%);width:min(64vw,300px);text-align:center;pointer-events:none;
+    font-family:"Bungee",Impact,sans-serif;font-size:13px;color:#fff;background:rgba(27,16,36,.7);border:3px solid #3fe08f;border-radius:14px;padding:4px 10px 7px}
+  #ptimer[hidden]{display:none}
+  #ptimer small{display:block;margin-top:4px;font:800 12px/1.2 "Baloo 2",sans-serif;color:#d9ffe9}
+  #ptimer i{display:block;height:8px;border-radius:6px;background:rgba(255,255,255,.2);margin-top:4px;overflow:hidden}
+  #ptimer b{display:block;height:100%;background:linear-gradient(90deg,#3fe08f,#ffe066);transform-origin:left;border-radius:6px}
+  #ptimer.end{border-color:#ff4d4d;animation:fcPulse .4s ease-in-out infinite}
+  .shbox{display:grid;gap:12px}
+  .shscore{display:grid;justify-items:center;background:var(--danfo);border:3px solid var(--ink);border-radius:18px;padding:8px 10px 10px;box-shadow:0 4px 0 var(--ink)}
+  .shscore small{font-weight:800;font-size:13px;opacity:.75}.shscore b{font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:40px;line-height:1.05}.shscore span{font-weight:800;font-size:13px}
+  .shmain{display:flex;align-items:center;justify-content:center;gap:8px;border:3px solid var(--ink);border-radius:14px;padding:10px;background:#fff;color:var(--ink);font:800 16px/1 "Baloo 2",sans-serif;box-shadow:0 3px 0 var(--ink)}
+  .shmain svg{width:22px;height:22px}
+  .shapps{display:grid;grid-template-columns:repeat(6,1fr);gap:4px}
+  .shapp{display:grid;justify-items:center;gap:4px;text-decoration:none;color:var(--ink);font:800 11px/1 "Baloo 2",sans-serif}
+  .shapp i{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:3px solid var(--ink);box-shadow:0 3px 0 var(--ink)}.shapp i svg{width:24px;height:24px}
+  .shapp:active i{transform:translateY(2px);box-shadow:0 1px 0 var(--ink)}
+  .shcopy{display:flex;gap:6px}.shcopy input{flex:1;min-width:0;border:3px solid var(--ink);border-radius:12px;padding:8px 10px;font:700 13px "Baloo 2",sans-serif;color:#5a5068;background:#f6f2ea}
+  .shcopy button{border:3px solid var(--ink);border-radius:12px;padding:8px 12px;font:800 14px "Baloo 2",sans-serif;background:var(--ink);color:#fff;min-width:64px}.shcopy button.ok{background:var(--green)}
   #wx .wt{font-family:"Bungee",Impact,sans-serif;font-size:16px;color:#ffe066;margin-bottom:8px}
   #wx .wb{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
   #wx button{flex:1 1 0;min-width:0;border:3px solid var(--ink);border-radius:12px;padding:8px 6px;font:800 14px/1.1 "Baloo 2",sans-serif;box-shadow:0 3px 0 var(--ink);background:#fff;color:var(--ink)}
@@ -175,6 +188,9 @@
   .stop{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;font-weight:800}
   .stop .pin{width:26px;height:26px;border-radius:50%;border:3px solid var(--ink);background:#d0cbd8;display:grid;place-items:center;font-size:13px}
   .stop.on .pin{background:var(--green);color:#fff}
+  button.stop{width:100%;text-align:left;background:none;border:0;border-radius:12px;padding:4px 6px;font:inherit;font-weight:800;color:inherit}
+  button.stop:disabled{opacity:.6}button.stop.on{cursor:pointer}button.stop.on:active{background:rgba(24,184,107,.12)}
+  .stop.cur{background:rgba(255,201,26,.3)}.stop.cur .pin{background:var(--danfo);color:var(--ink)}
   .stop small{display:block;font-weight:700;opacity:.7}
   .nickin{font:inherit;font-size:18px;font-weight:800;color:var(--ink);background:#fff;border:3px solid var(--ink);border-radius:12px;padding:10px 12px;width:100%;box-sizing:border-box}
   .nick{display:flex;align-items:center;gap:8px;width:100%;max-width:340px;font-weight:800;font-size:13px;color:#fff}
@@ -210,9 +226,10 @@
       <div class="best ol" id="best">BEST 0</div>
       <div class="chips"><span class="chip lvl" id="dchip">AREA DRIVER</span><span class="chip" id="mult" hidden>x2</span><span class="chip cop" id="cop" hidden>POLICE!</span><span class="chip party" id="pwP" hidden>PARTY</span><span class="chip beat" id="beatChip" hidden></span><span class="chip mag" id="pwM" hidden>MAGNET</span></div>
     </div>
-    <div class="rcol"><div class="right"><div class="coins pax" aria-label="Passengers"><span class="pax-i"></span><span id="paxN">0</span></div><div class="coins"><span class="coin-i">₦</span><span id="coins">0</span></div><button class="pause" id="pauseBtn" type="button" aria-label="Pause">II</button></div>
+    <div class="rcol"><div class="right"><div class="coins pax" aria-label="Passengers"><span class="pax-i"></span><span id="paxN">0</span></div><div class="coins"><span class="coin-i">A</span><span id="coins">0</span></div><button class="pause" id="pauseBtn" type="button" aria-label="Pause">II</button></div>
       <div class="clock" id="clock" aria-label="Time and weather"><span class="dial" id="dial"><i id="hand"></i></span><span id="clockT">7:00 AM</span><span class="fc" id="fc" hidden></span></div></div>
   </div>
+  <div id="ptimer" hidden><span id="ptLbl">FREE RIDE</span><i><b id="ptFill"></b></i><small id="ptHow"></small></div>
   <div id="wx" hidden><div class="wt" id="wxT">SUN COIN!</div><div class="wb" id="wxB"></div><div class="bar" id="wxBar"></div></div>
   <div class="hint" id="hint" hidden><div class="arrows ol" id="hintArrows">←&nbsp;→</div><div class="txt" id="hintTxt">SWIPE TO DODGE</div></div>
   <div id="toasts"></div>
@@ -233,7 +250,7 @@
         <button class="mbtn m3" id="mJourney" type="button"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 6.5 9 4.5l6 2 5.5-2v13l-5.5 2-6-2-5.5 2z"/><path d="M9 4.5v13M15 6.5v13"/></svg></span><span data-t="journey">Journey</span></button>
         <button class="mbtn m4" id="mQuiz" type="button"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 18h5M10.5 21h3"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3z"/></svg></span><span data-t="quizmode">Africa Quiz</span></button>
       </div>
-      <div class="meta"><span class="pillm" id="tBest">BEST 0</span><span class="pillm" id="tCoins">₦ 0 saved</span></div>
+      <div class="meta"><span class="pillm" id="tBest">BEST 0</span><span class="pillm" id="tCoins">A 0 saved</span></div>
       </div>
     <div class="topbar"><button class="tb" id="langBtn" type="button" aria-label="Change language">EN</button><button class="tb name" id="nameBtn" type="button"><span id="nameTxt">Add your name</span> ✎</button><span class="sp"></span><button class="tb" id="soundBtn" type="button" aria-label="Sound on"></button></div>
   </div>
@@ -289,12 +306,15 @@ const OUT = '#1b1024';
 // ---------------------------------------------------------------- world
 const LANES = [-0.62, 0, 0.62];
 const D = 6, FAR = 90, ZP = 2, JT = .55, JH = .26;
-const DIFFS = { easy: { name: 'JJC', start: 16, max: 36, acc: .14, gap: 1.25, two: .08 }, normal: { name: 'AREA DRIVER', start: 20, max: 46, acc: .2, gap: 1, two: .2 }, hard: { name: 'AGBERO', start: 25, max: 56, acc: .28, gap: .85, two: .32 } };
+const DIFFS = { easy: { name: 'JJC', start: 16, max: 36, acc: .14, gap: 1.25, two: .08, party: 40, pdur: 10 }, normal: { name: 'AREA DRIVER', start: 20, max: 46, acc: .2, gap: 1, two: .2, party: 60, pdur: 8 }, hard: { name: 'AGBERO', start: 25, max: 56, acc: .28, gap: .85, two: .32, party: 85, pdur: 7 } };
 let diff = 'normal';
 const START = 20;
 const ZONE_LEN = 650;
 const ZONES = [{ k: 'lagos', name: 'LAGOS · OSHODI' }, { k: 'bridge', name: 'THIRD MAINLAND BRIDGE' }, { k: 'village', name: 'VILLAGE ROAD' },
-  { k: 'abuja', name: 'ABUJA' }, { k: 'ph', name: 'PORT HARCOURT' }, { k: 'kano', name: 'KANO' }];
+  { k: 'abuja', name: 'ABUJA' }, { k: 'ph', name: 'PORT HARCOURT' }, { k: 'kano', name: 'KANO' },
+  { k: 'accra', name: 'ACCRA · GHANA' }, { k: 'dakar', name: 'DAKAR · SENEGAL' }, { k: 'marrakech', name: 'MARRAKECH · MOROCCO' }, { k: 'cairo', name: 'CAIRO · EGYPT' },
+  { k: 'addis', name: 'ADDIS ABABA · ETHIOPIA' }, { k: 'nairobi', name: 'NAIROBI · KENYA' }, { k: 'kigali', name: 'KIGALI · RWANDA' }, { k: 'kinshasa', name: 'KINSHASA · DR CONGO' },
+  { k: 'joburg', name: 'JOHANNESBURG · SOUTH AFRICA' }];
 const ZSHOPS = {
   lagos: ['SUYA SPOT', 'MAMA PUT', "GOD'S GRACE PHONES", 'AMALA JOINT', 'POS · CASH OUT', 'VULCANIZER', 'BLESSED HANDS SALON', 'IYA BASIRAT BUKKA'],
   abuja: ['WUSE MARKET', 'ASO VILLA ROAD', 'JABI LAKE MALL', 'CAPITAL HOTEL', 'NATIONAL STADIUM', 'GARKI PLAZA', 'CBD TOWERS'],
@@ -360,6 +380,68 @@ function limb(x, y, len, wid, ang, col) { ctx.save(); ctx.translate(x, y); ctx.r
 const SKINS = ['#6b3f27', '#7d4a2e', '#8e5836', '#a0673f', '#5a3320'];
 const SHIRTS = ['#ff5a3c', '#18b86b', '#ffb000', '#8b5cf6', '#2f7bff', '#ff4fa3', '#00c2c7', '#ff7b25'];
 const PANTS = ['#34305a', '#3d2a1e', '#1f4f7c', '#4b4b5b'];
+// ---- African cities (research notes in RESEARCH.md). Kerbs use each country's flag colours.
+const NSKIN = ['#c68e5a', '#a86f45', '#d9a066', '#8e5836', '#b57a4c'];
+const CITY = {
+  accra: { hello: 'AKWAABA, ACCRA', side: ['#ecd6b0', '#e0c89e'], curb: ['#ce1126', '#fcd116', '#006b3f'], walls: ['#f4d35e', '#8ecae6', '#f28482', '#90be6d', '#f7b267', '#bde0fe'], h: [1, 1.5], glass: .08, palm: .3,
+    awn: ['#ce1126', '#fcd116', '#006b3f', '#2f7bff'], shops: ['KELEWELE SPOT', 'WAAKYE JOINT', 'ADOM PHONE CENTRE', 'BLESSED CHOP BAR', 'NYAME NHYIRA ELECTRICALS', 'MOBILE MONEY'],
+    stops: ['CIRCLE', 'KANESHIE', 'MADINA', 'LAPAZ', 'ACHIMOTA'], calls: ['Circle! Circle! Circle!', 'Kanesh-Kanesh-Kanesh!', 'Madina, one more!', 'Akwaaba! Enter, chale!'],
+    bus: [{ body: '#f2f2f2', stripe: '#d62828', slogan: 'GOD IS MY SEATBELT' }, { body: '#f2f2f2', stripe: '#ffd60a', slogan: 'ALL SHALL PASS' }, { body: '#dfe3e8', stripe: '#006b3f', slogan: 'WONDERFUL JESUS' }],
+    taxi: ['#ffb000', '#ff7b25'], keke: ['#ffb000', '#d62828'], brt: ['#2f7bff', '#fcd116', 'CITY BUS'], low: ['pothole', 'pothole', 'barrier', 'branches'], animal: true,
+    hatsF: ['gele', 'braids', 'none'], hatsM: ['cap', 'none'], gown: true },
+  dakar: { hello: 'DALAL AK JAMM, DAKAR', side: ['#f1e3c2', '#e6d5b0'], curb: ['#00853f', '#fdef42', '#e31b23'], walls: ['#e9dcc0', '#f4efe4', '#d8c7a0', '#bcd7e8', '#f6f1e6'], h: [.95, 1.4], glass: .05, palm: .12, tree: 'tree',
+    awn: ['#1e5bb8', '#ffc300', '#00853f'], shops: ['DIBITERIE', 'TANGANA CAFÉ TOUBA', 'TÉLÉCENTRE', 'QUINCAILLERIE', 'BOUTIQUE TERANGA', 'THIEBOUDIENNE CHEZ AWA'],
+    stops: ['COLOBANE', 'PETERSEN', 'SANDAGA', 'PARCELLES', 'PIKINE'], calls: ['Colobane! Colobane!', 'Petersen, Petersen!', 'Parcelles! Parcelles!', 'Nanga def? Enter, enter!'],
+    bus: [{ body: '#1e5bb8', stripe: '#ffc300', slogan: 'ALHAMDOULILAH' }, { body: '#ffc300', stripe: '#1e5bb8', slogan: 'JEREJEF' }, { body: '#f5f5f0', stripe: '#2a9d8f', slogan: 'TERANGA' }],
+    taxi: ['#ffc300', '#1b1024'], keke: null, brt: ['#2a9d8f', '#ffc300', 'BRT'], low: ['sand', 'sand', 'pothole', 'goat'], animal: true, noSky: true,
+    hatsF: ['scarf', 'gele'], hatsM: ['kufi', 'none', 'cap'], gown: true },
+  marrakech: { hello: 'MARHABA, MARRAKECH', side: ['#e8b48c', '#dca57c'], curb: ['#c1272d', '#006233'], walls: ['#d9825b', '#c96f4a', '#e39a74', '#b8603f'], h: [.9, 1.3], glass: 0, flat: true, palm: .32,
+    awn: ['#006233', '#c1272d', '#e8c050', '#2f7bff'], shops: ['CAFÉ ATLAS', 'MSEMEN & HARCHA', 'TÉLÉBOUTIQUE', 'DROGUERIE', 'ÉPICERIE LA ROSE', 'TAJINE HOUSE'],
+    stops: ['JEMAA EL-FNA', 'BAB DOUKKALA', 'GUÉLIZ', 'SIDI YOUSSEF'], calls: ['Bab Doukkala! Bab Doukkala!', 'Jemaa el-Fna! Yallah!', 'Guéliz, Guéliz!', 'Salam! One seat left!'],
+    bus: [{ body: '#d8c39a', stripe: '#8a5a2b', slogan: 'MARRAKECH' }, { body: '#e6d3ad', stripe: '#006233', slogan: 'GRAND TAXI' }],
+    taxi: ['#d8c39a', '#e6d3ad'], keke: null, brt: ['#c1272d', '#fff', 'CITY BUS'], low: ['barrier', 'pothole', 'sand'], noSky: true, skins: NSKIN,
+    hatsF: ['scarf', 'scarf', 'none'], hatsM: ['none', 'kufi', 'cap'], gown: true },
+  cairo: { hello: 'AHLAN, CAIRO', side: ['#e6d3ad', '#dac59c'], curb: ['#ce1126', '#ffffff', '#1b1024'], walls: ['#d8c3a0', '#c9a97c', '#b5835a', '#e3d3b5', '#a8674a'], h: [1.1, 1.8], glass: .06, flat: true, palm: .14,
+    awn: ['#ce1126', '#2f7bff', '#ffb000', '#18b86b'], shops: ['FUL & TAAMEYA', 'ASAB JUICE', 'KUSHK', 'MAKTABA', 'KOSHARY EL-NOUR', 'FETEER HOUSE'],
+    stops: ['RAMSIS', 'TAHRIR', 'GIZA', 'ATABA', 'MAADI'], calls: ['Ramsis! Ramsis!', 'Giza, Giza, Giza!', 'Ataba, yalla!', 'Tahrir! Tamam!'],
+    bus: [{ body: '#f5f5f0', stripe: '#2f7bff', slogan: 'RAMSIS · GIZA' }, { body: '#f5f5f0', stripe: '#ce1126', slogan: 'TAHRIR · ATABA' }],
+    taxi: ['#f5f5f0', '#f5f5f0', '#1b1024'], keke: ['#d62828', '#ffd60a'], brt: ['#2f7bff', '#fff', 'CITY BUS'], low: ['pothole', 'pothole', 'barrier'], skins: NSKIN,
+    hatsF: ['scarf', 'scarf', 'none'], hatsM: ['none', 'cap'], gown: true },
+  addis: { hello: 'SELAM, ADDIS ABABA', side: ['#d9d4cc', '#ccc6bc'], curb: ['#078930', '#fcdd09', '#da121a'], walls: ['#f2e6c8', '#6aa7e0', '#ffd166', '#e8e8e8', '#b8d8c0'], h: [1, 1.7], glass: .3, palm: .12, tree: 'tree',
+    awn: ['#1f5faf', '#fcdd09', '#078930'], shops: ['BUNNA BET', 'MACCHIATO CAFÉ', 'INJERA HOUSE', 'SHOE SHINE', 'TIBS & KITFO', 'SUK'],
+    stops: ['PIASSA', 'MEGENAGNA', 'MEXICO', 'BOLE', 'ARAT KILO'], calls: ['Piassa! Piassa!', 'Megenagna, Megenagna!', 'Bole, Bole, Bole!', 'Selam! Enter!'],
+    bus: [{ body: '#1f5faf', stripe: '#ffffff', slogan: 'ADDIS ABABA' }, { body: '#ffffff', stripe: '#1f5faf', slogan: 'BOLE · PIASSA' }],
+    taxi: ['#1f5faf', '#1f5faf', '#ffffff'], keke: ['#1f5faf', '#ffffff'], brt: ['#da121a', '#fcdd09', 'CITY BUS'], low: ['pothole', 'goat', 'barrier'], animal: true,
+    hatsF: ['scarf', 'braids', 'none'], hatsM: ['none', 'cap'], gown: true, scarfCol: '#ffffff' },
+  nairobi: { hello: 'KARIBU, NAIROBI', side: ['#d9d4cc', '#cdc7bd'], curb: ['#1b1024', '#bb0000', '#006600', '#ffffff'], walls: ['#d9d4c7', '#ece4d0', '#c8c0b0', '#ffd166', '#a8d0e6'], h: [1.1, 1.8], glass: .28, palm: .14, tree: 'jacaranda',
+    awn: ['#18b86b', '#bb0000', '#ffd166', '#2f7bff'], shops: ['MAMA MBOGA', 'NYAMA CHOMA', 'M-PESA AGENT', 'KINYOZI', 'CHIPO JOINT', 'MANDAZI CORNER'],
+    stops: ['KENCOM', 'WESTLANDS', 'GITHURAI', 'RONGAI', 'UMOJA'], calls: ['Tao! Tao!', 'Beba beba!', 'Rongai, panda!', 'Sasa! Westlands!'],
+    bus: [{ body: '#ffffff', stripe: '#ffd100', slogan: 'NGANYA VIBES', art: true }, { body: '#8b5cf6', stripe: '#ffd100', slogan: 'TAO EXPRESS', art: true }, { body: '#1b1024', stripe: '#ffd100', slogan: 'BEBA BEBA', art: true }],
+    taxi: ['#e8e8f0', '#3a3346'], keke: ['#ffd100', '#1b1024'], brt: ['#18b86b', '#fff', 'CITY BUS'], low: ['pothole', 'pothole', 'branches', 'barrier'],
+    hatsF: ['braids', 'none', 'gele'], hatsM: ['cap', 'none'] },
+  kigali: { hello: 'MURAKAZA NEZA, KIGALI', side: ['#cfe8c0', '#c2dcb2'], curb: ['#00a1de', '#fad201', '#20603d'], walls: ['#b5533c', '#c96f4a', '#e8dcc8', '#a6452f', '#f0e6d6'], h: [1, 1.6], glass: .18, palm: .26,
+    awn: ['#00a1de', '#fad201', '#20603d'], shops: ['MILK BAR', 'BROCHETTE HOUSE', 'MOBILE MONEY', 'BOUTIQUE AMAHORO', 'SALON DE COIFFURE', 'IKAWA COFFEE'],
+    stops: ['NYABUGOGO', 'KIMIRONKO', 'REMERA', 'NYAMIRAMBO', 'KICUKIRO'], calls: ['Nyabugogo! Nyabugogo!', 'Kimironko! Kimironko!', 'Remera, Remera!', 'Muraho! Enter!'],
+    bus: [{ body: '#f5f5f0', stripe: '#00a1de', slogan: 'KIGALI' }, { body: '#f5f5f0', stripe: '#20603d', slogan: 'NYABUGOGO' }],
+    taxi: ['#ffffff', '#e8e8f0'], keke: null, brt: ['#00a1de', '#fad201', 'CITY BUS'], low: ['barrier', 'branches'], noSky: true,
+    hatsF: ['braids', 'none', 'gele'], hatsM: ['none', 'cap'] },
+  kinshasa: { hello: 'BOYEI MALAMU, KINSHASA', side: ['#d99668', '#cc8a5c'], curb: ['#007fff', '#f7d618', '#ce1021'], walls: ['#ff9f7a', '#7ad0c9', '#ffd166', '#e85d75', '#9ad36a', '#b39ddb'], h: [1, 1.5], glass: .08, palm: .22,
+    awn: ['#007fff', '#f7d618', '#ce1021', '#18b86b'], shops: ['ALIMENTATION LA GRÂCE', 'SALON MAMAN MARIE', 'QUINCAILLERIE', 'PHARMACIE BON BERGER', 'MAYONNAISE CHICKEN', 'SAPE BOUTIQUE'],
+    stops: ['VICTOIRE', 'GOMBE', 'MATONGE', 'NGABA', 'UPN'], calls: ['Victoire! Victoire!', 'Gombe, Gombe!', 'Ngaba, tokende!', 'Mbote! Enter!'],
+    bus: [{ body: '#ffd000', stripe: '#2d6cdf', slogan: 'TOKENDE' }, { body: '#2d6cdf', stripe: '#ffd000', slogan: 'MBOTE' }],
+    taxi: ['#ffd000', '#7fc8f8'], keke: null, brt: ['#2d6cdf', '#ffd000', 'CITY BUS'], low: ['pothole', 'pothole', 'sand'],
+    hatsF: ['gele', 'gele', 'braids'], hatsM: ['cap', 'none'], gown: true },
+  joburg: { hello: 'SAWUBONA, JOBURG', side: ['#d9d4cc', '#cdc7bd'], curb: ['#007749', '#ffb81c', '#de3831', '#001489'], walls: ['#a6452f', '#b5533c', '#d9d4c7', '#8b3a2a', '#e0c8a8'], h: [1.1, 2], glass: .3, palm: .14, tree: 'jacaranda',
+    awn: ['#007749', '#ffb81c', '#de3831'], shops: ['KOTA KING', 'SPAZA SHOP', 'SHISANYAMA', 'VETKOEK CORNER', 'HAIR & BEAUTY', 'BUNNY CHOW'],
+    stops: ['BREE', 'NOORD', 'SOWETO', 'ALEX', 'RANDBURG'], calls: ['Bree! Bree!', "Sho't left!", 'Soweto! Soweto!', 'Sawubona! Enter!'],
+    bus: [{ body: '#f5f5f0', stripe: '#ffb81c', slogan: "SHO'T LEFT" }, { body: '#f5f5f0', stripe: '#de3831', slogan: 'EISH!' }],
+    taxi: ['#e8e8f0', '#3a3346'], keke: null, brt: ['#de3831', '#fff', 'CITY BUS'], low: ['pothole', 'pothole', 'barrier'],
+    hatsF: ['braids', 'none', 'gele'], hatsM: ['cap', 'none'] },
+};
+function cityLook(C) {
+  const f = Math.random() < .5, hat = pick(f ? C.hatsF : C.hatsM);
+  return { skin: pick(C.skins || SKINS), shirt: pick(SHIRTS), dots: pick(['#ffe066', '#ffffff', '#1b1024']), pants: pick(PANTS), hat, hatCol: hat === 'scarf' && C.scarfCol && Math.random() < .6 ? C.scarfCol : pick(SHIRTS), gown: f && C.gown && Math.random() < .5 };
+}
 function randomLook() {
   const f = Math.random() < .5;
   return { skin: pick(SKINS), shirt: pick(SHIRTS), dots: pick(['#ffe066', '#ffffff', '#1b1024']), pants: pick(PANTS),
@@ -392,7 +474,10 @@ function person(x, y, s, look, pose, t, back = false) {
   for (let i = 0; i < 5; i++) { ctx.beginPath(); ctx.arc(x - bw * .28 + (i % 3) * bw * .28, by + bh * (.32 + (i > 2 ? .36 : 0)), d, 0, 7); ctx.fill(); }
   if (back) limb(x + bw / 2 - armW * .3, sy, armL, armW, aR, look.skin);
   const hr = u * .23, hx = x, hy2 = by - hr * .78;
+  if (look.hat === 'scarf') ball(hx, hy2 + hr * .12, hr * 1.24, look.hatCol);
   ball(hx, hy2, hr, look.skin);
+  if (look.hat === 'scarf') { ctx.fillStyle = look.hatCol; ctx.beginPath(); ctx.arc(hx, hy2 - hr * .05, hr * 1.1, Math.PI * 1.08, Math.PI * 1.92); ctx.fill(); }
+  if (look.hat === 'kufi') flat(hx - hr * .72, hy2 - hr * 1.18, hr * 1.44, hr * .5, hr * .2, look.hatCol, 1.2);
   if (back || look.hat === 'none' || look.hat === 'braids') { ctx.fillStyle = '#1b1024'; ctx.beginPath(); ctx.arc(hx, hy2 - hr * .12, hr * 1.02, Math.PI * 1.05, Math.PI * 1.95); ctx.fill(); }
   if (look.hat === 'braids') for (let i = -2; i <= 2; i++) flat(hx + i * hr * .34 - hr * .07, hy2 - hr * .1, hr * .15, hr * 1.1, hr * .07, '#2a1a14', 0);
   if (!back) {
@@ -463,22 +548,22 @@ function car(x, y, s, col) {
   for (const sx of [-1, 1]) flat(x + sx * w * .34 - w * .08, y - h * .45, w * .16, h * .11, w * .03, '#ff2a1f', 1);
   flat(x - w * .1, y - h * .3, w * .2, h * .1, w * .02, '#fff', 1);
 }
-function brt(x, y, s) {
-  const w = .62 * s, h = w * 1.05; if (w < 3) return;
+function brt(x, y, s, c) {
+  const w = .62 * s, h = w * 1.05; if (w < 3) return; c = c || ['#2f6bff', '#ff4d4d', 'BRT'];
   wheels(x, y, w, .38, w * .16);
-  blob(x - w / 2, y - h, w, h * .92, w * .1, '#2f6bff');
+  blob(x - w / 2, y - h, w, h * .92, w * .1, c[0]);
   flat(x - w * .42, y - h * .9, w * .84, h * .32, w * .05, '#9fe0ff', 1.2);
-  ctx.fillStyle = '#ff4d4d'; ctx.fillRect(x - w / 2 + 2, y - h * .45, w - 4, h * .06);
-  if (w > 30) label('BRT', x, y - h * .28, w * .16, '#fff', w * .8);
+  ctx.fillStyle = c[1]; ctx.fillRect(x - w / 2 + 2, y - h * .45, w - 4, h * .06);
+  if (w > 30) label(c[2], x, y - h * .28, w * .16, '#fff', w * .8);
   for (const sx of [-1, 1]) ball(x + sx * w * .4, y - h * .2, w * .04, '#ff2a1f');
 }
-function keke(x, y, s) {
-  const w = .38 * s, h = w * 1.15; if (w < 3) return;
+function keke(x, y, s, c) {
+  const w = .38 * s, h = w * 1.15; if (w < 3) return; c = c || ['#18b86b', '#FFC91A'];
   wheels(x, y, w, .38, w * .2);
-  blob(x - w / 2, y - h * .58, w, h * .48, w * .14, '#18b86b');
+  blob(x - w / 2, y - h * .58, w, h * .48, w * .14, c[0]);
   flat(x - w * .42, y - h * .95, w * .84, h * .42, w * .07, '#2a2433', 1);
   for (let i = 0; i < 3; i++) ball(x - w * .25 + i * w * .25, y - h * .66, w * .1, SKINS[i]);
-  blob(x - w * .56, y - h * 1.02, w * 1.12, h * .14, w * .07, '#FFC91A');
+  blob(x - w * .56, y - h * 1.02, w * 1.12, h * .14, w * .07, c[1]);
   ctx.fillStyle = OUT; ctx.fillRect(x - w * .48, y - h * .36, w * .96, h * .05);
 }
 function okada(x, y, s, t, look) {
@@ -505,6 +590,8 @@ function police(x, y, s, t) {
 
 // ---------------------------------------------------------------- road things
 function pothole(p) { const rx = .22 * p.s, ry = rx * .32; ctx.fillStyle = '#231a2a'; ctx.beginPath(); ctx.ellipse(p.x, p.y, rx, ry, 0, 0, 7); ctx.fill(); ctx.lineWidth = clamp(p.s * .012, 1, 3); ctx.strokeStyle = '#8d7a6a'; ctx.stroke(); ctx.fillStyle = 'rgba(110,198,255,.55)'; ctx.beginPath(); ctx.ellipse(p.x + rx * .1, p.y + ry * .1, rx * .55, ry * .45, 0, 0, 7); ctx.fill(); }
+function sand(p) { const w = .26 * p.s, h = .08 * p.s; if (w < 3) return; ctx.beginPath(); ctx.ellipse(p.x, p.y, w, h, 0, Math.PI, 0); ctx.closePath(); ctx.fillStyle = '#e8c98a'; ctx.fill(); ctx.lineWidth = clamp(p.s * .012, 1, 3); ctx.strokeStyle = OUT; ctx.stroke();
+  ctx.fillStyle = 'rgba(255,255,255,.4)'; ctx.beginPath(); ctx.ellipse(p.x - w * .25, p.y - h * .55, w * .28, h * .2, 0, 0, 7); ctx.fill(); }
 function branches(p) {
   const w = .5 * p.s; if (w < 3) return; shadowE(p.x, p.y, w);
   ctx.strokeStyle = '#6b4a2a'; ctx.lineWidth = Math.max(1.5, w * .04); ctx.beginPath(); ctx.moveTo(p.x - w * .5, p.y - w * .05); ctx.lineTo(p.x + w * .5, p.y - w * .12); ctx.stroke();
@@ -528,7 +615,7 @@ function coin(x, y, s, t, lift) {
   const r = .075 * s; if (r < 1) return; const sx = Math.abs(Math.cos(t * 5 + x * .02)) * .75 + .25;
   shadowE(x, y, r * 1.6, .18);
   ctx.save(); ctx.translate(x, y - r * 2.2 - lift); ctx.scale(sx, 1); ball(0, 0, r, '#FFC91A');
-  label('₦', 0, r * .1, r * 1.2, '#9a6400', r * 2, '"Baloo 2", sans-serif'); ctx.restore();
+  label('A', 0, r * .1, r * 1.2, '#9a6400', r * 2, '"Baloo 2", sans-serif'); ctx.restore();
 }
 function speaker(x, y, s, t) {
   const w = .22 * s, bobY = Math.sin(t * 5) * w * .15; if (w < 2) return;
@@ -602,10 +689,10 @@ function hut(x, y, s, o) {
   ctx.fillStyle = o.roof === 'zinc' ? '#a9b3bd' : '#d6a94f'; ctx.fill(); ctx.lineWidth = lwOf(w, h); ctx.strokeStyle = OUT; ctx.stroke();
   if (o.roof === 'zinc') { ctx.strokeStyle = 'rgba(27,16,36,.35)'; ctx.lineWidth = 1; for (let i = 1; i < 6; i++) { const t = i / 6; ctx.beginPath(); ctx.moveTo(x - w * .6 + w * 1.2 * t, y - h); ctx.lineTo(x, y - h - .32 * s); ctx.stroke(); } }
 }
-function tree(x, y, s) {
+function tree(x, y, s, leaf = '#3fae4a') {
   if (s < 6) return; shadowE(x, y, s * .4);
   flat(x - s * .04, y - s * .5, s * .08, s * .5, 2, '#8a5a2b', 2);
-  for (const [dx, dy, r] of [[-.16, -.62, .18], [.14, -.64, .18], [0, -.8, .22], [-.02, -.58, .16]]) ball(x + dx * s, y + dy * s, r * s, '#3fae4a');
+  for (const [dx, dy, r] of [[-.16, -.62, .18], [.14, -.64, .18], [0, -.8, .22], [-.02, -.58, .16]]) ball(x + dx * s, y + dy * s, r * s, leaf);
   for (let i = 0; i < 4; i++) ball(x + (i - 1.5) * s * .1, y - s * .62 + (i % 2) * s * .1, s * .025, '#ffb000');
 }
 function goat(x, y, s, t) {
@@ -616,8 +703,75 @@ function goat(x, y, s, t) {
   ctx.fillStyle = OUT; ctx.beginPath(); ctx.arc(x + w * .5, y - w * .84 - b, w * .035, 0, 7); ctx.fill();
   ctx.strokeStyle = '#8a7a6a'; ctx.lineWidth = Math.max(1.5, w * .05); ctx.beginPath(); ctx.moveTo(x + w * .4, y - w * .95 - b); ctx.quadraticCurveTo(x + w * .3, y - w * 1.15 - b, x + w * .2, y - w * 1.05 - b); ctx.stroke();
 }
+// ---- city horizons: a simple, recognisable landmark + backdrop per city
+function nc(c) { return TOD.dark > .02 ? mixHex(c, '#2a2f5a', TOD.dark * .55) : c; }
+function shape(pts, col, lw = 3) { ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]); for (const p of pts.slice(1)) ctx.lineTo(p[0], p[1]); ctx.closePath(); ctx.fillStyle = nc(col); ctx.fill(); ctx.lineWidth = lw; ctx.strokeStyle = OUT; ctx.stroke(); }
+function hills(base, col, amp, n = 6, seed = 0) { ctx.fillStyle = nc(col); ctx.strokeStyle = OUT; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(0, base);
+  for (let i = 0; i <= n; i++) ctx.quadraticCurveTo(W * (i + .5) / n, base - H * amp * (.6 + ((i + seed) % 3) * .25), W * (i + 1) / n, base); ctx.lineTo(W, base); ctx.fill(); ctx.stroke(); }
+function star5(x, y, r, col) { ctx.beginPath(); for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r * .45 : r; ctx.lineTo(x + Math.cos(a) * rr, y + Math.sin(a) * rr); } ctx.closePath(); ctx.fillStyle = col; ctx.fill(); }
+function cityLandmark(zone, base, W2) {
+  const m = Math.min(W2, H);
+  switch (zone) {
+    case 'accra': { // Black Star Gate (Independence Arch) by the sea
+      ctx.fillStyle = nc('#4fb3e8'); ctx.fillRect(0, base - H * .012, W2, H * .012);
+      const gx = W2 * .3, gw = m * .42, gh = m * .12; shape([[gx - gw / 2, base], [gx - gw / 2, base - gh], [gx + gw / 2, base - gh], [gx + gw / 2, base]], '#e9e2d0');
+      for (let i = 0; i < 3; i++) { const ax = gx - gw / 2 + gw * (.2 + i * .3), aw = gw * .13; ctx.fillStyle = nc('#9a8f7a'); ctx.beginPath(); ctx.moveTo(ax - aw, base); ctx.lineTo(ax - aw, base - gh * .55); ctx.arc(ax, base - gh * .55, aw, Math.PI, 0); ctx.lineTo(ax + aw, base); ctx.fill(); }
+      star5(gx, base - gh - m * .04, m * .045, nc('#1b1024')); break; }
+    case 'dakar': { // African Renaissance Monument on its hill, ocean behind
+      ctx.fillStyle = nc('#3aa0d8'); ctx.fillRect(0, base - H * .014, W2, H * .014);
+      const hx = W2 * .72; shape([[hx - m * .3, base], [hx - m * .08, base - m * .09], [hx + m * .1, base - m * .1], [hx + m * .32, base]], '#b79a6a');
+      const fb = base - m * .095, br = '#7a4a22'; shape([[hx - m * .03, fb], [hx - m * .045, fb - m * .2], [hx + m * .02, fb - m * .24], [hx + m * .04, fb]], br, 2);
+      shape([[hx + m * .005, fb - m * .22], [hx + m * .05, fb - m * .31], [hx + m * .07, fb - m * .3], [hx + m * .03, fb - m * .2]], br, 2);
+      ball(hx + m * .065, fb - m * .33, m * .016, nc(br)); ball(hx - m * .01, fb - m * .255, m * .02, nc(br));
+      shape([[hx - m * .07, fb], [hx - m * .075, fb - m * .14], [hx - m * .04, fb - m * .15], [hx - m * .03, fb]], br, 2); break; }
+    case 'marrakech': { // Atlas mountains + Koutoubia minaret
+      shape([[0, base], [W2 * .12, base - m * .16], [W2 * .28, base - m * .08], [W2 * .45, base - m * .2], [W2 * .62, base - m * .09], [W2 * .8, base - m * .18], [W2, base - m * .07], [W2, base]], '#9aa4c4');
+      for (const [x, y] of [[.12, .16], [.45, .2], [.8, .18]]) shape([[W2 * x - m * .045, base - m * (y - .035)], [W2 * x, base - m * y], [W2 * x + m * .045, base - m * (y - .035)]], '#ffffff', 2);
+      const kx = W2 * .3, kw = m * .07, kh = m * .3; shape([[kx - kw / 2, base], [kx - kw / 2, base - kh], [kx + kw / 2, base - kh], [kx + kw / 2, base]], '#d9905a');
+      shape([[kx - kw * .28, base - kh], [kx - kw * .28, base - kh - kw * .55], [kx + kw * .28, base - kh - kw * .55], [kx + kw * .28, base - kh]], '#d9905a', 2);
+      flat(kx - 1.5, base - kh - kw * 1.1, 3, kw * .55, 1, nc('#caa24a'), 0); for (let i = 0; i < 3; i++) ball(kx, base - kh - kw * (.72 + i * .14), kw * .06, nc('#e8c050'));
+      for (let i = 0; i < 3; i++) { ctx.fillStyle = nc('#a8603a'); ctx.fillRect(kx - kw * .22, base - kh * (.8 - i * .22), kw * .44, kh * .08); }
+      palm(W2 * .12, base + 2, m * .22, T); palm(W2 * .52, base + 2, m * .18, T); break; }
+    case 'cairo': { // Giza pyramids + Cairo Tower
+      for (const [x, s] of [[.62, .2], [.78, .16], [.9, .1]]) { const px = W2 * x, ph = m * s; shape([[px - ph * 1.05, base], [px, base - ph], [px + ph * 1.05, base]], '#e0b86a'); ctx.fillStyle = 'rgba(160,110,50,.35)'; ctx.beginPath(); ctx.moveTo(px, base - ph); ctx.lineTo(px + ph * 1.05, base); ctx.lineTo(px + ph * .25, base); ctx.fill(); }
+      const tx = W2 * .22, th = m * .36; shape([[tx - m * .018, base], [tx - m * .012, base - th * .8], [tx + m * .012, base - th * .8], [tx + m * .018, base]], '#d8c7a8', 2);
+      shape([[tx - m * .032, base - th * .8], [tx - m * .022, base - th * .92], [tx + m * .022, base - th * .92], [tx + m * .032, base - th * .8]], '#bfae90', 2);
+      flat(tx - 1, base - th, 2, th * .08, 1, nc('#666'), 0);
+      ctx.strokeStyle = 'rgba(27,16,36,.35)'; ctx.lineWidth = 1; for (let i = 1; i < 8; i++) { ctx.beginPath(); ctx.moveTo(tx - m * .016, base - th * .1 * i); ctx.lineTo(tx + m * .016, base - th * .1 * (i - .5)); ctx.stroke(); } break; }
+    case 'addis': { // Entoto hills above the city
+      hills(base, '#5f9e55', .1, 5, 1); hills(base, '#7cc26a', .05, 7, 2);
+      const tx = W2 * .74, th = m * .3; shape([[tx - m * .03, base], [tx - m * .02, base - th], [tx + m * .025, base - th * 1.02], [tx + m * .035, base]], '#8fb3d9', 2);
+      ctx.strokeStyle = 'rgba(255,255,255,.5)'; ctx.lineWidth = 1; for (let i = 1; i < 9; i++) { ctx.beginPath(); ctx.moveTo(tx - m * .028, base - th * i / 9); ctx.lineTo(tx + m * .033, base - th * i / 9); ctx.stroke(); } break; }
+    case 'nairobi': { // KICC tower + giraffes on the plain
+      const kx = W2 * .7, kh = m * .3, kw = m * .06; shape([[kx - kw / 2, base], [kx - kw / 2, base - kh], [kx + kw / 2, base - kh], [kx + kw / 2, base]], '#c96f4a');
+      for (let i = 1; i < 10; i++) { ctx.fillStyle = nc('#f2e2c8'); ctx.fillRect(kx - kw / 2 + 2, base - kh * i / 10, kw - 4, 2); }
+      shape([[kx - kw * .8, base - kh], [kx - kw * .6, base - kh - kw * .3], [kx + kw * .6, base - kh - kw * .3], [kx + kw * .8, base - kh]], '#d98a5f', 2);
+      shape([[kx - kw * 1.5, base - m * .02], [kx - kw * 1.3, base - m * .06], [kx - kw * .5, base - m * .06], [kx - kw * .5, base - m * .02]], '#e8d6b8', 2);
+      for (const gx of [.15, .27]) { const x = W2 * gx, g = m * .06, c = nc('#d9a441'); ctx.strokeStyle = c; ctx.lineCap = 'round';
+        ctx.lineWidth = g * .12; for (const dx of [-.3, -.15, .15, .3]) { ctx.beginPath(); ctx.moveTo(x + dx * g, base); ctx.lineTo(x + dx * g, base - g * .7); ctx.stroke(); }
+        blob(x - g * .45, base - g * 1.05, g * .9, g * .45, g * .2, c, false); ctx.lineWidth = g * .16; ctx.beginPath(); ctx.moveTo(x + g * .35, base - g * .9); ctx.lineTo(x + g * .6, base - g * 1.9); ctx.stroke(); ball(x + g * .66, base - g * 1.95, g * .14, c); } break; }
+    case 'kigali': { // green hills and the Convention Centre dome
+      hills(base, '#4ea860', .12, 4, 0); hills(base, '#6cc070', .06, 6, 1);
+      const dx = W2 * .32, r = m * .1; const cols = ['#ff5a3c', '#ffb000', '#18b86b', '#2f7bff', '#8b5cf6'];
+      for (let i = 0; i < 5; i++) { ctx.fillStyle = nc(cols[(i + Math.floor(T * .5)) % 5]); ctx.beginPath(); ctx.moveTo(dx, base); ctx.arc(dx, base, r, Math.PI + i * Math.PI / 5, Math.PI + (i + 1) * Math.PI / 5); ctx.closePath(); ctx.fill(); }
+      ctx.lineWidth = 3; ctx.strokeStyle = OUT; ctx.beginPath(); ctx.arc(dx, base, r, Math.PI, 0); ctx.stroke(); break; }
+    case 'kinshasa': { // Congo river + Tour de l'Echangeur
+      ctx.fillStyle = nc('#6a8fb0'); ctx.fillRect(0, base - H * .02, W2, H * .02); hills(base - H * .02, '#5d9a5a', .025, 5, 2);
+      const tx = W2 * .66, th = m * .36; shape([[tx - m * .035, base], [tx - m * .012, base - th], [tx + m * .012, base - th], [tx + m * .035, base]], '#d8d2c6');
+      ctx.strokeStyle = 'rgba(27,16,36,.4)'; ctx.lineWidth = 1.5; for (const f of [-.5, 0, .5]) { ctx.beginPath(); ctx.moveTo(tx + f * m * .05, base); ctx.lineTo(tx + f * m * .016, base - th); ctx.stroke(); }
+      ball(tx, base - th - m * .012, m * .014, nc('#ffb000')); break; }
+    case 'joburg': { // mine dumps, Ponte and Hillbrow Tower
+      for (const [x, w, h] of [[.08, .22, .06], [.9, .26, .07]]) shape([[W2 * x - m * w, base], [W2 * x - m * w * .6, base - m * h], [W2 * x + m * w * .6, base - m * h], [W2 * x + m * w, base]], '#e8cf7a', 2);
+      const hx = W2 * .66, hh = m * .4; shape([[hx - m * .012, base], [hx - m * .012, base - hh], [hx + m * .012, base - hh], [hx + m * .012, base]], '#d6d0c4', 2);
+      shape([[hx - m * .03, base - hh * .8], [hx - m * .03, base - hh * .9], [hx + m * .03, base - hh * .9], [hx + m * .03, base - hh * .8]], '#bdb5a6', 2);
+      flat(hx - 1, base - hh * 1.08, 2, hh * .08, 1, nc('#888'), 0);
+      const px = W2 * .4, pw = m * .1, ph = m * .24; shape([[px - pw / 2, base], [px - pw / 2, base - ph], [px + pw / 2, base - ph], [px + pw / 2, base]], '#cfc8bb');
+      flat(px - pw * .6, base - ph - m * .03, pw * 1.2, m * .03, 2, nc('#e8322b'), 1.5); break; }
+  }
+}
 function landmark(zone) {
   const base = hy, W2 = W;
+  if (CITY[zone]) return cityLandmark(zone, base, W2);
   if (zone === 'abuja') { // Aso Rock
     ctx.beginPath(); ctx.moveTo(W2 * .52, base); ctx.bezierCurveTo(W2 * .55, base - H * .2, W2 * .72, base - H * .26, W2 * .84, base - H * .15); ctx.bezierCurveTo(W2 * .9, base - H * .1, W2 * .96, base - H * .06, W2, base); ctx.closePath();
     ctx.fillStyle = '#9a8f86'; ctx.fill(); ctx.lineWidth = 3; ctx.strokeStyle = OUT; ctx.stroke();
@@ -732,23 +886,37 @@ let G = null, mode = 'title', T = 0, shake = 0, flashA = 0, last = 0;
 const objs = [], props = [], walls = [], parts = [];
 diff = store.get('diff', 'normal'); if (!DIFFS[diff]) diff = 'normal';
 let best = store.get('best.' + diff, 0), bank = store.get('bank', 0), tutDone = store.get('tut', false);
-const BLOCK = new Set(['car', 'danfo', 'keke', 'brt', 'okada', 'cop']), JUMP = new Set(['pothole', 'branches', 'barrier', 'bump', 'goat']);
-const LEN = { car: .95, danfo: 1.2, keke: .7, brt: 2.2, okada: .5, pothole: .3, branches: .35, barrier: .2, bump: .2, goat: .35, cop: .3, coin: .2, pax: .3, speaker: .3, magnet: .3, sun: .3 };
+const BLOCK = new Set(['car', 'danfo', 'keke', 'brt', 'okada', 'cop']), JUMP = new Set(['pothole', 'branches', 'barrier', 'bump', 'goat', 'sand']);
+const LEN = { sand: .35, car: .95, danfo: 1.2, keke: .7, brt: 2.2, okada: .5, pothole: .3, branches: .35, barrier: .2, bump: .2, goat: .35, cop: .3, coin: .2, pax: .3, speaker: .3, magnet: .3, sun: .3 };
 const NAMES = { car: 'Camry', danfo: 'danfo', keke: 'keke', brt: 'BRT bus', okada: 'okada' };
 const COP = { skin: '#5a3320', shirt: '#1b1b24', dots: '#1b1b24', pants: '#1b1b24', hat: 'police' };
 
-function zoneAt(z) { const n = ZONES.length; return ZONES[((Math.floor((G.dist + z) / ZONE_LEN) % n) + n) % n].k; }
+function zoneAt(z) { const n = ZONES.length; return ZONES[((Math.floor((G.dist + z) / ZONE_LEN + (G.zi || 0)) % n) + n) % n].k; }
+function startZone() { const i = store.get('startZone', 0); return i > 0 && i < ZONES.length && reachedZones().includes(ZONES[i].k) ? i : 0; }
+function reachedZones() { const md = store.get('maxDist', 0), r = store.get('reached', []); return ZONES.filter((z, i) => md >= i * ZONE_LEN || r.includes(z.k)).map(z => z.k); }
 function newGame(demo) {
+  $('ptimer').hidden = true;
+  const zi = startZone();
   $('wx').hidden = true; $('wx').style.visibility = '';
   objs.length = props.length = walls.length = parts.length = 0;
-  G = { demo, D: DIFFS[demo ? 'normal' : diff], dist: 0, time: 0, speed: START, score: 0, coins: 0, streak: 0, P: { lane: 1, x: 0, y: 0, jt: 0, sq: 1, tilt: 0 },
+  G = { zi, demo, D: DIFFS[demo ? 'normal' : diff], dist: 0, time: 0, speed: START, score: 0, coins: 0, streak: 0, P: { lane: 1, x: 0, y: 0, jt: 0, sq: 1, tilt: 0 },
     chase: { d: .3, t: demo ? 0 : 3 }, partyT: 0, magnetT: 0, dead: false, deadT: 0, rowAcc: 0, edge: [-1.3, -1.3], propAcc: 0,
-    lastPow: 0, nextSpeed: 25, zone: 'market', call: '', callT: 0, callNext: 3, hornT: 2, slogan: pick(SLOGANS), tut: (() => { const k = demo || (tutDone && diff !== 'easy'); return { dodge: k, jump: k, pax: k, cop: k, on: null }; })(),
+    lastPow: 0, lastParty: 0, nextSpeed: 25, zone: 'market', call: '', callT: 0, callNext: 3, hornT: 2, slogan: pick(SLOGANS), tut: (() => { const k = demo || (tutDone && diff !== 'easy'); return { dodge: k, jump: k, pax: k, cop: k, on: null }; })(),
     stopName: pick(STOPNAMES), stopAcc: 0, free: 1, swerveT: 9, rain: 0, rainT: 0, nextRain: rand(120, 170), todOff: 0, ff: 0, badEp: false, sunN: 0, nextSun: 0, wxOpen: false, wxT: 0, boltT: 0, nextBolt: 4, pax: 0, chain: 0, chainT: 0 };
   for (let i = 0; i < 60; i++) stepScenery(1.6);
 }
 function addO(o) { o.x ??= LANES[o.lane]; o.v ??= 0; o.y ??= 0; objs.push(o); return o; }
-function addV(type, lane, z, v) { return addO({ type, lane, z, v: v ?? 5, col: pick(['#e8e8f0', '#2f7bff', '#ff5a3c', '#8b5cf6', '#18b86b', '#ffb000', '#3a3346']), look: randomLook(), slogan: pick(SLOGANS) }); }
+function addV(type, lane, z, v) {
+  const C = CITY[zoneAt(z)], o = { type, lane, z, v: v ?? 5, col: pick(['#e8e8f0', '#2f7bff', '#ff5a3c', '#8b5cf6', '#18b86b', '#ffb000', '#3a3346']), look: randomLook(), slogan: pick(SLOGANS) };
+  if (C) {
+    if (type === 'danfo') { o.skin = pick(C.bus); o.slogan = o.skin.slogan; }
+    if (type === 'car' && Math.random() < .55) o.col = pick(C.taxi);
+    if (type === 'keke' && !C.keke) o.type = 'car'; else if (type === 'keke') o.kcol = C.keke;
+    if (type === 'brt') o.bcol = C.brt;
+    o.look = cityLook(C);
+  }
+  return addO(o);
+}
 function addJ(type, lane, z) { return addO({ type, lane, z, x: type === 'bump' ? 0 : undefined }); }
 function coinLine(l, z, n) { for (let i = 0; i < n; i++) addO({ type: 'coin', lane: l, z: z + i * 1.25 }); }
 function coinArc(l, z) { for (let i = 0; i < 5; i++) addO({ type: 'coin', lane: l, z: z - 2 + i, y: Math.sin((i / 4) * Math.PI) * JH * .85 }); }
@@ -759,7 +927,7 @@ function laneClear(l) { return !objs.some(o => o.lane === l && (BLOCK.has(o.type
 function spawnRow() {
   const z = FAR, r = Math.random(), veh = () => pick(['car', 'car', 'danfo', 'danfo', 'keke', 'brt']);
   const F = clamp(G.free + pick([-1, 0, 0, 1]), 0, 2), B = [0, 1, 2].filter(l => l !== F).sort(() => Math.random() - .5);
-  const low = () => zoneAt(z) === 'village' ? pick(['pothole', 'pothole', 'goat', 'branches']) : pick(['pothole', 'branches', 'barrier']);
+  const zc = CITY[zoneAt(z)], low = () => zc ? pick(zc.low) : zoneAt(z) === 'village' ? pick(['pothole', 'pothole', 'goat', 'branches']) : pick(['pothole', 'branches', 'barrier']);
   const early = !(G.tut.dodge && G.tut.jump && G.tut.pax) && G.time < 20;
   if (early) {
     const other = G.P.lane === 1 ? 0 : 1;
@@ -770,6 +938,7 @@ function spawnRow() {
     return;
   }
   G.free = F;
+  if (G.partyT > 1.5) { addO({ type: 'pax', lane: ri(3), z, look: randomLook() }); coinLine(ri(3), z + 1, 6); return; }
   if (G.sunPending) { G.sunPending = false; addO({ type: 'sun', lane: F, z: z + 3 }); }
   const copsOn = diff === 'hard' || (diff === 'normal' && G.time > 40);
   if (copsOn && Math.random() < .2) { addO({ type: 'cop', lane: B[0], z, look: COP }); addO({ type: 'pax', lane: F, z: z + 1, look: randomLook() }); if (Math.random() < .5) addV(veh(), B[1], z); return; }
@@ -783,7 +952,9 @@ function spawnRow() {
   else if (r < .93) { addO({ type: 'pax', lane: F, z, look: randomLook() }); addO({ type: 'pax', lane: F, z: z + 2.5, look: randomLook() }); addV(veh(), B[0], z); }
   else { for (let i = 0; i < 9; i++) addO({ type: 'coin', lane: [0, 1, 2, 1][i % 4], z: z + i * 1.2 }); }
   if (r < .84 && Math.random() < .5) addO({ type: 'pax', lane: F, z: z - 3, look: randomLook() });
-  if (G.time - G.lastPow > 20 && Math.random() < .4) { addO({ type: pick(['speaker', 'magnet']), lane: F, z: z + 5 }); G.lastPow = G.time; }
+  if (G.time - G.lastPow > 20 && Math.random() < .4) {
+    const rare = G.time - G.lastParty > G.D.party && Math.random() < .35;
+    addO({ type: rare ? 'speaker' : 'magnet', lane: F, z: z + 5 }); G.lastPow = G.time; if (rare) G.lastParty = G.time; }
 }
 function stepScenery(mv) {
   for (const p of props) p.z -= mv; for (const b of walls) b.z -= mv;
@@ -796,12 +967,12 @@ function stepScenery(mv) {
       if (zone === 'bridge') { if (Math.random() < .25) props.push({ kind: 'boat', z: G.edge[s] + 2, x: side * rand(2.6, 4.5) }); if (Math.random() < .2) props.push({ kind: 'billboard', z: G.edge[s] + 1, x: side * 2.1, col: pick(['#2f7bff', '#ff5a3c', '#8b5cf6', '#18b86b']), text: pick(BOARDS) }); G.edge[s] += 4; continue; }
       if (zone === 'village') { const e = G.edge[s]; props.push({ kind: Math.random() < .6 ? 'hut' : 'tree', z: e + 1, x: side * rand(1.7, 2.3), roof: Math.random() < .5 ? 'zinc' : 'thatch', wall: pick(['#b86b3c', '#c47a45', '#a95f33']) });
         if (Math.random() < .35) props.push({ kind: 'tree', z: e + 2.4, x: side * rand(2.6, 3.4) }); if (Math.random() < .2) props.push({ kind: 'sign', z: e + .5, x: side * 1.5, side, col: pick(['#18b86b', '#2f7bff', '#ff5a3c']), text: pick(ZSHOPS.village) }); G.edge[s] += rand(2.4, 3.6); continue; }
-      const glass = zone === 'abuja', kano = zone === 'kano', len = rand(1.2, 2), b = { side, z: G.edge[s], len, glass, kano, h: glass ? rand(1.6, 2.6) : kano ? rand(.9, 1.3) : rand(1.05, 1.7), floors: 1 + ri(3),
-        col: glass ? pick(['#7fb8e8', '#9fc8ef', '#b0d4f4']) : kano ? pick(['#c98b52', '#b8763f', '#d49a5e']) : pick(['#ff9f7a', '#7ad0c9', '#ffd166', '#b39ddb', '#9ad36a', '#ff8fb1', '#f6c28b']),
+      const CZ = CITY[zone], glass = zone === 'abuja' || (CZ && Math.random() < CZ.glass), kano = zone === 'kano' || (CZ && !glass && CZ.flat), len = rand(1.2, 2), b = { side, z: G.edge[s], len, glass, kano, h: glass ? rand(1.6, 2.6) : CZ ? rand(CZ.h[0], CZ.h[1]) : kano ? rand(.9, 1.3) : rand(1.05, 1.7), floors: 1 + ri(3),
+        col: glass ? pick(['#7fb8e8', '#9fc8ef', '#b0d4f4']) : CZ ? pick(CZ.walls) : kano ? pick(['#c98b52', '#b8763f', '#d49a5e']) : pick(['#ff9f7a', '#7ad0c9', '#ffd166', '#b39ddb', '#9ad36a', '#ff8fb1', '#f6c28b']),
         win: pick(['#6ec6ff', '#a0e0ff', '#ffe08a']), awn: pick(['#ff5a3c', '#18b86b', '#2f7bff', '#ffb000', '#8b5cf6']), seed: ri(100) };
       b.floors = Math.max(1, Math.min(b.floors, Math.floor((b.h - .45) / .32)));
       walls.push(b);
-      if (Math.random() < .6) props.push({ kind: 'sign', z: b.z + len * .5, x: side * 1.62, side, col: pick(['#ff5a3c', '#2f7bff', '#18b86b', '#8b5cf6', '#1b1024']), text: pick(ZSHOPS[zone] || SHOPS) });
+      if (Math.random() < .6) props.push({ kind: 'sign', z: b.z + len * .5, x: side * 1.62, side, col: pick(['#ff5a3c', '#2f7bff', '#18b86b', '#8b5cf6', '#1b1024']), text: pick(ZSHOPS[zone] || (CITY[zone] && CITY[zone].shops) || SHOPS) });
       G.edge[s] += len + (Math.random() < .15 ? rand(.2, .6) : .02);
     }
   }
@@ -812,6 +983,15 @@ function stepScenery(mv) {
       const r = Math.random();
       if (zone === 'bridge') { if (r < .35) props.push({ kind: 'lamp', z, x: side * 1.14, side }); continue; }
       if (zone === 'village') { if (r < .25) props.push({ kind: 'goat', z, x: side * rand(1.2, 1.6) }); else if (r < .5) props.push({ kind: 'person', z, x: side * rand(1.2, 1.5), look: randomLook(), pose: Math.random() < .5 ? 'tray' : 'idle' }); continue; }
+      const CZ = CITY[zone];
+      if (CZ) {
+        if (r < CZ.palm) props.push({ kind: CZ.tree || 'palm', z, x: side * 1.38 });
+        else if (r < CZ.palm + .14) props.push({ kind: 'lamp', z, x: side * 1.14, side });
+        else if (r < CZ.palm + .38) props.push({ kind: 'person', z, x: side * rand(1.25, 1.5), look: cityLook(CZ), pose: Math.random() < .4 ? 'tray' : 'idle' });
+        else if (r < CZ.palm + .5) props.push({ kind: 'stall', z, x: side * 1.45, col: pick(CZ.awn), look: cityLook(CZ) });
+        else if (r < CZ.palm + .56 && CZ.animal) props.push({ kind: 'goat', z, x: side * rand(1.2, 1.5) });
+        continue;
+      }
       if (zone === 'kano' && r < .3) { props.push({ kind: 'person', z, x: side * rand(1.2, 1.5), look: { skin: pick(SKINS), shirt: pick(['#ffffff', '#e8f0ff', '#cfe8d8']), dots: '#d4af37', pants: '#ffffff', hat: 'fila', hatCol: pick(['#18b86b', '#ff5a3c', '#2f7bff']), gown: true }, pose: 'idle' }); continue; }
       if (r < (zone === 'abuja' ? .1 : zone === 'ph' ? .3 : .18)) props.push({ kind: 'palm', z, x: side * 1.38 });
       else if (r < .32) props.push({ kind: 'lamp', z, x: side * 1.14, side });
@@ -820,7 +1000,7 @@ function stepScenery(mv) {
     }
   }
   G.stopAcc += mv;
-  if (G.stopAcc > 180) { G.stopAcc = 0; const zf = zoneAt(FAR); if (ZSTOPS[zf]) { G.stopName = pick(ZSTOPS[zf]); props.push({ kind: 'overpass', z: FAR + 3, name: G.stopName }); } }
+  if (G.stopAcc > 180) { G.stopAcc = 0; const zf = zoneAt(FAR); if (ZSTOPS[zf] || CITY[zf]) { G.stopName = pick(ZSTOPS[zf] || CITY[zf].stops); props.push({ kind: 'overpass', z: FAR + 3, name: G.stopName }); } }
 }
 
 // ---------------------------------------------------------------- effects
@@ -875,12 +1055,12 @@ stage.addEventListener('pointerup', e => {
 // ---------------------------------------------------------------- flow
 function show(id, on) { $(id).hidden = !on; }
 function refreshTitle() {
-  const d = daily(); $('mDot').hidden = d.ids.every(id => d.done[id]); document.querySelectorAll('.dsel').forEach(b => b.setAttribute('aria-checked', b.dataset.d === diff)); $('tBest').textContent = `BEST ${best.toLocaleString()}`; $('tCoins').innerHTML = `<span class="coin-i sm">₦</span>${bank.toLocaleString()} saved`; $('soundBtn').innerHTML = A.on ? '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>' : '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="m17 9 5 6M22 9l-5 6"/></svg>'; $('soundBtn').setAttribute('aria-label', A.on ? 'Sound on' : 'Sound off'); const nk0 = store.get('nick', ''); $('nameTxt').textContent = nk0 ? 'Hi, ' + nk0 : 'Add your name'; }
+  const d = daily(); $('mDot').hidden = d.ids.every(id => d.done[id]); document.querySelectorAll('.dsel').forEach(b => b.setAttribute('aria-checked', b.dataset.d === diff)); $('tBest').textContent = `BEST ${best.toLocaleString()}`; $('tCoins').innerHTML = `<span class="coin-i sm">A</span>${bank.toLocaleString()} saved`; $('soundBtn').innerHTML = A.on ? '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>' : '<svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="m17 9 5 6M22 9l-5 6"/></svg>'; $('soundBtn').setAttribute('aria-label', A.on ? 'Sound on' : 'Sound off'); const nk0 = store.get('nick', ''); $('nameTxt').textContent = nk0 ? 'Hi, ' + nk0 : 'Add your name'; }
 function start() {
   audioInit(); newGame(false); mode = 'play'; musicStart(); track('runs'); G.beatShown = false;
   show('title', false); show('over', false); show('paused', false); show('hud', true); $('dchip').textContent = DIFFS[diff].name; $('toasts').innerHTML = '';
   if (learning()) G.chase.t = 0; else { toast('POLICE DEY FOLLOW YOU!'); sfx.siren(); setTimeout(() => sfx.siren(), 900); }
-  setTimeout(() => say('Oshodi! Oshodi! Enter!'), 1200);
+  setTimeout(() => { const zk = zoneAt(ZP); say(pick(ZCALLS[zk] || (CITY[zk] && CITY[zk].calls) || ['Oshodi! Oshodi! Enter!'])); }, 1200);
 }
 // Police catch you: settle with coins, else with points; with nothing left it's jail.
 function policeCatch(checkpoint) {
@@ -914,15 +1094,15 @@ const STR = {
   en: { play: 'PLAY', again: 'PLAY AGAIN', home: 'Home', quiz: 'QUIZ TO CONTINUE', free: 'Answer right, keep driving · FREE', cost: 'Answer right, keep driving · {n} coins', need: 'You need {n} coins to try',
     howto: 'Pick up passengers for points.<br>Swipe ← → to dodge · Swipe ↑ to hop potholes', name: 'Your name', missions: 'Missions', garage: 'Garage', journey: 'Journey', quizmode: 'Africa Quiz',
     challenge: 'CHALLENGE A FRIEND', crash: 'CRASH!', jail: 'JAIL!', dodge: 'SWIPE TO DODGE', jump: 'SWIPE UP TO HOP', pax: 'PICK UP PASSENGERS!', cop: 'POLICE! AVOID THEM', tag: 'We never finish last!', resume: 'RESUME', paused: 'PAUSED',
-    sun: 'SUN COIN! PICK ONE', mkday: 'MAKE IT DAY', dry: 'STOP THE RAIN', keep: 'KEEP IT', rainSoon: 'Rain soon', raining: 'Raining', nightSoon: 'Night soon', daySoon: 'Dawn soon', nightOn: 'NIGHT DON FALL · HEADLIGHTS ON' },
+    sun: 'SUN COIN! PICK ONE', mkday: 'MAKE IT DAY', dry: 'STOP THE RAIN', keep: 'KEEP IT', rainSoon: 'Rain soon', raining: 'Raining', nightSoon: 'Night soon', daySoon: 'Dawn soon', nightOn: 'NIGHT DON FALL · HEADLIGHTS ON', partyGo: 'BUS JAM PARTY! ROAD CLEAR!', partyHow: 'No traffic · no police · passengers and coins come to you', partyEnd: 'PARTY ENDING · TRAFFIC DEY COME BACK', partyBar: 'FREE RIDE', chalT: 'Beat my score', chalSub: 'CAN YOU BEAT', chalPax: 'passengers carried', chalShare: 'Share to any app', chalCopy: 'COPY', chalDone: 'DONE' },
   pcm: { play: 'OYA DRIVE', again: 'TRY AM AGAIN', home: 'Go house', quiz: 'ANSWER QUIZ, CONTINUE', free: 'Answer am correct, continue · FREE', cost: 'Answer am correct, continue · {n} coins', need: 'You need {n} coins to try',
     howto: 'Carry passengers, collect point.<br>Swipe ← → dodge motor · Swipe ↑ jump pothole', name: 'Your name', missions: 'Wetin to do', garage: 'Mechanic', journey: 'Our road', quizmode: 'Africa Quiz',
     challenge: 'CHALLENGE YOUR PADI', crash: 'E DON HAPPEN!', jail: 'DEM DON LOCK YOU!', dodge: 'SWIPE, DODGE AM', jump: 'SWIPE UP, JUMP AM', pax: 'CARRY PASSENGER!', cop: 'POLICE! NO JAM DEM', tag: '', resume: 'CONTINUE', paused: 'HOLD ON',
-    sun: 'SUN COIN! WETIN YOU WAN?', mkday: 'MAKE AM DAY', dry: 'STOP DI RAIN', keep: 'KEEP AM', rainSoon: 'Rain dey come', raining: 'Rain dey fall', nightSoon: 'Night dey come', daySoon: 'Day don near', nightOn: 'NIGHT DON FALL · ON YOUR LIGHT' },
+    sun: 'SUN COIN! WETIN YOU WAN?', mkday: 'MAKE AM DAY', dry: 'STOP DI RAIN', keep: 'KEEP AM', rainSoon: 'Rain dey come', raining: 'Rain dey fall', nightSoon: 'Night dey come', daySoon: 'Day don near', nightOn: 'NIGHT DON FALL · ON YOUR LIGHT', partyGo: 'BUS JAM PARTY! ROAD DON CLEAR!', partyHow: 'No motor · no police · passenger and coin go come meet you', partyEnd: 'PARTY DON DEY END · MOTOR DEY COME BACK', partyBar: 'FREE RIDE', chalT: 'Beat my score', chalSub: 'YOU FIT BEAT', chalPax: 'passengers carried', chalShare: 'Share for any app', chalCopy: 'COPY', chalDone: 'I DON FINISH' },
   fr: { play: 'JOUER', again: 'REJOUER', home: 'Accueil', quiz: 'QUIZ POUR CONTINUER', free: 'Bonne réponse, tu continues · GRATUIT', cost: 'Bonne réponse, tu continues · {n} pièces', need: 'Il te faut {n} pièces',
     howto: 'Prends des passagers pour gagner des points.<br>Glisse ← → pour esquiver · Glisse ↑ pour sauter', name: 'Ton nom', missions: 'Missions', garage: 'Garage', journey: 'Voyage', quizmode: 'Quiz Afrique',
     challenge: 'DÉFIE UN AMI', crash: 'ACCIDENT !', jail: 'PRISON !', dodge: 'GLISSE POUR ESQUIVER', jump: 'GLISSE ↑ POUR SAUTER', pax: 'PRENDS LES PASSAGERS !', cop: 'POLICE ! ÉVITE-LES', tag: 'On ne finit jamais dernier !', resume: 'REPRENDRE', paused: 'PAUSE',
-    sun: 'PIÈCE SOLEIL ! CHOISIS', mkday: 'FAIS LE JOUR', dry: 'STOP LA PLUIE', keep: 'GARDE-LA', rainSoon: 'Pluie bientôt', raining: 'Il pleut', nightSoon: 'Nuit bientôt', daySoon: 'Aube bientôt', nightOn: 'LA NUIT TOMBE · PHARES ALLUMÉS' },
+    sun: 'PIÈCE SOLEIL ! CHOISIS', mkday: 'FAIS LE JOUR', dry: 'STOP LA PLUIE', keep: 'GARDE-LA', rainSoon: 'Pluie bientôt', raining: 'Il pleut', nightSoon: 'Nuit bientôt', daySoon: 'Aube bientôt', nightOn: 'LA NUIT TOMBE · PHARES ALLUMÉS', partyGo: 'BUS JAM PARTY ! ROUTE LIBRE !', partyHow: 'Pas de trafic · pas de police · passagers et pièces viennent à toi', partyEnd: 'FIN DE LA FÊTE · LE TRAFIC REVIENT', partyBar: 'TRAJET LIBRE', chalT: 'Bats mon score', chalSub: 'PEUX-TU BATTRE', chalPax: 'passagers transportés', chalShare: 'Partager vers une app', chalCopy: 'COPIER', chalDone: 'TERMINÉ' },
 };
 const LANGS = ['en', 'pcm', 'fr'], LANG_LABEL = { en: 'EN', pcm: 'PIDGIN', fr: 'FR' };
 let lang = store.get('lang', 'en'); if (!STR[lang]) lang = 'en';
@@ -942,7 +1122,7 @@ const MISSIONS = [
   { id: 'chance5', t: 'CHANCE AM 5 times', k: 'chance', n: 5, r: 80 }, { id: 'hop10', t: 'Hop over 10 obstacles', k: 'hop', n: 10, r: 50 },
   { id: 'dist2', t: 'Drive 2 km in one run', k: 'distRun', n: 2000, r: 80 }, { id: 'dist5', t: 'Drive 5 km in one run', k: 'distRun', n: 5000, r: 200 },
   { id: 'quiz3', t: 'Answer 3 quiz questions right', k: 'quiz', n: 3, r: 70 }, { id: 'score3k', t: 'Score 3,000 in one run', k: 'scoreRun', n: 3000, r: 100 },
-  { id: 'night', t: 'Keep driving until night falls', k: 'night', n: 1, r: 80 }, { id: 'party2', t: 'Start 2 Bus Jam Parties', k: 'party', n: 2, r: 60 },
+  { id: 'night', t: 'Keep driving until night falls', k: 'night', n: 1, r: 80 }, { id: 'party2', t: 'Start a Bus Jam Party', k: 'party', n: 1, r: 80 },
   { id: 'rain', t: 'Drive through the rain', k: 'rain', n: 1, r: 50 }, { id: 'runs5', t: 'Play 5 runs', k: 'runs', n: 5, r: 40 },
 ];
 const dayKey = d => `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
@@ -970,7 +1150,7 @@ function loginStreak() {
 }
 let sheetAction = null;
 function openSheet(title, html, btn = 'CLOSE', action = null) { $('sheetT').textContent = title; $('sheetB').innerHTML = html; $('sheetClose').textContent = btn; sheetAction = action; show('sheet', true); $('sheetX').focus(); }
-function closeSheet(run) { show('sheet', false); refreshTitle(); const a = sheetAction; sheetAction = null; if (run && a) a(); }
+function closeSheet(run) { show('sheet', false); if (mode === 'over') show('over', true); refreshTitle(); const a = sheetAction; sheetAction = null; if (run && a) a(); }
 function showName() {
   openSheet('Your name', `<p style="margin:0;font-weight:700">This name shows on your score, challenges and the leaderboard.</p><input id="nick" class="nickin" type="text" maxlength="14" autocomplete="nickname" placeholder="Enter nickname" enterkeyhint="done" value="${(store.get('nick', '') || '').replace(/"/g, '')}">`, 'SAVE', () => { const v = ($('nick') || {}).value || ''; store.set('nick', v.trim().slice(0, 14)); refreshTitle(); });
   const i = $('nick'); i.addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Enter') closeSheet(true); }); setTimeout(() => i.focus(), 50);
@@ -985,39 +1165,51 @@ function showMissions() {
 function mySkin() { const id = store.get('skin', 'classic'); return BUS_SKINS.find(s => s.id === id) || BUS_SKINS[0]; }
 function showGarage() {
   const owned = store.get('owned', ['classic']), cur = mySkin().id;
-  openSheet(t('garage'), `<p style="margin:0;font-weight:800">Coins saved: ₦ ${bank.toLocaleString()}</p><div class="skins">` + BUS_SKINS.map(sk => `<button class="skin ${sk.id === cur ? 'on' : ''}" data-skin="${sk.id}" type="button"><canvas width="220" height="170"></canvas>${sk.name}<small>${sk.id === cur ? 'DRIVING' : owned.includes(sk.id) ? 'Tap to drive' : '₦ ' + sk.price.toLocaleString()}</small></button>`).join('') + '</div>', 'DONE');
+  openSheet(t('garage'), `<p style="margin:0;font-weight:800">Coins saved: A ${bank.toLocaleString()}</p><div class="skins">` + BUS_SKINS.map(sk => `<button class="skin ${sk.id === cur ? 'on' : ''}" data-skin="${sk.id}" type="button"><canvas width="220" height="170"></canvas>${sk.name}<small>${sk.id === cur ? 'DRIVING' : owned.includes(sk.id) ? 'Tap to drive' : 'A ' + sk.price.toLocaleString()}</small></button>`).join('') + '</div>', 'DONE');
   document.querySelectorAll('.skin').forEach(el => {
     const sk = BUS_SKINS.find(s => s.id === el.dataset.skin), c = el.querySelector('canvas'), keep = ctx; ctx = c.getContext('2d');
     ctx.fillStyle = '#bfe6ff'; ctx.fillRect(0, 0, 220, 170); danfo(110, 160, 250, 0, { heads: 4, skin: sk, slogan: sk.slogan }); ctx = keep;
     el.onclick = () => { const own = store.get('owned', ['classic']);
       if (own.includes(sk.id)) { store.set('skin', sk.id); showGarage(); return; }
       if (bank >= sk.price) { bank -= sk.price; store.set('bank', bank); own.push(sk.id); store.set('owned', own); store.set('skin', sk.id); audioInit(); sfx.power(); refreshTitle(); showGarage(); }
-      else { el.querySelector('small').textContent = `Need ₦ ${(sk.price - bank).toLocaleString()} more`; } };
+      else { el.querySelector('small').textContent = `Need A ${(sk.price - bank).toLocaleString()} more`; } };
   });
 }
 
 // ---- journey: every area you have reached lights up
 function showJourney() {
-  const md = store.get('maxDist', 0);
-  openSheet(t('journey'), ZONES.map((z, i) => { const need = i * ZONE_LEN, on = md >= need;
-    return `<div class="stop ${on ? 'on' : ''}"><span class="pin">${on ? '✓' : i + 1}</span><span>${z.name}<small>${on ? 'Reached' : `Drive ${(need / 1000).toFixed(1)} km in one run`}</small></span></div>`; }).join('') + '<p style="margin:0;font-weight:700;opacity:.7">More African cities coming soon.</p>', 'CLOSE');
+  const got = reachedZones(), cur = startZone();
+  openSheet(t('journey'), '<p style="margin:0;font-weight:700">Drive across Africa. Tap any place you have reached to start your next run there.</p>' + ZONES.map((z, i) => { const on = got.includes(z.k), prev = ZONES[(i + ZONES.length - 1) % ZONES.length].name.split(' · ')[0];
+    return `<button type="button" class="stop ${on ? 'on' : ''} ${i === cur ? 'cur' : ''}" data-zi="${i}" ${on ? '' : 'disabled'}><span class="pin">${i === cur ? '▶' : on ? '✓' : i + 1}</span><span>${z.name}<small>${i === cur ? 'Your next run starts here' : on ? 'Reached · tap to start here' : `Keep driving after ${prev}`}</small></span></button>`; }).join(''), 'CLOSE');
+  $('sheetB').querySelectorAll('.stop.on').forEach(b => b.onclick = () => { store.set('startZone', +b.dataset.zi); newGame(true); for (let i = 0; i < 90; i++) update(1 / 30); showJourney(); });
 }
 
 // ---- challenge a friend (share link + on-screen target)
 const SHARE_URL = 'https://danfo-craze.vercel.app/';
 let beat = null;
 try { const bp = new URLSearchParams(location.search).get('beat'); if (bp) { const [n, sc] = bp.split('~'); if (+sc > 0) { beat = { name: decodeURIComponent(n || 'Your friend').slice(0, 14), score: +sc }; store.set('beat', beat); } } else beat = store.get('beat', null); } catch (e) {}
+const SHARE_ICO = {
+  wa: '<svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z" fill="none" stroke="#fff" stroke-width="2"/><path d="M9 8c.3 2.8 2.5 5.4 5.6 6.4l1-1.3-1.7-1-.9.8c-1-.5-1.9-1.4-2.4-2.4l.8-.9-1-1.7z" fill="#fff"/></svg>',
+  fb: '<svg viewBox="0 0 24 24"><path d="M13.5 21v-7.5H16l.4-3h-2.9V8.7c0-.9.3-1.4 1.5-1.4h1.5V4.6c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.2H8.1v3h2.5V21z" fill="#fff"/></svg>',
+  x: '<svg viewBox="0 0 24 24"><path d="M5 4h4l10 16h-4zM19 4l-6 6.8M5 20l6-6.8" stroke="#fff" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>',
+  tg: '<svg viewBox="0 0 24 24"><path d="M3 11.5 20 5l-3 14-5-4-2.5 3 .3-4.5L17 8l-9 5.5z" fill="#fff"/></svg>',
+  sms: '<svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-4 3v-3H4z" fill="#fff"/><circle cx="8.5" cy="10.5" r="1.2" fill="#3fb94d"/><circle cx="12" cy="10.5" r="1.2" fill="#3fb94d"/><circle cx="15.5" cy="10.5" r="1.2" fill="#3fb94d"/></svg>',
+  mail: '<svg viewBox="0 0 24 24"><rect x="3.5" y="6" width="17" height="12" rx="2" fill="#fff"/><path d="m4 7 8 6 8-6" stroke="#ff7a45" stroke-width="1.8" fill="none"/></svg>',
+  share: '<svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="2.6" fill="#1b1024"/><circle cx="6" cy="12" r="2.6" fill="#1b1024"/><circle cx="18" cy="19" r="2.6" fill="#1b1024"/><path d="m8.3 10.8 7.4-4.3M8.3 13.2l7.4 4.3" stroke="#1b1024" stroke-width="2"/></svg>' };
 function shareChallenge() {
   const nk = store.get('nick', '') || 'I', sc = Math.floor(G.score);
   const url = `${SHARE_URL}?beat=${encodeURIComponent(store.get('nick', '') || 'Friend')}~${sc}`;
   const text = `${nk === 'I' ? 'I' : nk} scored ${sc.toLocaleString()} and carried ${G.pax} passengers in Danfo Craze! Can you beat me? 🚌`;
-  const T = encodeURIComponent(text), U = encodeURIComponent(url), TU = encodeURIComponent(text + ' ' + url);
-  const APPS = [['WhatsApp', '#25d366', 'https://wa.me/?text=' + TU], ['Facebook', '#1877f2', 'https://www.facebook.com/sharer/sharer.php?u=' + U], ['X', '#111', `https://twitter.com/intent/tweet?text=${T}&url=${U}`],
-    ['Telegram', '#29a9eb', `https://t.me/share/url?url=${U}&text=${T}`], ['SMS', '#3fb94d', 'sms:?&body=' + TU], ['Email', '#ff7a45', `mailto:?subject=${encodeURIComponent('Beat me in Danfo Craze')}&body=${TU}`]];
-  openSheet(t('challenge'), `<div class="shareg">${navigator.share ? '<button type="button" class="more" id="shMore">More apps (Instagram, TikTok, Snapchat...)</button>' : ''}${APPS.map(([n, c, h]) => `<a class="shb" style="background:${c}" href="${h}" target="_blank" rel="noopener">${n}</a>`).join('')}
-    <div class="shcopy"><input readonly value="${url}" aria-label="Challenge link"><button type="button" id="shCopy">COPY LINK</button></div></div>`);
+  const T = encodeURIComponent(text), U = encodeURIComponent(url), TU = encodeURIComponent(text + ' ' + url), I = SHARE_ICO;
+  const APPS = [['WhatsApp', '#25d366', I.wa, 'https://wa.me/?text=' + TU], ['Facebook', '#1877f2', I.fb, 'https://www.facebook.com/sharer/sharer.php?u=' + U], ['X', '#111111', I.x, `https://twitter.com/intent/tweet?text=${T}&url=${U}`],
+    ['Telegram', '#29a9eb', I.tg, `https://t.me/share/url?url=${U}&text=${T}`], ['SMS', '#3fb94d', I.sms, 'sms:?&body=' + TU], ['Email', '#ff7a45', I.mail, `mailto:?subject=${encodeURIComponent('Beat me in Danfo Craze')}&body=${TU}`]];
+  show('over', false);
+  openSheet(t('chalT'), `<div class="shbox"><div class="shscore"><small>${t('chalSub')}</small><b>${sc.toLocaleString()}</b><span>${G.pax} ${t('chalPax')}</span></div>
+    ${navigator.share ? `<button type="button" class="shmain" id="shMore">${I.share}<span>${t('chalShare')}</span></button>` : ''}
+    <div class="shapps">${APPS.map(([n, c, ic, h]) => `<a class="shapp" href="${h}" target="_blank" rel="noopener"><i style="background:${c}">${ic}</i><span>${n}</span></a>`).join('')}</div>
+    <div class="shcopy"><input readonly value="${url}" aria-label="Challenge link"><button type="button" id="shCopy">${t('chalCopy')}</button></div></div>`, t('chalDone'));
   if ($('shMore')) $('shMore').onclick = () => navigator.share({ title: 'Danfo Craze', text, url }).catch(() => {});
-  $('shCopy').onclick = () => { const done = () => { $('shCopy').textContent = 'COPIED!'; }; const inp = $('sheetB').querySelector('input');
+  $('shCopy').onclick = () => { const done = () => { $('shCopy').textContent = '✓'; $('shCopy').classList.add('ok'); }; const inp = $('sheetB').querySelector('input');
     try { navigator.clipboard.writeText(text + ' ' + url).then(done, () => { inp.select(); document.execCommand('copy'); done(); }); } catch (e) { inp.select(); document.execCommand('copy'); done(); } };
 }
 
@@ -1125,6 +1317,7 @@ function update(dt) {
   P.tilt += ((LANES[P.lane] - P.x) * .35 - P.tilt) * Math.min(1, dt * 12);
   if (P.jt > 0) { P.jt -= wdt; P.y = Math.max(0, Math.sin(Math.PI * (1 - P.jt / JT))) * JH; if (P.jt <= 0) { P.y = 0; P.sq = .8; if (!G.demo) sfx.land(); const p = P3(P.x, 0, ZP); burstParts(p.x, p.y, 8, ['#e8dcc8', '#fff'], 90, .4, 200, 5); } }
   P.sq += (1 - P.sq) * Math.min(1, dt * 12);
+  if (G.partyT > 1.5 && G.partyT - wdt <= 1.5 && !G.demo) toast(t('partyEnd'), true);
   if (G.partyT > 0 && G.partyT - wdt <= 0) { partyMusic(false); G.invT = Math.max(G.invT, 1.2); }
   if (G.partyT > 0 && G.chase.t > 0) { G.chase.t = 0; G.chase.recover = false; }
   if (G.partyT > 0) { G.partyT -= wdt; if (Math.random() < dt * 7) confetti(Math.random() < .5 ? rand(W * .22) : W - rand(W * .22), -10); }
@@ -1157,15 +1350,17 @@ function update(dt) {
   const gap = Math.max(.75, 1.15 - (G.speed - G.D.start) * .012) * (G.speed - 5) * G.D.gap;
   if (!G.dead && G.rowAcc > gap) { G.rowAcc = 0; spawnRow(); }
 
-  const zn = zoneAt(ZP); if (zn !== G.zone) { G.zone = zn; toast(ZONES.find(z => z.k === zn).name, true); }
+  const zn = zoneAt(ZP); if (zn !== G.zone) { G.zone = zn; toast(ZONES.find(z => z.k === zn).name, true);
+    if (!G.demo) { const r = store.get('reached', []); if (!r.includes(zn)) { r.push(zn); store.set('reached', r); if (CITY[zn]) toast(`NEW CITY: ${CITY[zn].hello}!`); } } }
 
   for (let i = objs.length - 1; i >= 0; i--) {
     const o = objs[i];
     if (o.fly) { o.fly += dt * 2.4; o.x += o.flyDir * dt * 2.5; }
     if (G.partyT > 0 && !G.demo && o.type === 'pax' && !o.done && o.z < ZP + 30 && o.z > ZP - .5) { o.x += (P.x - o.x) * Math.min(1, dt * (o.z < ZP + 10 ? 8 : 3)); o.lane = P.lane; }
-    if (G.magnetT > 0 && o.type === 'coin' && o.z < ZP + 12 && o.z > ZP - .5) { o.x += (P.x - o.x) * Math.min(1, dt * 8); o.y += (P.y - o.y) * Math.min(1, dt * 8); o.z -= mv * .6; }
+    if ((G.magnetT > 0 || G.partyT > 0) && o.type === 'coin' && o.z < ZP + 12 && o.z > ZP - .5) { o.x += (P.x - o.x) * Math.min(1, dt * 8); o.y += (P.y - o.y) * Math.min(1, dt * 8); o.z -= mv * .6; }
     o.z -= (G.speed - o.v) * wdt;
-    if (o.type === 'okada') { o.x += (LANES[o.lane] - o.x) * dt * 3; }
+    if (o.exit) { o.x += o.exit * dt * 3.2; o.z -= G.speed * wdt * .4; }
+    else if (o.type === 'okada') { o.x += (LANES[o.lane] - o.x) * dt * 3; }
     if (!G.dead && !o.done && !o.fly) {
       const reach = (LEN[o.type] || .3) / 2 + .3, dz = Math.abs(o.z - ZP), dx = o.type === 'bump' ? 0 : Math.abs(o.x - P.x);
       if (dz < reach && dx < .36) hit(o);
@@ -1174,12 +1369,12 @@ function update(dt) {
       o.passed = true;
       if (Math.abs(o.x - P.x) < .75 && G.swerveT < .9) { G.score += 30; G.coins += 2; popText('CHANCE AM!', '+30'); track('chance'); sfx.pax(); const pp = P3(P.x, 0, ZP); burstParts(pp.x, pp.y - pp.s * .5, 8, ['#FFC91A', '#fff'], 140, .4, 150, 4); }
     }
-    if (o.z < -2.5 || o.fly > 2.2 || (o.done && o.gone)) objs.splice(i, 1);
+    if (o.z < -2.5 || o.fly > 2.2 || (o.done && o.gone) || Math.abs(o.x) > 2.6) objs.splice(i, 1);
   }
 
   if (!G.demo && !G.dead) {
     G.hornT -= dt; if (G.hornT <= 0) { G.hornT = rand(1.8, 4.5); sfx.horn(rand(-1, 1), rand(.025, .055)); if (Math.random() < .25) sfx.crowd(); }
-    G.callNext -= dt; if (G.callNext <= 0) { G.callNext = rand(6, 11); const zc = ZCALLS[zoneAt(ZP)]; say(Math.random() < .5 && zc ? pick(zc) : pick(CALLS)); }
+    G.callNext -= dt; if (G.callNext <= 0) { G.callNext = rand(6, 11); const zk = zoneAt(ZP), zc = ZCALLS[zk] || (CITY[zk] && CITY[zk].calls); say(Math.random() < (CITY[zk] ? .7 : .5) && zc ? pick(zc) : pick(CALLS)); }
   }
   if (G.callT > 0) G.callT -= dt;
   G.swerveT += dt;
@@ -1191,14 +1386,15 @@ function update(dt) {
 function hit(o) {
   const P = G.P, p = P3(P.x, 0, ZP), air = P.y > .12;
   if (o.type === 'coin') {
-    if (Math.abs(o.y - P.y) > .22 && G.magnetT <= 0) return;
+    if (Math.abs(o.y - P.y) > .22 && G.magnetT <= 0 && G.partyT <= 0) return;
     o.done = true; o.gone = true; const v = G.partyT > 0 ? 2 : 1; G.coins += v; G.score += v; track('coins', v); G.streak++; sfx.coin(G.streak);
     burstParts(p.x, p.y - p.s * .55 - P.y * p.s, 5, ['#FFC91A', '#fff3a6'], 120, .35, 150, 4); return;
   }
   if (o.type === 'pax') { track('pax'); if (G.tut.on === 'pax') finishTutStep(); o.done = true; o.gone = true; G.pax++; G.chain = Math.min(5, G.chain + 1); G.chainT = 6; const pts = 100 * G.chain * (G.partyT > 0 ? 2 : 1); G.score += pts;
     sfx.pax(); popText(`+${pts}`, G.chain > 1 ? `PASSENGER x${G.chain}` : 'PASSENGER', 'green'); burstParts(p.x, p.y - p.s * .6, 10, ['#3fe08f', '#fff', '#FFC91A'], 160, .5, 200, 5); say(pick(['Enter! Enter!', 'Oya enter, e remain one!', 'Shift for back!', 'Welcome, sit down!'])); return; }
-  if (o.type === 'speaker') { o.done = true; o.gone = true; G.partyT = 8; for (let i = 0; i < 26; i++) confetti(rand(W), rand(-40, H * .15)); sfx.power(); toast('BUS JAM PARTY!'); say('Bus jam party! Oya dance!'); partyMusic(true); track('party'); return; }
-  if (o.type === 'magnet') { o.done = true; o.gone = true; G.magnetT = 9; sfx.power(); toast('NAIRA MAGNET!'); return; }
+  if (o.type === 'speaker') { o.done = true; o.gone = true; G.partyT = G.D.pdur; G.partyLen = G.D.pdur; clearRoad();
+    for (let i = 0; i < 26; i++) confetti(rand(W), rand(-40, H * .15)); sfx.power(); toast(t('partyGo')); say('Bus jam party! Oya dance!'); partyMusic(true); track('party'); return; }
+  if (o.type === 'magnet') { o.done = true; o.gone = true; G.magnetT = 9; sfx.power(); toast('COIN MAGNET!'); return; }
   if (o.type === 'sun') { o.done = true; o.gone = true; sfx.power(); burstParts(p.x, p.y - p.s * .6, 14, ['#ffe066', '#fff', '#ffb000'], 180, .5, 200, 5); openWx(); return; }
   if (G.invT > 0 && (JUMP.has(o.type) || BLOCK.has(o.type))) return;
   if (JUMP.has(o.type)) {
@@ -1242,7 +1438,7 @@ function drawSky() {
   for (const c of clouds) { const x = c.x * W, y = c.y * H, r = H * .035 * c.s; ctx.fillStyle = G && G.rain > 0 ? mixHex('#ffffff', '#6f7c8b', G.rain) : dk > .5 ? '#3a3f6b' : '#fff';
     ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.arc(x + r * 1.1, y - r * .4, r * 1.2, 0, 7); ctx.arc(x + r * 2.3, y, r * .9, 0, 7); ctx.fill(); }
   const lz = zoneAt(30);
-  if (lz !== 'village') for (const b of skyline) { ctx.fillStyle = dk > .5 ? '#2a2f5a' : b.c; ctx.fillRect(b.x, hy - b.h, b.w, b.h); ctx.fillStyle = dk > .5 ? 'rgba(255,214,120,.8)' : 'rgba(255,255,255,.45)'; for (let y = hy - b.h + 6; y < hy - 4; y += 10) for (let x = b.x + 4; x < b.x + b.w - 5; x += 9) ctx.fillRect(x, y, 3, 4); }
+  if (lz !== 'village' && !(CITY[lz] && CITY[lz].noSky)) for (const b of skyline) { ctx.fillStyle = dk > .5 ? '#2a2f5a' : b.c; ctx.fillRect(b.x, hy - b.h, b.w, b.h); ctx.fillStyle = dk > .5 ? 'rgba(255,214,120,.8)' : 'rgba(255,255,255,.45)'; for (let y = hy - b.h + 6; y < hy - 4; y += 10) for (let x = b.x + 4; x < b.x + b.w - 5; x += 9) ctx.fillRect(x, y, 3, 4); }
 }
 const SIDE = { lagos: ['#f6e0bd', '#ead2aa'], abuja: ['#8fd46a', '#84ca5f'], ph: ['#e6dcc6', '#d9ceb6'], kano: ['#efd49d', '#e3c68b'], village: ['#d9844c', '#cc7843'] };
 function drawGround() {
@@ -1260,9 +1456,10 @@ function drawGround() {
         poly([P3(sd * 1.1, 0, za), P3(sd * 12, 0, za), P3(sd * 12, 0, zb), P3(sd * 1.1, 0, zb)], par ? '#2fb3e8' : '#39c0f2');
         poly([P3(sd * 1.1, 0, za), P3(sd * 1.1, .13, za), P3(sd * 1.1, .13, zb), P3(sd * 1.1, 0, zb)], par ? '#eef3f8' : '#dfe7ef', 1.2);
       } else {
-        const sc = SIDE[zone] || SIDE.lagos; poly([P3(sd * 1.1, 0, za), P3(sd * (zone === 'village' || zone === 'abuja' ? 6 : 1.95), 0, za), P3(sd * (zone === 'village' || zone === 'abuja' ? 6 : 1.95), 0, zb), P3(sd * 1.1, 0, zb)], par ? sc[0] : sc[1]);
+        const sc = SIDE[zone] || (CITY[zone] && CITY[zone].side) || SIDE.lagos; poly([P3(sd * 1.1, 0, za), P3(sd * (zone === 'village' || zone === 'abuja' ? 6 : 1.95), 0, za), P3(sd * (zone === 'village' || zone === 'abuja' ? 6 : 1.95), 0, zb), P3(sd * 1.1, 0, zb)], par ? sc[0] : sc[1]);
       }
-      poly([P3(sd * 1.0, 0, za), P3(sd * 1.1, 0, za), P3(sd * 1.1, 0, zb), P3(sd * 1.0, 0, zb)], zone === 'village' ? '#a85a2c' : zone === 'abuja' ? (par ? '#fff' : '#18b86b') : par ? '#FFC91A' : '#1b1024');
+      const CU = CITY[zone] && CITY[zone].curb;
+      poly([P3(sd * 1.0, 0, za), P3(sd * 1.1, 0, za), P3(sd * 1.1, 0, zb), P3(sd * 1.0, 0, zb)], CU ? CU[((k % CU.length) + CU.length) % CU.length] : zone === 'village' ? '#a85a2c' : zone === 'abuja' ? (par ? '#fff' : '#18b86b') : par ? '#FFC91A' : '#1b1024');
     }
     if (par) for (const lx of [-.31, .31]) poly([P3(lx - .025, 0, za), P3(lx + .025, 0, za), P3(lx + .025, 0, zb), P3(lx - .025, 0, zb)], '#fff');
   }
@@ -1283,6 +1480,7 @@ function drawEntity(e) {
       case 'boat': boat(p.x, p.y, p.s, T); break;
       case 'hut': hut(p.x, p.y, p.s, e); break;
       case 'tree': tree(p.x, p.y, p.s); break;
+      case 'jacaranda': tree(p.x, p.y, p.s, '#9b6fd6'); break;
       case 'goat': goat(p.x, p.y, p.s, T + e.z); break;
       case 'overpass': overpass(e.z, e.name); break;
     }
@@ -1294,11 +1492,12 @@ function drawEntity(e) {
   if (e.fly) { ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(e.flyDir * e.fly * .9); ctx.translate(-p.x, -p.y - e.fly * 70); ctx.globalAlpha *= clamp(1.8 - e.fly * .8, 0, 1); }
   switch (e.type) {
     case 'car': shadowE(p.x, p.y, .55 * p.s); car(p.x, p.y, p.s, e.col); break;
-    case 'danfo': shadowE(p.x, p.y, .62 * p.s); danfo(p.x, p.y, p.s, T, { heads: 5, slogan: e.slogan }); break;
-    case 'keke': shadowE(p.x, p.y, .42 * p.s); keke(p.x, p.y, p.s); break;
-    case 'brt': shadowE(p.x, p.y, .66 * p.s); brt(p.x, p.y, p.s); break;
+    case 'danfo': shadowE(p.x, p.y, .62 * p.s); danfo(p.x, p.y, p.s, T, { heads: 5, slogan: e.slogan, skin: e.skin }); break;
+    case 'keke': shadowE(p.x, p.y, .42 * p.s); keke(p.x, p.y, p.s, e.kcol); break;
+    case 'brt': shadowE(p.x, p.y, .66 * p.s); brt(p.x, p.y, p.s, e.bcol); break;
     case 'okada': okada(p.x, p.y, p.s, T, e.look); break;
     case 'pothole': pothole(p); break;
+    case 'sand': sand(p); break;
     case 'branches': branches(p); break;
     case 'barrier': barrier(p); break;
     case 'goat': goat(p.x, p.y, p.s, T); break;
@@ -1404,6 +1603,20 @@ const ICO = {
   rain: '<svg viewBox="0 0 24 24"><path d="M7 15a5 5 0 1 1 1.5-9.8A6 6 0 0 1 20 9a4 4 0 0 1-1 7.9H7z" fill="#dfe7f1" stroke="#1b1024" stroke-width="2"/><path d="M9 19l-1 3M13 19l-1 3M17 19l-1 3" stroke="#7fd0ff" stroke-width="2.4" stroke-linecap="round"/></svg>',
   moon: '<svg viewBox="0 0 24 24"><path d="M20 15A8.5 8.5 0 0 1 9 4a8.5 8.5 0 1 0 11 11z" fill="#f1f4ff" stroke="#1b1024" stroke-width="2"/></svg>',
   sun: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5" fill="#ffe066" stroke="#1b1024" stroke-width="2"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="#ffb000" stroke-width="2.2" stroke-linecap="round"/></svg>' };
+function partyHud() {
+  const on = G.partyT > 0 && !G.dead, el = $('ptimer'); if (el.hidden === on) { el.hidden = !on; $('ptHow').textContent = t('partyHow'); } if (!on) return;
+  $('ptFill').style.transform = `scaleX(${G.partyT / (G.partyLen || 8)})`; el.classList.toggle('end', G.partyT < 1.6);
+  const secs = Math.ceil(G.partyT), k = t('partyBar') + ' · ' + secs + 's'; if ($('ptLbl').textContent !== k) $('ptLbl').textContent = k;
+}
+// party start: every car, keke, okada and police steps aside; obstacles are swept away
+function clearRoad() {
+  for (const o of objs) {
+    if (o.done || o.z < ZP - 1) continue;
+    if (BLOCK.has(o.type)) { o.exit = o.x < 0 || (o.x === 0 && Math.random() < .5) ? -1 : 1; o.done = true; }
+    else if (JUMP.has(o.type)) { const q = P3(o.x, 0, Math.max(o.z, ZP)); burstParts(q.x, q.y, 6, ['#FFC91A', '#fff', '#3fe08f'], 120, .4, 200, 4); o.done = true; o.gone = true; }
+  }
+  G.chase.t = 0; G.chase.recover = false;
+}
 let clockAcc = 1, fcKey = '';
 function clockHud(dt) {
   clockAcc += dt; if (clockAcc < .25) return; clockAcc = 0;
@@ -1452,7 +1665,7 @@ function frame(now) {
   if (!lowFx && mode === 'play') { slowFrames = dt > .034 ? slowFrames + 1 : Math.max(0, slowFrames - 2); if (slowFrames > 150) { lowFx = true; DPR = 1; cvs.width = W; cvs.height = H; ctx.setTransform(1, 0, 0, 1, 0, 0); } }
   if (G && mode !== 'paused' && mode !== 'over') update(dt);
   if (G) render();
-  if (mode === 'play') { hud(); clockHud(dt); }
+  if (mode === 'play') { hud(); clockHud(dt); partyHud(); }
   requestAnimationFrame(frame);
 }
 resize(); newGame(true); for (let i = 0; i < 90; i++) update(1 / 30);

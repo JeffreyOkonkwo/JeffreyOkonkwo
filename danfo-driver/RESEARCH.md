@@ -123,3 +123,29 @@ Oshodi (hub), Ojuelegba (roundabout chaos), Third Mainland Bridge (long go-slow 
 - **Language:** use Yoruba and Pidgin lines checked by native speakers, and localise subtitles.
 - **Music licensing:** use original or cleared tracks in genre styles. Do not sample Fuji or Afrobeats hits without clearance. The name "Danfo Driver" overlaps the Mad Melon and Mountain Black song.
 - **Traffic safety:** one-way driving kills people in real life. The game already punishes it; keep that framing.
+
+---
+
+# African cities (road trip after Nigeria)
+
+After Kano, the run continues across Africa: Accra → Dakar → Marrakech → Cairo → Addis Ababa → Nairobi → Kigali → Kinshasa → Johannesburg, then back to Lagos.
+Every city keeps your yellow danfo. Local minibuses, taxis, shop signs, conductor calls, street obstacles and clothing change with the city. The kerbs are painted in that country's flag colours.
+Once you reach a place, you can start your next run there from **Journey**.
+
+| City | Local minibus in game | Conductor | Calls used | Landmark drawn | Hop obstacles |
+|---|---|---|---|---|---|
+| Accra | tro-tro: white with red, gold or green stripe; slogans "GOD IS MY SEATBELT", "ALL SHALL PASS" | mate | "Circle! Circle!", "Kanesh-Kanesh-Kanesh!" | Black Star Gate by the sea | potholes, barriers |
+| Dakar | car rapide in blue and yellow ("ALHAMDOULILAH"); white Ndiaga Ndiaye | apprenti | "Colobane!", "Petersen!", "Nanga def?" | African Renaissance Monument | sand drifts, sheep |
+| Marrakech | beige grand taxi (no painted slogans) | - | "Bab Doukkala!", "Jemaa el-Fna! Yallah!" | Koutoubia minaret, snowy Atlas | barriers, sand |
+| Cairo | white microbus | - | "Ramsis!", "Giza, Giza!", "Ataba, yalla!" | pyramids, Cairo Tower | potholes, bumps |
+| Addis Ababa | blue-and-white minibus taxi | woyala | "Piassa!", "Megenagna!", "Bole!" | Entoto hills, glass bank tower | potholes, goats |
+| Nairobi | matatu: white with yellow stripe plus graffiti art ("nganya") | makanga | "Tao! Tao!", "Beba beba!", "Rongai, panda!" | KICC, giraffes | potholes, branches |
+| Kigali | white minibus with a blue or green band | - | "Nyabugogo!", "Kimironko!", "Muraho!" | Convention Centre dome, green hills | barriers only (no potholes, it's clean) |
+| Kinshasa | yellow-and-blue taxi-bus ("TOKENDE" = "let's go") | receveur | "Victoire!", "Gombe!", "Ngaba, tokende!" | Limete Tower, Congo River | potholes, sand |
+| Johannesburg | white Quantum minibus taxi | queue marshal | "Bree! Bree!", "Sho't left!" | Hillbrow Tower, Ponte, mine dumps | potholes |
+
+**Welcome words:** Akwaaba (Accra), Dalal ak jamm (Dakar), Marhaba (Marrakech), Ahlan (Cairo), Selam (Addis Ababa), Karibu (Nairobi), Murakaza neza (Kigali), Boyei malamu (Kinshasa), Sawubona (Johannesburg).
+
+**Kept out on purpose:** slurs and edgy slang (for example kwasia, toubab, ferenji, chokora, karao), scam and crime terms (sakawa, "Ketch" taxis, kuluna), portraits of religious leaders, and anything political: protests, borders, ethnic conflicts, the Rwandan genocide, taxi violence.
+
+**Sources:** Wikipedia (Tro tro, Ndiaga Ndiaye, Sunu BRT, Taxis of Morocco, Weyala, Transport in Addis Ababa, Matatu, Kigali Convention Centre, Limete Tower), Ghana News Agency (Okada legalisation, Dec 2025), Kenyanism ("Beba beba, tao"), Citizen Digital (matatu graffiti, 2026), Kigali Newcomers (moto taxis), 7sur7.cd (Ketch taxi ban), The Citizen (Joburg taxi hand signs).

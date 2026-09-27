@@ -1,4 +1,4 @@
-# Danfo Craze (prototype v0.4)
+# Danfo Craze (prototype v0.6)
 
 A simple swipe runner in the style of Temple Run and Subway Surfers, set on Nigerian roads. You drive a danfo that went the
 wrong way down a one-way street, and the police are chasing you. One HTML file with no libraries. Open `index.html` on a
@@ -19,7 +19,13 @@ phone or laptop.
 
 Every row of traffic leaves one lane open, and that lane is never more than one swipe from the previous open lane, so there's always a way through.
 The first run slows down and shows a swipe hint the first time you need to dodge and the first time you need to hop.
-The scenery cycles through Lagos, Third Mainland Bridge, a village road, Abuja, Port Harcourt and Kano.
+The scenery starts in Nigeria (Lagos, Third Mainland Bridge, a village road, Abuja, Port Harcourt and Kano). It then goes on a road trip across Africa: Accra, Dakar, Marrakech, Cairo, Addis Ababa, Nairobi, Kigali, Kinshasa and Johannesburg. Each city has its own local minibuses, landmarks, signs and conductor calls. Once you reach a place, you can start your next run there from **Journey**.
+
+Other features:
+- **Night and rain** come later in a run. A small clock shows the time and warns before rain or night.
+- **Sun Coin:** turns night into day, stops the rain, or is kept for coins.
+- **Bus Jam Party** is a rare free ride: traffic and police leave the road, and passengers and coins come to you until the timer runs out.
+- **Challenge a friend:** share your score through any app, or copy the link.
 
 Sound is synthesised in the browser: afrobeat music, horns, sirens and crowd noise. There's no talking; conductor calls
 appear as speech bubbles.
