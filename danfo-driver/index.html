@@ -210,6 +210,9 @@
   .chal{width:100%;border:4px solid var(--ink);border-radius:16px;padding:9px 12px;background:#25d366;color:#fff;font-family:"Bungee",Impact,sans-serif;font-size:16px;box-shadow:0 5px 0 var(--ink)}
   .chal:active{transform:translateY(3px);box-shadow:0 2px 0 var(--ink)}
   .chip.beat{background:#25d366;color:#fff}
+  #sheet{background:rgba(27,16,36,.38);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:background .2s}
+  #sheet.focus{background:rgba(27,16,36,.6);-webkit-backdrop-filter:blur(10px) saturate(.8);backdrop-filter:blur(10px) saturate(.8)}
+  .lowfx #sheet,.lowfx #sheet.focus{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(27,16,36,.72)}
   .sheetc{max-width:460px;max-height:86vh;grid-template-rows:auto 1fr auto}
   .sheetc.compact{gap:8px;padding-top:14px;padding-bottom:14px}.sheetc.compact .sh{font-size:clamp(20px,5.6vw,24px)!important;margin:0}.sheetc.compact #sheetClose{font-size:clamp(20px,5.5vw,24px);padding:10px 34px;border-radius:18px}
   .sheetc.compact .lopt{gap:2px}.sheetc.compact .nickin{padding-top:8px;padding-bottom:8px}.sheetc.compact .ccbtn{padding:6px 10px;font-size:15px}.sheetc.compact .cclist{max-height:180px}.sheetc.compact .lnote{font-size:12.5px;margin:0}
@@ -1394,12 +1397,13 @@ function loginStreak() {
   return { streak, bonus };
 }
 let sheetAction = null;
-function openSheet(title, html, btn = t('close'), action = null, compact = false) { document.querySelector('.sheetc').classList.toggle('compact', !!compact); $('sheetT').textContent = title; $('sheetB').innerHTML = html; $('sheetClose').textContent = btn; sheetAction = action; show('sheet', true); $('sheetX').focus(); }
+function openSheet(title, html, btn = t('close'), action = null, compact = false) { document.querySelector('.sheetc').classList.toggle('compact', !!compact); $('sheet').classList.remove('focus'); $('sheetT').textContent = title; $('sheetB').innerHTML = html; $('sheetClose').textContent = btn; sheetAction = action; show('sheet', true); $('sheetX').focus(); }
 // an in-game yes or no question (works the same in the phone apps and the browser)
 function askSheet(title, text, yes, onYes, onNo) {
   openSheet(title, `<p style="margin:0;font-weight:700">${escHtml(text)}</p><button type="button" class="askbtn" id="askYes">${escHtml(yes)}</button>`, t('cancel'), onNo || null, true);
-  $('askYes').onclick = () => { sheetAction = null; closeSheet(); onYes(); };
+  sheetFocus(); $('askYes').onclick = () => { sheetAction = null; closeSheet(); onYes(); };
 }
+const sheetFocus = () => $('sheet').classList.add('focus'); // private things (players, licence, delete): blur the game more
 function closeSheet(run) { show('sheet', false); if (mode === 'over') show('over', true); refreshTitle(); const a = sheetAction; sheetAction = null; if (run && a) a(); }
 // ================================================================ driver's licence
 // The player is the driver: a drawn portrait (never a camera photo), a flag, a plate and a rank earned from the record.
@@ -1651,7 +1655,7 @@ let licCat = 'face', licDraft = null;
 function showName() {
   loadFlags().then(() => { if (!$('sheet').hidden && $('licWrap')) drawLicence(); });
   licDraft = { look: Object.assign({}, LOOK_DEF, store.get('look', {})), name: store.get('nick', '') || '', plate: myPlate(), flag: store.get('flag', 'AFRICA') };
-  openSheet(t('licTitle'), '<div id="licWrap" class="licwrap"></div>', t('save'), saveLicence);
+  openSheet(t('licTitle'), '<div id="licWrap" class="licwrap"></div>', t('save'), saveLicence); sheetFocus();
   drawLicence();
 }
 // themed country picker: a big button that opens a searchable list of flags (Africa first)
@@ -1747,7 +1751,7 @@ function showPlayers() {
   openSheet(t('playersH'), `<p style="margin:0">${t('playersTxt')}</p><div class="plist">${list.map(id => `<div class="plrow"><button type="button" class="pl ${id === activePlayer ? 'on' : ''}" data-pl="${id}"><b>${escHtml(playerName(id))}</b><small>${id === activePlayer ? t('driving') : t('tapDrive')} · ${t('bestWord')} ${playerBest(id).toLocaleString()}</small></button>${list.length > 1 ? `<button type="button" class="pldel" data-del="${id}" aria-label="${t('deletePlayer')}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4.5h6V7M6.5 7l1 13h9l1-13M10 11v6M14 11v6"/></svg></button>` : ''}</div>`).join('')}</div>
     ${list.length < PLAYER_MAX ? `<button type="button" class="play" id="plNew">${list.length >= cap ? '🔒 ' : ''}${t('newPlayer')}</button><p class="lnote">${cap > PLAYER_FREE ? t('playersCapPaid', PLAYER_MAX) : t('playersCapFree', PLAYER_FREE, PLAYER_MAX)}</p>` : `<p class="lnote">${t('playersFull')}</p>`}
     <p class="lnote">${t('familyNote')}</p>
-    <p class="lbfoot"><button type="button" class="linkbtn" id="plReset">${t('startOver')}</button></p>`);
+    <p class="lbfoot"><button type="button" class="linkbtn" id="plReset">${t('startOver')}</button></p>`); sheetFocus();
   document.querySelectorAll('[data-pl]').forEach(b => b.onclick = () => { const id = +b.dataset.pl; if (id !== activePlayer) goPlayer(id); });
   document.querySelectorAll('[data-del]').forEach(b => b.onclick = () => deletePlayer(+b.dataset.del));
   if ($('plNew')) $('plNew').onclick = addPlayer;
@@ -1755,7 +1759,7 @@ function showPlayers() {
 }
 // several players on this phone: ask who is driving each time the game opens (one tap)
 function showChooser() {
-  openSheet(t('whoDrives'), `<div class="plist">${playerList().map(id => `<button type="button" class="pl ${id === activePlayer ? 'on' : ''}" data-pl="${id}"><b>${escHtml(playerName(id))}</b><small>${t('bestWord')} ${playerBest(id).toLocaleString()}</small></button>`).join('')}</div>${playerList().length < PLAYER_MAX ? `<button type="button" class="linkbtn" id="chNew">${t('newPlayer')}</button>` : ''}`, t('close'), null, true);
+  openSheet(t('whoDrives'), `<div class="plist">${playerList().map(id => `<button type="button" class="pl ${id === activePlayer ? 'on' : ''}" data-pl="${id}"><b>${escHtml(playerName(id))}</b><small>${t('bestWord')} ${playerBest(id).toLocaleString()}</small></button>`).join('')}</div>${playerList().length < PLAYER_MAX ? `<button type="button" class="linkbtn" id="chNew">${t('newPlayer')}</button>` : ''}`, t('close'), null, true); sheetFocus();
   document.querySelectorAll('[data-pl]').forEach(b => b.onclick = () => { const id = +b.dataset.pl; if (id === activePlayer) closeSheet(); else goPlayer(id); });
   if ($('chNew')) $('chNew').onclick = addPlayer;
 }
@@ -1766,7 +1770,7 @@ function showSetup() {
   openSheet(t('whoDrives'), `<label class="lopt"><span class="lbl">${t('lblName')}</span><input id="setName" class="nickin" type="text" maxlength="14" autocomplete="off" placeholder="${t('namePh')}"></label>
     <div class="lopt"><span class="lbl">${t('pickCountry')}</span>${ccPicker('setFlag', 'AFRICA')}</div>
     <p class="lnote">${t('setupNote')}</p>`, t('letsGo'), () => {
-      const n = cleanNick($('setName').value).slice(0, 14); if (n) store.set('nick', n); store.set('flag', flag); refreshTitle(); }, true);
+      const n = cleanNick($('setName').value).slice(0, 14); if (n) store.set('nick', n); store.set('flag', flag); refreshTitle(); }, true); sheetFocus();
   wireCcPicker('setFlag', v => { flag = v; });
   $('setName').addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Enter') $('setName').blur(); });
   store.set('setup', true);
@@ -2529,7 +2533,7 @@ function showChallengeAccept() {
 let slowFrames = 0, lowFx = false, idleFrame = 0;
 function frame(now) {
   const dt = Math.min(.05, (now - last) / 1000 || 0); last = now;
-  if (!lowFx && mode === 'play') { slowFrames = dt > .034 ? slowFrames + 1 : Math.max(0, slowFrames - 2); if (slowFrames > 150) { lowFx = true; DPR = 1; cvs.width = W; cvs.height = H; ctx.setTransform(1, 0, 0, 1, 0, 0); } }
+  if (!lowFx && mode === 'play') { slowFrames = dt > .034 ? slowFrames + 1 : Math.max(0, slowFrames - 2); if (slowFrames > 150) { lowFx = true; document.body.classList.add('lowfx'); DPR = 1; cvs.width = W; cvs.height = H; ctx.setTransform(1, 0, 0, 1, 0, 0); } }
   if (G && mode !== 'paused' && mode !== 'over' && mode !== 'card') update(dt);
   if (G && (mode === 'play' || mode === 'title' || (idleFrame = (idleFrame + 1) % 6) === 0)) render();
   if (mode === 'play') { hud(); clockHud(dt); partyHud(); }
