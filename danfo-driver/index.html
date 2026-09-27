@@ -64,19 +64,19 @@
   .clock .fc svg{width:16px;height:16px}
   .clock.warn .fc{animation:fcPulse 1.2s ease-in-out infinite}
   @keyframes fcPulse{50%{opacity:.45}}
-  #ptimer{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);transform:translateX(-50%);width:min(86vw,340px);text-align:center;pointer-events:none;
+  #ptimer{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);transform:translateX(-50%);width:min(54vw,210px);text-align:center;pointer-events:none;
     font-family:"Bungee",Impact,sans-serif;font-size:13px;color:#fff;background:rgba(27,16,36,.7);border:3px solid #3fe08f;border-radius:14px;padding:4px 10px 7px}
   #ptimer[hidden]{display:none}
-  #ptimer .pt1{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:16px}
-  #ptimer .pti{width:28px;height:28px;border-radius:50%;background:#8b5cf6;display:grid;place-items:center;border:2px solid #fff;font-size:15px}
-  #ptimer .pts{font-size:26px;line-height:1;color:#ffe066;min-width:36px;text-align:right}
+  #ptimer .pt1{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:12px}
+  #ptimer .pti{width:20px;height:20px;font-size:11px!important;border-radius:50%;background:#8b5cf6;display:grid;place-items:center;border:2px solid #fff;font-size:15px}
+  #ptimer .pts{font-size:18px;line-height:1;color:#ffe066;min-width:36px;text-align:right}
   #pcount{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);font-family:"Bungee",Impact,sans-serif;font-size:clamp(70px,22vw,120px);color:#fff;pointer-events:none;
     text-shadow:0 6px 0 #1b1024,3px 0 0 #1b1024,-3px 0 0 #1b1024,0 -3px 0 #1b1024,3px 3px 0 #1b1024,-3px 3px 0 #1b1024,3px -3px 0 #1b1024,-3px -3px 0 #1b1024}
   #pcount[hidden]{display:none}
   #pcount.go{animation:pcPop .9s ease-out}
   @keyframes pcPop{0%{transform:translate(-50%,-50%) scale(1.6);opacity:0}20%{transform:translate(-50%,-50%) scale(1);opacity:1}100%{opacity:.7}}
-  #ptimer small{display:block;margin-top:4px;font:800 12px/1.2 "Baloo 2",sans-serif;color:#d9ffe9}
-  #ptimer i{display:block;height:12px;border-radius:6px;background:rgba(255,255,255,.2);margin-top:4px;overflow:hidden}
+  #ptimer small{display:none;margin-top:4px;font:800 12px/1.2 "Baloo 2",sans-serif;color:#d9ffe9}
+  #ptimer i{display:block;height:8px;border-radius:6px;background:rgba(255,255,255,.2);margin-top:4px;overflow:hidden}
   #ptimer b{display:block;height:100%;background:linear-gradient(90deg,#3fe08f,#ffe066);transform-origin:left;border-radius:6px}
   #ptimer.end{border-color:#ff4d4d;animation:fcPulse .4s ease-in-out infinite}
   .sponsorline{font:800 13px 'Baloo 2',sans-serif;color:#fff;background:rgba(27,16,36,.6);border:2px solid #FFC91A;border-radius:999px;padding:2px 12px;margin-top:4px}
@@ -109,21 +109,16 @@
   .shcopy{display:flex;gap:6px}.shcopy input{flex:1;min-width:0;border:3px solid var(--ink);border-radius:12px;padding:8px 10px;font:700 13px "Baloo 2",sans-serif;color:#5a5068;background:#f6f2ea}
   .shcopy button{border:3px solid var(--ink);border-radius:12px;padding:8px 12px;font:800 14px "Baloo 2",sans-serif;background:var(--ink);color:#fff;min-width:64px}.shcopy button.ok{background:var(--green)}
 
-  .citypop{position:absolute;left:50%;top:calc(env(safe-area-inset-top,0px) + 96px);transform:translate(-50%,-14px) scale(.96);opacity:0;transition:opacity .35s,transform .35s;pointer-events:none;z-index:6;
-    display:grid;justify-items:center;gap:0;max-width:min(260px,76vw);padding:3px 12px 5px;border-radius:14px;border:3px solid var(--ink);background:rgba(24,184,107,.9);color:#fff;text-align:center;box-shadow:0 3px 0 var(--ink)}
+  .ftrail{display:flex;gap:6px;align-items:center;max-width:min(52vw,210px);background:rgba(27,16,36,.6);border-radius:999px;padding:3px 4px 3px 5px;color:#fff;font:800 12.5px/1 "Baloo 2",sans-serif}.ftrail:empty{display:none}.ftrail i{flex:none;display:block;width:24px;height:16px;border-radius:3px;overflow:hidden;box-shadow:0 0 0 1.5px var(--ink)}.ftrail span{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;padding-right:4px}.ftrail b{flex:none;min-width:18px;height:18px;border-radius:9px;background:var(--danfo);color:var(--ink);display:grid;place-items:center;font:400 10px Bungee,Impact,sans-serif;padding:0 3px}.ftrail i.new{animation:fnew .6s ease-out}.ftrail .flagimg{width:100%;height:100%;object-fit:cover;display:block}
+  @keyframes fnew{0%{transform:scale(1.8);opacity:0}60%{transform:scale(.92);opacity:1}100%{transform:none}}
   .drvbadge{position:absolute;left:10px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);z-index:5;display:grid;justify-items:center;gap:2px;pointer-events:none;opacity:.92}
   .drvbadge img{width:54px;height:54px;border-radius:50%;border:3px solid var(--ink);background:#bfe3ff;object-fit:cover;object-position:50% 20%;box-shadow:0 3px 0 var(--ink)}
   .drvbadge.gold img{border-color:#e6a800;box-shadow:0 0 0 3px #FFC91A,0 3px 0 var(--ink)}
   .drvbadge span{max-width:80px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;background:rgba(27,16,36,.78);color:#fff;border-radius:999px;padding:1px 8px;font:800 11px "Baloo 2",sans-serif}
   .drvbadge.hello img{animation:drvhi 1.4s ease-out}
   @keyframes drvhi{0%{transform:scale(.3)}40%{transform:scale(1.35)}70%{transform:scale(.95)}100%{transform:scale(1)}}
-  .citypop.show{opacity:1;transform:translate(-50%,0) scale(1)}
-  .citypop.country{box-shadow:0 0 0 2px #FFC91A,0 3px 0 var(--ink)}.citypop.country b{font-size:14px}
   .cpflag{display:inline-block;width:24px;height:16px;margin-right:6px;vertical-align:-1px;border-radius:3px;overflow:hidden;box-shadow:0 0 0 1.5px var(--ink)}.cpflag .flagimg{width:100%;height:100%}
   
-  .citypop small{font-weight:800;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#e4ffef}
-  .citypop b{font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:14px;line-height:1.1}
-  .citypop span{font-weight:800;font-size:12.5px;color:#FFC91A;line-height:1.2}
   #toasts{position:absolute;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 160px);pointer-events:none}
   .toast{position:absolute;left:50%;transform:translateX(-50%);font-family:"Bungee",Impact,sans-serif;font-size:clamp(17px,4.6vw,26px);line-height:1.1;
     color:#FFC91A;background:rgba(27,16,36,.9);border:3px solid #FFC91A;border-radius:14px;padding:6px 16px 7px;box-shadow:0 5px 0 rgba(27,16,36,.5);
@@ -393,12 +388,13 @@
       <div class="heat" id="heat" aria-label="Police sirens"><i></i><i></i><i></i></div>
     </div>
     <div class="rcol"><div class="right"><div class="coins pax" aria-label="Passengers"><span class="pax-i"></span><span id="paxN">0</span></div><div class="coins"><span class="coin-i">A</span><span id="coins">0</span></div><button class="pause" id="pauseBtn" type="button" aria-label="Pause">II</button></div>
+      <div class="ftrail" id="ftrail" aria-label="Countries on this trip"></div>
       <div class="clock" id="clock" aria-label="Weather" hidden><span class="fc" id="fc"></span></div></div>
   </div>
   <div id="ptimer" hidden><div class="pt1"><span class="pti">♪</span><span id="ptLbl">FREE RIDE</span><span class="pts" id="ptSec">12</span></div><i><b id="ptFill"></b></i><small id="ptHow"></small></div><div id="pcount" hidden></div>
   <div class="hint" id="hint" hidden><div class="arrows ol" id="hintArrows">←&nbsp;→</div><div class="txt" id="hintTxt">SWIPE TO DODGE</div></div>
   <div id="toasts"></div>
-  <div id="cityPop" class="citypop" hidden aria-live="polite"></div>
+  
   <div id="drvBadge" class="drvbadge" hidden aria-hidden="true"><img alt=""><span></span></div>
   <div id="pops"></div>
 
@@ -1389,6 +1385,7 @@ function start() {
   if (store.get('honk', false) && !learning()) { store.set('honk', false); setTimeout(honkGo, 1400); moneyUI(); }
   if (learning()) G.chase.t = 0; else { setTimeout(() => { if (mode === 'play' && G.chase.t > 0) say('Police are behind us! Drive!', 1); }, 4800); sfx.siren(); setTimeout(() => sfx.siren(), 900); }
   readyToRace(); setTimeout(() => say(myLines().move, 1), 2300);
+  G.ccTrail = [zoneCC(zoneAt(ZP))]; flagTrail(false); if (!FLAGSET) loadFlags().then(() => flagTrail(false));
 }
 // Police catch you: settle with coins, else with points; with nothing left it's jail.
 function policeCatch(checkpoint) {
@@ -1407,7 +1404,7 @@ function die(kind, what) {
   const p = P3(G.P.x, 0, ZP); burstParts(p.x, p.y - p.s * .3, 24, ['#fff', '#ffe066', '#c7c7d1'], 260, .8, 500, 6);
 }
 function gameOver() {
-  $('cityPop').hidden = true; $('drvBadge').hidden = true; mode = 'over'; musicStop(); show('hud', false); show('hint', false);
+  $('drvBadge').hidden = true; mode = 'over'; musicStop(); show('hud', false); show('hint', false);
   if (!G.banked) { bank += G.coins; store.set('bank', bank); G.banked = G.coins; } else { bank += G.coins - G.banked; store.set('bank', bank); G.banked = G.coins; }
   quizBtnState(); $('chalBtn').textContent = t('challenge'); $('tripBtn').hidden = false; 
   const score = Math.floor(G.score), isBest = score > best; if (isBest) { best = score; store.set('best.' + diff, best); store.set('bestClean.' + diff, !G.conts); } lbSubmit(score);
@@ -1688,21 +1685,15 @@ function newCityReached(zn) {
   if (!card || G.dead || G.demo) { if (G.time > 3) say(calm(t('welcomeTo', '@')).replace('@', titleCase(zoneName(zn).split(' · ')[0])), 1); return; }
   say(card.hi[0], 1); // the local greeting, for example Akwaaba!
   const before = new Set(['NG', ...reachedZones().filter(k => k !== zn).map(zoneCC)]);
-  cityPop(zn, card, before.has(cc) ? null : cc);
+  if (!before.has(cc)) trailAt(zn, true);
 }
-// a small pop at the top of the screen: the game keeps going and the road stays clear. Share and Save are on the trip card after the run.
-let popTimer = 0;
-// a new country gets a celebration (gold, flag, confetti, fanfare); the game never pauses
-function cityPop(zn, card, country) {
-  const el = $('cityPop'), hi = card.hi;
-  el.classList.toggle('country', !!country);
-  el.innerHTML = country
-    ? `<b><span class="cpflag">${flagImg(country)}</span>${escHtml(t('welcomeTo', ccName(country)))}</b><span>${escHtml(hi[0])} · ${escHtml(titleCase(zoneName(zn)).split(' · ')[0])}</span>`
-    : `<small>${t('newCity')}</small><b>${escHtml(t('welcomeTo', titleCase(zoneName(zn))))}</b><span>${escHtml(hi[0])} · ${escHtml(t(hi[2] === H_ ? 'helloIn' : 'welcomeIn', hi[1]))}</span>`;
-  el.hidden = false; el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
-  if (country && G) G.newCountries = (G.newCountries || 0) + 1; sfx.pax();
-  clearTimeout(popTimer); popTimer = setTimeout(() => { el.classList.remove('show'); popTimer = setTimeout(() => { el.hidden = true; }, 400); }, 3000);
+// top right: one small chip with where you are now (flag and place) and how many countries this trip. No pop-ups.
+function flagTrail(fresh) {
+  const el = $('ftrail'); if (!el || !G || !G.ccTrail) return;
+  const cc = G.ccTrail[G.ccTrail.length - 1], zk = zoneAt(ZP), z = zoneOf(zk), place = titleCase(zoneName(z && z.road ? z.road.city : zk).split(' · ')[0]), n = G.ccTrail.filter((c, k, a) => a.indexOf(c) === k).length;
+  el.title = ccName(cc); el.innerHTML = `<i class="now ${fresh ? 'new' : ''}">${flagImg(cc)}</i><span>${escHtml(place)}</span>${n > 1 ? `<b aria-label="${n} ${t('countriesWord')}">${n}</b>` : ''}`;
 }
+function trailAt(zn, fresh) { if (!G || G.demo) return; const cc = zoneCC(zn), tr = G.ccTrail = G.ccTrail || []; const newCc = tr[tr.length - 1] !== cc; if (newCc) tr.push(cc); if (fresh && newCc) { G.newCountries = (G.newCountries || 0) + 1; sfx.pax(); } flagTrail(newCc && tr.length > 1); }
 function runCardData() { const tr = G.trip.filter((k, i, a) => a.indexOf(k) === i); if (!tr.length) tr.push(ZONES[G.zi] ? ZONES[G.zi].k : 'lagos'); const last = [...tr].reverse().find(k => CITYCARD[k]); return { trip: tr, fresh: G.fresh || [], card: last ? CITYCARD[last] : null, score: G.score, dist: G.dist }; }
 function showTrip(data) { const d = data && data.trip ? data : runCardData(); if (!FLAGSET) loadFlags().then(() => { if (!$('ccOver').hidden && ccKind === 'trip') openCard('trip', d); }); openCard('trip', d); }
 // the run card shows by itself when the player is finished (no continue left, or they go Home) and the run reached somewhere new
@@ -2071,7 +2062,7 @@ $('adDouble').onclick = () => { const m = M(); if (!m) return; m.rewarded('rewar
 $('honkBtn').onclick = () => { if (store.get('honk', false)) return start(); const m = M(); if (!m) return;
   m.rewarded('rewardedHonk').then(ok => { if (!ok) return adFail(); store.set('honk', true); sfx.horn(0, .1); moneyUI(); }); };
 function honkGo() { if (mode !== 'play' || G.dead) return; G.partyT = 10; G.partyLen = 10; clearRoad(); partyMusic(true); track('party'); for (let i = 0; i < 26; i++) confetti(rand(W), rand(-40, H * .15));
-  sfx.horn(-.3, .1); setTimeout(() => sfx.horn(.3, .1), 200); toast(t('honkGo'), false, 'big'); }
+  sfx.horn(-.3, .1); setTimeout(() => sfx.horn(.3, .1), 200); toast(t('honkGo'), true); }
 // what a purchase gives in the game (called by monetize.js)
 window.DC_ON_GRANT = g => {
   if (g.coins) { bank += g.coins; store.set('bank', bank); toast(t('gotCoins', g.coins.toLocaleString()), false, '', true); }
@@ -2313,7 +2304,7 @@ function update(dt) {
   if (!G.dead && G.rowAcc > gap) { G.rowAcc = 0; spawnRow(); }
 
   const zn = zoneAt(ZP); if (zn !== G.zone) { G.zone = zn; 
-    if (!G.demo) { G.trip.push(zn); const r = store.get('reached', []); if (!r.includes(zn)) { r.push(zn); store.set('reached', r); G.fresh.push(zn); newCityReached(zn); } } }
+    if (!G.demo) { G.trip.push(zn); const r = store.get('reached', []); if (!r.includes(zn)) { r.push(zn); store.set('reached', r); G.fresh.push(zn); newCityReached(zn); } trailAt(zn, false); } }
 
   for (let i = objs.length - 1; i >= 0; i--) {
     const o = objs[i];
