@@ -90,6 +90,11 @@ The leaderboard shows the licence photo and the custom bus, so items 5 and 8 shi
 - **Run card, after the run:** shows by itself when the player is finished (no continue left, or they go Home) and the run reached somewhere new. The driver and bus are big; below them are the countries (with flags), kilometres and cities of the run, and one small "Did you know?" fact. Share and Save make an image of it. Earlier notes: a small "Trip card" link on the game over screen lists every city the run touched, with the new ones marked, one "Did you know?" fact about the newest city with its source, the player's bus and licence photo, and Share and Save buttons.
 - **Sharing:** players can save the trip card to the phone or share it to WhatsApp, Instagram or TikTok. The image is made on the phone, and nothing is uploaded unless the player shares it.
 
+## Roads (built)
+- 58 extra roads in the existing cities, and 9 new cities with a main road and 2 extra roads each (67 roads in all). Data in `roads.js`, sources in `ROADS_SOURCES.md`.
+- Main roads are free once reached. Extra roads cost 3,000, 5,000 and 8,000 coins within each city, or come with the Danfo Pass. No new store products. Looks only.
+- The Roads screen replaces Journey: countries with flags, a tile per city, owned and locked roads with prices, and a start button.
+
 ## Keep it simple
 Every new screen must be easy for a young player to use without help:
 - one main button per screen
