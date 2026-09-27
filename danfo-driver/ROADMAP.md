@@ -66,7 +66,7 @@ The leaderboard shows the licence photo and the custom bus, so items 5 and 8 shi
 
 ### Danfo Pass (the only subscription)
 - The Danfo Pass replaces the planned Oga Driver Club, which has been removed from the code.
-- It unlocks looks only (licence options, hair and headwear colours, bus colours, plate styles, conductor looks and speech bubble styles). It never raises a score and never includes quiz help.
+- It unlocks looks only (licence options, hair and headwear colours, bus colours, plate styles, speech bubble styles). It never raises a score and never includes quiz help.
 - **What makes players want it:** a gold licence frame that also shows on their leaderboard row, new looks every month, and the flashiest outfits and colours.
 - **Shop vs Pass:** the shop keeps what it sells in 1.0 (coin packs, Remove Ads, the Starter Pack and the Lagos routes), and coins still buy the 8 buses in the Garage. The Pass adds stripe colours for any bus you own. Licence looks are never sold one by one; they are free, earned or in the Pass.
 - **Store setup:** create the subscription `danfo_pass_monthly` in both stores and the entitlement `danfo_pass` in RevenueCat (see `STORE_READY.md`).
@@ -74,7 +74,7 @@ The leaderboard shows the licence photo and the custom bus, so items 5 and 8 shi
 ## Version 1.2 (built): conductor and trip cards
 
 ### 6. Conductor as a sidekick
-- **Look:** a conductor with a separate look and outfit. One is free; more unlock through play, the Danfo Pass or the shop.
+- **Look:** a boy or a girl conductor, both free. Players pick one in the Garage.
 - **No voices.** The conductor speaks in speech bubbles, as in the game today, so nothing is mispronounced and no accent is faked.
 - **Players write the lines.** Three lines, each up to 24 letters, free to edit:
   - **Calling passengers:** "Come in! Come in!"

@@ -27,11 +27,11 @@ The step by step build and upload list is in `../danfo-app/LAUNCH_CHECKLIST.md`.
 - [x] **Quiz:** after every answer, a one-line "Did you know?" fact with its source. All 561 questions have a source.
 - [x] **Bus tag:** the slogan on the player's bus. The default is GOD IS KING. Players can write their own, and one tap brings back GOD IS KING (20 characters maximum, with a basic word filter). Free and looks only.
 - [x] **Driver's licence:** the player builds a drawn driver (never a camera photo), picks a flag (all 249 countries and territories), a plate number and a name. The rank (JJC, Area Driver, Pilot, Legend) is earned from the furthest city reached. Looks are Free, Earn or Danfo Pass.
-- [x] **Conductor:** one conductor on the bus with three looks (Classic free, Sunset earned, Party on the Pass) and three lines the player writes, with a word filter. No voices.
+- [x] **Conductor:** one conductor on the bus: a boy or a girl, both free, and three lines the player writes in any language, with a word filter. No voices.
 - [x] **New city welcome and trip card:** a small card at the top of the screen with WELCOME TO and the local greeting when a new city is reached, with Share, Save and Keep driving (the game pauses, the road stays in view, then a 3, 2, 1 countdown). Players can switch it to a small pop with no pause. After the run, a trip card with every city, one fact, and Share and Save.
 - [x] **Garage:** 8 buses bought with coins, and stripe colours for Danfo Pass holders.
 - [x] **Online leaderboard:** World, Clean runs and My country, only for players who say yes. Server checks that a score is possible, limits how often a device can submit, filters names and hides a name after 3 reports. Players can take themselves off at any time.
-- [x] **Danfo Pass:** the only subscription (monthly). Looks only: gold licence frame and gold ring on the leaderboard, the flashiest looks, stripe colours, the Party conductor and new looks every month.
+- [x] **Danfo Pass:** the only subscription (monthly). Looks only: gold licence frame and gold ring on the leaderboard, the flashiest looks, stripe colours and new looks every month.
 
 ## Accounts
 - [x] D-U-N-S number issued to God Push Inc.
