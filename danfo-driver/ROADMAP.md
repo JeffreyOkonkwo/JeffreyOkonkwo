@@ -74,7 +74,7 @@ The leaderboard shows the licence photo and the custom bus, so items 5 and 8 shi
 ## Version 1.2 (built): conductor and trip cards
 
 ### 6. Conductor as a sidekick
-- **Look:** a boy or a girl conductor, both free. Players pick one in the Garage.
+- **Look:** Area Boy or Area Girl (with or without hijab), all free. Players pick one in the Garage.
 - **No voices.** The conductor speaks in speech bubbles, as in the game today, so nothing is mispronounced and no accent is faked.
 - **Players write the lines.** Three lines, each up to 24 letters, free to edit:
   - **Calling passengers:** "Come in! Come in!"
