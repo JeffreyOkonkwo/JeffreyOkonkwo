@@ -185,7 +185,7 @@
   .small{pointer-events:auto;background:#fff;color:var(--ink);border:3px solid var(--ink);border-radius:12px;padding:5px 14px;font-weight:800;box-shadow:0 3px 0 var(--ink)}
   .howto{font-weight:700;font-size:13px;line-height:1.35;color:#fff;opacity:.9;max-width:34ch}
   .coin-i.sm{display:inline-grid;width:18px;height:18px;font-size:10px;border-width:2px;vertical-align:-3px;margin-right:5px}
-  .card{width:min(360px,100%);background:#fff;color:var(--ink);border:4px solid var(--ink);border-radius:26px;box-shadow:0 8px 0 var(--ink);
+  .card{box-sizing:border-box;width:min(396px,100%);background:#fff;color:var(--ink);border:4px solid var(--ink);border-radius:26px;box-shadow:0 8px 0 var(--ink);
     padding:18px 18px 20px;display:grid;gap:10px;justify-items:center;text-align:center}
   .card h2{margin:0;font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:clamp(38px,11vw,54px);color:var(--red);-webkit-text-stroke:2px var(--ink);line-height:1}
   .why{font-weight:700;font-size:16px;margin:0;line-height:1.3}
@@ -223,6 +223,7 @@
   #sheet.focus{background:rgba(27,16,36,.6);-webkit-backdrop-filter:blur(10px) saturate(.8);backdrop-filter:blur(10px) saturate(.8)}
   .lowfx #sheet,.lowfx #sheet.focus{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(27,16,36,.72)}
   .xbtn.bbtn{left:10px;right:auto;font-size:30px;line-height:1;padding-bottom:4px}
+  #sheet{grid-template-columns:minmax(0,1fr)}.sheetc{min-width:0}.sheetc>*{min-width:0}
   .sheetc{max-width:460px;max-height:86vh;grid-template-rows:auto 1fr auto}
   .sheetc.compact{gap:8px;padding-top:14px;padding-bottom:14px}.sheetc.compact .sh{font-size:clamp(20px,5.6vw,24px)!important;margin:0}.sheetc.compact #sheetClose{font-size:clamp(20px,5.5vw,24px);padding:10px 34px;border-radius:18px}
   .sheetc.compact .lopt{gap:2px}.sheetc.compact .nickin{padding-top:8px;padding-bottom:8px}.sheetc.compact .ccbtn{padding:6px 10px;font-size:15px}.sheetc.compact .cclist{max-height:180px}.sheetc.compact .lnote{font-size:12.5px;margin:0}
@@ -240,7 +241,7 @@
   .ccmini b{font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:20px;line-height:1.1}.ccmini span{font-weight:800;font-size:14px;color:#FFC91A}
   .ccover.mini .ccb{padding:7px 4px;font-size:14px}.ccover.mini .ccb.go{background:#FFC91A;color:var(--ink)}.ccover.mini .cc-opt{font-size:12.5px;justify-content:center}.ccover.mini .cc-msg:empty{display:none}
   .ccard{border:4px solid var(--ink);border-radius:22px;overflow:hidden;background:var(--cream);color:var(--ink);box-shadow:0 8px 0 var(--ink)}
-  .cc-stats{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;min-width:0}.ccflags{flex-wrap:wrap;justify-content:center;max-width:100%}.ccflags em{font-style:normal;font-weight:800;font-size:12px}.cc-body>*,.ccwrap>*{min-width:0}.cc-stats span{display:inline-flex;align-items:center;gap:4px;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:3px 10px;font-weight:700;font-size:13px}.cc-stats b{font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:15px}.cc-stats .cpflag{margin-right:0}
+  .cc-stats{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;min-width:0}.ccflags{flex-wrap:nowrap;justify-content:center;max-width:100%;overflow:hidden}.ccflags .cpflag{flex:none}.ccflags em{font-style:normal;font-weight:800;font-size:12px}.cc-body>*,.ccwrap>*{min-width:0}.cc-stats span{display:inline-flex;align-items:center;gap:4px;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:3px 10px;font-weight:700;font-size:13px}.cc-stats b{font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:15px}.cc-stats .cpflag{margin-right:0}
   .cc-fact.small{padding:6px 10px}.cc-fact.small p{font-size:12.5px;line-height:1.3;margin:2px 0}.cc-fact.small b{font-size:11px}.cc-fact.small small{font-size:10px}
   .cc-top{background:var(--green);color:#fff;padding:12px 16px 12px;border-bottom:7px solid var(--danfo);display:grid;gap:2px}
   .cc-lbl{font-weight:800;font-size:12px;letter-spacing:.1em;color:#e4ffef;text-transform:uppercase}
@@ -255,6 +256,7 @@
   .cc-big{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:10px;align-items:end}.cc-bus{width:100%;height:auto;display:block}
   .cc-ph{aspect-ratio:120/140;border:3px solid var(--ink);border-radius:14px;overflow:hidden;background:#cfe9ff}.cc-ph svg{display:block;width:100%;height:100%}
   .cc-name{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:2px 10px}.cc-name b{font-family:"Bungee",Impact,sans-serif;font-weight:400;font-size:17px}.cc-name span{font-weight:800;font-size:13px}
+  @media (max-height:700px){.ccover{padding-top:calc(env(safe-area-inset-top,0px) + 8px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 8px)}.ccwrap{gap:8px}.cc-top{padding:8px 14px}.cc-top b{font-size:clamp(18px,5.4vw,22px)}.cc-body{padding:8px 12px 10px;gap:7px}.cc-big{width:82%;justify-self:center}.cc-name b{font-size:15px}.cc-stats span{padding:2px 8px}.cc-fact.small p{font-size:12px}.ccard{box-shadow:0 5px 0 var(--ink)}}
   .cc-btns{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:8px}
   .ccb{border:3px solid var(--ink);border-radius:14px;padding:9px 4px;background:#fff;color:var(--ink);font-weight:800;font-size:15px;box-shadow:0 4px 0 var(--ink)}.ccb.go{background:var(--green);color:#fff}
   .cc-opt{display:flex;gap:8px;align-items:center;color:#fff;font-weight:700;font-size:14px}.cc-opt input{width:20px;height:20px}
@@ -317,6 +319,8 @@
   .ccsearch{font-size:14px!important;padding:6px 10px!important;min-width:0;width:100%}.ccpanel{display:grid;gap:6px;min-width:0;border:3px solid var(--ink);border-radius:14px;background:#fff8e7;padding:8px}.cclist{max-height:240px;overflow:auto;display:grid;gap:4px}
   .ccrow{display:flex;align-items:center;gap:10px;border:2px solid transparent;border-radius:10px;background:#fff;color:var(--ink);padding:6px 8px;font:700 15px "Baloo 2",sans-serif;text-align:left}.ccrow.on{border-color:var(--ink);background:#fff3c4}
   .cchead{margin:6px 2px 0;font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.6}
+  #sheetB>*,.rcard>*,.rinfo,.rpills{min-width:0}.rpill{max-width:100%}.rpill span{overflow-wrap:anywhere}
+  @media (max-width:380px){.lbrow{grid-template-columns:18px 34px minmax(0,1fr) auto auto;gap:4px;padding:3px 5px}.lbface{width:34px;height:34px}.lbsc{font-size:12.5px}.lbname{font-size:13px}.lbrep{padding:0 2px}.lcats{gap:4px}.lcats button{padding:4px 8px;font-size:12.5px}}
   .rkey{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}.rkey span{border:2px solid var(--ink);border-radius:999px;padding:2px 9px;font-weight:800;font-size:12px}
   .rkey .own,.rpill.own{background:#dff7ea}.rkey .buy,.rpill.buy{background:#fff1c2}.rkey .wait,.rpill.wait{background:#eceaf0;color:#6d6480}.rpill.shop{background:#e8f0ff}
   .rtop{margin:0;text-align:center;font-size:13px;font-weight:700}.rtop b{font-family:"Bungee",Impact,sans-serif;font-weight:400}
@@ -325,7 +329,7 @@
   .rpic{position:relative;align-self:start;height:62px;border:2px solid var(--ink);border-radius:10px;background:#bfe6ff center bottom/cover no-repeat}.rpic i{position:absolute;top:-8px;left:-8px;width:24px;height:24px;border-radius:50%;background:var(--danfo);border:2px solid var(--ink);display:grid;place-items:center;font:400 11px "Bungee",Impact,sans-serif;font-style:normal}
   .rinfo{display:grid;gap:4px;align-content:start;min-width:0}.rinfo>b{font:400 15px "Bungee",Impact,sans-serif}
   .rpills{display:flex;flex-wrap:wrap;gap:4px}.rpill{display:grid;border:2px solid var(--ink);border-radius:10px;padding:2px 7px;text-align:left;color:var(--ink);font:700 12px/1.15 "Baloo 2",sans-serif}.rpill small{font-weight:800;font-size:10.5px;opacity:.85}.rpill.sel{box-shadow:0 0 0 3px var(--danfo)}.rpill.own small{color:#0e8f52}.rpill.buy small{color:#9a6400}
-  .rintro{margin:0;font-weight:800;text-align:center}.rrule{margin:4px auto;font-size:12.5px;font-weight:700;text-align:center;background:#eef6ff;border:2px solid var(--ink);border-radius:999px;padding:2px 10px;width:max-content;max-width:100%}.rbank{margin:0;text-align:center;font-weight:800;font-size:13px}
+  .rintro{margin:0;font-weight:800;text-align:center}.rrule{margin:4px auto;font-size:12.5px;font-weight:700;text-align:center;background:#eef6ff;border:2px solid var(--ink);border-radius:12px;padding:2px 10px;width:fit-content;max-width:100%;box-sizing:border-box}.rbank{margin:0;text-align:center;font-weight:800;font-size:13px}
   .rcountry{border:3px solid var(--ink);border-radius:16px;background:#fff8e7;padding:6px;display:grid;gap:6px}.rcountry h3{margin:0;display:flex;align-items:center;gap:8px;font:400 17px "Bungee",Impact,sans-serif}
   .rtiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;align-items:start}
   .rtile{background:#fff;border:2px solid var(--ink);border-radius:12px;overflow:hidden;display:grid;align-content:start}.rtile.far{opacity:.8}.rtile.far .rhead{filter:grayscale(.55)}
@@ -472,10 +476,14 @@ const playerPfx = id => id === 1 ? 'danfocraze.' : 'danfocraze~' + id + '.';
 function playerList() { try { const l = JSON.parse(lsGet('danfocraze.players') || 'null'); if (Array.isArray(l) && l.length && l.every(n => Number.isInteger(n) && n > 0)) return l; } catch (e) {} return [1]; }
 const activePlayer = (() => { const a = Number(lsGet('danfocraze.player')); return playerList().includes(a) ? a : playerList()[0]; })();
 const PFX = playerPfx(activePlayer);
+// ?stress=card|licence|picker|board|roads opens a worst case screen (every country, the longest names) for checking phone sizes.
+// Nothing is saved in stress mode: reads and writes go to memory only, so the player's real progress is never touched.
+const STRESS = (() => { try { const v = new URLSearchParams(location.search).get('stress'); return /^(card|licence|picker|board|country|roads)$/.test(v || '') ? v : ''; } catch (e) { return ''; } })();
+const STRESS_MEM = new Map(STRESS ? [['setup', 'true'], ['lbOk', 'true'], ['nick', '"Oluwadamilare Okafor"'], ['flag', '"CD"'], ['plate', '"LAG 2025"'], ['tutSteps', '{"dodge":true,"jump":true,"pax":true,"cop":true}']] : []);
 const store = {
   get(k, d) {
     try {
-      const raw = localStorage.getItem((DEVICE_KEYS.has(k) ? 'danfocraze.' : PFX) + k); if (raw === null) return d; const v = JSON.parse(raw);
+      const key = (DEVICE_KEYS.has(k) ? 'danfocraze.' : PFX) + k, raw = STRESS ? (STRESS_MEM.has(k) ? STRESS_MEM.get(k) : localStorage.getItem(key)) : localStorage.getItem(key); if (raw === null) return d; const v = JSON.parse(raw);
       if (d === null || d === undefined) return v;
       if (typeof d === 'number') return Number.isFinite(v) ? v : d;
       if (Array.isArray(d)) return Array.isArray(v) ? v : d;
@@ -483,7 +491,7 @@ const store = {
       return typeof v === typeof d ? v : d;
     } catch (e) { return d; }
   },
-  set(k, v) { try { localStorage.setItem((DEVICE_KEYS.has(k) ? 'danfocraze.' : PFX) + k, JSON.stringify(v)); } catch (e) {} },
+  set(k, v) { if (STRESS) { STRESS_MEM.set(k, JSON.stringify(v)); return; } try { localStorage.setItem((DEVICE_KEYS.has(k) ? 'danfocraze.' : PFX) + k, JSON.stringify(v)); } catch (e) {} },
 };
 const OUT = '#1b1024';
 
@@ -1614,13 +1622,14 @@ const CITYCARD = {
 const zoneName = k => ZONES.find(z => z.k === k).name.split(' · ')[0];
 const titleCase = s => s.toLowerCase().replace(/(^|[\s-])\S/g, c => c.toUpperCase());
 let ccKind = null, ccData = null;
-function cardBusHtml() { const c = document.createElement('canvas'); c.width = 240; c.height = 180; const keep = ctx; ctx = c.getContext('2d'); danfo(120, 176, 290, 0, { heads: 5, skin: mySkin(), slogan: myTag(), plate: myPlate() }); ctx = keep; return c.toDataURL(); }
+function cardBusHtml() { const c = document.createElement('canvas'); c.width = 214; c.height = 200; const keep = ctx; ctx = c.getContext('2d'); danfo(107, 190, 250, 0, { heads: 5, skin: mySkin(), slogan: myTag(), plate: myPlate() }); ctx = keep; return c.toDataURL(); }
 function cardHtml(kind, d) {
+  const places = kind === 'trip' ? d.trip.map(k => { const z = ZONES.find(x => x.k === k); return z && z.road ? z.road.city : k; }).filter((k, i, a) => a.indexOf(k) === i) : [];
   const hi = d.card && d.card.hi, head = kind === 'city'
     ? `<div class="cc-top"><span class="cc-lbl">${t('newCity')}</span><b>${t('welcomeTo', zoneName(d.zone))}</b>${hi ? `<span class="cc-hi">${escHtml(hi[0])} <small>${t(hi[2] === H_ ? 'helloIn' : 'welcomeIn', hi[1])}</small></span>` : ''}</div>`
-    : (() => { const cs = d.trip.map(zoneCC).filter((c, i, a) => a.indexOf(c) === i); const a = titleCase(zoneName(d.trip[0]).split(' · ')[0]), z = titleCase(zoneName(d.trip[d.trip.length - 1]).split(' · ')[0]); return `<div class="cc-top"><span class="cc-lbl">${t('tripTitle')}</span><b>${escHtml(d.trip.length > 1 && a !== z ? a + ' → ' + z : a)}</b></div>`; })();
+    : (() => { const a = titleCase(zoneName(places[0]).split(' · ')[0]), z = titleCase(zoneName(places[places.length - 1]).split(' · ')[0]); return `<div class="cc-top"><span class="cc-lbl">${t('tripTitle')}</span><b>${escHtml(places.length > 1 && a !== z ? a + ' → ' + z : a)}</b></div>`; })();
   const ccs = kind === 'trip' ? d.trip.map(zoneCC).filter((c, i, a) => a.indexOf(c) === i) : [];
-  const route = kind === 'trip' ? `<div class="cc-stats"><span class="ccflags">${ccs.slice(0, 7).map(c => `<i class="cpflag">${flagImg(c)}</i>`).join('')}${ccs.length > 7 ? `<em>+${ccs.length - 7}</em>` : ''}</span><span><b>${ccs.length}</b> ${t(ccs.length === 1 ? 'countryWord' : 'countriesWord')}</span><span><b>${(d.dist / 1000).toFixed(1)}</b> km</span><span><b>${d.trip.length}</b> ${t(d.trip.length === 1 ? 'cityWord' : 'citiesWord')}</span></div>` : '';
+  const route = kind === 'trip' ? `<div class="cc-stats"><span class="ccflags">${ccs.slice(0, ccs.length > 6 ? 5 : 6).map(c => `<i class="cpflag">${flagImg(c)}</i>`).join('')}${ccs.length > 6 ? `<em>+${ccs.length - 5}</em>` : ''}</span><span><b>${ccs.length}</b> ${t(ccs.length === 1 ? 'countryWord' : 'countriesWord')}</span><span><b>${(d.dist / 1000).toFixed(1)}</b> km</span><span><b>${places.length}</b> ${t(places.length === 1 ? 'cityWord' : 'citiesWord')}</span></div>` : '';
   const fact = d.card && d.card.f ? `<div class="cc-fact ${kind === 'trip' ? 'small' : ''}"><b>${t('didYouKnow')}</b><p>${escHtml(d.card.f)}</p><small>${t('source')}: ${escHtml(d.card.s)}</small></div>` : '';
   return `<div class="ccard">${head}<div class="cc-body">${kind === 'trip' ? '' : route + fact}<div class="cc-big"><img class="cc-bus" alt="" src="${cardBusHtml()}"><div class="cc-ph">${portraitSvg(myLook())}</div></div>
     <div class="cc-name"><b>${escHtml((store.get('nick', '') || t('driverWord')).toUpperCase())}</b><span>${myRank()} · ${Math.floor(d.score).toLocaleString()} ${t('pointsWord')}</span></div>${kind === 'trip' ? route + fact : ''}</div></div>`;
@@ -2876,6 +2885,29 @@ else if (!store.get('setup', false) && !store.get('nick', '')) setTimeout(() => 
 else if (playerList().length > 1 && !(() => { try { return sessionStorage.getItem('danfocraze.chose'); } catch (e) { return 1; } })()) setTimeout(() => { if (mode === 'title' && $('sheet').hidden) showChooser(); }, 700);
 if ('serviceWorker' in navigator && location.protocol === 'https:' && /vercel\.app$|danfo/i.test(location.hostname)) { try { navigator.serviceWorker.register('sw.js').catch(() => {}); } catch (e) {} }
 if ((/^(localhost|127\.0\.0\.1)$/.test(location.hostname) || location.protocol === 'file:') && !window.Capacitor) window.__dc = { T: () => T, setT: v => { T = v; }, dark: () => TOD.dark, roadKeys: () => ZONES.filter(z => z.road || (CITY[z.k] && !['lekki', 'ikorodu', 'mainland'].includes(z.k) && !CITY[z.k].premium && ROADS_ON && ['douala', 'kumasi', 'capecoast', 'abidjan', 'kampala', 'mombasa', 'dar', 'soweto', 'capetown'].includes(z.k))).map(z => z.k), city: z => newCityReached(z), step: dt => update(dt), lane, jump, get objs() { return objs; }, ZP, BLOCK, JUMP, get mode() { return mode; }, setDiff: d => { diff = d; }, start, popText, nextQuestion, clear() { objs.length = 0; }, counts() { return { objs: objs.length, props: props.length, walls: walls.length, parts: parts.length, drops: drops.length, heads: headSpots.length, lamps: lampSpots.length }; }, spawn(t, l, z) { if (BLOCK.has(t) && t !== 'cop') addV(t, l, z); else addO({ type: t, lane: l, z, look: t === 'cop' ? COP : randomLook() }); }, get G() { return G; } };
+// worst case screens for phone size checks (see STRESS near the top); nothing here is saved
+function runStress() {
+  const LONG = ['CD', 'VC', 'CF'], names = ['Oluwadamilare Okafor', 'MWMWMWMWMWMWMWMWMWMW', 'Nomvula Mthembu-Zulu', 'Chukwuemekaaaaaaaaaa'];
+  const go = () => {
+    if (STRESS === 'card') {
+      const keys = ZONES.filter(z => !z.road).map(z => z.k).filter((k, i, a) => CITYCARD[k] && a.indexOf(k) === i).concat(ZONES.filter(z => z.road).map(z => z.k));
+      const trip = ['ph', ...keys.filter(k => k !== 'ph' && k !== 'joburg'), 'joburg'];
+      const f = keys.map(k => CITYCARD[k]).sort((x, y) => (y.f || '').length - (x.f || '').length)[0];
+      G.fresh = trip.slice(); showTrip({ trip, fresh: trip, card: f, score: 1234567, dist: 98765 });
+    } else if (STRESS === 'licence' || STRESS === 'picker') {
+      showName();
+      if (STRESS === 'picker') setTimeout(() => { const b = document.querySelector('#licWrap .ccbtn'); if (b) b.click(); const q = document.querySelector('#licWrap .ccsearch'); if (q) { q.value = 'Republic'; q.dispatchEvent(new Event('input')); } }, 300);
+    } else if (STRESS === 'board' || STRESS === 'country') {
+      const rows = LB_CREW.map((e, i) => ({ ...e, crew: false, h: 's' + i, n: names[i % names.length], cc: LONG[i % 3], pl: 'WWWWWWWW', rk: 'Legend', s: 99999999 - i * 1111111, k: i % 3 }));
+      STRESS_MEM.set('flag', '"VC"'); lbMine = 's1'; lbTab = STRESS === 'country' ? 'country' : 'world'; lbCall = async () => ({ ok: true, status: 200, j: { world: rows, clean: rows, country: rows, total: 999 } }); showBoard();
+    } else if (STRESS === 'roads') {
+      for (const z of ZONES) if (z.road) z.road.title = (z.road.title + ' · BOULEVARD DE LA RÉPUBLIQUE').slice(0, 26);
+      STRESS_MEM.set('bank', '2500'); showJourney();
+    }
+  };
+  loadRoads(); Promise.all([loadFlags(), new Promise(r => { const w = n => ROADS_ON || !n ? r() : setTimeout(() => w(n - 1), 100); w(40); })]).then(() => setTimeout(go, 200));
+}
+if (STRESS) runStress();
 requestAnimationFrame(frame);
 })();
 </script>
