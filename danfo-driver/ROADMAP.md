@@ -85,11 +85,11 @@ The leaderboard shows the licence photo and the custom bus, so items 5 and 8 shi
 - **Safety:** each line passes the same word filter as the bus tag. Custom lines only show on the player's own phone; other players never see them.
 
 ### 7. New city card and trip card
-- **New city card, during the run.** The first time a player reaches a city, the game pauses and a small card appears at the top of the screen, so the road and the bus stay in view. It says "WELCOME TO ACCRA!" with the city's own greeting and its language, for example "Akwaaba! Welcome, in Twi".
+- **New country card, during the run.** The first time a player reaches a new country (Ghana, Senegal, Morocco, Egypt, Ethiopia, Kenya, Rwanda, DR Congo, South Africa), the game pauses and a small card appears at the top of the screen, so the road and the bus stay in view. It says "WELCOME TO GHANA!" with the city name above it and the city's own greeting and its language, for example "Akwaaba! Welcome, in Twi".
 - **Three buttons:** Share, Save or Keep driving. Share and Save make a full picture with the bus, the licence photo, and one "Did you know?" fact with its source.
 - **Settling back in:** after the card closes, a blinking 3, 2, 1 counts down. The road ahead is cleared and the bus is safe for a moment.
 - **Opt out:** "Next time, no pause" switches to a small welcome pop that does not stop the game and fades after about 3 seconds. It can be switched back in Journey.
-- **Only for new cities:** cities already reached get a short banner, so the card stays special.
+- **Only for new countries:** a new city inside a country already reached (for example Abuja or Kano in Nigeria) gets a small welcome at the top that does not pause the game, so the card stays special.
 - **Trip card, after the run:** a small "Trip card" link on the game over screen lists every city the run touched, with the new ones marked, one "Did you know?" fact about the newest city with its source, the player's bus and licence photo, and Share and Save buttons.
 - **Sharing:** players can save the trip card to the phone or share it to WhatsApp, Instagram or TikTok. The image is made on the phone, and nothing is uploaded unless the player shares it.
 
