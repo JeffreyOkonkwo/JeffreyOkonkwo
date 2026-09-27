@@ -1125,7 +1125,8 @@ function update(dt) {
   P.tilt += ((LANES[P.lane] - P.x) * .35 - P.tilt) * Math.min(1, dt * 12);
   if (P.jt > 0) { P.jt -= wdt; P.y = Math.max(0, Math.sin(Math.PI * (1 - P.jt / JT))) * JH; if (P.jt <= 0) { P.y = 0; P.sq = .8; if (!G.demo) sfx.land(); const p = P3(P.x, 0, ZP); burstParts(p.x, p.y, 8, ['#e8dcc8', '#fff'], 90, .4, 200, 5); } }
   P.sq += (1 - P.sq) * Math.min(1, dt * 12);
-  if (G.partyT > 0 && G.partyT - wdt <= 0) partyMusic(false);
+  if (G.partyT > 0 && G.partyT - wdt <= 0) { partyMusic(false); G.invT = Math.max(G.invT, 1.2); }
+  if (G.partyT > 0 && G.chase.t > 0) { G.chase.t = 0; G.chase.recover = false; }
   if (G.partyT > 0) { G.partyT -= wdt; if (Math.random() < dt * 7) confetti(Math.random() < .5 ? rand(W * .22) : W - rand(W * .22), -10); }
   if (G.magnetT > 0) G.magnetT -= wdt;
   if (G.invT > 0) G.invT -= wdt;
@@ -1161,7 +1162,7 @@ function update(dt) {
   for (let i = objs.length - 1; i >= 0; i--) {
     const o = objs[i];
     if (o.fly) { o.fly += dt * 2.4; o.x += o.flyDir * dt * 2.5; }
-    if (G.partyT > 0 && !G.demo && o.type === 'pax' && !o.done && o.z < ZP + 10 && o.z > ZP - .5) { o.x += (P.x - o.x) * Math.min(1, dt * 7); o.lane = P.lane; }
+    if (G.partyT > 0 && !G.demo && o.type === 'pax' && !o.done && o.z < ZP + 30 && o.z > ZP - .5) { o.x += (P.x - o.x) * Math.min(1, dt * (o.z < ZP + 10 ? 8 : 3)); o.lane = P.lane; }
     if (G.magnetT > 0 && o.type === 'coin' && o.z < ZP + 12 && o.z > ZP - .5) { o.x += (P.x - o.x) * Math.min(1, dt * 8); o.y += (P.y - o.y) * Math.min(1, dt * 8); o.z -= mv * .6; }
     o.z -= (G.speed - o.v) * wdt;
     if (o.type === 'okada') { o.x += (LANES[o.lane] - o.x) * dt * 3; }
