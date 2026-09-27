@@ -531,18 +531,19 @@ const SHOPS = ['SUYA SPOT', 'MAMA PUT', "GOD'S GRACE PHONES", 'AMALA JOINT', 'PO
 const TOWERS = ['EKO TOWER', 'LEKKI MALL', 'TECH HUB', 'ISLAND BANK', 'OCEAN VIEW'];
 const BOARDS = ['BUY LAND FOR EPE', 'JOLLOF WARS · SAT', 'LAGOS · CENTRE OF EXCELLENCE', 'WAKE UP NAIJA · 99.1FM'];
 const STOPNAMES = ZSTOPS.lagos;
-// now and then the conductor makes a small, friendly remark about the place (said at most once per run each)
+// now and then the conductor makes a small, friendly remark about the place (said at most once per run each).
+// Every "Look" line names something drawn on that city's main road (its landmark, water, hills or animals).
 const CITY_TALK = {
-  lagos: ['I will buy suya after this trip.', 'Lagos, we move!'], bridge: ['Look at the lagoon!'], mainland: ['This sunset is beautiful.'],
-  lekki: ['I like the beach here.'], ikorodu: ['The lagoon breeze is nice.'], village: ['Fresh air in the village!'],
-  abuja: ['Look, Aso Rock!'], ph: ['They call this the Garden City.'], kano: ['I will buy fabric at Kurmi Market.'],
-  accra: ['I like the beach here.'], kumasi: ['Kejetia Market is so busy!'], capecoast: ['The sea breeze here is sweet.'],
-  abidjan: ['I will eat attiéké later.'], dakar: ['Thieboudienne for lunch!'], marrakech: ['Mint tea after this trip!'],
-  cairo: ['Look, the Nile!'], addis: ['Coffee break soon!'], kampala: ['So many hills here!'], nairobi: ['Nyama choma later!'],
-  mombasa: ['I like the beach here.'], dar: ['The ocean breeze is nice.'], kigali: ['So clean and green here!'],
-  kinshasa: ['Put on some rumba!'], douala: ['Ndolé for lunch today!'], joburg: ['Busy city, eyes on the road!'],
-  soweto: ['I like the energy here.'], capetown: ['Look at Table Mountain!'] };
-function cityTalk(zk) { if (lang === 'fr' || !G) return null; const z = zoneOf(zk), c = z && z.road ? z.road.city : zk, l = (CITY_TALK[c] || []).filter(b => !(G.bits || []).includes(b)); if (!l.length) return null; const b = pick(l); (G.bits = G.bits || []).push(b); return b; }
+  lagos: ['The jollof rice here is sweet!', 'I will buy suya after this trip.'], bridge: ['Look at the boats on the lagoon!'], mainland: ['Look at this sunset!'],
+  lekki: ['Look, the Lekki-Ikoyi bridge!'], ikorodu: ['Ikorodu garage is busy today!'], village: ['Look at the green hills!'],
+  abuja: ['Look, Aso Rock!'], ph: ['Bole and fish later!'], kano: ['Kilishi for the road!', 'I will buy fabric at Kurmi Market.'],
+  accra: ['Look, the Black Star Gate!', 'Waakye for breakfast tomorrow!'], kumasi: ['Fufu and light soup later!'], capecoast: ['Look, Cape Coast Castle!', 'Fresh fish for lunch!'],
+  abidjan: ['Look, St. Paul\'s Cathedral!', 'Attiéké and fish later!'], dakar: ['Look, the Renaissance Monument!', 'Thieboudienne for lunch!'], marrakech: ['Look at the Atlas Mountains!', 'Mint tea after this trip!'],
+  cairo: ['Look, the pyramids!', 'Koshari for lunch!'], addis: ['Coffee break soon!', 'Injera for lunch!'], kampala: ['Look, the National Mosque!', 'Matooke for lunch!'], nairobi: ['Look, giraffes!', 'Nyama choma later!'],
+  mombasa: ['Look, the Mombasa tusks!', 'Pilau for lunch today!'], dar: ['Chips mayai later!'], kigali: ['Look at the green hills!', 'Brochettes tonight!'],
+  kinshasa: ['Look, the Congo River!', 'Put on some rumba!'], douala: ['Ndolé for lunch today!'], joburg: ['Look, Ponte Tower!', 'Pap and wors tonight!'],
+  soweto: ['Kota for lunch!'], capetown: ['Look at Table Mountain!', 'A Gatsby for lunch!'] };
+function cityTalk(zk) { if (lang === 'fr' || !G) return null; const z = zoneOf(zk); if (!z || z.road) return null; const l = (CITY_TALK[zk] || []).filter(b => !(G.bits || []).includes(b)); if (!l.length) return null; const b = pick(l); (G.bits = G.bits || []).push(b); return b; }
 // everyday calls are in English; a few Pidgin ones stay for flavour
 const CALLS = ['Enter with your change!', 'Move to the back, please!', 'Space at the back!', 'Who has not paid?', 'Hold on tight!', 'Driver, easy!', 'Oya, we dey go!', 'Shine your eye!'];
 
