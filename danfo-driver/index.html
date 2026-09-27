@@ -218,6 +218,7 @@
   .sheetc.compact .lopt{gap:2px}.sheetc.compact .nickin{padding-top:8px;padding-bottom:8px}.sheetc.compact .ccbtn{padding:6px 10px;font-size:15px}.sheetc.compact .cclist{max-height:180px}.sheetc.compact .lnote{font-size:12.5px;margin:0}
   .sheetc.compact .pl{padding:6px 12px}
   .lsw.own{width:auto;padding:0 8px;font-weight:800;font-size:11px;color:var(--ink)}
+  .ldetails{display:grid;grid-template-columns:1fr 1fr;gap:6px 8px;background:#fff8e7;border:3px solid var(--ink);border-radius:14px;padding:8px}.ldetails .lname2{grid-column:1 / -1}.ldetails .ccp{min-width:0}.ldetails .ccbtn{padding:6px 8px;font-size:14px;gap:6px}.ldetails .ccbtn b{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.ldetails .ccpanel{grid-column:1 / -1}.ldetails .nickin{padding-top:8px;padding-bottom:8px}.ldetails .nickin.plateedit{font-family:"Bungee",Impact,sans-serif;letter-spacing:.06em;background:#FFC91A;text-align:center}
   .lname{cursor:pointer}.lic .flagbox{cursor:pointer;box-shadow:0 0 0 2px rgba(255,255,255,.7)}.ledit{font-size:.8em;opacity:.6}
   .askbtn{border:3px solid var(--ink);border-radius:16px;background:#e53935;color:#fff;font:400 18px "Bungee",Impact,sans-serif;padding:10px;box-shadow:0 4px 0 var(--ink)}
   .sh{padding:0 44px;color:var(--ink)!important;-webkit-text-stroke:0!important;font-size:clamp(26px,7vw,34px)!important}
@@ -1490,7 +1491,6 @@ const LOOKS = [
   { id: 'extras', groups: [
     { key: 'glasses', items: [['none', 'None', LF], ['round', 'Round', LF], ['square', 'Square', LF], ['shades', 'Shades', 'pass']] },
     { key: 'earrings', items: [['none', 'None', LF], ['studs', 'Studs', LF], ['hoops', 'Hoops', LF]] } ] },
-  { id: 'details', groups: [] },
 ];
 const lookGroups = () => LOOKS.flatMap(c => c.groups);
 const lookItem = (k, v) => { const g = lookGroups().find(g => g.key === k); return g && (g.items || g.sw).find(i => i[0] === v); };
@@ -1686,30 +1686,30 @@ function drawLicence() {
   const d = licDraft, w = $('licWrap'); if (!w) return;
   const tries = lookGroups().map(g => lookItem(g.key, d.look[g.key])).filter(it => it && !lookOpen(it));
   const nr = nextRank(), badge = it => it[2] === 'earn' ? `<span class="lk earn">${lookOpen(it) ? '✓' : t('earnTag')}</span>` : it[2] === 'pass' ? `<span class="lk pass">${t('passTag')}${hasPass() ? ' ✓' : ''}</span>` : '';
+  if (!LOOKS.some(c => c.id === licCat)) licCat = 'face';
   const C = LOOKS.find(c => c.id === licCat);
   let body = '';
-  if (licCat === 'details') {
-    body = `<label class="lopt"><span class="lbl">${t('lblName')}</span><input id="nick" class="nickin" type="text" maxlength="14" autocomplete="nickname" placeholder="${t('namePh')}" value="${escHtml(d.name)}"></label>
-      <label class="lopt"><span class="lbl">${t('plateLbl')}</span><input id="plateIn" class="nickin" type="text" maxlength="8" autocomplete="off" value="${escHtml(d.plate)}"></label>
-      <div class="lopt"><span class="lbl">${t('flagLbl')}</span>${ccPicker('flagIn', d.flag)}</div>
-      <p class="lnote"><a href="privacy.html" target="_blank" rel="noopener">${t('privacy')}</a>${M() && M().privacyChoices ? ` · <a href="#" id="privChoices">${t('privacyChoices')}</a>` : ''}</p>`;
-  } else {
+  {
     body = C.groups.map(g => `<div class="lopt"><span class="lbl">${t('lg_' + g.key)}</span><div class="lchips">${g.sw
       ? g.sw.map((it, i) => `<button type="button" class="lsw ${lookOpen(it) ? '' : 'locked'} ${it[0] ? '' : 'own'}" style="background:${it[0] || '#fff'}" data-k="${g.key}" data-i="${i}" aria-pressed="${d.look[g.key] === it[0]}" aria-label="${t('lg_' + g.key)}">${it[2] !== LF && !lookOpen(it) ? `<i>${it[2] === 'pass' ? 'P' : 'E'}</i>` : ''}${it[0] ? '' : t('ownCol')}</button>`).join('')
       : g.items.map((it, i) => `<button type="button" class="lchip" data-k="${g.key}" data-i="${i}" aria-pressed="${d.look[g.key] === it[0]}">${it[1]}${badge(it)}</button>`).join('')}</div></div>`).join('');
   }
-  w.innerHTML = licenceCard(d.look, d.name, d.plate, d.flag)
+  const details = `<div class="ldetails"><label class="lopt lname2"><span class="lbl">${t('lblName')}</span><input id="nick" class="nickin" type="text" maxlength="14" autocomplete="nickname" placeholder="${t('namePh')}" value="${escHtml(d.name)}"></label>
+    <div class="lopt"><span class="lbl">${t('flagLbl')}</span>${ccPicker('flagIn', d.flag)}</div>
+    <label class="lopt"><span class="lbl">${t('lblPlate')}</span><input id="plateIn" class="nickin plateedit" type="text" maxlength="8" autocomplete="off" value="${escHtml(d.plate)}"></label></div>`;
+  w.innerHTML = licenceCard(d.look, d.name, d.plate, d.flag) + details
     + `<p class="lmsg ${tries.length ? 'warn' : ''}" id="licMsg">${tries.length ? t('tryOn', tries.map(it => `${it[1] || t('colourWord')} (${it[2] === 'pass' ? t('passName') : it[4]})`).join(', ')) : nr ? t('nextRank', nr.name, nr.city) : t('topRank')}</p>`
     + `<div class="lcats" role="tablist">${LOOKS.map(c => `<button type="button" role="tab" data-c="${c.id}" aria-selected="${c.id === licCat}">${t('lc_' + c.id)}</button>`).join('')}</div>`
     + `<div class="lbody">${body}</div>`
     + (M() && M().native && M().enabled && !hasPass() ? `<button type="button" class="passbtn" id="getPass">${t('getPass')}</button>` : '')
-    + `<button type="button" class="linkbtn" id="plBtn">${t('playersBtn')}</button>`;
+    + `<button type="button" class="linkbtn" id="plBtn">${t('playersBtn')}</button>`
+    + `<p class="lnote" style="text-align:center"><a href="privacy.html" target="_blank" rel="noopener">${t('privacy')}</a>${M() && M().privacyChoices ? ` · <a href="#" id="privChoices">${t('privacyChoices')}</a>` : ''}</p>`;
   $('plBtn').onclick = () => { saveLicence(); showPlayers(); };
   w.querySelectorAll('[data-c]').forEach(b => b.onclick = () => { licCat = b.dataset.c; drawLicence(); });
-  { const ln = w.querySelector('.lname'); if (ln) ln.onclick = () => { licCat = 'details'; drawLicence(); const i = $('nick'); if (i) { i.focus(); i.select(); } }; }
-  { const fb = w.querySelector('.lic .flagbox'); if (fb) fb.onclick = () => { licCat = 'details'; drawLicence(); const b = document.querySelector('#flagIn .ccbtn'); if (b) { b.click(); b.scrollIntoView({ block: 'center' }); } }; }
+  { const ln = w.querySelector('.lname'); if (ln) ln.onclick = () => { const i = $('nick'); if (i) { i.focus(); i.select(); } }; }
+  { const fb = w.querySelector('.lic .flagbox'); if (fb) fb.onclick = () => { const b = document.querySelector('#flagIn .ccbtn'); if (b) { b.click(); b.scrollIntoView({ block: 'center' }); } }; }
   w.querySelectorAll('[data-k]').forEach(b => b.onclick = () => { const g = lookGroups().find(g => g.key === b.dataset.k), it = (g.items || g.sw)[+b.dataset.i]; d.look[g.key] = it[0]; drawLicence(); });
-  if ($('nick')) { const i = $('nick'); i.oninput = () => { d.name = cleanNick(i.value); }; i.addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Enter') i.blur(); }); }
+  if ($('nick')) { const i = $('nick'); i.oninput = () => { d.name = cleanNick(i.value); const n = w.querySelector('.lname'); if (n) n.firstChild.textContent = (d.name || t('driverWord')) + ' '; }; i.addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Enter') i.blur(); }); }
   if ($('plateIn')) { const i = $('plateIn'); i.oninput = () => { const v = cleanPlate(i.value); i.value = v; if (v.length >= 2 && tagOk(v)) { d.plate = v; $('licMsg').textContent = ''; } else $('licMsg').textContent = t('tagBad'); }; i.addEventListener('keydown', e => e.stopPropagation()); }
   wireCcPicker('flagIn', v => { d.flag = v; const f = document.querySelector('#licWrap .flagbox'); if (f) f.innerHTML = flagImg(v); });
   if ($('privChoices')) $('privChoices').onclick = e => { e.preventDefault(); M().showPrivacyChoices(); };
