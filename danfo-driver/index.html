@@ -708,7 +708,7 @@ diff = store.get('diff', 'normal'); if (!DIFFS[diff]) diff = 'normal';
 let best = store.get('best.' + diff, 0), bank = store.get('bank', 0), tutDone = store.get('tut', false);
 const BLOCK = new Set(['car', 'danfo', 'keke', 'brt', 'okada', 'cop']), JUMP = new Set(['pothole', 'branches', 'barrier', 'bump', 'goat']);
 const LEN = { car: .95, danfo: 1.2, keke: .7, brt: 2.2, okada: .5, pothole: .3, branches: .35, barrier: .2, bump: .2, goat: .35, cop: .3, coin: .2, pax: .3, speaker: .3, magnet: .3 };
-const NAMES = { car: 'Camry', danfo: 'another danfo', keke: 'keke', brt: 'BRT bus', okada: 'okada' };
+const NAMES = { car: 'Camry', danfo: 'danfo', keke: 'keke', brt: 'BRT bus', okada: 'okada' };
 const COP = { skin: '#5a3320', shirt: '#1b1b24', dots: '#1b1b24', pants: '#1b1b24', hat: 'police' };
 
 function zoneAt(z) { const n = ZONES.length; return ZONES[((Math.floor((G.dist + z) / ZONE_LEN) % n) + n) % n].k; }
@@ -875,9 +875,9 @@ function gameOver() {
   const score = Math.floor(G.score), isBest = score > best; if (isBest) { best = score; store.set('best.' + diff, best); }
   if (!G.banked) { bank += G.coins; store.set('bank', bank); G.banked = G.coins; } else { bank += G.coins - G.banked; store.set('bank', bank); G.banked = G.coins; }
   $('overT').textContent = G.deadKind === 'caught' ? t('jail') : t('crash');
-  $('overWhy').textContent = G.deadKind === 'caught' ? 'Police don catch you and you no get money to settle. Dem don carry you go station!' : `You don jam ${NAMES[G.deadWhat] || 'motor'}. Wahala dey!`;
+  $('overWhy').textContent = G.deadKind === 'caught' ? 'No money to settle. Na station be that!' : `You don jam ${NAMES[G.deadWhat] || 'motor'}!`;
   $('oScore').textContent = score.toLocaleString(); $('oCoins').textContent = G.coins.toLocaleString(); $('oPax').textContent = G.pax; $('oBest').textContent = best.toLocaleString();
-  $('newBest').hidden = !isBest; const nk = store.get('nick', ''); if (nk) $('overWhy').textContent += ` Sorry ${nk}!`; show('over', true); (qb.hidden || qb.disabled ? $('againBtn') : qb).focus();
+  $('newBest').hidden = !isBest; show('over', true); (qb.hidden || qb.disabled ? $('againBtn') : qb).focus();
 }
 // ================================================================ features
 // ---- language (menus and hints). The catchphrase stays in pidgin everywhere.
