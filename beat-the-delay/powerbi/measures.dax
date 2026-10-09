@@ -1,0 +1,87 @@
+// Beat the Delay: DAX measures
+// Paste each measure into a table called "_Measures" (Home > Enter data > name it _Measures, then New measure).
+// Model: fact_delays[Line] -> dim_line[Line], fact_delays[Station] -> dim_station[Station],
+//        fact_delays[Cause] -> dim_cause[Cause], fact_delays[Hour] -> dim_hour[Hour],
+//        fact_delays[Date] -> dim_date[Date]. All single direction, many to one.
+
+dim_date =
+ADDCOLUMNS (
+    CALENDAR ( MIN ( fact_delays[Date] ), MAX ( fact_delays[Date] ) ),
+    "Month", FORMAT ( [Date], "mmm yyyy" ),
+    "Month Start", DATE ( YEAR ( [Date] ), MONTH ( [Date] ), 1 ),
+    "Weekday", FORMAT ( [Date], "dddd" ),
+    "Weekday Number", WEEKDAY ( [Date], 2 )
+)
+// (dim_date is a calculated table: Modeling > New table. Sort Weekday by Weekday Number, Month by Month Start.)
+
+Minutes Lost = SUM ( fact_delays[Minutes] )
+
+Hours Lost = DIVIDE ( [Minutes Lost], 60 )
+
+Delays = COUNTROWS ( fact_delays )
+
+Average Stop (min) = DIVIDE ( [Minutes Lost], [Delays] )
+
+Days in Period = COUNTROWS ( dim_date )
+
+Delays per Day = DIVIDE ( [Delays], [Days in Period] )
+
+People Minutes =
+CALCULATE ( [Minutes Lost], dim_cause[Cause Type] = "People-related" )
+
+People Share = DIVIDE ( [People Minutes], [Minutes Lost] )
+
+Weather Minutes =
+CALCULATE ( [Minutes Lost], dim_cause[Cause] = "Weather" )
+
+Worst Station =
+VAR t =
+    TOPN ( 1, FILTER ( VALUES ( dim_station[Station] ), dim_station[Station] <> "Line-wide or yard" ), [Minutes Lost], DESC )
+RETURN
+    MAXX ( t, dim_station[Station] )
+
+Worst Station Minutes =
+VAR s = [Worst Station]
+RETURN
+    CALCULATE ( [Minutes Lost], dim_station[Station] = s )
+
+Peak Delay Hour =
+VAR t = TOPN ( 1, VALUES ( dim_hour[Hour] ), [Delays], DESC )
+RETURN
+    MAXX ( t, LOOKUPVALUE ( dim_hour[Hour Label], dim_hour[Hour], dim_hour[Hour] ) )
+
+Minutes Lost MoM % =
+VAR cur = [Minutes Lost]
+VAR prev = CALCULATE ( [Minutes Lost], DATEADD ( dim_date[Date], -1, MONTH ) )
+RETURN
+    DIVIDE ( cur - prev, prev )
+
+// ---- Plan My Ride (use with slicers on Station, Weekday and Hour)
+
+Weekdays in Period =
+CALCULATE ( COUNTROWS ( dim_date ), ALLEXCEPT ( dim_date, dim_date[Weekday] ) )
+
+Delay Rate per 100 Days =
+DIVIDE ( [Delays], [Weekdays in Period] ) * 100
+
+Station Baseline per 100 Slots =
+VAR st = CALCULATE ( [Delays], REMOVEFILTERS ( dim_hour ), REMOVEFILTERS ( dim_date ) )
+RETURN
+    DIVIDE ( st, CALCULATE ( COUNTROWS ( dim_date ), REMOVEFILTERS ( dim_date ) ) * 21 ) * 100
+
+Risk Ratio = DIVIDE ( [Delay Rate per 100 Days], [Station Baseline per 100 Slots] )
+
+Verdict =
+SWITCH (
+    TRUE (),
+    [Delays] = 0, "Green light",
+    [Risk Ratio] < 0.75, "Green light",
+    [Risk Ratio] < 1.5, "Steady pace",
+    "Headwind"
+)
+
+Verdict Colour =
+SWITCH ( [Verdict], "Green light", "#0A7A3B", "Steady pace", "#1C4FA0", "#E4002B" )
+
+Buffer (min) =
+IF ( [Delays] = 0, 0, MAX ( 5, CEILING ( ROUND ( [Average Stop (min)], 0 ), 5 ) ) )

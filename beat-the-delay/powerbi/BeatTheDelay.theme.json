@@ -1,0 +1,31 @@
+{
+  "name": "Beat the Delay",
+  "dataColors": ["#1C4FA0", "#E4002B", "#F8C300", "#00923F", "#A21A68", "#8A94A3", "#0E2747", "#6E9BFF"],
+  "background": "#FFFFFF",
+  "foreground": "#111418",
+  "tableAccent": "#1C4FA0",
+  "good": "#0A7A3B",
+  "neutral": "#1C4FA0",
+  "bad": "#E4002B",
+  "maximum": "#0E2747",
+  "center": "#7FA0D6",
+  "minimum": "#EEF2F8",
+  "textClasses": {
+    "title": { "fontFace": "Segoe UI Semibold", "fontSize": 14, "color": "#111418" },
+    "header": { "fontFace": "Segoe UI Semibold", "fontSize": 12, "color": "#111418" },
+    "label": { "fontFace": "Segoe UI", "fontSize": 10, "color": "#5E6878" },
+    "callout": { "fontFace": "DIN", "fontSize": 36, "color": "#111418" }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "border": [{ "show": false }],
+        "background": [{ "show": true, "color": { "solid": { "color": "#FFFFFF" } }, "transparency": 0 }],
+        "visualHeader": [{ "show": true }],
+        "dropShadow": [{ "show": false }]
+      }
+    },
+    "page": { "*": { "background": [{ "color": { "solid": { "color": "#EEF1F6" } }, "transparency": 0 }] } },
+    "card": { "*": { "labels": [{ "color": { "solid": { "color": "#111418" } }, "fontSize": 32 }], "categoryLabels": [{ "color": { "solid": { "color": "#5E6878" } }, "fontSize": 10 }] } }
+  }
+}

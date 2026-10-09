@@ -1,0 +1,25 @@
+Hour,Hour Label,Service Order,Period
+0,12 AM,20,Late night
+1,1 AM,21,Late night
+2,2 AM,99,Late night
+3,3 AM,99,Off-peak
+4,4 AM,99,Off-peak
+5,5 AM,1,Start of service
+6,6 AM,2,Morning rush
+7,7 AM,3,Morning rush
+8,8 AM,4,Morning rush
+9,9 AM,5,Morning rush
+10,10 AM,6,Off-peak
+11,11 AM,7,Off-peak
+12,12 PM,8,Off-peak
+13,1 PM,9,Off-peak
+14,2 PM,10,Off-peak
+15,3 PM,11,Evening rush
+16,4 PM,12,Evening rush
+17,5 PM,13,Evening rush
+18,6 PM,14,Evening rush
+19,7 PM,15,Off-peak
+20,8 PM,16,Off-peak
+21,9 PM,17,Off-peak
+22,10 PM,18,Late night
+23,11 PM,19,Late night

@@ -1,0 +1,141 @@
+Code,Description,Cause,Cause Type
+EUAC,AIR CONDITIONING,Train and door faults,"Equipment, track, operations or other"
+EUAL,ALTERNATING CURRENT,Train and door faults,"Equipment, track, operations or other"
+EUATC,ATC RC&S EQUIPMENT,Train and door faults,"Equipment, track, operations or other"
+EUBK,BRAKES,Train and door faults,"Equipment, track, operations or other"
+EUBO,BODY,Train and door faults,"Equipment, track, operations or other"
+EUCA,COMPRESSED AIR,Train and door faults,"Equipment, track, operations or other"
+EUCC,CAM CONTROL,Train and door faults,"Equipment, track, operations or other"
+EUCD,RC&S CONSEQUENTIAL DELAY (SECOND DELAY SAME FAULT â NO INTERVENTION),Train and door faults,"Equipment, track, operations or other"
+EUCH,CHOPPER CONTROL,Train and door faults,"Equipment, track, operations or other"
+EUCO,COUPLERS,Train and door faults,"Equipment, track, operations or other"
+EUDO,DOOR PROBLEMS RE:FAULTY EQUIPMENT,Train and door faults,"Equipment, track, operations or other"
+EUECD,ECD/LINE MECHANIC RELATED,Train and door faults,"Equipment, track, operations or other"
+EUHV,HIGH VOLTAGE,Train and door faults,"Equipment, track, operations or other"
+EULT,LIGHTING SYSTEMS,Train and door faults,"Equipment, track, operations or other"
+EULV,LOW VOLTAGE,Train and door faults,"Equipment, track, operations or other"
+EUME,RC&S MAINTENANCE ERROR (HUMAN ERROR - NO EQUIP.FAULT),Train and door faults,"Equipment, track, operations or other"
+EUNEA,NO EQUIPMENT AVAILABLE,Train and door faults,"Equipment, track, operations or other"
+EUNT,EQUIPMENT â NO TROUBLE FOUND,Alarms with no trouble found,People-related
+EUO,RC&S OTHER,Train and door faults,"Equipment, track, operations or other"
+EUOE,"RC&S OPERATOR ERROR (SIGNAL VIOLATION, PLATFORM OVERSHOOT, ETC)",Train and door faults,"Equipment, track, operations or other"
+EUOPO,OPTO (RC&S) NON-TRAIN DOOR MONITORING,Train and door faults,"Equipment, track, operations or other"
+EUPI,T-1 PROPULSION SYSTEM,Train and door faults,"Equipment, track, operations or other"
+EUSC,SPEED CONTROL EQUIPMENT,Train and door faults,"Equipment, track, operations or other"
+EUTL,TRAINLINE SYSTEM,Train and door faults,"Equipment, track, operations or other"
+EUTM,TRACTION MOTORS,Train and door faults,"Equipment, track, operations or other"
+EUTR,TRUCKS,Train and door faults,"Equipment, track, operations or other"
+EUTRD,TORONTO ROCKET CAB DOORS,Train and door faults,"Equipment, track, operations or other"
+EUVA,WARNING/ALARM SYSTEM/PASSENGER SECURITY SYSTEM,Train and door faults,"Equipment, track, operations or other"
+EUVE,WORK VEHICLE,Train and door faults,"Equipment, track, operations or other"
+EUYRD,YARD/CARHOUSE RELATED PROBLEMS,Train and door faults,"Equipment, track, operations or other"
+MUATC,ATC PROJECT,Other,"Equipment, track, operations or other"
+MUCL,DIVISIONAL CLERK RELATED,Other,"Equipment, track, operations or other"
+MUCP,CLOSURES - PLANNED,Other,"Equipment, track, operations or other"
+MUCSA,NO COLLECTOR AVAILABLE- E.S.A. RELATED,Other,"Equipment, track, operations or other"
+MUCU,CLOSURES - UNPLANNED,Other,"Equipment, track, operations or other"
+MUD,DOOR PROBLEMS â PASSENGER RELATED,Train and door faults,"Equipment, track, operations or other"
+MUDD,DOOR PROBLEMS â DEBRIS RELATED,Train and door faults,"Equipment, track, operations or other"
+MUEC,ENGINEEERING & CONSTRUCTION RELATED,Other,"Equipment, track, operations or other"
+MUESA,NO OPERATOR/CREW AVAILABLE â E.S.A. RELATED,Other,"Equipment, track, operations or other"
+MUFM,âFORCE MAJEUREâ â DELAY OVER 90 MIN. RE: WEATHER OR MAJOR EVENT,Other,"Equipment, track, operations or other"
+MUFS,FIRE/SMOKE PLAN B â SOURCE EXTERNAL TO TTC,Other,"Equipment, track, operations or other"
+MUGD,MISCELLANEOUS GENERAL SUBWAY LINE DELAYS -,Other,"Equipment, track, operations or other"
+MUI,INJURED/ILL CUSTOMER ON TRAIN â TRANSPORTED,Customer illness or injury,People-related
+MUIE,INJURED EMPLOYEES,Customer illness or injury,People-related
+MUIR,INJURED/ILL CUSTOMER ON TRAIN â MEDICAL AID REFUSED,Customer illness or injury,People-related
+MUIRS,INJURED/ILL CUSTOMER IN STATION â MEDICAL AID REFUSED,Customer illness or injury,People-related
+MUIS,INJURED/ILL CUSTOMER IN STATION - TRANSPORTED,Customer illness or injury,People-related
+MULD,LABOUR DISPUTE RELATED â SUBWAY,Other,"Equipment, track, operations or other"
+MUNCA,NO COLLECTOR AVAILABLE â NON ESA RELATED,Other,"Equipment, track, operations or other"
+MUNOA,NO OPERATOR AVAILABLE â NON ESA RELATED,Other,"Equipment, track, operations or other"
+MUO,MISCELLANEOUS OTHER,Other,"Equipment, track, operations or other"
+MUODC,OVERHEAD DOOR CONTACTED,Other,"Equipment, track, operations or other"
+MUPAA,PAA â NO TROUBLE FOUND,Alarms with no trouble found,People-related
+MUPF,EXTERNAL POWER FAILURE,Other,"Equipment, track, operations or other"
+MUPLA,FIRE/SMOKE PLAN A,Track-level emergencies,People-related
+MUPLB,FIRE/SMOKE PLAN B â SOURCE TTC (TRACK LEVEL),Track-level emergencies,People-related
+MUPLC,FIRE SMOKE PLAN C,Track-level emergencies,People-related
+MUPR1,PRIORITY ONE â TRAIN IN CONTACT WITH PERSON,Track-level emergencies,People-related
+MUSAN,UNSANITARY VEHICLE,Unsanitary vehicle,People-related
+MUSC,SI SPEED CONTROL,Other,"Equipment, track, operations or other"
+MUTD,TRAINING DEPT. RELATED DELAYS,Other,"Equipment, track, operations or other"
+MUTO,MISCELLANEOUS TRANSPORTATION OTHER (EMPLOYEE NON-CHARGEABLE),Operations and staffing,"Equipment, track, operations or other"
+MUWEA,WEATHER REPORTS / RELATED PROBLEMS,Weather,"Equipment, track, operations or other"
+MUWR,WORK REFUSAL,Other,"Equipment, track, operations or other"
+PUATC,ATC SIGNALS OTHER,Track and signals,"Equipment, track, operations or other"
+PUCBI,CENTRAL LOGIC CONTROLLER FAILURE,Track and signals,"Equipment, track, operations or other"
+PUCSC,SIGNAL CONTROL,Track and signals,"Equipment, track, operations or other"
+PUCSS,CENTRAL OFFICE SIGNALLING SYSTEM (CSS),Track and signals,"Equipment, track, operations or other"
+PUDCS,DATA COMMUNICATIONS SYSTEM FAILURE,Track and signals,"Equipment, track, operations or other"
+PUEME,ELECTRICAL â MAINTENANCE ERROR,Track and signals,"Equipment, track, operations or other"
+PUEO,ELECTRICAL â OTHER,Track and signals,"Equipment, track, operations or other"
+PUEWZ,ELECTRICAL â WORK ZONE PROBLEMS,Track and signals,"Equipment, track, operations or other"
+PUMEL,ANY ESCL. OR ELEV. INCIDENT â TRANSPORTED OR MEDICAL AID DECLINED,Track and signals,"Equipment, track, operations or other"
+PUMO,PLANT MAINTENANCE â OTHER,Track and signals,"Equipment, track, operations or other"
+PUMST,ANY STAIRWAY INCIDENT â TRANSPORTED OR MEDICAL AID DECLINED,Track and signals,"Equipment, track, operations or other"
+PUOPO,OPTO (COMMUNICATIONS) TRAIN DOOR MONITORING,Track and signals,"Equipment, track, operations or other"
+PUSAC,SIGNALS AXLE COUNTER BLOCK FAILURE,Track and signals,"Equipment, track, operations or other"
+PUSBE,BEACON FAILURE,Track and signals,"Equipment, track, operations or other"
+PUSCA,SCADA RELATED PROBLEMS,Track and signals,"Equipment, track, operations or other"
+PUSCR,SUBWAY CAR RADIO FAULT,Track and signals,"Equipment, track, operations or other"
+PUSEA,EMERGENCY ALARM STATIONS,Track and signals,"Equipment, track, operations or other"
+PUSI,SIGNAL OR RELATED COMPONENTS FAILURE,Track and signals,"Equipment, track, operations or other"
+PUSIO,SMART IO FAILURE,Track and signals,"Equipment, track, operations or other"
+PUSIS,SIGNALS TRACK WEATHER RELATED ISSUES,Weather,"Equipment, track, operations or other"
+PUSLC,SIGNALS LINE CONTROLLER FAILURE,Track and signals,"Equipment, track, operations or other"
+PUSNT,SIGNAL PROBLEM â NO TROUBLE FOUND,Track and signals,"Equipment, track, operations or other"
+PUSO,SIGNALS â OTHER,Track and signals,"Equipment, track, operations or other"
+PUSRA,SUBWAY RADIO SYSTEM PROBLEMS,Track and signals,"Equipment, track, operations or other"
+PUSSW,TRACK SWITCH FAILURE â S/E/C RELATED PROBLEM,Track and signals,"Equipment, track, operations or other"
+PUSTC,SIGNALS - TRACK CIRCUIT PROBLEMS,Track and signals,"Equipment, track, operations or other"
+PUSTP,TRACTION POWER OR RELATED COMPONENTS FAILURE,Track and signals,"Equipment, track, operations or other"
+PUSTS,SIGNALS â TRAIN STOPS,Track and signals,"Equipment, track, operations or other"
+PUSWZ,WORK ZONE PROBLEMS â SIGNALS,Track and signals,"Equipment, track, operations or other"
+PUSZC,SIGNALS ZONE CONTROLLER FAILURE,Track and signals,"Equipment, track, operations or other"
+PUT0,T&S OTHER,Track and signals,"Equipment, track, operations or other"
+PUTCD,T&S CONTRACTOR PROBLEMS,Track and signals,"Equipment, track, operations or other"
+PUTD,DEBRIS AT TRACK LEVEL - CONTROLLABLE,Track and signals,"Equipment, track, operations or other"
+PUTDN,DEBRIS AT TRACK LEVEL â NON-CONTROLLABLE,Track-level emergencies,People-related
+PUTIJ,INSULATED JOINT RELATED PROBLEM,Track and signals,"Equipment, track, operations or other"
+PUTIS,ICE/SNOW RELATED PROBLEM,Weather,"Equipment, track, operations or other"
+PUTNT,T&S RELATED PROBLEM â NO TROUBLE FOUND,Track and signals,"Equipment, track, operations or other"
+PUTOE,"T&S OPERATOR RELATED PROBLEM (VIOLATIONS, OVERSHOOTS, ETC.)",Track and signals,"Equipment, track, operations or other"
+PUTR,RAIL RELATED PROBLEM,Track and signals,"Equipment, track, operations or other"
+PUTS,STRUCTURE RELATED PROBLEM,Track and signals,"Equipment, track, operations or other"
+PUTSC,SIGNALSâCONTROL PROBLEMâTRACK,Track and signals,"Equipment, track, operations or other"
+PUTSM,TRACK SWITCH FAILURE â T&S RELATED PROBLEM,Track and signals,"Equipment, track, operations or other"
+PUTTC,TRACK CIRCUIT PROBLEMS RE:DEFECTIVE BOLTS/BONDING,Track and signals,"Equipment, track, operations or other"
+PUTTP,TRACTION POWER RAIL RELATED PROBLEMS,Track and signals,"Equipment, track, operations or other"
+PUTWZ,WORK ZONES PROBLEMS â TRACK,Track and signals,"Equipment, track, operations or other"
+SUAE,ASSAULT / EMPLOYEE INVOLVED,Disorderly or security,People-related
+SUAP,ASSUALT / PATRON INVOLVED,Disorderly or security,People-related
+SUBT,BOMB THREAT,Disorderly or security,People-related
+SUCOL,COLLECTOR BOOTH HOLD-UP ALARM ACTIVATED,Disorderly or security,People-related
+SUDP,DISORDERLY PATRON,Disorderly or security,People-related
+SUEAS,EAS ACTIVATED â NO TROUBLE FOUND,Alarms with no trouble found,People-related
+SUG,GRAFFITI / SCRATCHITI,Disorderly or security,People-related
+SUO,SECURITY OTHER,Disorderly or security,People-related
+SUPOL,HELD BY POLICE â NON TTC RELATED,Disorderly or security,People-related
+SUROB,ROBBERY,Disorderly or security,People-related
+SUSA,ASSAULT / SEXUAL,Disorderly or security,People-related
+SUSP,SUSPICIOUS PACKAGE,Disorderly or security,People-related
+SUUT,UNAUTHORIZED AT TRACK LEVEL,Track-level emergencies,People-related
+TUATC,ATC OPERATOR RELATED,Operations and staffing,"Equipment, track, operations or other"
+TUCC,TRANSIT CONTROL RELATED â TOWER CONTROLLER ERROR,Operations and staffing,"Equipment, track, operations or other"
+TUDOE,DOORS OPEN IN ERROR,Operations and staffing,"Equipment, track, operations or other"
+TUKEY,TWO DRUM SWITCH KEYS IN TRAIN,Operations and staffing,"Equipment, track, operations or other"
+TUML,MAINLINE STORAGE,Operations and staffing,"Equipment, track, operations or other"
+TUMVS,OPERATOR VIOLATED SIGNAL,Operations and staffing,"Equipment, track, operations or other"
+TUNCA,NO COLLECTOR AVAILABLE,Operations and staffing,"Equipment, track, operations or other"
+TUNIP,OPERATOR NOT IN POSTION,Operations and staffing,"Equipment, track, operations or other"
+TUNOA,NO OPERATOR AVAILABLE,Operations and staffing,"Equipment, track, operations or other"
+TUO,TRANSPORTATION OTHER,Operations and staffing,"Equipment, track, operations or other"
+TUOPO,OPTO OPERATOR RELATED,Operations and staffing,"Equipment, track, operations or other"
+TUOS,OPERATOR OVERSHOT PLATFORM,Operations and staffing,"Equipment, track, operations or other"
+TUS,UNABLE TO MAINTAIN SCHEDULE,Operations and staffing,"Equipment, track, operations or other"
+TUSC,OPERATOR OVERSPEED,Operations and staffing,"Equipment, track, operations or other"
+TUSET,CONTROLS IMPROPERLY BLOWN DOWN,Operations and staffing,"Equipment, track, operations or other"
+TUST,STORM TRAINS,Operations and staffing,"Equipment, track, operations or other"
+TUSUP,SUPERVISORY ERROR,Operations and staffing,"Equipment, track, operations or other"
+TUUR,UNAUTHORIZED TRAIN REVERSAL BY OPERATOR,Operations and staffing,"Equipment, track, operations or other"

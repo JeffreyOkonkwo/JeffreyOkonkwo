@@ -1,3 +1,10 @@
+## Featured project
+
+**[Beat the Delay](beat-the-delay/)**: 15,800 real Toronto subway delays turned into a daily trip planner.
+Python cleaning pipeline, Excel model, Power BI star schema and DAX, and an interactive dashboard.
+
+---
+
 - 👋 Hi, I’m @JeffreyOkonkwo
 - 👀 I’m interested in Data Anlysis/Bi Reporting, Business/Product Developemt and Management, and Front-end web designing. 
 - 🌱 I’m currently learning Javascript and perfecting my craft in Python, SQl, Pandas and Numpy 
