@@ -15,6 +15,23 @@ I wanted to know where that time goes, and whether an ordinary rider could do an
 Delay data is published every month, but it arrives as 45,000 raw log lines with 140 internal codes and
 more than 1,200 spellings of station names. Nobody can read it, so nobody uses it.
 
+## Two problems it helps solve
+
+| For | Decision | What the data says |
+|---|---|---|
+| **The TTC** (planners, station managers) | Where would an extra staff hour save the most rider time? | People-related incidents cause 51% of lost minutes. Eight stations (Bloor-Yonge, St George, Finch, Kennedy, Spadina, Lawrence, Union, Kipling) hold a quarter of them, and nearly half fall between 3 and 11 p.m. Bloor-Yonge from 3 to 7 p.m. ranks first. |
+| **Riders** | When should I leave, and how much buffer do I need? | Plan My Ride checks every delay at your station, day and hour and returns a verdict plus minutes to leave early. |
+
+### Would more staff help?
+
+Honestly, the evidence is mixed, and this data can point to staffing but cannot prove it works.
+
+- **Security incidents:** after the TTC added police, guards and ambassadors in 2023 and 2024, offences per million boardings fell, but by August 2025 they were back near 2023 levels. No public report links staffing to fewer delay minutes.
+- **Track-level incidents:** these average 17.6 minutes, the longest of any cause. Platform edge doors cut falls and suicides sharply in Hong Kong and Korea; the TTC paused its pilot in 2025 over cost.
+- **Medical calls:** one in four runs past 10 minutes. Faster first response (New York posts EMTs at busy stations) targets that long tail.
+
+**Recommended next step:** a measured pilot at Bloor-Yonge from 3 to 7 p.m., comparing delay minutes before and after against similar stations.
+
 ## What the data says
 
 | Finding | What it means for a rider |
