@@ -1,5 +1,1 @@
-{"colors": {"track":"1C4FA0","board":"0E2747","board2":"132F55","lane":"5B7FBF","bib":"FFFFFF","ground":"E7ECF3",
- "ink":"111418","muted":"5E6878","accent":"E4002B","steel":"8A94A3","rule":"D3DAE4","pin":"B8C1CE","volt":"F5F7FA",
- "heat0":"F5F7FA","heat1":"7FA0D6","heat2":"0E2747"},
- "fonts":{"head":"DIN Condensed","body":"Avenir Next"},
- "banner_px":[1680,400],"banner_rows":15,"badge_px":[150,150]}
+{"colors": {"track": "3B4049", "board": "15171C", "board2": "23262D", "lane": "8A9099", "bib": "FFFFFF", "ground": "F3F4F6", "ink": "15171C", "muted": "5B616B", "accent": "D7322B", "steel": "BCC1C9", "rule": "D5D9DF", "pin": "BCC1C9", "volt": "F3F4F6", "heat0": "F1F2F4", "heat1": "9AA0AA", "heat2": "3B4049"}, "fonts": {"head": "DIN Condensed", "body": "Avenir Next"}, "banner_px": [1680, 400], "banner_rows": 15, "badge_px": [150, 150]}

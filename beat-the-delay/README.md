@@ -7,7 +7,7 @@
 Toronto's subway lost **2,033 hours** to **15,800 delays** between January 2025 and August 2026.
 I wanted to know where that time goes, and whether an ordinary rider could do anything about it.
 
-**Watch the 60-second walkthrough:** [assets/Beat_the_Delay_walkthrough.mp4](assets/Beat_the_Delay_walkthrough.mp4)
+**Watch the 54-second walkthrough:** [assets/Beat_the_Delay_walkthrough.mp4](assets/Beat_the_Delay_walkthrough.mp4)
 **Try the dashboard:** download [`dashboard.html`](dashboard.html) and open it in any browser (no install, data built in).
 
 ## The problem
@@ -51,7 +51,7 @@ Pick your station, day and the hour you board. The tool checks every real delay 
 **Green light**, **Steady pace** or **Headwind**, plus how many minutes to leave early.
 
 ![Dashboard](assets/dashboard_top.png)
-![When to ride](assets/when_to_ride.png)
+![Dashboard, continued](assets/dashboard_bottom.png)
 
 ## How it is built
 
@@ -76,6 +76,11 @@ data/ttc_subway_delays_2025_2026.csv  +  station_map.csv  +  cause_code_map.csv 
 | Data modelling | Star schema in `powerbi/`, one fact table and five dimensions |
 | DAX and Excel modelling | `powerbi/measures.dax`, the Splits tab of the workbook |
 | Visual design and storytelling | Race theme, one accent colour for the one message that matters |
+
+## Design
+
+Charts follow IBCS (International Business Communication Standards): every title states the finding, grey shows context and one red marks the point.
+Typefaces are Highway Gothic (road-sign lettering, free licence via dafont), Public Sans and Caveat for Tayo's notes.
 
 ## Run it yourself
 
