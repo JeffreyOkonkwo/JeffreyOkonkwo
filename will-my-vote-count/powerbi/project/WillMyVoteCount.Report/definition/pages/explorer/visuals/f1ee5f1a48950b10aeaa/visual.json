@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "dim_theme.label",
-              "nativeQueryRef": "label"
+              "nativeQueryRef": "label",
+              "displayName": "Fear"
             }
           ]
         },
@@ -45,7 +46,8 @@
                 }
               },
               "queryRef": "fact_comments.Videos With Theme",
-              "nativeQueryRef": "Videos With Theme"
+              "nativeQueryRef": "Videos With Theme",
+              "displayName": "Posts with this fear"
             }
           ]
         },
@@ -63,7 +65,8 @@
                 }
               },
               "queryRef": "fact_comments.Theme Share",
-              "nativeQueryRef": "Theme Share"
+              "nativeQueryRef": "Theme Share",
+              "displayName": "Share of concerns"
             }
           ]
         },
@@ -81,7 +84,8 @@
                 }
               },
               "queryRef": "fact_comments.Fear Comments",
-              "nativeQueryRef": "Fear Comments"
+              "nativeQueryRef": "Fear Comments",
+              "displayName": "Concerns"
             }
           ]
         }
@@ -196,25 +200,7 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#F4F7F5'"
-                    }
-                  }
-                }
-              }
-            },
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "8D"
+                  "Value": "false"
                 }
               }
             }
