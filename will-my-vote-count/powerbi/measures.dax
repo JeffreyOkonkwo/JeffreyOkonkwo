@@ -1,0 +1,61 @@
+// Will My Vote Count? DAX measures (the same as inside the Power BI project model)
+
+// fact_comments | Comments | format #,0
+Fear Comments = DISTINCTCOUNT ( fact_comments[comment_id] )
+
+// fact_comments | Comments | format 0%
+Theme Share = DIVIDE ( CALCULATE ( DISTINCTCOUNT ( fact_comment_theme[comment_id] ) ), CALCULATE ( DISTINCTCOUNT ( fact_comments[comment_id] ), REMOVEFILTERS ( dim_theme ), REMOVEFILTERS ( dim_step ) ) )
+
+// fact_comments | Comments | format 0%
+After The Vote Share = DIVIDE ( CALCULATE ( DISTINCTCOUNT ( fact_comment_theme[comment_id] ), dim_step[order] IN { 5, 6, 7 } ), CALCULATE ( DISTINCTCOUNT ( fact_comments[comment_id] ), REMOVEFILTERS ( dim_theme ), REMOVEFILTERS ( dim_step ) ) )
+
+// fact_comments | Comments | format 0
+Videos With Theme = DISTINCTCOUNT ( fact_comments[video_id] )
+
+// fact_comments | Comments | format 0.00
+Average Tone = AVERAGE ( fact_comments[tone] )
+
+// fact_comments | Formatting | format none
+Step Colour = VAR _top = MAXX ( ALLSELECTED ( dim_step[short], dim_step[order] ), [Theme Share] ) RETURN IF ( [Theme Share] = _top, "#F2563F", "#00B36B" )
+
+// fact_comments | Formatting | format none
+Theme Colour = IF ( SELECTEDVALUE ( dim_theme[rank_now] ) = 1, "#F2563F", "#00B36B" )
+
+// dim_video | Comments | format #,0
+Comments Read = SUM ( dim_video[comments_read] )
+
+// fact_results_2023 | 2023 results | format #,0
+Polling Units 2023 = SUM ( fact_results_2023[polling_units] )
+
+// fact_results_2023 | 2023 results | format #,0
+Problem Units 2023 = SUM ( fact_results_2023[never_uploaded] ) + SUM ( fact_results_2023[unreadable] ) + SUM ( fact_results_2023[wrong_document] )
+
+// fact_results_2023 | 2023 results | format 0.0%
+Problem Share 2023 = DIVIDE ( [Problem Units 2023], [Polling Units 2023] )
+
+// fact_results_2023 | 2023 results | format #,0
+Never Uploaded = SUM ( fact_results_2023[never_uploaded] )
+
+// fact_results_2023 | 2023 results | format #,0
+Unreadable Upload = SUM ( fact_results_2023[unreadable] )
+
+// fact_results_2023 | 2023 results | format #,0
+Wrong Document = SUM ( fact_results_2023[wrong_document] )
+
+// fact_results_2023 | 2023 results | format 0%
+Never Uploaded Share = DIVIDE ( [Never Uploaded], [Polling Units 2023] )
+
+// fact_results_2023 | 2023 results | format 0%
+Unreadable Share = DIVIDE ( [Unreadable Upload], [Polling Units 2023] )
+
+// fact_results_2023 | 2023 results | format 0%
+Wrong Document Share = DIVIDE ( [Wrong Document], [Polling Units 2023] )
+
+// fact_problem | 2023 results | format #,0
+Problem Units = SUM ( fact_problem[units] )
+
+// dim_fix | Fixes | format 0
+Fixes Proposed = COUNTROWS ( dim_fix )
+
+// dim_fix | Fixes | format 0
+Quick Wins = CALCULATE ( COUNTROWS ( dim_fix ), dim_fix[quick_win] = "Quick win" )

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/1.2.0/schema.json",
+  "themeCollection": {
+    "customTheme": {
+      "name": "BeatTheDelayDark.json",
+      "reportVersionAtImport": "5.61",
+      "type": "RegisteredResources"
+    }
+  },
+  "layoutOptimization": "None",
+  "resourcePackages": [
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "BeatTheDelayDark.json",
+          "path": "BeatTheDelayDark.json",
+          "type": "CustomTheme"
+        },
+        {
+          "name": "bg_command.png",
+          "path": "bg_command.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg_overview.png",
+          "path": "bg_overview.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg_stations.png",
+          "path": "bg_stations.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg_causes.png",
+          "path": "bg_causes.png",
+          "type": "Image"
+        },
+        {
+          "name": "bg_plan.png",
+          "path": "bg_plan.png",
+          "type": "Image"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  }
+}

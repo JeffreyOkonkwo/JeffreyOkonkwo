@@ -1,0 +1,644 @@
+{
+  "compatibilityLevel": 1567,
+  "model": {
+    "culture": "en-US",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "fact_delays",
+        "columns": [
+          {
+            "name": "Date",
+            "dataType": "dateTime",
+            "sourceColumn": "Date",
+            "summarizeBy": "none",
+            "formatString": "yyyy-mm-dd",
+            "isHidden": true
+          },
+          {
+            "name": "Hour",
+            "dataType": "int64",
+            "sourceColumn": "Hour",
+            "summarizeBy": "none",
+            "formatString": "0",
+            "isHidden": true
+          },
+          {
+            "name": "Line",
+            "dataType": "string",
+            "sourceColumn": "Line",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "Station",
+            "dataType": "string",
+            "sourceColumn": "Station",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "Cause",
+            "dataType": "string",
+            "sourceColumn": "Cause",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "Code",
+            "dataType": "string",
+            "sourceColumn": "Code",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Minutes",
+            "dataType": "int64",
+            "sourceColumn": "Minutes",
+            "summarizeBy": "sum",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Gap Minutes",
+            "dataType": "int64",
+            "sourceColumn": "Gap Minutes",
+            "summarizeBy": "sum",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Bound",
+            "dataType": "string",
+            "sourceColumn": "Bound",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fact_delays",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(DataRoot & \"fact_delays.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"Date\", type date}, {\"Hour\", Int64.Type}, {\"Line\", type text}, {\"Station\", type text}, {\"Cause\", type text}, {\"Code\", type text}, {\"Minutes\", Int64.Type}, {\"Gap Minutes\", Int64.Type}, {\"Bound\", type text}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Minutes Lost",
+            "expression": "SUM ( fact_delays[Minutes] )",
+            "formatString": "#,0",
+            "displayFolder": "Core"
+          },
+          {
+            "name": "Hours Lost",
+            "expression": "DIVIDE ( [Minutes Lost], 60 )",
+            "formatString": "#,0",
+            "displayFolder": "Core"
+          },
+          {
+            "name": "Delays",
+            "expression": "COUNTROWS ( fact_delays )",
+            "formatString": "#,0",
+            "displayFolder": "Core"
+          },
+          {
+            "name": "Average Stop",
+            "expression": "DIVIDE ( [Minutes Lost], [Delays] )",
+            "formatString": "0.0",
+            "displayFolder": "Core"
+          },
+          {
+            "name": "Median Stop",
+            "expression": "MEDIAN ( fact_delays[Minutes] )",
+            "formatString": "0",
+            "displayFolder": "Core"
+          },
+          {
+            "name": "Days in Period",
+            "expression": "COUNTROWS ( dim_date )",
+            "formatString": "#,0",
+            "displayFolder": "Core"
+          },
+          {
+            "name": "Delays per Day",
+            "expression": "DIVIDE ( [Delays], [Days in Period] )",
+            "formatString": "0.0",
+            "displayFolder": "Core"
+          },
+          {
+            "name": "Minutes Lost MoM %",
+            "expression": "VAR cur = [Minutes Lost]\nVAR prev = CALCULATE ( [Minutes Lost], DATEADD ( dim_date[Date], -1, MONTH ) )\nRETURN\n    DIVIDE ( cur - prev, prev )",
+            "formatString": "+0%;-0%;0%",
+            "displayFolder": "Core"
+          },
+          {
+            "name": "People Minutes",
+            "expression": "CALCULATE ( [Minutes Lost], dim_cause[Cause Type] = \"People-related\" )",
+            "formatString": "#,0",
+            "displayFolder": "Causes"
+          },
+          {
+            "name": "People Share",
+            "expression": "DIVIDE ( [People Minutes], [Minutes Lost] )",
+            "formatString": "0%",
+            "displayFolder": "Causes"
+          },
+          {
+            "name": "Weather Minutes",
+            "expression": "CALCULATE ( [Minutes Lost], dim_cause[Cause] = \"Weather\" )",
+            "formatString": "#,0",
+            "displayFolder": "Causes"
+          },
+          {
+            "name": "Long Delays",
+            "expression": "CALCULATE ( [Delays], fact_delays[Minutes] > 10 )",
+            "formatString": "#,0",
+            "displayFolder": "Causes"
+          },
+          {
+            "name": "Long Delay Share",
+            "expression": "DIVIDE ( [Long Delays], [Delays] )",
+            "formatString": "0%",
+            "displayFolder": "Causes"
+          },
+          {
+            "name": "Rush Hour Uplift",
+            "expression": "// Weekday delays per hour in the rush periods (6 to 10 a.m., 3 to 7 p.m.) against midday (10 a.m. to 3 p.m.)\nVAR RushDelays = CALCULATE ( [Delays], dim_date[Day Type] = \"Weekday\", dim_hour[Period] IN { \"Morning rush\", \"Evening rush\" } )\nVAR RushHours = CALCULATE ( COUNTROWS ( dim_hour ), dim_hour[Period] IN { \"Morning rush\", \"Evening rush\" } )\nVAR MidDelays = CALCULATE ( [Delays], dim_date[Day Type] = \"Weekday\", dim_hour[Hour] IN { 10, 11, 12, 13, 14 } )\nVAR MidHours = CALCULATE ( COUNTROWS ( dim_hour ), dim_hour[Hour] IN { 10, 11, 12, 13, 14 } )\nRETURN\n    DIVIDE ( DIVIDE ( RushDelays, RushHours ), DIVIDE ( MidDelays, MidHours ) ) - 1",
+            "formatString": "+0%;-0%;0%",
+            "displayFolder": "Time of day"
+          },
+          {
+            "name": "Peak Delay Hour",
+            "expression": "VAR t = TOPN ( 1, VALUES ( dim_hour[Hour Label] ), [Delays], DESC )\nRETURN\n    CONCATENATEX ( t, dim_hour[Hour Label], \", \" )",
+            "displayFolder": "Time of day"
+          },
+          {
+            "name": "Station Minutes Lost",
+            "expression": "IF ( SELECTEDVALUE ( dim_station[Station] ) = \"Line-wide or yard\", BLANK (), [Minutes Lost] )",
+            "formatString": "#,0",
+            "displayFolder": "Stations"
+          },
+          {
+            "name": "Worst Station",
+            "expression": "VAR t =\n    TOPN ( 1, FILTER ( VALUES ( dim_station[Station] ), dim_station[Station] <> \"Line-wide or yard\" ), [Minutes Lost], DESC )\nRETURN\n    MAXX ( t, dim_station[Station] )",
+            "displayFolder": "Stations"
+          },
+          {
+            "name": "Worst Station Minutes",
+            "expression": "VAR s = [Worst Station]\nRETURN\n    CALCULATE ( [Minutes Lost], dim_station[Station] = s )",
+            "formatString": "#,0",
+            "displayFolder": "Stations"
+          },
+          {
+            "name": "Delay Rate per 100 Days",
+            "expression": "DIVIDE ( [Delays], [Days in Period] ) * 100",
+            "formatString": "0.0",
+            "displayFolder": "Plan My Ride"
+          },
+          {
+            "name": "Station Baseline per 100 Slots",
+            "expression": "// average delays per service hour (21 a day) at the chosen station, over every day in the data\nVAR st = CALCULATE ( [Delays], REMOVEFILTERS ( dim_hour ), REMOVEFILTERS ( dim_date ) )\nVAR slots = CALCULATE ( COUNTROWS ( dim_date ), REMOVEFILTERS ( dim_date ) ) * 21\nRETURN\n    DIVIDE ( st, slots ) * 100",
+            "formatString": "0.0",
+            "displayFolder": "Plan My Ride"
+          },
+          {
+            "name": "Risk Ratio",
+            "expression": "DIVIDE ( [Delay Rate per 100 Days], [Station Baseline per 100 Slots] )",
+            "formatString": "0.00",
+            "displayFolder": "Plan My Ride"
+          },
+          {
+            "name": "Verdict",
+            "expression": "SWITCH (\n    TRUE (),\n    [Delays] = 0, \"Green light\",\n    [Risk Ratio] < 0.75, \"Green light\",\n    [Risk Ratio] < 1.5, \"Steady pace\",\n    \"Headwind\"\n)",
+            "displayFolder": "Plan My Ride"
+          },
+          {
+            "name": "Buffer Minutes",
+            "expression": "IF ( [Delays] = 0, 0, MAX ( 5, CEILING ( ROUND ( [Average Stop], 0 ), 5 ) ) )",
+            "formatString": "0\" min\"",
+            "displayFolder": "Plan My Ride"
+          },
+          {
+            "name": "Delay Chance",
+            "expression": "DIVIDE ( DISTINCTCOUNT ( fact_delays[Date] ), [Days in Period] ) + 0",
+            "formatString": "0%",
+            "displayFolder": "Plan My Ride"
+          },
+          {
+            "name": "Slot Delays",
+            "expression": "[Delays] + 0",
+            "formatString": "#,0",
+            "displayFolder": "Plan My Ride"
+          },
+          {
+            "name": "Slot Average Stop",
+            "expression": "COALESCE ( [Average Stop], 0 )",
+            "formatString": "0.0",
+            "displayFolder": "Plan My Ride"
+          },
+          {
+            "name": "Verdict Colour",
+            "expression": "SWITCH ( [Verdict], \"Green light\", \"#2FB36B\", \"Steady pace\", \"#F5F6F8\", \"#D7322B\" )",
+            "displayFolder": "Formatting"
+          },
+          {
+            "name": "Cause Colour",
+            "expression": "IF ( SELECTEDVALUE ( dim_cause[Cause Type] ) = \"People-related\", \"#D7322B\", \"#7D838D\" )",
+            "displayFolder": "Formatting"
+          },
+          {
+            "name": "Hour Colour",
+            "expression": "IF ( SELECTEDVALUE ( dim_hour[Period] ) IN { \"Morning rush\", \"Evening rush\" }, \"#D7322B\", \"#7D838D\" )",
+            "displayFolder": "Formatting"
+          },
+          {
+            "name": "Station Colour",
+            "expression": "VAR _top = MAXX ( ALLSELECTED ( dim_station[Station] ), [Station Minutes Lost] )\nRETURN\n    IF ( [Station Minutes Lost] = _top, \"#D7322B\", \"#7D838D\" )",
+            "displayFolder": "Formatting"
+          },
+          {
+            "name": "Month Colour",
+            "expression": "VAR _top = MAXX ( ALLSELECTED ( dim_date[Month], dim_date[Month Start] ), [Minutes Lost] )\nRETURN\n    IF ( [Minutes Lost] = _top, \"#D7322B\", \"#7D838D\" )",
+            "displayFolder": "Formatting"
+          },
+          {
+            "name": "Heat Colour",
+            "expression": "VAR _top =\n    MAXX (\n        CROSSJOIN (\n            ALLSELECTED ( dim_date[Weekday Short], dim_date[Weekday Number] ),\n            ALLSELECTED ( dim_hour[Hour Short], dim_hour[Service Hour Order] )\n        ),\n        [Delays]\n    )\nVAR r = DIVIDE ( [Delays], _top )\nRETURN\n    SWITCH (\n        TRUE (),\n        ISBLANK ( r ), \"#15171C\",\n        r >= 0.85, \"#D7322B\",\n        r >= 0.70, \"#A92B26\",\n        r >= 0.55, \"#7E2522\",\n        r >= 0.40, \"#57201F\",\n        r >= 0.25, \"#3A1C1D\",\n        \"#26191B\"\n    )",
+            "displayFolder": "Formatting"
+          }
+        ]
+      },
+      {
+        "name": "dim_date",
+        "columns": [
+          {
+            "name": "Date",
+            "dataType": "dateTime",
+            "sourceColumn": "Date",
+            "summarizeBy": "none",
+            "formatString": "yyyy-mm-dd",
+            "isKey": true
+          },
+          {
+            "name": "Month Start",
+            "dataType": "dateTime",
+            "sourceColumn": "Month Start",
+            "summarizeBy": "none",
+            "formatString": "mmm yyyy",
+            "isHidden": true
+          },
+          {
+            "name": "Month",
+            "dataType": "string",
+            "sourceColumn": "Month",
+            "summarizeBy": "none",
+            "sortByColumn": "Month Start"
+          },
+          {
+            "name": "Year",
+            "dataType": "int64",
+            "sourceColumn": "Year",
+            "summarizeBy": "none",
+            "formatString": "0"
+          },
+          {
+            "name": "Weekday",
+            "dataType": "string",
+            "sourceColumn": "Weekday",
+            "summarizeBy": "none",
+            "sortByColumn": "Weekday Number"
+          },
+          {
+            "name": "Weekday Short",
+            "dataType": "string",
+            "sourceColumn": "Weekday Short",
+            "summarizeBy": "none",
+            "sortByColumn": "Weekday Number"
+          },
+          {
+            "name": "Weekday Number",
+            "dataType": "int64",
+            "sourceColumn": "Weekday Number",
+            "summarizeBy": "none",
+            "formatString": "0",
+            "isHidden": true
+          },
+          {
+            "name": "Day Type",
+            "dataType": "string",
+            "sourceColumn": "Day Type",
+            "summarizeBy": "none",
+            "sortByColumn": "Day Type Sort"
+          },
+          {
+            "name": "Day Type Sort",
+            "dataType": "int64",
+            "sourceColumn": "Day Type Sort",
+            "summarizeBy": "none",
+            "formatString": "0",
+            "isHidden": true
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_date",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Dates = fact_delays[Date],",
+                "    Start = Date.StartOfMonth(List.Min(Dates)),",
+                "    Finish = Date.EndOfMonth(List.Max(Dates)),",
+                "    DayList = List.Dates(Start, Duration.Days(Finish - Start) + 1, #duration(1, 0, 0, 0)),",
+                "    Base = Table.FromList(DayList, Splitter.SplitByNothing(), {\"Date\"}),",
+                "    Typed = Table.TransformColumnTypes(Base, {{\"Date\", type date}}),",
+                "    MonthStart = Table.AddColumn(Typed, \"Month Start\", each Date.StartOfMonth([Date]), type date),",
+                "    Month = Table.AddColumn(MonthStart, \"Month\", each Date.ToText([Date], [Format = \"MMM yy\", Culture = \"en-US\"]), type text),",
+                "    Year = Table.AddColumn(Month, \"Year\", each Date.Year([Date]), Int64.Type),",
+                "    Weekday = Table.AddColumn(Year, \"Weekday\", each Date.DayOfWeekName([Date], \"en-US\"), type text),",
+                "    WeekdayShort = Table.AddColumn(Weekday, \"Weekday Short\", each Text.Start([Weekday], 3), type text),",
+                "    WeekdayNumber = Table.AddColumn(WeekdayShort, \"Weekday Number\", each Date.DayOfWeek([Date], Day.Monday) + 1, Int64.Type),",
+                "    DayType = Table.AddColumn(WeekdayNumber, \"Day Type\", each if [Weekday Number] <= 5 then \"Weekday\" else if [Weekday Number] = 6 then \"Saturday\" else \"Sunday\", type text),",
+                "    DayTypeSort = Table.AddColumn(DayType, \"Day Type Sort\", each if [Weekday Number] <= 5 then 1 else [Weekday Number] - 4, Int64.Type)",
+                "in",
+                "    DayTypeSort"
+              ]
+            }
+          }
+        ],
+        "dataCategory": "Time"
+      },
+      {
+        "name": "dim_hour",
+        "columns": [
+          {
+            "name": "Hour",
+            "dataType": "int64",
+            "sourceColumn": "Hour",
+            "summarizeBy": "none",
+            "formatString": "0"
+          },
+          {
+            "name": "Hour Label",
+            "dataType": "string",
+            "sourceColumn": "Hour Label",
+            "summarizeBy": "none",
+            "sortByColumn": "Service Hour Order"
+          },
+          {
+            "name": "Service Order",
+            "dataType": "int64",
+            "sourceColumn": "Service Order",
+            "summarizeBy": "none",
+            "formatString": "0",
+            "isHidden": true
+          },
+          {
+            "name": "Period",
+            "dataType": "string",
+            "sourceColumn": "Period",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Service Hour Order",
+            "dataType": "int64",
+            "sourceColumn": "Service Hour Order",
+            "summarizeBy": "none",
+            "formatString": "0",
+            "isHidden": true
+          },
+          {
+            "name": "Hour Short",
+            "dataType": "string",
+            "sourceColumn": "Hour Short",
+            "summarizeBy": "none",
+            "sortByColumn": "Service Hour Order"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_hour",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(DataRoot & \"dim_hour.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"Hour\", Int64.Type}, {\"Hour Label\", type text}, {\"Service Order\", Int64.Type}, {\"Period\", type text}}, \"en-US\"),",
+                "    Ordered = Table.AddColumn(Typed, \"Service Hour Order\", each Number.Mod([Hour] + 19, 24), Int64.Type),",
+                "    Short = Table.AddColumn(Ordered, \"Hour Short\", each if [Hour] = 0 then \"12a\" else if [Hour] < 12 then Text.From([Hour]) & \"a\" else if [Hour] = 12 then \"12p\" else Text.From([Hour] - 12) & \"p\", type text),",
+                "    Result = Short",
+                "in",
+                "    Result"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_station",
+        "columns": [
+          {
+            "name": "Station",
+            "dataType": "string",
+            "sourceColumn": "Station",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Main Line",
+            "dataType": "string",
+            "sourceColumn": "Main Line",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_station",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(DataRoot & \"dim_station.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"Station\", type text}, {\"Main Line\", type text}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_cause",
+        "columns": [
+          {
+            "name": "Cause",
+            "dataType": "string",
+            "sourceColumn": "Cause",
+            "summarizeBy": "none",
+            "sortByColumn": "Cause Sort"
+          },
+          {
+            "name": "Cause Type",
+            "dataType": "string",
+            "sourceColumn": "Cause Type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Cause Sort",
+            "dataType": "int64",
+            "sourceColumn": "Cause Sort",
+            "summarizeBy": "none",
+            "formatString": "0",
+            "isHidden": true
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_cause",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(DataRoot & \"dim_cause.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"Cause\", type text}, {\"Cause Type\", type text}, {\"Cause Sort\", Int64.Type}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_line",
+        "columns": [
+          {
+            "name": "Line",
+            "dataType": "string",
+            "sourceColumn": "Line",
+            "summarizeBy": "none",
+            "sortByColumn": "Sort"
+          },
+          {
+            "name": "Line Name",
+            "dataType": "string",
+            "sourceColumn": "Line Name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Line Colour",
+            "dataType": "string",
+            "sourceColumn": "Line Colour",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "Sort",
+            "dataType": "int64",
+            "sourceColumn": "Sort",
+            "summarizeBy": "none",
+            "formatString": "0",
+            "isHidden": true
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_line",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(DataRoot & \"dim_line.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"Line\", type text}, {\"Line Name\", type text}, {\"Line Colour\", type text}, {\"Sort\", Int64.Type}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "ae669005c8fc",
+        "fromTable": "fact_delays",
+        "fromColumn": "Date",
+        "toTable": "dim_date",
+        "toColumn": "Date"
+      },
+      {
+        "name": "a3a4e6d8b3dd",
+        "fromTable": "fact_delays",
+        "fromColumn": "Hour",
+        "toTable": "dim_hour",
+        "toColumn": "Hour"
+      },
+      {
+        "name": "14087dce2476",
+        "fromTable": "fact_delays",
+        "fromColumn": "Station",
+        "toTable": "dim_station",
+        "toColumn": "Station"
+      },
+      {
+        "name": "a65ab4a3d5d6",
+        "fromTable": "fact_delays",
+        "fromColumn": "Cause",
+        "toTable": "dim_cause",
+        "toColumn": "Cause"
+      },
+      {
+        "name": "80a6705d5cba",
+        "fromTable": "fact_delays",
+        "fromColumn": "Line",
+        "toTable": "dim_line",
+        "toColumn": "Line"
+      }
+    ],
+    "expressions": [
+      {
+        "name": "DataRoot",
+        "kind": "m",
+        "expression": "\"https://raw.githubusercontent.com/JeffreyOkonkwo/JeffreyOkonkwo/main/beat-the-delay/powerbi/\" meta [IsParameterQuery = true, Type = \"Text\", IsParameterQueryRequired = true]",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Text"
+          }
+        ]
+      }
+    ],
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"DataRoot\", \"fact_delays\", \"dim_date\", \"dim_hour\", \"dim_station\", \"dim_cause\", \"dim_line\"]"
+      },
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      },
+      {
+        "name": "PBIDesktopVersion",
+        "value": "2.137.0"
+      }
+    ]
+  }
+}

@@ -1,0 +1,757 @@
+{
+  "compatibilityLevel": 1567,
+  "model": {
+    "culture": "en-US",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "fact_comments",
+        "columns": [
+          {
+            "name": "comment_id",
+            "dataType": "string",
+            "sourceColumn": "comment_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "month",
+            "dataType": "string",
+            "sourceColumn": "month",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "platform",
+            "dataType": "string",
+            "sourceColumn": "platform",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "searched",
+            "dataType": "int64",
+            "sourceColumn": "searched",
+            "summarizeBy": "none",
+            "formatString": "#,0",
+            "isHidden": true
+          },
+          {
+            "name": "channel",
+            "dataType": "string",
+            "sourceColumn": "channel",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "video_id",
+            "dataType": "string",
+            "sourceColumn": "video_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "tone",
+            "dataType": "double",
+            "sourceColumn": "tone",
+            "summarizeBy": "average",
+            "formatString": "0.00"
+          },
+          {
+            "name": "month_date",
+            "dataType": "dateTime",
+            "sourceColumn": "month_date",
+            "summarizeBy": "none",
+            "formatString": "mmm yyyy"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fact_comments",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(DataRoot & \"fact_comments.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"comment_id\", type text}, {\"month\", type text}, {\"platform\", type text}, {\"searched\", Int64.Type}, {\"channel\", type text}, {\"video_id\", type text}, {\"tone\", type number}}, \"en-US\"),",
+                "    WithDate = Table.AddColumn(Typed, \"month_date\", each Date.FromText([month] & \"-01\", [Format = \"yyyy-MM-dd\", Culture = \"en-US\"]), type date),",
+                "    Result = WithDate",
+                "in",
+                "    Result"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Fear Comments",
+            "expression": "DISTINCTCOUNT ( fact_comments[comment_id] )",
+            "formatString": "#,0",
+            "displayFolder": "Comments"
+          },
+          {
+            "name": "Theme Share",
+            "expression": "DIVIDE ( CALCULATE ( DISTINCTCOUNT ( fact_comment_theme[comment_id] ), fact_comments[searched] = 0 ), CALCULATE ( DISTINCTCOUNT ( fact_comments[comment_id] ), REMOVEFILTERS ( dim_theme ), REMOVEFILTERS ( dim_step ), fact_comments[searched] = 0 ) )",
+            "formatString": "0%",
+            "displayFolder": "Comments"
+          },
+          {
+            "name": "After The Vote Share",
+            "expression": "DIVIDE ( CALCULATE ( DISTINCTCOUNT ( fact_comment_theme[comment_id] ), dim_step[order] IN { 5, 6, 7 }, fact_comments[searched] = 0 ), CALCULATE ( DISTINCTCOUNT ( fact_comments[comment_id] ), REMOVEFILTERS ( dim_theme ), REMOVEFILTERS ( dim_step ), fact_comments[searched] = 0 ) )",
+            "formatString": "0%",
+            "displayFolder": "Comments"
+          },
+          {
+            "name": "Videos With Theme",
+            "expression": "DISTINCTCOUNT ( fact_comments[video_id] )",
+            "formatString": "0",
+            "displayFolder": "Comments"
+          },
+          {
+            "name": "Average Tone",
+            "expression": "AVERAGE ( fact_comments[tone] )",
+            "formatString": "0.00",
+            "displayFolder": "Comments"
+          },
+          {
+            "name": "Step Colour",
+            "expression": "VAR _top = MAXX ( ALLSELECTED ( dim_step[short], dim_step[order] ), [Theme Share] ) RETURN IF ( [Theme Share] = _top, \"#F2563F\", \"#00B36B\" )",
+            "displayFolder": "Formatting"
+          },
+          {
+            "name": "Theme Colour",
+            "expression": "IF ( SELECTEDVALUE ( dim_theme[rank_now] ) = 1, \"#F2563F\", \"#00B36B\" )",
+            "displayFolder": "Formatting"
+          }
+        ]
+      },
+      {
+        "name": "fact_comment_theme",
+        "columns": [
+          {
+            "name": "comment_id",
+            "dataType": "string",
+            "sourceColumn": "comment_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "theme",
+            "dataType": "string",
+            "sourceColumn": "theme",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fact_comment_theme",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(DataRoot & \"fact_comment_theme.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"comment_id\", type text}, {\"theme\", type text}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_theme",
+        "columns": [
+          {
+            "name": "theme",
+            "dataType": "string",
+            "sourceColumn": "theme",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "label",
+            "dataType": "string",
+            "sourceColumn": "label",
+            "summarizeBy": "none",
+            "sortByColumn": "rank_now"
+          },
+          {
+            "name": "process_step",
+            "dataType": "string",
+            "sourceColumn": "process_step",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "y2023_share",
+            "dataType": "double",
+            "sourceColumn": "y2023_share",
+            "summarizeBy": "none",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "share_now",
+            "dataType": "double",
+            "sourceColumn": "share_now",
+            "summarizeBy": "none",
+            "formatString": "0.0%",
+            "isHidden": true
+          },
+          {
+            "name": "rank_now",
+            "dataType": "int64",
+            "sourceColumn": "rank_now",
+            "summarizeBy": "none",
+            "formatString": "#,0"
+          },
+          {
+            "name": "top4",
+            "dataType": "string",
+            "sourceColumn": "top4",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "top8",
+            "dataType": "string",
+            "sourceColumn": "top8",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_theme",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(DataRoot & \"dim_theme.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"theme\", type text}, {\"label\", type text}, {\"process_step\", type text}, {\"y2023_share\", type number}, {\"share_now\", type number}, {\"rank_now\", Int64.Type}, {\"top4\", type text}, {\"top8\", type text}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_step",
+        "columns": [
+          {
+            "name": "step",
+            "dataType": "string",
+            "sourceColumn": "step",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "order",
+            "dataType": "int64",
+            "sourceColumn": "order",
+            "summarizeBy": "none",
+            "formatString": "#,0"
+          },
+          {
+            "name": "short",
+            "dataType": "string",
+            "sourceColumn": "short",
+            "summarizeBy": "none",
+            "sortByColumn": "order"
+          },
+          {
+            "name": "what_fails",
+            "dataType": "string",
+            "sourceColumn": "what_fails",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "evidence",
+            "dataType": "string",
+            "sourceColumn": "evidence",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_step",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(DataRoot & \"dim_step.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"step\", type text}, {\"order\", Int64.Type}, {\"short\", type text}, {\"what_fails\", type text}, {\"evidence\", type text}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_video",
+        "columns": [
+          {
+            "name": "video_id",
+            "dataType": "string",
+            "sourceColumn": "video_id",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "platform",
+            "dataType": "string",
+            "sourceColumn": "platform",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "channel",
+            "dataType": "string",
+            "sourceColumn": "channel",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "title",
+            "dataType": "string",
+            "sourceColumn": "title",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "published",
+            "dataType": "string",
+            "sourceColumn": "published",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "comments_read",
+            "dataType": "int64",
+            "sourceColumn": "comments_read",
+            "summarizeBy": "sum",
+            "formatString": "#,0"
+          },
+          {
+            "name": "fear_comments",
+            "dataType": "int64",
+            "sourceColumn": "fear_comments",
+            "summarizeBy": "sum",
+            "formatString": "#,0"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_video",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(DataRoot & \"dim_video.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"video_id\", type text}, {\"platform\", type text}, {\"channel\", type text}, {\"title\", type text}, {\"published\", type text}, {\"comments_read\", Int64.Type}, {\"fear_comments\", Int64.Type}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Comments Read",
+            "expression": "SUM ( dim_video[comments_read] )",
+            "formatString": "#,0",
+            "displayFolder": "Comments"
+          }
+        ]
+      },
+      {
+        "name": "fact_results_2023",
+        "columns": [
+          {
+            "name": "state",
+            "dataType": "string",
+            "sourceColumn": "state",
+            "summarizeBy": "none",
+            "sortByColumn": "problem_rank"
+          },
+          {
+            "name": "polling_units",
+            "dataType": "int64",
+            "sourceColumn": "polling_units",
+            "summarizeBy": "sum",
+            "formatString": "#,0"
+          },
+          {
+            "name": "readable",
+            "dataType": "int64",
+            "sourceColumn": "readable",
+            "summarizeBy": "sum",
+            "formatString": "#,0"
+          },
+          {
+            "name": "never_uploaded",
+            "dataType": "int64",
+            "sourceColumn": "never_uploaded",
+            "summarizeBy": "sum",
+            "formatString": "#,0"
+          },
+          {
+            "name": "unreadable",
+            "dataType": "int64",
+            "sourceColumn": "unreadable",
+            "summarizeBy": "sum",
+            "formatString": "#,0"
+          },
+          {
+            "name": "wrong_document",
+            "dataType": "int64",
+            "sourceColumn": "wrong_document",
+            "summarizeBy": "sum",
+            "formatString": "#,0"
+          },
+          {
+            "name": "cancelled",
+            "dataType": "int64",
+            "sourceColumn": "cancelled",
+            "summarizeBy": "sum",
+            "formatString": "#,0"
+          },
+          {
+            "name": "missing_signature_or_stamp",
+            "dataType": "int64",
+            "sourceColumn": "missing_signature_or_stamp",
+            "summarizeBy": "sum",
+            "formatString": "#,0"
+          },
+          {
+            "name": "problem_share",
+            "dataType": "double",
+            "sourceColumn": "problem_share",
+            "summarizeBy": "none",
+            "formatString": "0.0%",
+            "isHidden": true
+          },
+          {
+            "name": "problem_rank",
+            "dataType": "int64",
+            "sourceColumn": "problem_rank",
+            "summarizeBy": "none",
+            "formatString": "#,0"
+          },
+          {
+            "name": "top6",
+            "dataType": "string",
+            "sourceColumn": "top6",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fact_results_2023",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(DataRoot & \"fact_results_2023.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"state\", type text}, {\"polling_units\", Int64.Type}, {\"readable\", Int64.Type}, {\"never_uploaded\", Int64.Type}, {\"unreadable\", Int64.Type}, {\"wrong_document\", Int64.Type}, {\"cancelled\", Int64.Type}, {\"missing_signature_or_stamp\", Int64.Type}, {\"problem_share\", type number}, {\"problem_rank\", Int64.Type}, {\"top6\", type text}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Polling Units 2023",
+            "expression": "SUM ( fact_results_2023[polling_units] )",
+            "formatString": "#,0",
+            "displayFolder": "2023 results"
+          },
+          {
+            "name": "Problem Units 2023",
+            "expression": "SUM ( fact_results_2023[never_uploaded] ) + SUM ( fact_results_2023[unreadable] ) + SUM ( fact_results_2023[wrong_document] )",
+            "formatString": "#,0",
+            "displayFolder": "2023 results"
+          },
+          {
+            "name": "Problem Share 2023",
+            "expression": "DIVIDE ( [Problem Units 2023], [Polling Units 2023] )",
+            "formatString": "0.0%",
+            "displayFolder": "2023 results"
+          },
+          {
+            "name": "Never Uploaded",
+            "expression": "SUM ( fact_results_2023[never_uploaded] )",
+            "formatString": "#,0",
+            "displayFolder": "2023 results"
+          },
+          {
+            "name": "Unreadable Upload",
+            "expression": "SUM ( fact_results_2023[unreadable] )",
+            "formatString": "#,0",
+            "displayFolder": "2023 results"
+          },
+          {
+            "name": "Wrong Document",
+            "expression": "SUM ( fact_results_2023[wrong_document] )",
+            "formatString": "#,0",
+            "displayFolder": "2023 results"
+          },
+          {
+            "name": "Never Uploaded Share",
+            "expression": "DIVIDE ( [Never Uploaded], [Polling Units 2023] )",
+            "formatString": "0%",
+            "displayFolder": "2023 results"
+          },
+          {
+            "name": "Unreadable Share",
+            "expression": "DIVIDE ( [Unreadable Upload], [Polling Units 2023] )",
+            "formatString": "0%",
+            "displayFolder": "2023 results"
+          },
+          {
+            "name": "Wrong Document Share",
+            "expression": "DIVIDE ( [Wrong Document], [Polling Units 2023] )",
+            "formatString": "0%",
+            "displayFolder": "2023 results"
+          }
+        ]
+      },
+      {
+        "name": "fact_problem",
+        "columns": [
+          {
+            "name": "state",
+            "dataType": "string",
+            "sourceColumn": "state",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "problem_type",
+            "dataType": "string",
+            "sourceColumn": "problem_type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "units",
+            "dataType": "int64",
+            "sourceColumn": "units",
+            "summarizeBy": "sum",
+            "formatString": "#,0"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fact_problem",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(DataRoot & \"fact_results_2023.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Kept = Table.SelectColumns(Promoted, {\"state\", \"never_uploaded\", \"unreadable\", \"wrong_document\"}),",
+                "    Unpivoted = Table.UnpivotOtherColumns(Kept, {\"state\"}, \"problem_type\", \"units\"),",
+                "    Named = Table.ReplaceValue(Table.ReplaceValue(Table.ReplaceValue(Unpivoted, \"never_uploaded\", \"Never uploaded\", Replacer.ReplaceValue, {\"problem_type\"}), \"unreadable\", \"Unreadable\", Replacer.ReplaceValue, {\"problem_type\"}), \"wrong_document\", \"Wrong document\", Replacer.ReplaceValue, {\"problem_type\"}),",
+                "    Typed = Table.TransformColumnTypes(Named, {{\"state\", type text}, {\"problem_type\", type text}, {\"units\", Int64.Type}})",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Problem Units",
+            "expression": "SUM ( fact_problem[units] )",
+            "formatString": "#,0",
+            "displayFolder": "2023 results"
+          },
+          {
+            "name": "Problem Colour",
+            "expression": "SWITCH ( SELECTEDVALUE ( fact_problem[problem_type] ), \"Never uploaded\", \"#F2563F\", \"Unreadable\", \"#00B36B\", \"#E8EDEA\" )",
+            "displayFolder": "2023 results"
+          }
+        ]
+      },
+      {
+        "name": "dim_fix",
+        "columns": [
+          {
+            "name": "fix_id",
+            "dataType": "string",
+            "sourceColumn": "fix_id",
+            "summarizeBy": "none",
+            "sortByColumn": "fix_order"
+          },
+          {
+            "name": "theme",
+            "dataType": "string",
+            "sourceColumn": "theme",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "process_step",
+            "dataType": "string",
+            "sourceColumn": "process_step",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "fix",
+            "dataType": "string",
+            "sourceColumn": "fix",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "owner",
+            "dataType": "string",
+            "sourceColumn": "owner",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "before_jan_2027",
+            "dataType": "string",
+            "sourceColumn": "before_jan_2027",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "needs_new_law",
+            "dataType": "string",
+            "sourceColumn": "needs_new_law",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "evidence",
+            "dataType": "string",
+            "sourceColumn": "evidence",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "quick_win",
+            "dataType": "string",
+            "sourceColumn": "quick_win",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "fix_order",
+            "dataType": "int64",
+            "sourceColumn": "fix_order",
+            "summarizeBy": "none",
+            "formatString": "#,0",
+            "isHidden": true
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_fix",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(DataRoot & \"dim_fix.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"fix_id\", type text}, {\"theme\", type text}, {\"process_step\", type text}, {\"fix\", type text}, {\"owner\", type text}, {\"before_jan_2027\", type text}, {\"needs_new_law\", type text}, {\"evidence\", type text}, {\"quick_win\", type text}}, \"en-US\"),",
+                "    Ordered = Table.AddColumn(Typed, \"fix_order\", each Number.FromText(Text.Middle([fix_id], 1)), Int64.Type),",
+                "    Result = Ordered",
+                "in",
+                "    Result"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Fixes Proposed",
+            "expression": "COUNTROWS ( dim_fix )",
+            "formatString": "0",
+            "displayFolder": "Fixes"
+          },
+          {
+            "name": "Quick Wins",
+            "expression": "CALCULATE ( COUNTROWS ( dim_fix ), dim_fix[quick_win] = \"Quick win\" )",
+            "formatString": "0",
+            "displayFolder": "Fixes"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "926380fccd41",
+        "fromTable": "fact_comment_theme",
+        "fromColumn": "comment_id",
+        "toTable": "fact_comments",
+        "toColumn": "comment_id",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "5e3231d30b31",
+        "fromTable": "fact_comment_theme",
+        "fromColumn": "theme",
+        "toTable": "dim_theme",
+        "toColumn": "theme"
+      },
+      {
+        "name": "df03377e1efd",
+        "fromTable": "dim_theme",
+        "fromColumn": "process_step",
+        "toTable": "dim_step",
+        "toColumn": "step"
+      },
+      {
+        "name": "28cf50dcd072",
+        "fromTable": "fact_comments",
+        "fromColumn": "video_id",
+        "toTable": "dim_video",
+        "toColumn": "video_id"
+      },
+      {
+        "name": "da978409e9c5",
+        "fromTable": "fact_problem",
+        "fromColumn": "state",
+        "toTable": "fact_results_2023",
+        "toColumn": "state"
+      },
+      {
+        "name": "95c56571f221",
+        "fromTable": "dim_fix",
+        "fromColumn": "process_step",
+        "toTable": "dim_step",
+        "toColumn": "step"
+      }
+    ],
+    "expressions": [
+      {
+        "name": "DataRoot",
+        "kind": "m",
+        "expression": "\"https://raw.githubusercontent.com/JeffreyOkonkwo/JeffreyOkonkwo/main/will-my-vote-count/powerbi/\" meta [IsParameterQuery = true, Type = \"Text\", IsParameterQueryRequired = true]",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Text"
+          }
+        ]
+      }
+    ],
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"DataRoot\", \"fact_comments\", \"fact_comment_theme\", \"dim_theme\", \"dim_step\", \"dim_video\", \"fact_results_2023\", \"fact_problem\", \"dim_fix\"]"
+      },
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      },
+      {
+        "name": "PBIDesktopVersion",
+        "value": "2.137.0"
+      }
+    ]
+  }
+}

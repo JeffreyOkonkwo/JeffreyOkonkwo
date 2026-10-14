@@ -1,0 +1,189 @@
+{
+  "name": "Will My Vote Count (Naija)",
+  "dataColors": [
+    "#00B36B",
+    "#F4F7F5",
+    "#F2563F",
+    "#E8B547",
+    "#008751",
+    "#6C7A72",
+    "#7FE0B1",
+    "#A7B3AC"
+  ],
+  "background": "#050806",
+  "secondaryBackground": "#0F1A15",
+  "foreground": "#F4F7F5",
+  "foregroundNeutralSecondary": "#A7B3AC",
+  "foregroundNeutralTertiary": "#6C7A72",
+  "backgroundLight": "#14221B",
+  "backgroundNeutral": "#22332A",
+  "tableAccent": "#00B36B",
+  "good": "#00B36B",
+  "neutral": "#E8B547",
+  "bad": "#F2563F",
+  "maximum": "#00B36B",
+  "center": "#E8B547",
+  "minimum": "#14221B",
+  "textClasses": {
+    "callout": {
+      "fontSize": 30,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#F4F7F5"
+    },
+    "title": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#F4F7F5"
+    },
+    "header": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#F4F7F5"
+    },
+    "label": {
+      "fontSize": 9,
+      "fontFace": "Segoe UI",
+      "color": "#A7B3AC"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": false,
+            "transparency": 100
+          }
+        ],
+        "border": [
+          {
+            "show": false
+          }
+        ],
+        "dropShadow": [
+          {
+            "show": false
+          }
+        ],
+        "visualHeader": [
+          {
+            "show": false
+          }
+        ],
+        "title": [
+          {
+            "show": false,
+            "fontColor": {
+              "solid": {
+                "color": "#F4F7F5"
+              }
+            }
+          }
+        ],
+        "outspacePane": [
+          {
+            "backgroundColor": {
+              "solid": {
+                "color": "#0F1A15"
+              }
+            },
+            "foregroundColor": {
+              "solid": {
+                "color": "#F4F7F5"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "filterCard": [
+          {
+            "$id": "Applied",
+            "backgroundColor": {
+              "solid": {
+                "color": "#14221B"
+              }
+            },
+            "foregroundColor": {
+              "solid": {
+                "color": "#F4F7F5"
+              }
+            },
+            "transparency": 0
+          },
+          {
+            "$id": "Available",
+            "backgroundColor": {
+              "solid": {
+                "color": "#0F1A15"
+              }
+            },
+            "foregroundColor": {
+              "solid": {
+                "color": "#F4F7F5"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "transparency": 0
+          }
+        ],
+        "outspace": [
+          {
+            "color": {
+              "solid": {
+                "color": "#050806"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "slicer": {
+      "*": {
+        "items": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#F4F7F5"
+              }
+            },
+            "background": {
+              "solid": {
+                "color": "#0F1A15"
+              }
+            }
+          }
+        ],
+        "header": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#A7B3AC"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "tableEx": {
+      "*": {
+        "grid": [
+          {
+            "gridHorizontalColor": {
+              "solid": {
+                "color": "#22332A"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

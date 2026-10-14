@@ -1,0 +1,8 @@
+step,order,short,what_fails,evidence
+1 Registration and PVC,1,Register,Permanent voter cards (PVCs) go uncollected and the register is never audited,"6,259,229 voter cards uncollected in 2023; 18.5% uncollected in Osun 2026 (INEC)"
+2 Parties and candidates,2,Nominate,Party crises and pre-election cases are settled by courts and INEC recognition,"As of March 2026, one party held 31 of 36 governorships; two main opposition parties in court disputes (2026)"
+3 Voting at the polling unit,3,Vote,Units open late and votes are bought,"Officials at 27% of units by 7:30 a.m. in 2023 (Yiaga); N1,000 to N50,000 per vote in 2024 to 2026 state polls"
+4 Voting day security,4,Stay safe,Violence and thugs keep voters away,"61% say violence could stop them voting, 78% in the North-East (Yiaga, Sep 2026)"
+5 Result upload (IReV),5,Upload,"Polling unit result sheets reach IReV, INEC’s public results website, late, unreadable or not at all",2023: 20% of presidential sheets online by noon the next day; 14.1% of units never usable online (CCIJ)
+6 Collation and declaration,6,Collate,"Totals change while unit results are added up at ward, local government and state centres","Edo 2024: Yiaga found results altered at collation in three LGAs, with more than one party involved; Ekiti 2026: over 100 unit result sheets on IReV visibly altered (Dataphyte)"
+7 Petitions and tribunals,7,Go to court,"Courts settle outcomes, and a failed upload alone does not void a result","1,196 petitions after 2023; Supreme Court (Oct 2023): IReV is a viewing portal, not a collation centre, and a failure to upload does not by itself void an election"

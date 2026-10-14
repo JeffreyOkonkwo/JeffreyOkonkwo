@@ -1,0 +1,16 @@
+theme,label,process_step,y2023_share,share_now,rank_now,top4,top8
+rigging,Results will be rigged,6 Collation and declaration,0.2629,0.3825,1,Yes,Yes
+inec_trust,INEC is not neutral or able,0 INEC as an institution,,0.1988,2,Yes,Yes
+upload,Results will not be uploaded,5 Result upload (IReV),0.2105,0.152,3,Yes,Yes
+courts,"The courts will decide, not voters",7 Petitions and tribunals,0.1325,0.1427,4,Yes,Yes
+registration,I cannot register or get my PVC,1 Registration and PVC,0.0306,0.0936,5,No,Yes
+vote_buying,Votes will be bought,3 Voting at the polling unit,0.0051,0.0503,6,No,Yes
+ethnic,Tribe and religion will divide the vote,Outside INEC,0.053,0.0433,7,No,Yes
+thugs,Thugs will intimidate voters,4 Voting day security,0.0301,0.0398,8,No,Yes
+court_pre,Courts will decide who can run,2 Parties and candidates,0.0,0.0374,9,No,No
+apathy,My vote will not count,Turnout,0.0049,0.0175,10,No,No
+hardship,Hardship makes votes cheap,Outside INEC,0.0071,0.0129,11,No,No
+one_party,One party will dominate,2 Parties and candidates,0.0018,0.0117,12,No,No
+misinfo,Fake news will mislead voters,Information,0.0078,0.0105,13,No,No
+violence,Violence will stop people voting,4 Voting day security,0.0131,0.0094,14,No,No
+diaspora,Nigerians abroad cannot vote,1 Registration and PVC,0.0089,0.0,15,No,No

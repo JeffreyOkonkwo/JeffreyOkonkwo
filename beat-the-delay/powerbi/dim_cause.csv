@@ -1,0 +1,11 @@
+Cause,Cause Type,Cause Sort
+Disorderly or security,People-related,1
+Track and signals,"Equipment, track, operations or other",2
+Customer illness or injury,People-related,3
+Track-level emergencies,People-related,4
+Train and door faults,"Equipment, track, operations or other",5
+Operations and staffing,"Equipment, track, operations or other",6
+Weather,"Equipment, track, operations or other",7
+Alarms with no trouble found,People-related,8
+Other,"Equipment, track, operations or other",9
+Unsanitary vehicle,People-related,10

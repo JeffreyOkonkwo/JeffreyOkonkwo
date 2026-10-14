@@ -1,0 +1,207 @@
+{
+  "name": "Beat the Delay (Race Night)",
+  "dataColors": [
+    "#D7322B",
+    "#7D838D",
+    "#F8C300",
+    "#00923F",
+    "#BCC1C9",
+    "#A21A68",
+    "#F5F6F8",
+    "#4A4F58"
+  ],
+  "background": "#0C0D10",
+  "secondaryBackground": "#15171C",
+  "foreground": "#F5F6F8",
+  "foregroundNeutralSecondary": "#A9AFB8",
+  "foregroundNeutralTertiary": "#6B717B",
+  "backgroundLight": "#1E2128",
+  "backgroundNeutral": "#2A2D34",
+  "tableAccent": "#D7322B",
+  "good": "#2FB36B",
+  "neutral": "#BCC1C9",
+  "bad": "#D7322B",
+  "maximum": "#D7322B",
+  "center": "#6E3330",
+  "minimum": "#15171C",
+  "textClasses": {
+    "callout": {
+      "fontSize": 30,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#F5F6F8"
+    },
+    "title": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#F5F6F8"
+    },
+    "header": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#F5F6F8"
+    },
+    "label": {
+      "fontSize": 9,
+      "fontFace": "Segoe UI",
+      "color": "#A9AFB8"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": false,
+            "transparency": 100
+          }
+        ],
+        "border": [
+          {
+            "show": false
+          }
+        ],
+        "dropShadow": [
+          {
+            "show": false
+          }
+        ],
+        "visualHeader": [
+          {
+            "show": false
+          }
+        ],
+        "title": [
+          {
+            "show": false,
+            "fontColor": {
+              "solid": {
+                "color": "#F5F6F8"
+              }
+            }
+          }
+        ],
+        "outspacePane": [
+          {
+            "backgroundColor": {
+              "solid": {
+                "color": "#15171C"
+              }
+            },
+            "foregroundColor": {
+              "solid": {
+                "color": "#F5F6F8"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "filterCard": [
+          {
+            "$id": "Applied",
+            "backgroundColor": {
+              "solid": {
+                "color": "#1E2128"
+              }
+            },
+            "foregroundColor": {
+              "solid": {
+                "color": "#F5F6F8"
+              }
+            },
+            "transparency": 0
+          },
+          {
+            "$id": "Available",
+            "backgroundColor": {
+              "solid": {
+                "color": "#15171C"
+              }
+            },
+            "foregroundColor": {
+              "solid": {
+                "color": "#F5F6F8"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "transparency": 0
+          }
+        ],
+        "outspace": [
+          {
+            "color": {
+              "solid": {
+                "color": "#0C0D10"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "slicer": {
+      "*": {
+        "items": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#F5F6F8"
+              }
+            },
+            "background": {
+              "solid": {
+                "color": "#1E2128"
+              }
+            }
+          }
+        ],
+        "header": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#A9AFB8"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "tableEx": {
+      "*": {
+        "grid": [
+          {
+            "gridHorizontalColor": {
+              "solid": {
+                "color": "#2A2D34"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "pivotTable": {
+      "*": {
+        "grid": [
+          {
+            "gridHorizontalColor": {
+              "solid": {
+                "color": "#0C0D10"
+              }
+            },
+            "gridVerticalColor": {
+              "solid": {
+                "color": "#0C0D10"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
