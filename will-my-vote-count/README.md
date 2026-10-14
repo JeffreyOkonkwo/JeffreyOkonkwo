@@ -7,7 +7,7 @@
 Nigeria votes for president on **16 January 2027**. Only 34% of Nigerians surveyed are confident that INEC, the Independent National Electoral Commission, will run a credible election (Yiaga Africa, September 2026), and turnout fell to 26.7% in 2023, the lowest since 1999.
 I wanted to know which steps of the process people actually fear, whether those fears have a basis, and what could be fixed in time.
 
-**Watch the 44-second Power BI walkthrough:** [assets/Will_My_Vote_Count_PowerBI.mp4](assets/Will_My_Vote_Count_PowerBI.mp4)
+**Watch the 40-second Power BI walkthrough:** [assets/Will_My_Vote_Count_PowerBI.mp4](assets/Will_My_Vote_Count_PowerBI.mp4)
 **Try the dashboard:** download [`dashboard.html`](dashboard.html) and open it in any browser (data built in).
 **Open the Power BI report:** [`powerbi/POWERBI_GUIDE.md`](powerbi/POWERBI_GUIDE.md)
 
