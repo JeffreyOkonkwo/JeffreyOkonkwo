@@ -56,12 +56,12 @@
                       "Entity": "dim_video"
                     }
                   },
-                  "Property": "channel"
+                  "Property": "platform"
                 }
               },
-              "queryRef": "dim_video.channel",
-              "nativeQueryRef": "channel",
-              "displayName": "Channel"
+              "queryRef": "dim_video.platform",
+              "nativeQueryRef": "platform",
+              "displayName": "Platform"
             },
             {
               "field": {
@@ -76,7 +76,7 @@
               },
               "queryRef": "dim_video.title",
               "nativeQueryRef": "title",
-              "displayName": "Video"
+              "displayName": "Post"
             }
           ]
         }

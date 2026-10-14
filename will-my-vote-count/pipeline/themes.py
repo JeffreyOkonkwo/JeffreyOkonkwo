@@ -59,7 +59,7 @@ THEMES = [
         r"hardship", r"\bhunger\b", r"cost of living", r"inflation", r"food prices?", r"fuel price", r"subsidy removal",
         r"e hard", r"country hard", r"suffering and smiling", r"renewed hopelessness", r"hunger dey", r"we dey suffer",
         r"jobless", r"unemployment", r"endbadgovernance"]),
-    ("ethnic", "Tribe and religion will divide the vote", "Outside INEC", [
+    ("ethnic", "Tribe and religion will divide us", "Outside INEC", [
         r"tribalis\w+", r"tribalistic", r"\bigbos?\b", r"\byorubas?\b", r"\bhausas?\b", r"\bfulanis?\b", r"ndigbo", r"\barewa\b",
         r"oduduwa", r"biafra\w*", r"northerners", r"southerners", r"zoning", r"power shift", r"muslim[- ]muslim",
         r"emi ?lokan", r"go back to your village"]),

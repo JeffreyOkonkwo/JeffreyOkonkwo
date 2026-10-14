@@ -23,11 +23,11 @@
                       "Entity": "dim_video"
                     }
                   },
-                  "Property": "channel"
+                  "Property": "platform"
                 }
               },
-              "queryRef": "dim_video.channel",
-              "nativeQueryRef": "channel"
+              "queryRef": "dim_video.platform",
+              "nativeQueryRef": "platform"
             }
           ]
         }
@@ -79,7 +79,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Channel'"
+                  "Value": "'Platform'"
                 }
               }
             }
