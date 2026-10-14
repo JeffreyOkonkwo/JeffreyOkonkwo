@@ -260,6 +260,12 @@
             "displayFolder": "3 Backlog health"
           },
           {
+            "name": "Team Sprints",
+            "expression": "// sprints this item sat in for the selected team; blank when the team never had it\nDISTINCTCOUNT ( fact_sprint_item[sprint_id] )",
+            "formatString": "#,0",
+            "displayFolder": "3 Backlog health"
+          },
+          {
             "name": "Carried Items",
             "expression": "SUM ( fact_sprint_item[carried] )",
             "formatString": "#,0",

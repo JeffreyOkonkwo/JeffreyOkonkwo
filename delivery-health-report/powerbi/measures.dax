@@ -111,6 +111,10 @@ Unplanned Share of Added =
     // bugs and build failures among the items added mid-sprint
     DIVIDE ( [Unplanned Added Items], [Added Items] )
 
+Team Sprints =
+    // sprints this item sat in for the selected team; blank when the team never had it
+    DISTINCTCOUNT ( fact_sprint_item[sprint_id] )
+
 Carried Items = SUM ( fact_sprint_item[carried] )
 
 // ---- 9 Formatting

@@ -18,12 +18,16 @@ and change `Web.Contents` to `File.Contents` in each query.
 A manual build kit sits beside the project: `measures.dax` holds every measure and `power_query.m` holds every query.
 `DeliveryHealth.theme.json` is the report theme.
 
+## How to filter
+
+Every page has a row of Team tiles under the header: Foundations, Persistence and Transactions. Click a tile to focus on that team, and click it again to show all three. The Predictability page also has Period tiles: Apr to Dec 2025 and Jan to Oct 2026. The buttons at the top right move between pages.
+
 ## What each page answers
 
 | Page | Question it answers |
 | --- | --- |
-| Overview | How predictable are the three teams overall? Say-do ratio, scope added mid-sprint, carry-over, cycle time, code review share and items stuck across sprints, with say-do by sprint against an 80% goal. Use the Team slicer to focus on one team. |
-| Predictability | Did each sprint deliver what it committed to? A scorecard of every sprint, scope added per sprint, and the carry-over trend. Use the Period slicer to compare April to December 2025 with January to October 2026. |
+| Overview | How predictable are the three teams overall? Say-do ratio, scope added mid-sprint, carry-over, cycle time, code review share and items stuck across sprints, with say-do by sprint against an 80% goal. |
+| Predictability | Did each sprint deliver what it committed to? A scorecard of every sprint, scope added per sprint, and the carry-over trend. The Period tiles compare April to December 2025 with January to October 2026. |
 | Flow | How long does finished work take, and where does the time go? Cycle time per item against the 85th percentile, the share of time spent in progress, in code review, blocked or waiting, weekly throughput and cumulative flow. |
 | Backlog health | Which work keeps rolling forward, and how much added work is unplanned? Items that sat in three or more sprints, and items added mid-sprint by type, with bugs and build failures counted as unplanned. |
 
