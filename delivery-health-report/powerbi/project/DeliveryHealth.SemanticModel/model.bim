@@ -1,0 +1,936 @@
+{
+  "compatibilityLevel": 1567,
+  "model": {
+    "culture": "en-US",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "_Measures",
+        "columns": [
+          {
+            "name": "Placeholder",
+            "dataType": "int64",
+            "sourceColumn": "Placeholder",
+            "summarizeBy": "none",
+            "formatString": "0",
+            "isHidden": true
+          }
+        ],
+        "partitions": [
+          {
+            "name": "_Measures",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #table(type table [Placeholder = Int64.Type], {})",
+                "in",
+                "    Source"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Sprints",
+            "expression": "COUNTROWS ( fact_sprint )",
+            "formatString": "#,0",
+            "displayFolder": "1 Sprint predictability"
+          },
+          {
+            "name": "Committed",
+            "expression": "SUM ( fact_sprint[committed] )",
+            "formatString": "#,0",
+            "displayFolder": "1 Sprint predictability"
+          },
+          {
+            "name": "Committed Done",
+            "expression": "SUM ( fact_sprint[committed_done] )",
+            "formatString": "#,0",
+            "displayFolder": "1 Sprint predictability"
+          },
+          {
+            "name": "Scope Added",
+            "expression": "SUM ( fact_sprint[added] )",
+            "formatString": "#,0",
+            "displayFolder": "1 Sprint predictability"
+          },
+          {
+            "name": "Added Done",
+            "expression": "SUM ( fact_sprint[added_done] )",
+            "formatString": "#,0",
+            "displayFolder": "1 Sprint predictability"
+          },
+          {
+            "name": "Total Done",
+            "expression": "SUM ( fact_sprint[total_done] )",
+            "formatString": "#,0",
+            "displayFolder": "1 Sprint predictability"
+          },
+          {
+            "name": "Carried Over",
+            "expression": "SUM ( fact_sprint[carried_over] )",
+            "formatString": "#,0",
+            "displayFolder": "1 Sprint predictability"
+          },
+          {
+            "name": "Removed",
+            "expression": "SUM ( fact_sprint[removed] )",
+            "formatString": "#,0",
+            "displayFolder": "1 Sprint predictability"
+          },
+          {
+            "name": "Say-Do Ratio",
+            "expression": "// committed items finished in the sprint, over committed items at sprint start\nDIVIDE ( [Committed Done], [Committed] )",
+            "formatString": "0.0%",
+            "displayFolder": "1 Sprint predictability"
+          },
+          {
+            "name": "Say-Do Points",
+            "expression": "DIVIDE ( SUM ( fact_sprint[committed_pts_done] ), SUM ( fact_sprint[committed_pts] ) )",
+            "formatString": "0.0%",
+            "displayFolder": "1 Sprint predictability"
+          },
+          {
+            "name": "Scope Added %",
+            "expression": "// items added after the sprint started, over committed items at sprint start\nDIVIDE ( [Scope Added], [Committed] )",
+            "formatString": "0.0%",
+            "displayFolder": "1 Sprint predictability"
+          },
+          {
+            "name": "Say-Do by Sprint",
+            "expression": "// the say-do ratio of each sprint, averaged when more than one sprint is in context (for line charts)\nAVERAGEX (\n    FILTER ( VALUES ( fact_sprint[sprint_id] ), CALCULATE ( [Committed] ) > 0 ),\n    CALCULATE ( [Say-Do Ratio] )\n)",
+            "formatString": "0%",
+            "displayFolder": "1 Sprint predictability"
+          },
+          {
+            "name": "Say-Do Goal",
+            "expression": "0.8",
+            "formatString": "0%",
+            "displayFolder": "1 Sprint predictability"
+          },
+          {
+            "name": "Sprints With Commitment",
+            "expression": "COUNTROWS ( FILTER ( fact_sprint, fact_sprint[committed] > 0 ) ) + 0",
+            "formatString": "#,0",
+            "displayFolder": "1 Sprint predictability"
+          },
+          {
+            "name": "Sprints At 80% Say-Do",
+            "expression": "COUNTROWS (\n    FILTER (\n        fact_sprint,\n        fact_sprint[committed] > 0\n            && DIVIDE ( fact_sprint[committed_done], fact_sprint[committed] ) >= [Say-Do Goal]\n    )\n) + 0",
+            "formatString": "#,0",
+            "displayFolder": "1 Sprint predictability"
+          },
+          {
+            "name": "Sprints At Goal Share",
+            "expression": "DIVIDE ( [Sprints At 80% Say-Do], [Sprints With Commitment] )",
+            "formatString": "0%",
+            "displayFolder": "1 Sprint predictability"
+          },
+          {
+            "name": "Items Finished",
+            "expression": "COUNTROWS ( fact_flow )",
+            "formatString": "#,0",
+            "displayFolder": "2 Flow"
+          },
+          {
+            "name": "Cycle Time P50",
+            "expression": "PERCENTILE.INC ( fact_flow[cycle_days], 0.5 )",
+            "formatString": "0.0\" days\"",
+            "displayFolder": "2 Flow"
+          },
+          {
+            "name": "Cycle Time P85",
+            "expression": "PERCENTILE.INC ( fact_flow[cycle_days], 0.85 )",
+            "formatString": "0.0\" days\"",
+            "displayFolder": "2 Flow"
+          },
+          {
+            "name": "Cycle Time Average",
+            "expression": "AVERAGE ( fact_flow[cycle_days] )",
+            "formatString": "0.0\" days\"",
+            "displayFolder": "2 Flow"
+          },
+          {
+            "name": "Cycle Days",
+            "expression": "SUM ( fact_flow[cycle_days] )",
+            "formatString": "#,0.0",
+            "displayFolder": "2 Flow"
+          },
+          {
+            "name": "In Progress Days",
+            "expression": "SUM ( fact_flow[in_progress_days] )",
+            "formatString": "#,0.0",
+            "displayFolder": "2 Flow"
+          },
+          {
+            "name": "Code Review Days",
+            "expression": "SUM ( fact_flow[code_review_days] )",
+            "formatString": "#,0.0",
+            "displayFolder": "2 Flow"
+          },
+          {
+            "name": "Blocked Days",
+            "expression": "SUM ( fact_flow[blocked_days] )",
+            "formatString": "#,0.0",
+            "displayFolder": "2 Flow"
+          },
+          {
+            "name": "Other Wait Days",
+            "expression": "SUM ( fact_flow[other_wait_days] )",
+            "formatString": "#,0.0",
+            "displayFolder": "2 Flow"
+          },
+          {
+            "name": "Flow Efficiency",
+            "expression": "// time actively in progress, over total cycle time\nDIVIDE ( [In Progress Days], [Cycle Days] )",
+            "formatString": "0.0%",
+            "displayFolder": "2 Flow"
+          },
+          {
+            "name": "Code Review Share",
+            "expression": "DIVIDE ( [Code Review Days], [Cycle Days] )",
+            "formatString": "0.0%",
+            "displayFolder": "2 Flow"
+          },
+          {
+            "name": "Blocked Share",
+            "expression": "DIVIDE ( [Blocked Days], [Cycle Days] )",
+            "formatString": "0.0%",
+            "displayFolder": "2 Flow"
+          },
+          {
+            "name": "Other Wait Share",
+            "expression": "DIVIDE ( [Other Wait Days], [Cycle Days] )",
+            "formatString": "0.0%",
+            "displayFolder": "2 Flow"
+          },
+          {
+            "name": "Done Date",
+            "expression": "MIN ( fact_flow[done] )",
+            "formatString": "mmm yyyy",
+            "displayFolder": "2 Flow"
+          },
+          {
+            "name": "Cycle Days Plot",
+            "expression": "// floors same-day items at 0.1 day so they can sit on a log scale\nVAR _d = [Cycle Days]\nRETURN\n    IF ( ISBLANK ( _d ), BLANK (), MAX ( _d, 0.1 ) )",
+            "formatString": "0.0",
+            "displayFolder": "2 Flow"
+          },
+          {
+            "name": "Throughput",
+            "expression": "SUM ( fact_throughput[done] )",
+            "formatString": "#,0",
+            "displayFolder": "2 Flow"
+          },
+          {
+            "name": "CFD Items",
+            "expression": "SUM ( fact_cfd[items] )",
+            "formatString": "#,0",
+            "displayFolder": "2 Flow"
+          },
+          {
+            "name": "Items In 3+ Sprints",
+            "expression": "// issues that sat in three or more sprints; counted through sprint items so the team slicer applies\nCALCULATE ( DISTINCTCOUNT ( fact_sprint_item[key] ), dim_issue[sprints_touched] >= 3 ) + 0",
+            "formatString": "#,0",
+            "displayFolder": "3 Backlog health"
+          },
+          {
+            "name": "Added Items",
+            "expression": "SUM ( fact_sprint_item[added] )",
+            "formatString": "#,0",
+            "displayFolder": "3 Backlog health"
+          },
+          {
+            "name": "Unplanned Added Items",
+            "expression": "CALCULATE ( [Added Items], dim_issue[unplanned] = 1 )",
+            "formatString": "#,0",
+            "displayFolder": "3 Backlog health"
+          },
+          {
+            "name": "Unplanned Share of Added",
+            "expression": "// bugs and build failures among the items added mid-sprint\nDIVIDE ( [Unplanned Added Items], [Added Items] )",
+            "formatString": "0.0%",
+            "displayFolder": "3 Backlog health"
+          },
+          {
+            "name": "Carried Items",
+            "expression": "SUM ( fact_sprint_item[carried] )",
+            "formatString": "#,0",
+            "displayFolder": "3 Backlog health"
+          },
+          {
+            "name": "Team Colour",
+            "expression": "SWITCH ( SELECTEDVALUE ( dim_team[short] ), \"Foundations\", \"#0C0E0D\", \"Persistence\", \"#8A8F8B\", \"Transactions\", \"#FF4A1C\", \"#0C0E0D\" )",
+            "displayFolder": "9 Formatting"
+          },
+          {
+            "name": "Say-Do Colour",
+            "expression": "IF ( NOT ISBLANK ( [Say-Do Ratio] ) && [Say-Do Ratio] < 0.5, \"#FF4A1C\", \"#0C0E0D\" )",
+            "displayFolder": "9 Formatting"
+          },
+          {
+            "name": "Work Group Colour",
+            "expression": "IF ( SELECTEDVALUE ( dim_issue[work_group] ) = \"Planned work\", \"#0C0E0D\", \"#FF4A1C\" )",
+            "displayFolder": "9 Formatting"
+          },
+          {
+            "name": "Type Colour",
+            "expression": "IF ( MAX ( dim_issue[unplanned] ) = 1, \"#FF4A1C\", \"#0C0E0D\" )",
+            "displayFolder": "9 Formatting"
+          }
+        ]
+      },
+      {
+        "name": "dim_team",
+        "columns": [
+          {
+            "name": "team",
+            "dataType": "string",
+            "sourceColumn": "team",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "short",
+            "dataType": "string",
+            "sourceColumn": "short",
+            "summarizeBy": "none",
+            "sortByColumn": "order"
+          },
+          {
+            "name": "order",
+            "dataType": "int64",
+            "sourceColumn": "order",
+            "summarizeBy": "none",
+            "formatString": "0",
+            "isHidden": true
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_team",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(DataRoot & \"dim_team.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"team\", type text}, {\"short\", type text}, {\"order\", Int64.Type}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "fact_sprint",
+        "columns": [
+          {
+            "name": "team",
+            "dataType": "string",
+            "sourceColumn": "team",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "sprint",
+            "dataType": "string",
+            "sourceColumn": "sprint",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "sprint_id",
+            "dataType": "int64",
+            "sourceColumn": "sprint_id",
+            "summarizeBy": "none",
+            "formatString": "0"
+          },
+          {
+            "name": "sprint_no",
+            "dataType": "int64",
+            "sourceColumn": "sprint_no",
+            "summarizeBy": "none",
+            "formatString": "0"
+          },
+          {
+            "name": "start",
+            "dataType": "dateTime",
+            "sourceColumn": "start",
+            "summarizeBy": "none",
+            "formatString": "yyyy-mm-dd"
+          },
+          {
+            "name": "end",
+            "dataType": "dateTime",
+            "sourceColumn": "end",
+            "summarizeBy": "none",
+            "formatString": "yyyy-mm-dd"
+          },
+          {
+            "name": "half",
+            "dataType": "string",
+            "sourceColumn": "half",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "committed",
+            "dataType": "int64",
+            "sourceColumn": "committed",
+            "summarizeBy": "none",
+            "formatString": "0"
+          },
+          {
+            "name": "committed_done",
+            "dataType": "int64",
+            "sourceColumn": "committed_done",
+            "summarizeBy": "none",
+            "formatString": "0"
+          },
+          {
+            "name": "added",
+            "dataType": "int64",
+            "sourceColumn": "added",
+            "summarizeBy": "none",
+            "formatString": "0"
+          },
+          {
+            "name": "added_done",
+            "dataType": "int64",
+            "sourceColumn": "added_done",
+            "summarizeBy": "none",
+            "formatString": "0"
+          },
+          {
+            "name": "total_done",
+            "dataType": "int64",
+            "sourceColumn": "total_done",
+            "summarizeBy": "none",
+            "formatString": "0"
+          },
+          {
+            "name": "carried_over",
+            "dataType": "int64",
+            "sourceColumn": "carried_over",
+            "summarizeBy": "none",
+            "formatString": "0"
+          },
+          {
+            "name": "removed",
+            "dataType": "int64",
+            "sourceColumn": "removed",
+            "summarizeBy": "none",
+            "formatString": "0"
+          },
+          {
+            "name": "committed_pts",
+            "dataType": "double",
+            "sourceColumn": "committed_pts",
+            "summarizeBy": "none",
+            "formatString": "0.0"
+          },
+          {
+            "name": "committed_pts_done",
+            "dataType": "double",
+            "sourceColumn": "committed_pts_done",
+            "summarizeBy": "none",
+            "formatString": "0.0"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fact_sprint",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(DataRoot & \"fact_sprint.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"team\", type text}, {\"sprint\", type text}, {\"sprint_id\", Int64.Type}, {\"sprint_no\", Int64.Type}, {\"start\", type date}, {\"end\", type date}, {\"half\", type text}, {\"committed\", Int64.Type}, {\"committed_done\", Int64.Type}, {\"added\", Int64.Type}, {\"added_done\", Int64.Type}, {\"total_done\", Int64.Type}, {\"carried_over\", Int64.Type}, {\"removed\", Int64.Type}, {\"committed_pts\", type number}, {\"committed_pts_done\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "fact_sprint_item",
+        "columns": [
+          {
+            "name": "sprint_id",
+            "dataType": "int64",
+            "sourceColumn": "sprint_id",
+            "summarizeBy": "none",
+            "formatString": "0"
+          },
+          {
+            "name": "team",
+            "dataType": "string",
+            "sourceColumn": "team",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "key",
+            "dataType": "string",
+            "sourceColumn": "key",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "committed",
+            "dataType": "int64",
+            "sourceColumn": "committed",
+            "summarizeBy": "none",
+            "formatString": "0"
+          },
+          {
+            "name": "added",
+            "dataType": "int64",
+            "sourceColumn": "added",
+            "summarizeBy": "none",
+            "formatString": "0"
+          },
+          {
+            "name": "completed",
+            "dataType": "int64",
+            "sourceColumn": "completed",
+            "summarizeBy": "none",
+            "formatString": "0"
+          },
+          {
+            "name": "carried",
+            "dataType": "int64",
+            "sourceColumn": "carried",
+            "summarizeBy": "none",
+            "formatString": "0"
+          },
+          {
+            "name": "removed",
+            "dataType": "int64",
+            "sourceColumn": "removed",
+            "summarizeBy": "none",
+            "formatString": "0"
+          },
+          {
+            "name": "points",
+            "dataType": "double",
+            "sourceColumn": "points",
+            "summarizeBy": "none",
+            "formatString": "0.0"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fact_sprint_item",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(DataRoot & \"fact_sprint_item.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"sprint_id\", Int64.Type}, {\"team\", type text}, {\"key\", type text}, {\"committed\", Int64.Type}, {\"added\", Int64.Type}, {\"completed\", Int64.Type}, {\"carried\", Int64.Type}, {\"removed\", Int64.Type}, {\"points\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "fact_flow",
+        "columns": [
+          {
+            "name": "key",
+            "dataType": "string",
+            "sourceColumn": "key",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "team",
+            "dataType": "string",
+            "sourceColumn": "team",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "type",
+            "dataType": "string",
+            "sourceColumn": "type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "started",
+            "dataType": "dateTime",
+            "sourceColumn": "started",
+            "summarizeBy": "none",
+            "formatString": "yyyy-mm-dd"
+          },
+          {
+            "name": "done",
+            "dataType": "dateTime",
+            "sourceColumn": "done",
+            "summarizeBy": "none",
+            "formatString": "yyyy-mm-dd"
+          },
+          {
+            "name": "cycle_days",
+            "dataType": "double",
+            "sourceColumn": "cycle_days",
+            "summarizeBy": "none",
+            "formatString": "0.0"
+          },
+          {
+            "name": "in_progress_days",
+            "dataType": "double",
+            "sourceColumn": "in_progress_days",
+            "summarizeBy": "none",
+            "formatString": "0.0"
+          },
+          {
+            "name": "code_review_days",
+            "dataType": "double",
+            "sourceColumn": "code_review_days",
+            "summarizeBy": "none",
+            "formatString": "0.0"
+          },
+          {
+            "name": "blocked_days",
+            "dataType": "double",
+            "sourceColumn": "blocked_days",
+            "summarizeBy": "none",
+            "formatString": "0.0"
+          },
+          {
+            "name": "other_wait_days",
+            "dataType": "double",
+            "sourceColumn": "other_wait_days",
+            "summarizeBy": "none",
+            "formatString": "0.0"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fact_flow",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(DataRoot & \"fact_flow.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"key\", type text}, {\"team\", type text}, {\"type\", type text}, {\"started\", type date}, {\"done\", type date}, {\"cycle_days\", type number}, {\"in_progress_days\", type number}, {\"code_review_days\", type number}, {\"blocked_days\", type number}, {\"other_wait_days\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "fact_throughput",
+        "columns": [
+          {
+            "name": "team",
+            "dataType": "string",
+            "sourceColumn": "team",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "week",
+            "dataType": "dateTime",
+            "sourceColumn": "week",
+            "summarizeBy": "none",
+            "formatString": "yyyy-mm-dd"
+          },
+          {
+            "name": "done",
+            "dataType": "int64",
+            "sourceColumn": "done",
+            "summarizeBy": "none",
+            "formatString": "0"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fact_throughput",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(DataRoot & \"fact_throughput.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"team\", type text}, {\"week\", type date}, {\"done\", Int64.Type}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "fact_cfd",
+        "columns": [
+          {
+            "name": "team",
+            "dataType": "string",
+            "sourceColumn": "team",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "date",
+            "dataType": "dateTime",
+            "sourceColumn": "date",
+            "summarizeBy": "none",
+            "formatString": "yyyy-mm-dd"
+          },
+          {
+            "name": "stage",
+            "dataType": "string",
+            "sourceColumn": "stage",
+            "summarizeBy": "none",
+            "sortByColumn": "stage_order"
+          },
+          {
+            "name": "items",
+            "dataType": "int64",
+            "sourceColumn": "items",
+            "summarizeBy": "none",
+            "formatString": "0"
+          },
+          {
+            "name": "stage_order",
+            "dataType": "int64",
+            "sourceColumn": "stage_order",
+            "summarizeBy": "none",
+            "formatString": "0",
+            "isHidden": true
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fact_cfd",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(DataRoot & \"fact_cfd.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"team\", type text}, {\"date\", type date}, {\"stage\", type text}, {\"items\", Int64.Type}}, \"en-US\"),",
+                "    Ordered = Table.AddColumn(Typed, \"stage_order\", each List.PositionOf({\"Done\", \"In review\", \"Blocked\", \"In progress\", \"To do\"}, [stage]) + 1, Int64.Type),",
+                "    Result = Ordered",
+                "in",
+                "    Result"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_issue",
+        "columns": [
+          {
+            "name": "key",
+            "dataType": "string",
+            "sourceColumn": "key",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "type",
+            "dataType": "string",
+            "sourceColumn": "type",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "priority",
+            "dataType": "string",
+            "sourceColumn": "priority",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "points",
+            "dataType": "double",
+            "sourceColumn": "points",
+            "summarizeBy": "none",
+            "formatString": "0.0"
+          },
+          {
+            "name": "status",
+            "dataType": "string",
+            "sourceColumn": "status",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "created",
+            "dataType": "dateTime",
+            "sourceColumn": "created",
+            "summarizeBy": "none",
+            "formatString": "yyyy-mm-dd"
+          },
+          {
+            "name": "resolved",
+            "dataType": "dateTime",
+            "sourceColumn": "resolved",
+            "summarizeBy": "none",
+            "formatString": "yyyy-mm-dd"
+          },
+          {
+            "name": "sprints_touched",
+            "dataType": "int64",
+            "sourceColumn": "sprints_touched",
+            "summarizeBy": "none",
+            "formatString": "0"
+          },
+          {
+            "name": "unplanned",
+            "dataType": "int64",
+            "sourceColumn": "unplanned",
+            "summarizeBy": "none",
+            "formatString": "0"
+          },
+          {
+            "name": "work_group",
+            "dataType": "string",
+            "sourceColumn": "work_group",
+            "summarizeBy": "none",
+            "sortByColumn": "work_group_order"
+          },
+          {
+            "name": "work_group_order",
+            "dataType": "int64",
+            "sourceColumn": "work_group_order",
+            "summarizeBy": "none",
+            "formatString": "0",
+            "isHidden": true
+          },
+          {
+            "name": "sprint_band",
+            "dataType": "string",
+            "sourceColumn": "sprint_band",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_issue",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(Web.Contents(DataRoot & \"dim_issue.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"key\", type text}, {\"type\", type text}, {\"priority\", type text}, {\"points\", type number}, {\"status\", type text}, {\"created\", type date}, {\"resolved\", type date}, {\"sprints_touched\", Int64.Type}, {\"unplanned\", Int64.Type}}, \"en-US\"),",
+                "    Group = Table.AddColumn(Typed, \"work_group\", each if [unplanned] = 1 then [type] else \"Planned work\", type text),",
+                "    GroupOrder = Table.AddColumn(Group, \"work_group_order\", each if [work_group] = \"Planned work\" then 3 else if [work_group] = \"Bug\" then 1 else 2, Int64.Type),",
+                "    Band = Table.AddColumn(GroupOrder, \"sprint_band\", each if [sprints_touched] >= 3 then \"3 or more\" else \"1 or 2\", type text),",
+                "    Result = Band",
+                "in",
+                "    Result"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "89bfc9e683ef",
+        "fromTable": "fact_sprint",
+        "fromColumn": "team",
+        "toTable": "dim_team",
+        "toColumn": "team"
+      },
+      {
+        "name": "19d1dbde7ac1",
+        "fromTable": "fact_flow",
+        "fromColumn": "team",
+        "toTable": "dim_team",
+        "toColumn": "team"
+      },
+      {
+        "name": "bf5d963babf5",
+        "fromTable": "fact_throughput",
+        "fromColumn": "team",
+        "toTable": "dim_team",
+        "toColumn": "team"
+      },
+      {
+        "name": "6cbddde61e9a",
+        "fromTable": "fact_cfd",
+        "fromColumn": "team",
+        "toTable": "dim_team",
+        "toColumn": "team"
+      },
+      {
+        "name": "0f317422c002",
+        "fromTable": "fact_sprint_item",
+        "fromColumn": "team",
+        "toTable": "dim_team",
+        "toColumn": "team",
+        "isActive": false
+      },
+      {
+        "name": "3ce0c9a47ea0",
+        "fromTable": "fact_sprint_item",
+        "fromColumn": "sprint_id",
+        "toTable": "fact_sprint",
+        "toColumn": "sprint_id"
+      },
+      {
+        "name": "258127066921",
+        "fromTable": "fact_sprint_item",
+        "fromColumn": "key",
+        "toTable": "dim_issue",
+        "toColumn": "key"
+      },
+      {
+        "name": "4d258ab0b7c4",
+        "fromTable": "fact_flow",
+        "fromColumn": "key",
+        "toTable": "dim_issue",
+        "toColumn": "key"
+      }
+    ],
+    "expressions": [
+      {
+        "name": "DataRoot",
+        "kind": "m",
+        "expression": "\"https://raw.githubusercontent.com/JeffreyOkonkwo/JeffreyOkonkwo/main/delivery-health-report/powerbi/\" meta [IsParameterQuery = true, Type = \"Text\", IsParameterQueryRequired = true]",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Text"
+          }
+        ]
+      }
+    ],
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"DataRoot\", \"_Measures\", \"dim_team\", \"fact_sprint\", \"fact_sprint_item\", \"fact_flow\", \"fact_throughput\", \"fact_cfd\", \"dim_issue\"]"
+      },
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      },
+      {
+        "name": "PBIDesktopVersion",
+        "value": "2.137.0"
+      }
+    ]
+  }
+}

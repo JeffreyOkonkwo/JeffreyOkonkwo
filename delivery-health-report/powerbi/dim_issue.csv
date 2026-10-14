@@ -1,0 +1,844 @@
+key,type,priority,points,status,created,resolved,sprints_touched,unplanned
+WT-10208,Improvement,Major - P3,8.0,Open,2022-11-23,,1,0
+WT-10779,Task,Major - P3,,Closed,2023-03-20,2026-06-29,3,0
+WT-10792,Bug,Major - P3,5.0,Closed,2023-03-22,2025-05-05,1,1
+WT-11177,New Feature,Major - P3,,Closed,2023-06-13,2025-09-01,5,0
+WT-11813,Improvement,Major - P3,5.0,Closed,2023-10-12,2025-05-27,1,0
+WT-12066,Technical Debt,Major - P3,3.0,Closed,2023-12-01,2026-02-12,1,0
+WT-12244,Improvement,Major - P3,2.0,Closed,2024-01-08,2025-04-30,1,0
+WT-12542,Bug,Major - P3,5.0,Closed,2024-02-26,2025-06-18,3,1
+WT-12567,Improvement,Major - P3,8.0,Open,2024-02-28,,1,0
+WT-12575,Task,Major - P3,2.0,Closed,2024-03-01,2025-12-22,1,0
+WT-12622,Bug,Major - P3,,Closed,2024-03-08,2025-11-27,1,1
+WT-12690,Bug,Trivial - P5,,Closed,2024-03-21,2025-11-27,1,1
+WT-12800,Improvement,Minor - P4,2.0,Closed,2024-04-08,2025-05-08,1,0
+WT-12878,Bug,Major - P3,1.0,Closed,2024-04-22,2026-01-13,1,1
+WT-12880,Task,Major - P3,3.0,Closed,2024-04-22,2026-08-21,1,0
+WT-12896,Bug,Minor - P4,,Closed,2024-04-26,2025-11-27,1,1
+WT-13052,Improvement,Major - P3,2.0,Open,2024-05-26,,1,0
+WT-13085,Bug,Minor - P4,,Closed,2024-05-30,2025-11-27,1,1
+WT-13209,Bug,Minor - P4,2.0,Closed,2024-06-27,2025-06-12,3,1
+WT-13368,Bug,Minor - P4,3.0,Closed,2024-08-07,2025-05-07,1,1
+WT-13430,Bug,Major - P3,3.0,Closed,2024-08-20,2025-11-13,3,1
+WT-13454,Improvement,Major - P3,5.0,Closed,2024-08-23,2025-10-17,3,0
+WT-13551,Build Failure,Minor - P4,5.0,Closed,2024-09-18,2025-07-04,4,1
+WT-13627,Bug,Major - P3,5.0,Closed,2024-10-14,2025-06-04,1,1
+WT-13665,Task,Major - P3,2.0,Closed,2024-10-21,2025-12-15,1,0
+WT-13671,Task,Major - P3,1.0,Closed,2024-10-23,2025-06-02,2,0
+WT-13703,Bug,Major - P3,8.0,Closed,2024-11-05,2025-05-26,2,1
+WT-13747,Task,Major - P3,2.0,Closed,2024-11-13,2025-05-01,1,0
+WT-13791,Bug,Minor - P4,,Closed,2024-11-22,2026-05-05,1,1
+WT-13807,Improvement,Major - P3,1.0,Closed,2024-11-26,2026-04-13,2,0
+WT-14091,Improvement,Major - P3,5.0,Closed,2025-02-05,2025-05-28,1,0
+WT-14123,Improvement,Major - P3,2.0,Closed,2025-02-13,2025-06-16,2,0
+WT-14124,Improvement,Major - P3,3.0,Open,2025-02-13,,1,0
+WT-14127,Task,Major - P3,5.0,Closed,2025-02-13,2025-05-05,1,0
+WT-14140,Bug,Major - P3,8.0,Closed,2025-02-13,2025-05-26,1,1
+WT-14204,Task,Major - P3,3.0,Closed,2025-02-27,2025-06-11,4,0
+WT-14246,Build Failure,Major - P3,5.0,Closed,2025-03-06,2025-09-23,2,1
+WT-14267,Build Failure,Major - P3,8.0,Closed,2025-03-12,2025-05-13,1,1
+WT-14270,Build Failure,Major - P3,5.0,Closed,2025-03-12,2025-06-04,1,1
+WT-14273,Improvement,Major - P3,5.0,Closed,2025-03-13,2025-06-12,1,0
+WT-14296,Task,Major - P3,5.0,Backlog,2025-03-18,,2,0
+WT-14309,Build Failure,Major - P3,8.0,Closed,2025-03-21,2025-12-02,1,1
+WT-14312,Improvement,Major - P3,2.0,Closed,2025-03-24,2025-06-19,3,0
+WT-14323,Build Failure,Major - P3,8.0,Closed,2025-03-26,2025-05-18,2,1
+WT-14334,Task,Major - P3,1.0,Closed,2025-03-31,2025-04-28,1,0
+WT-14336,Task,Major - P3,5.0,Closed,2025-03-31,2025-05-23,1,0
+WT-14343,Task,Major - P3,8.0,Closed,2025-04-02,2025-05-14,1,0
+WT-14345,Task,Major - P3,5.0,Closed,2025-04-02,2025-05-05,1,0
+WT-14355,Bug,Minor - P4,2.0,Closed,2025-04-04,2025-05-05,1,1
+WT-14365,Task,Major - P3,5.0,Closed,2025-04-08,2025-08-22,2,0
+WT-14366,Build Failure,Major - P3,3.0,Closed,2025-04-08,2026-09-01,1,1
+WT-14375,Build Failure,Minor - P4,,Closed,2025-04-09,2026-09-11,2,1
+WT-14382,Task,Minor - P4,,Backlog,2025-04-10,,1,0
+WT-14389,Task,Major - P3,5.0,Closed,2025-04-14,2025-05-12,1,0
+WT-14391,Bug,Critical - P2,3.0,Closed,2025-04-14,2025-04-30,1,1
+WT-14393,Task,Critical - P2,5.0,Closed,2025-04-15,2025-04-29,1,0
+WT-14449,Bug,Major - P3,1.0,Closed,2025-04-28,2025-06-16,1,1
+WT-14455,Bug,Major - P3,3.0,Closed,2025-04-29,2025-04-30,1,1
+WT-14459,Task,Minor - P4,1.0,Closed,2025-04-30,2025-05-28,1,0
+WT-14461,Bug,Major - P3,5.0,Closed,2025-04-30,2025-06-19,2,1
+WT-14528,Task,Major - P3,8.0,Closed,2025-04-14,2026-10-13,1,0
+WT-14551,Bug,Minor - P4,1.0,Closed,2025-05-02,2025-05-09,1,1
+WT-14557,Task,Major - P3,5.0,Closed,2025-05-03,2025-05-06,1,0
+WT-14564,Bug,Major - P3,8.0,Open,2025-05-06,,2,1
+WT-14568,Build Failure,Major - P3,1.0,Closed,2025-05-07,2025-05-08,1,1
+WT-14570,Task,Major - P3,2.0,Closed,2025-05-07,2025-06-17,2,0
+WT-14573,Bug,Major - P3,1.0,Closed,2025-05-08,2025-05-08,1,1
+WT-14574,Technical Debt,Minor - P4,1.0,Closed,2025-05-08,2025-08-07,1,0
+WT-14576,Task,Major - P3,5.0,Closed,2025-05-08,2025-06-02,1,0
+WT-14581,Documentation,Major - P3,1.0,Closed,2025-05-09,2025-08-07,1,0
+WT-14589,Build Failure,Minor - P4,,Closed,2025-05-12,2026-01-05,1,1
+WT-14590,New Feature,Major - P3,8.0,Closed,2025-05-13,2025-07-14,1,0
+WT-14595,Bug,Major - P3,3.0,Closed,2025-05-15,2026-08-18,1,1
+WT-14602,Bug,Major - P3,1.0,Closed,2025-05-20,2025-05-28,2,1
+WT-14606,Task,Major - P3,5.0,Closed,2025-05-21,2025-06-04,1,0
+WT-14616,Task,Major - P3,8.0,Closed,2025-05-22,2025-06-03,1,0
+WT-14617,Task,Major - P3,5.0,Closed,2025-05-23,2025-05-28,1,0
+WT-14622,Build Failure,Major - P3,2.0,Closed,2025-05-23,2026-08-21,1,1
+WT-14631,Bug,Major - P3,1.0,Closed,2025-05-26,2025-05-26,1,1
+WT-14633,Task,Major - P3,5.0,Closed,2025-05-27,2025-05-30,1,0
+WT-14636,Task,Major - P3,3.0,Closed,2025-05-27,2025-09-10,2,0
+WT-14640,Improvement,Major - P3,3.0,Closed,2025-05-27,2026-10-07,4,0
+WT-14643,Improvement,Major - P3,3.0,Closed,2025-05-27,2025-06-17,2,0
+WT-14647,Documentation,Major - P3,8.0,Closed,2025-05-28,2026-07-16,4,0
+WT-14649,Task,Major - P3,5.0,Closed,2025-05-28,2025-06-02,1,0
+WT-14652,Story,Major - P3,5.0,Closed,2025-05-29,2025-07-01,1,0
+WT-14654,Bug,Major - P3,5.0,Closed,2025-05-30,2025-06-20,2,1
+WT-14655,Build Failure,Major - P3,,Closed,2025-05-30,2025-11-03,1,1
+WT-14657,Task,Major - P3,3.0,Closed,2025-05-30,2025-06-04,1,0
+WT-14669,Story,Major - P3,8.0,Closed,2025-06-02,2025-06-19,1,0
+WT-14672,Bug,Major - P3,,Closed,2025-06-03,2025-06-03,1,1
+WT-14676,Bug,Major - P3,,Closed,2025-06-03,2025-06-04,1,1
+WT-14690,Task,Major - P3,,Closed,2025-06-04,2025-07-17,1,0
+WT-14699,Task,Major - P3,3.0,Closed,2025-06-04,2025-06-30,1,0
+WT-14715,Task,Major - P3,5.0,Closed,2025-06-05,2025-07-28,3,0
+WT-14724,Task,Major - P3,2.0,Closed,2025-06-06,2025-06-16,1,0
+WT-14726,Task,Major - P3,3.0,Closed,2025-06-06,2025-06-18,1,0
+WT-14729,Task,Major - P3,3.0,Closed,2025-06-06,2025-06-20,1,0
+WT-14730,Task,Major - P3,5.0,Closed,2025-06-06,2026-08-11,1,0
+WT-14743,Bug,Major - P3,5.0,Closed,2025-06-09,2025-08-06,2,1
+WT-14745,Bug,Major - P3,,Open,2025-06-10,,1,1
+WT-14751,Bug,Major - P3,2.0,Closed,2025-06-10,2025-08-18,1,1
+WT-14758,Task,Major - P3,5.0,Closed,2025-06-11,2025-07-24,3,0
+WT-14759,Task,Major - P3,2.0,Closed,2025-06-11,2025-06-12,1,0
+WT-14760,Build Failure,Major - P3,3.0,Closed,2025-06-11,2025-08-25,3,1
+WT-14762,Bug,Major - P3,2.0,Closed,2025-06-11,2025-06-11,1,1
+WT-14770,Task,Major - P3,1.0,Closed,2025-06-11,2025-06-12,1,0
+WT-14776,Build Failure,Major - P3,,Closed,2025-06-12,2025-06-18,1,1
+WT-14780,Build Failure,Major - P3,,Closed,2025-06-12,2025-06-13,1,1
+WT-14799,Bug,Minor - P4,,Closed,2025-06-15,2026-02-12,1,1
+WT-14800,Task,Major - P3,1.0,Closed,2025-06-16,2025-06-20,1,0
+WT-14801,Task,Major - P3,5.0,Closed,2025-06-16,2025-08-19,2,0
+WT-14802,Task,Major - P3,5.0,Closed,2025-06-16,2025-06-25,1,0
+WT-14804,Build Failure,Major - P3,5.0,Closed,2025-06-16,2025-06-23,2,1
+WT-14809,Improvement,Major - P3,5.0,Closed,2025-06-18,2025-06-25,2,0
+WT-14810,Task,Major - P3,5.0,Closed,2025-06-18,2025-06-21,2,0
+WT-14816,Task,Major - P3,,Closed,2025-06-18,2025-06-25,2,0
+WT-14817,Task,Major - P3,,Closed,2025-06-18,2025-06-25,2,0
+WT-14818,Task,Major - P3,,Closed,2025-06-18,2025-06-25,2,0
+WT-14819,Improvement,Major - P3,,Open,2025-06-18,,2,0
+WT-14825,Task,Major - P3,3.0,Closed,2025-06-19,2025-06-24,1,0
+WT-14827,Task,Major - P3,5.0,Closed,2025-06-19,2025-06-30,1,0
+WT-14829,Task,Major - P3,8.0,Closed,2025-06-19,2025-07-25,2,0
+WT-14831,Task,Major - P3,5.0,Closed,2025-06-19,2025-09-30,1,0
+WT-14841,Task,Major - P3,5.0,Closed,2025-06-23,2025-06-23,1,0
+WT-14842,Improvement,Minor - P4,1.0,Closed,2025-06-24,2025-06-25,1,0
+WT-14843,Improvement,Major - P3,3.0,Closed,2025-06-24,2025-07-14,1,0
+WT-14852,Bug,Major - P3,5.0,Closed,2025-06-26,2025-07-17,1,1
+WT-14876,Task,Major - P3,3.0,Closed,2025-07-01,2025-09-03,1,0
+WT-14877,Bug,Major - P3,1.0,Closed,2025-07-01,2025-09-02,1,1
+WT-14879,New Feature,Minor - P4,5.0,Closed,2025-07-01,2026-05-29,2,0
+WT-14941,Task,Major - P3,13.0,Closed,2025-07-07,2025-08-07,2,0
+WT-14943,Build Failure,Major - P3,3.0,Closed,2025-07-07,2026-01-12,2,1
+WT-14949,Task,Major - P3,3.0,Open,2025-07-08,,1,0
+WT-14988,Task,Major - P3,5.0,Closed,2025-07-11,2025-08-25,4,0
+WT-14989,Task,Major - P3,5.0,Closed,2025-07-11,2025-08-26,2,0
+WT-15011,Improvement,Major - P3,5.0,Closed,2025-07-15,2025-09-01,2,0
+WT-15015,Task,Major - P3,3.0,Closed,2025-07-15,2025-07-22,1,0
+WT-15016,Task,Major - P3,3.0,Closed,2025-07-15,2025-07-25,1,0
+WT-15019,Task,Major - P3,1.0,Closed,2025-07-16,2026-06-19,1,0
+WT-15031,Task,Major - P3,8.0,Closed,2025-07-17,2025-08-28,2,0
+WT-15065,Improvement,Major - P3,5.0,Closed,2025-07-23,2025-07-30,1,0
+WT-15099,Bug,Minor - P4,5.0,Closed,2025-07-30,2025-08-21,1,1
+WT-15108,Documentation,Major - P3,5.0,Closed,2025-07-31,2025-08-13,1,0
+WT-15115,Bug,Major - P3,2.0,Closed,2025-08-04,2025-08-06,1,1
+WT-15116,Build Failure,Major - P3,3.0,Closed,2025-08-04,2025-08-09,1,1
+WT-15139,Bug,Minor - P4,5.0,Closed,2025-08-07,2026-04-21,6,1
+WT-15140,Task,Major - P3,5.0,Closed,2025-08-07,2025-10-23,2,0
+WT-15147,Build Failure,Major - P3,5.0,Closed,2025-08-08,2025-08-19,1,1
+WT-15156,Build Failure,Major - P3,2.0,Closed,2025-08-08,2025-08-19,1,1
+WT-15161,Bug,Minor - P4,3.0,Closed,2025-08-10,2025-09-22,1,1
+WT-15165,Task,Major - P3,8.0,Closed,2025-08-11,2025-09-01,2,0
+WT-15166,Task,Major - P3,8.0,Closed,2025-08-11,2025-09-15,3,0
+WT-15168,Improvement,Major - P3,3.0,Closed,2025-08-11,2025-08-26,1,0
+WT-15175,Bug,Major - P3,2.0,Closed,2025-08-11,2025-08-17,1,1
+WT-15178,Bug,Major - P3,1.0,Closed,2025-08-11,2025-08-11,1,1
+WT-15184,Task,Major - P3,3.0,Closed,2025-08-12,2025-11-14,1,0
+WT-15190,Technical Debt,Minor - P4,1.0,Closed,2025-08-13,2026-08-14,1,0
+WT-15191,Task,Major - P3,5.0,Closed,2025-08-13,2025-08-22,1,0
+WT-15194,Task,Major - P3,5.0,Open,2025-08-13,,4,0
+WT-15209,New Feature,Major - P3,3.0,Closed,2025-08-15,2025-08-25,1,0
+WT-15216,Build Failure,Major - P3,3.0,Closed,2025-08-17,2025-09-03,1,1
+WT-15219,Build Failure,Major - P3,3.0,Closed,2025-08-18,2026-09-29,3,1
+WT-15230,Task,Major - P3,3.0,Closed,2025-08-20,2025-08-26,1,0
+WT-15244,Task,Major - P3,3.0,Closed,2025-08-22,2025-09-16,1,0
+WT-15251,Build Failure,Major - P3,2.0,Closed,2025-08-25,2025-08-27,1,1
+WT-15252,Build Failure,Major - P3,3.0,Closed,2025-08-25,2025-08-26,1,1
+WT-15263,Build Failure,Major - P3,3.0,Closed,2025-08-26,2025-09-03,1,1
+WT-15269,Bug,Major - P3,1.0,Closed,2025-08-26,2025-08-29,2,1
+WT-15270,Bug,Major - P3,3.0,Closed,2025-08-26,2025-09-09,1,1
+WT-15271,Bug,Major - P3,1.0,Closed,2025-08-26,2025-09-17,2,1
+WT-15272,Build Failure,Major - P3,,Closed,2025-08-26,2025-09-04,1,1
+WT-15277,Build Failure,Major - P3,3.0,Closed,2025-08-26,2025-09-12,1,1
+WT-15280,Build Failure,Major - P3,5.0,Closed,2025-08-26,2025-11-12,1,1
+WT-15296,Build Failure,Major - P3,5.0,Closed,2025-08-27,2025-10-07,1,1
+WT-15302,Bug,Major - P3,5.0,Closed,2025-08-28,2025-09-05,1,1
+WT-15316,Task,Major - P3,1.0,Closed,2025-08-29,2025-09-01,2,0
+WT-15325,Build Failure,Major - P3,5.0,Open,2025-08-31,,1,1
+WT-15331,Task,Major - P3,8.0,Closed,2025-09-01,2025-09-02,1,0
+WT-15336,Build Failure,Major - P3,3.0,Closed,2025-09-01,2025-09-01,1,1
+WT-15342,Task,Major - P3,1.0,Closed,2025-09-02,2025-09-02,1,0
+WT-15346,Task,Major - P3,5.0,Closed,2025-09-02,2025-09-23,2,0
+WT-15348,Bug,Major - P3,1.0,Closed,2025-09-02,2025-10-15,2,1
+WT-15349,Build Failure,Major - P3,,Closed,2025-09-02,2025-09-04,1,1
+WT-15350,Task,Major - P3,1.0,Closed,2025-09-02,2025-09-08,1,0
+WT-15361,Build Failure,Major - P3,3.0,Open,2025-09-04,,1,1
+WT-15375,Task,Major - P3,1.0,Closed,2025-09-04,2025-09-22,2,0
+WT-15380,Task,Major - P3,5.0,Closed,2025-09-05,2026-04-13,5,0
+WT-15390,Build Failure,Major - P3,5.0,Closed,2025-09-07,2025-11-18,1,1
+WT-15392,Build Failure,Major - P3,5.0,Closed,2025-09-07,2026-04-22,6,1
+WT-15402,Bug,Major - P3,1.0,Closed,2025-09-08,2025-09-09,1,1
+WT-15406,Build Failure,Major - P3,,Closed,2025-09-08,2025-09-19,1,1
+WT-15465,Task,Major - P3,5.0,Closed,2025-09-14,2026-01-05,2,0
+WT-15469,Build Failure,Minor - P4,,Closed,2025-09-15,2026-07-16,2,1
+WT-15477,New Feature,Major - P3,5.0,Closed,2025-09-16,2025-10-13,2,0
+WT-15483,Bug,Major - P3,2.0,Closed,2025-09-16,2025-09-23,2,1
+WT-15484,Task,Minor - P4,1.0,Closed,2025-09-16,2025-09-17,1,0
+WT-15485,New Feature,Major - P3,3.0,Closed,2025-09-16,2025-09-22,1,0
+WT-15486,New Feature,Major - P3,3.0,Closed,2025-09-16,2025-09-16,1,0
+WT-15492,Bug,Major - P3,1.0,Closed,2025-09-17,2025-09-17,1,1
+WT-15494,Task,Major - P3,5.0,Closed,2025-09-17,2025-09-23,1,0
+WT-15529,Bug,Major - P3,3.0,Closed,2025-09-18,2025-10-15,1,1
+WT-15538,Task,Major - P3,,Open,2025-09-19,,4,0
+WT-15546,Task,Major - P3,3.0,Closed,2025-09-19,2025-12-08,1,0
+WT-15558,Improvement,Major - P3,1.0,Closed,2025-09-23,2026-04-21,3,0
+WT-15561,Improvement,Major - P3,5.0,Closed,2025-09-23,2025-09-26,1,0
+WT-15567,Task,Major - P3,5.0,Closed,2025-09-24,2025-11-19,3,0
+WT-15573,Improvement,Major - P3,5.0,Open,2025-09-24,,3,0
+WT-15581,Improvement,Major - P3,2.0,Closed,2025-09-25,2026-05-14,1,0
+WT-15601,Build Failure,Major - P3,1.0,Closed,2025-09-28,2025-09-29,1,1
+WT-15617,Task,Major - P3,8.0,Closed,2025-09-30,2025-10-30,2,0
+WT-15634,Build Failure,Major - P3,1.0,Closed,2025-10-01,2025-10-01,1,1
+WT-15636,Bug,Major - P3,1.0,Closed,2025-10-01,2025-10-01,1,1
+WT-15651,Task,Major - P3,2.0,Closed,2025-10-02,2025-10-23,1,0
+WT-15655,Task,Major - P3,2.0,Closed,2025-10-02,2025-10-15,1,0
+WT-15662,Build Failure,Major - P3,3.0,Closed,2025-10-02,2025-10-21,2,1
+WT-15673,Improvement,Major - P3,5.0,Open,2025-10-02,,6,0
+WT-15686,Task,Major - P3,,Closed,2025-10-06,2025-12-08,1,0
+WT-15689,Build Failure,Major - P3,5.0,Closed,2025-10-07,2025-11-16,1,1
+WT-15702,Task,Major - P3,,Open,2025-10-08,,6,0
+WT-15704,Task,Minor - P4,3.0,Closed,2025-10-08,2025-10-22,1,0
+WT-15706,Build Failure,Major - P3,,Closed,2025-10-08,2025-10-15,1,1
+WT-15717,Task,Major - P3,8.0,Closed,2025-10-09,2025-10-24,1,0
+WT-15729,Task,Major - P3,2.0,Closed,2025-10-09,2025-10-23,1,0
+WT-15739,Bug,Major - P3,5.0,Closed,2025-10-10,2025-10-22,1,1
+WT-15753,Task,Major - P3,1.0,Closed,2025-10-13,2025-10-13,1,0
+WT-15754,Task,Major - P3,5.0,Closed,2025-10-13,2026-09-02,1,0
+WT-15756,Task,Major - P3,0.0,Closed,2025-10-13,2025-10-15,1,0
+WT-15757,Task,Major - P3,1.0,Closed,2025-10-13,2025-10-23,1,0
+WT-15762,Bug,Major - P3,5.0,Closed,2025-10-14,2026-08-17,1,1
+WT-15764,Task,Major - P3,3.0,Closed,2025-10-14,2025-10-16,1,0
+WT-15775,Task,Major - P3,,Closed,2025-10-15,2025-11-12,2,0
+WT-15776,New Feature,Major - P3,5.0,Closed,2025-10-15,2026-05-04,1,0
+WT-15780,Task,Major - P3,,Closed,2025-10-15,2025-10-15,1,0
+WT-15789,Task,Major - P3,3.0,Closed,2025-10-15,2025-11-23,1,0
+WT-15798,Task,Major - P3,2.0,Closed,2025-10-16,2025-10-17,1,0
+WT-15801,Task,Major - P3,3.0,Closed,2025-10-16,2025-11-03,1,0
+WT-15803,Bug,Major - P3,5.0,Closed,2025-10-17,2025-10-17,1,1
+WT-15830,Task,Major - P3,5.0,Closed,2025-10-22,2025-10-30,1,0
+WT-15832,Improvement,Trivial - P5,,Closed,2025-10-22,2025-10-22,1,0
+WT-15833,Task,Minor - P4,,Closed,2025-10-22,2025-10-29,1,0
+WT-15836,Task,Major - P3,,Closed,2025-10-22,2025-10-23,1,0
+WT-15838,Task,Major - P3,3.0,Closed,2025-10-22,2025-10-23,2,0
+WT-15839,Bug,Major - P3,,Closed,2025-10-22,2025-10-23,1,1
+WT-15840,Improvement,Minor - P4,,Closed,2025-10-22,2026-02-18,1,0
+WT-15841,Bug,Major - P3,,Closed,2025-10-22,2025-10-23,1,1
+WT-15848,Improvement,Minor - P4,,Closed,2025-10-23,2025-10-23,1,0
+WT-15852,Improvement,Minor - P4,1.0,Closed,2025-10-24,2025-10-27,1,0
+WT-15853,Improvement,Major - P3,1.0,Closed,2025-10-24,2025-11-23,3,0
+WT-15866,Task,Major - P3,,Closed,2025-10-27,2025-11-05,1,0
+WT-15867,Task,Major - P3,,Closed,2025-10-27,2025-10-30,1,0
+WT-15868,Task,Major - P3,,Closed,2025-10-27,2025-11-06,1,0
+WT-15869,Task,Major - P3,,Closed,2025-10-27,2025-11-25,3,0
+WT-15873,Task,Major - P3,,Closed,2025-10-27,2025-10-30,1,0
+WT-15874,Task,Major - P3,,Closed,2025-10-27,2025-11-03,1,0
+WT-15875,Task,Major - P3,3.0,Closed,2025-10-27,2025-11-18,2,0
+WT-15876,Task,Major - P3,,Closed,2025-10-27,2025-11-24,3,0
+WT-15881,Build Failure,Critical - P2,,Closed,2025-10-28,2025-10-29,1,1
+WT-15887,Build Failure,Major - P3,,Closed,2025-10-29,2026-07-21,2,1
+WT-15903,Build Failure,Major - P3,,Closed,2025-10-29,2025-10-30,1,1
+WT-15905,Bug,Major - P3,3.0,Closed,2025-10-30,2025-10-30,1,1
+WT-15906,Task,Major - P3,3.0,Closed,2025-10-30,2025-10-30,1,0
+WT-15911,Build Failure,Major - P3,5.0,Closed,2025-10-30,2025-11-17,1,1
+WT-15912,Improvement,Major - P3,1.0,Closed,2025-10-30,2025-10-30,1,0
+WT-15927,Improvement,Major - P3,5.0,Closed,2025-10-31,2025-11-18,1,0
+WT-15952,Task,Major - P3,2.0,Closed,2025-11-05,2025-11-13,1,0
+WT-15954,Build Failure,Major - P3,3.0,Closed,2025-11-05,2025-11-19,1,1
+WT-15960,Build Failure,Major - P3,5.0,Closed,2025-11-05,2025-12-01,1,1
+WT-15973,Build Failure,Major - P3,,Closed,2025-11-06,2025-11-27,2,1
+WT-15981,Improvement,Major - P3,5.0,Closed,2025-11-07,2026-01-28,1,0
+WT-15995,Task,Major - P3,,Closed,2025-11-10,2025-11-13,1,0
+WT-15996,Task,Major - P3,,Closed,2025-11-10,2025-11-13,1,0
+WT-15997,Task,Major - P3,,Closed,2025-11-10,2025-11-17,1,0
+WT-15998,Task,Major - P3,,Closed,2025-11-10,2025-11-18,1,0
+WT-16006,Task,Major - P3,3.0,Closed,2025-11-12,2025-11-13,1,0
+WT-16008,Task,Major - P3,2.0,Closed,2025-11-12,2025-11-13,1,0
+WT-16017,Task,Major - P3,3.0,Closed,2025-11-13,2025-11-14,1,0
+WT-16023,Task,Major - P3,,Closed,2025-11-14,2025-11-17,1,0
+WT-16024,Task,Major - P3,,Closed,2025-11-14,2025-11-18,1,0
+WT-16025,Bug,Major - P3,1.0,Closed,2025-11-14,2025-11-16,1,1
+WT-16029,Bug,Major - P3,,Closed,2025-11-16,2025-11-20,1,1
+WT-16031,Task,Major - P3,5.0,Open,2025-11-16,,8,0
+WT-16039,Bug,Major - P3,1.0,Closed,2025-11-17,2025-11-29,1,1
+WT-16040,Bug,Major - P3,1.0,Closed,2025-11-17,2025-12-02,1,1
+WT-16043,Task,Major - P3,,Closed,2025-11-17,2025-11-19,1,0
+WT-16046,Build Failure,Trivial - P5,0.0,Closed,2025-11-18,2025-11-18,1,1
+WT-16060,Task,Major - P3,3.0,Closed,2025-11-19,2025-11-20,1,0
+WT-16061,Bug,Major - P3,1.0,Closed,2025-11-19,2025-12-10,2,1
+WT-16076,Build Failure,Major - P3,5.0,Closed,2025-11-20,2026-06-22,2,1
+WT-16079,Build Failure,Major - P3,5.0,Closed,2025-11-20,2026-06-22,1,1
+WT-16081,Improvement,Major - P3,,Closed,2025-11-20,2025-11-26,2,0
+WT-16102,Task,Major - P3,3.0,Closed,2025-11-25,2026-04-29,4,0
+WT-16103,Improvement,Major - P3,,Closed,2025-11-25,2025-11-25,1,0
+WT-16105,Improvement,Major - P3,,Closed,2025-11-25,2025-11-25,1,0
+WT-16107,Task,Major - P3,5.0,Open,2025-11-25,,7,0
+WT-16108,Improvement,Major - P3,,Closed,2025-11-25,2025-11-27,1,0
+WT-16109,Bug,Major - P3,1.0,Closed,2025-11-25,2025-12-04,1,1
+WT-16115,Task,Major - P3,,Closed,2025-11-27,2025-12-01,1,0
+WT-16116,Task,Major - P3,5.0,Closed,2025-11-27,2025-12-01,1,0
+WT-16119,Improvement,Major - P3,,Closed,2025-11-27,2025-12-02,1,0
+WT-16120,Improvement,Major - P3,,Closed,2025-11-27,2025-12-05,1,0
+WT-16121,Improvement,Major - P3,,Closed,2025-11-27,2025-12-01,1,0
+WT-16143,Improvement,Major - P3,,Closed,2025-12-01,2025-12-04,1,0
+WT-16144,Improvement,Major - P3,,Open,2025-12-01,,4,0
+WT-16153,Build Failure,Major - P3,,Closed,2025-12-03,2025-12-03,1,1
+WT-16207,Task,Major - P3,5.0,Closed,2025-12-09,2026-01-07,2,0
+WT-16210,Task,Major - P3,1.0,Closed,2025-12-09,2025-12-12,1,0
+WT-16216,Bug,Major - P3,3.0,Closed,2025-12-09,2026-03-02,4,1
+WT-16224,Task,Major - P3,8.0,Closed,2025-12-10,2026-05-26,3,0
+WT-16230,Task,Major - P3,5.0,Closed,2025-12-10,2025-12-12,1,0
+WT-16231,Task,Major - P3,5.0,Closed,2025-12-10,2026-01-07,1,0
+WT-16239,Improvement,Major - P3,3.0,Closed,2025-12-11,2026-06-05,3,0
+WT-16243,Task,Major - P3,2.0,Closed,2025-12-11,2025-12-12,1,0
+WT-16287,Bug,Major - P3,1.0,Closed,2025-12-16,2026-01-02,2,1
+WT-16304,Documentation,Major - P3,1.0,Closed,2025-12-17,2026-01-06,2,0
+WT-16320,Epic,Major - P3,5.0,Closed,2025-12-18,2026-01-13,1,0
+WT-16321,Bug,Major - P3,3.0,Closed,2025-12-18,2026-01-12,1,1
+WT-16323,Bug,Major - P3,,Closed,2025-12-18,2026-01-09,1,1
+WT-16325,Bug,Major - P3,,Closed,2025-12-18,2026-01-12,1,1
+WT-16332,Bug,Major - P3,1.0,Closed,2025-12-18,2026-01-12,1,1
+WT-16358,Build Failure,Major - P3,5.0,Closed,2025-12-22,2026-01-14,1,1
+WT-16362,Bug,Major - P3,,Closed,2025-12-22,2026-01-08,1,1
+WT-16363,Task,Major - P3,2.0,Closed,2025-12-22,2026-01-28,1,0
+WT-16374,Bug,Major - P3,1.0,Closed,2025-12-23,2026-03-09,2,1
+WT-16379,Bug,Critical - P2,5.0,Closed,2025-12-29,2026-01-07,2,1
+WT-16395,Task,Major - P3,,Closed,2026-01-05,2026-01-13,1,0
+WT-16405,Task,Major - P3,5.0,Closed,2026-01-07,2026-02-05,3,0
+WT-16408,Improvement,Major - P3,1.0,Closed,2026-01-07,2026-01-07,1,0
+WT-16410,Improvement,Major - P3,3.0,Closed,2026-01-07,2026-01-13,1,0
+WT-16414,Build Failure,Major - P3,5.0,Closed,2026-01-08,2026-03-03,1,1
+WT-16418,Build Failure,Major - P3,2.0,Closed,2026-01-08,2026-01-12,1,1
+WT-16419,Build Failure,Major - P3,2.0,Closed,2026-01-08,2026-08-05,1,1
+WT-16430,Task,Major - P3,3.0,Closed,2026-01-09,2026-01-12,1,0
+WT-16438,Build Failure,Major - P3,,Closed,2026-01-12,2026-03-08,1,1
+WT-16445,Task,Major - P3,,Closed,2026-01-12,2026-08-04,2,0
+WT-16451,Task,Major - P3,,Closed,2026-01-12,2026-01-13,1,0
+WT-16453,Task,Major - P3,,Closed,2026-01-13,2026-01-14,1,0
+WT-16456,Task,Major - P3,5.0,Closed,2026-01-13,2026-01-23,1,0
+WT-16459,Improvement,Major - P3,1.0,Closed,2026-01-14,2026-04-14,2,0
+WT-16475,Task,Major - P3,3.0,Closed,2026-01-18,2026-04-24,3,0
+WT-16485,Bug,Major - P3,3.0,Closed,2026-01-20,2026-02-27,1,1
+WT-16498,Task,Major - P3,5.0,Closed,2026-01-21,2026-05-20,5,0
+WT-16504,Bug,Major - P3,,Closed,2026-01-22,2026-01-23,1,1
+WT-16516,Task,Major - P3,8.0,Closed,2026-01-26,2026-01-27,1,0
+WT-16522,Improvement,Minor - P4,2.0,Closed,2026-01-26,2026-02-26,1,0
+WT-16539,New Feature,Major - P3,,Closed,2026-01-28,2026-03-23,1,0
+WT-16542,Task,Major - P3,,Closed,2026-01-28,2026-02-13,3,0
+WT-16564,Task,Major - P3,2.0,Closed,2026-01-29,2026-01-30,1,0
+WT-16572,Task,Major - P3,1.0,Closed,2026-01-30,2026-03-23,1,0
+WT-16575,Task,Major - P3,3.0,Closed,2026-01-30,2026-02-19,1,0
+WT-16579,Build Failure,Major - P3,,Closed,2026-02-01,2026-02-26,1,1
+WT-16581,Build Failure,Major - P3,5.0,Closed,2026-02-01,2026-09-23,6,1
+WT-16588,Task,Major - P3,3.0,Closed,2026-02-02,2026-02-05,1,0
+WT-16603,Task,Major - P3,1.0,Closed,2026-02-03,2026-02-04,1,0
+WT-16604,Task,Major - P3,3.0,Closed,2026-02-04,2026-02-04,1,0
+WT-16617,Task,Major - P3,,Closed,2026-02-05,2026-05-08,1,0
+WT-16630,Task,Major - P3,3.0,Closed,2026-02-06,2026-02-17,2,0
+WT-16639,Improvement,Major - P3,5.0,Closed,2026-02-09,2026-05-04,4,0
+WT-16643,Task,Major - P3,,Closed,2026-02-10,2026-02-11,1,0
+WT-16665,Task,Major - P3,5.0,Open,2026-02-13,,2,0
+WT-16669,Task,Major - P3,,Closed,2026-02-14,2026-02-19,1,0
+WT-16673,Bug,Major - P3,3.0,Closed,2026-02-15,2026-02-18,1,1
+WT-16698,Task,Major - P3,3.0,Closed,2026-02-17,2026-02-25,1,0
+WT-16702,Build Failure,Major - P3,,Closed,2026-02-17,2026-09-02,1,1
+WT-16706,Bug,Major - P3,3.0,Closed,2026-02-18,2026-02-19,1,1
+WT-16712,Build Failure,Major - P3,3.0,Closed,2026-02-18,2026-07-02,2,1
+WT-16716,Task,Major - P3,1.0,Closed,2026-02-18,2026-04-16,2,0
+WT-16718,Task,Major - P3,8.0,Closed,2026-02-19,2026-06-04,6,0
+WT-16724,Task,Major - P3,1.0,Closed,2026-02-19,2026-02-19,1,0
+WT-16731,Bug,Critical - P2,2.0,Closed,2026-02-20,2026-02-22,1,1
+WT-16740,Build Failure,Major - P3,2.0,Closed,2026-02-20,2026-07-20,5,1
+WT-16742,Task,Major - P3,5.0,Closed,2026-02-20,2026-03-16,2,0
+WT-16743,Task,Major - P3,5.0,Closed,2026-02-20,2026-03-02,1,0
+WT-16745,Task,Major - P3,5.0,Open,2026-02-20,,4,0
+WT-16753,Build Failure,Major - P3,5.0,Closed,2026-02-23,2026-04-15,3,1
+WT-16764,Task,Major - P3,5.0,Closed,2026-02-24,2026-03-02,2,0
+WT-16772,Bug,Major - P3,,Closed,2026-02-24,2026-02-25,1,1
+WT-16773,Task,Major - P3,0.0,Open,2026-02-24,,1,0
+WT-16778,Task,Major - P3,3.0,Closed,2026-02-25,2026-07-01,2,0
+WT-16785,Technical Debt,Minor - P4,2.0,Closed,2026-02-26,2026-02-27,1,0
+WT-16788,Sub-task,Major - P3,,Closed,2026-02-26,2026-06-01,1,0
+WT-16789,Task,Major - P3,5.0,Closed,2026-02-26,2026-05-04,3,0
+WT-16800,Task,Major - P3,1.0,Closed,2026-03-02,2026-03-02,1,0
+WT-16802,Task,Major - P3,1.0,Closed,2026-03-02,2026-03-02,1,0
+WT-16812,Task,Major - P3,3.0,Closed,2026-03-02,2026-05-25,2,0
+WT-16813,Task,Major - P3,5.0,Closed,2026-03-02,2026-05-21,1,0
+WT-16814,Task,Major - P3,5.0,Closed,2026-03-02,2026-05-19,1,0
+WT-16818,Epic,Major - P3,,Closed,2026-03-02,2026-04-28,1,0
+WT-16820,Task,Major - P3,2.0,Closed,2026-03-03,2026-03-04,1,0
+WT-16838,Task,Major - P3,3.0,Closed,2026-03-04,2026-09-08,5,0
+WT-16842,Task,Major - P3,5.0,Closed,2026-03-04,2026-04-21,1,0
+WT-16843,Bug,Major - P3,3.0,Closed,2026-03-04,2026-03-09,1,1
+WT-16850,Bug,Major - P3,3.0,Closed,2026-03-05,2026-03-10,1,1
+WT-16857,Bug,Major - P3,,Closed,2026-03-06,2026-09-14,2,1
+WT-16866,Build Failure,Major - P3,5.0,Closed,2026-03-06,2026-07-05,2,1
+WT-16905,Bug,Major - P3,,Open,2026-03-12,,3,1
+WT-16906,Task,Major - P3,,Closed,2026-03-12,2026-03-13,1,0
+WT-16907,Task,Major - P3,,Closed,2026-03-12,2026-03-18,1,0
+WT-16912,Task,Major - P3,3.0,Closed,2026-03-13,2026-04-15,1,0
+WT-16914,Bug,Major - P3,,Closed,2026-03-14,2026-03-20,1,1
+WT-16929,Build Failure,Major - P3,,Closed,2026-03-16,2026-04-21,1,1
+WT-16936,Build Failure,Major - P3,1.0,Closed,2026-03-17,2026-04-12,1,1
+WT-16942,Task,Major - P3,2.0,Closed,2026-03-18,2026-03-23,1,0
+WT-16943,Task,Major - P3,2.0,Closed,2026-03-18,2026-03-24,1,0
+WT-16944,Task,Major - P3,2.0,Closed,2026-03-18,2026-03-24,1,0
+WT-16945,Task,Major - P3,2.0,Closed,2026-03-18,2026-03-25,1,0
+WT-16946,Task,Major - P3,5.0,Closed,2026-03-18,2026-03-30,1,0
+WT-16947,Task,Major - P3,3.0,Closed,2026-03-18,2026-04-13,1,0
+WT-16948,Task,Major - P3,2.0,Closed,2026-03-18,2026-03-31,1,0
+WT-16949,Task,Major - P3,3.0,Closed,2026-03-18,2026-04-14,1,0
+WT-16950,Task,Major - P3,1.0,Closed,2026-03-18,2026-04-13,1,0
+WT-16951,Task,Major - P3,2.0,Closed,2026-03-18,2026-04-13,1,0
+WT-16963,Build Failure,Critical - P2,5.0,Closed,2026-03-18,2026-05-19,1,1
+WT-16964,Build Failure,Major - P3,,Closed,2026-03-18,2026-05-08,1,1
+WT-16999,Build Failure,Major - P3,3.0,Closed,2026-03-23,2026-08-31,5,1
+WT-17001,Task,Major - P3,2.0,Closed,2026-03-24,2026-03-25,1,0
+WT-17033,Technical Debt,Trivial - P5,1.0,Closed,2026-03-27,2026-04-07,1,0
+WT-17041,Task,Major - P3,1.0,Closed,2026-03-27,2026-04-24,2,0
+WT-17052,Task,Major - P3,3.0,Closed,2026-03-30,2026-05-22,5,0
+WT-17055,New Feature,Major - P3,5.0,Closed,2026-03-30,2026-04-21,1,0
+WT-17057,Task,Major - P3,5.0,Closed,2026-03-30,2026-05-04,1,0
+WT-17058,Task,Major - P3,5.0,Closed,2026-03-30,2026-06-09,4,0
+WT-17059,Task,Major - P3,5.0,Closed,2026-03-30,2026-05-18,2,0
+WT-17060,Task,Major - P3,3.0,Closed,2026-03-30,2026-06-16,5,0
+WT-17064,Task,Major - P3,8.0,Closed,2026-03-30,2026-05-07,1,0
+WT-17065,Task,Major - P3,5.0,Closed,2026-03-30,2026-06-04,1,0
+WT-17068,Task,Major - P3,5.0,Closed,2026-03-30,2026-04-21,2,0
+WT-17092,Improvement,Major - P3,2.0,Closed,2026-04-01,2026-04-14,2,0
+WT-17133,Task,Major - P3,5.0,Closed,2026-04-09,2026-05-04,2,0
+WT-17135,Task,Major - P3,1.0,Closed,2026-04-10,2026-05-20,1,0
+WT-17158,Epic,Major - P3,8.0,Closed,2026-04-13,2026-06-23,6,0
+WT-17168,Task,Major - P3,5.0,Closed,2026-04-14,2026-06-04,1,0
+WT-17175,New Feature,Major - P3,3.0,Closed,2026-04-14,2026-06-18,2,0
+WT-17181,Task,Major - P3,5.0,Closed,2026-04-16,2026-06-05,1,0
+WT-17182,Build Failure,Major - P3,3.0,Closed,2026-04-16,2026-06-29,2,1
+WT-17193,Task,Major - P3,5.0,Open,2026-04-16,,4,0
+WT-17236,Improvement,Major - P3,5.0,Open,2026-04-19,,11,0
+WT-17250,Task,Major - P3,5.0,Closed,2026-04-21,2026-06-17,1,0
+WT-17251,Task,Major - P3,3.0,Closed,2026-04-21,2026-07-07,1,0
+WT-17261,Improvement,Major - P3,1.0,Closed,2026-04-22,2026-04-24,2,0
+WT-17263,Task,Major - P3,5.0,Closed,2026-04-22,2026-07-06,1,0
+WT-17269,Bug,Major - P3,,Closed,2026-04-22,2026-04-24,1,1
+WT-17272,Bug,Major - P3,5.0,Closed,2026-04-22,2026-05-22,1,1
+WT-17274,Task,Major - P3,5.0,Closed,2026-04-23,2026-05-29,3,0
+WT-17276,Task,Major - P3,5.0,Closed,2026-04-23,2026-06-05,3,0
+WT-17296,Task,Major - P3,3.0,Closed,2026-04-23,2026-05-27,3,0
+WT-17297,Bug,Major - P3,1.0,Closed,2026-04-23,2026-04-24,1,1
+WT-17303,Bug,Major - P3,1.0,Closed,2026-04-23,2026-04-24,1,1
+WT-17326,Bug,Major - P3,2.0,Closed,2026-04-28,2026-06-26,2,1
+WT-17339,Task,Major - P3,3.0,Closed,2026-04-29,2026-07-06,3,0
+WT-17347,Task,Major - P3,3.0,Closed,2026-04-29,2026-05-06,1,0
+WT-17353,Bug,Minor - P4,,Closed,2026-04-29,2026-05-28,1,1
+WT-17362,Bug,Major - P3,3.0,Closed,2026-04-30,2026-05-04,1,1
+WT-17363,Task,Major - P3,0.0,Closed,2026-04-30,2026-05-07,1,0
+WT-17366,Build Failure,Major - P3,5.0,Closed,2026-05-01,2026-08-11,2,1
+WT-17372,Task,Minor - P4,,Closed,2026-05-01,2026-05-05,1,0
+WT-17377,Task,Major - P3,3.0,Closed,2026-05-03,2026-07-06,3,0
+WT-17383,Bug,Major - P3,3.0,Closed,2026-05-04,2026-05-05,1,1
+WT-17386,Task,Major - P3,,Closed,2026-05-04,2026-05-05,1,0
+WT-17387,Bug,Critical - P2,3.0,Closed,2026-05-04,2026-05-04,1,1
+WT-17388,Task,Minor - P4,1.0,Closed,2026-05-04,2026-05-04,1,0
+WT-17394,Task,Major - P3,3.0,Closed,2026-05-05,2026-05-07,1,0
+WT-17395,Technical Debt,Minor - P4,,Closed,2026-05-05,2026-05-05,1,0
+WT-17397,Bug,Minor - P4,1.0,Closed,2026-05-05,2026-05-05,1,1
+WT-17403,Improvement,Major - P3,1.0,Closed,2026-05-05,2026-05-06,1,0
+WT-17404,Bug,Major - P3,1.0,Closed,2026-05-05,2026-05-06,1,1
+WT-17407,New Feature,Major - P3,5.0,Closed,2026-05-06,2026-06-04,3,0
+WT-17408,Task,Major - P3,,Closed,2026-05-06,2026-05-06,1,0
+WT-17409,Bug,Major - P3,1.0,Closed,2026-05-06,2026-05-08,2,1
+WT-17411,Bug,Major - P3,3.0,Closed,2026-05-06,2026-05-29,1,1
+WT-17412,Bug,Major - P3,3.0,Closed,2026-05-06,2026-07-23,3,1
+WT-17417,Bug,Major - P3,1.0,Closed,2026-05-06,2026-05-19,1,1
+WT-17422,Task,Major - P3,3.0,Closed,2026-05-07,2026-06-19,1,0
+WT-17424,Improvement,Major - P3,3.0,Closed,2026-05-07,2026-07-24,2,0
+WT-17426,Build Failure,Major - P3,5.0,Closed,2026-05-07,2026-08-20,4,1
+WT-17434,Build Failure,Major - P3,3.0,Closed,2026-05-07,2026-08-16,3,1
+WT-17437,Task,Major - P3,5.0,Closed,2026-05-07,2026-06-18,1,0
+WT-17439,Task,Major - P3,3.0,Closed,2026-05-07,2026-06-08,1,0
+WT-17440,Task,Major - P3,13.0,Closed,2026-05-07,2026-06-08,1,0
+WT-17446,Bug,Major - P3,,Closed,2026-05-08,2026-05-08,1,1
+WT-17450,Bug,Major - P3,3.0,Closed,2026-05-08,2026-05-28,1,1
+WT-17454,Build Failure,Major - P3,3.0,Closed,2026-05-09,2026-05-22,1,1
+WT-17455,Build Failure,Major - P3,8.0,Closed,2026-05-09,2026-05-27,1,1
+WT-17459,Build Failure,Major - P3,5.0,Closed,2026-05-09,2026-05-20,1,1
+WT-17471,Build Failure,Major - P3,5.0,Closed,2026-05-11,2026-07-13,2,1
+WT-17477,Task,Major - P3,5.0,Closed,2026-05-12,2026-05-25,1,0
+WT-17485,Task,Major - P3,3.0,Closed,2026-05-12,2026-05-20,1,0
+WT-17490,Improvement,Minor - P4,3.0,Closed,2026-05-12,2026-05-20,1,0
+WT-17504,Sub-task,Major - P3,,Closed,2026-05-13,2026-05-22,1,0
+WT-17513,Build Failure,Major - P3,5.0,Closed,2026-05-14,2026-06-10,1,1
+WT-17515,Task,Major - P3,5.0,Closed,2026-05-14,2026-05-19,1,0
+WT-17528,Task,Major - P3,2.0,Closed,2026-05-14,2026-05-26,1,0
+WT-17535,Task,Major - P3,1.0,Closed,2026-05-15,2026-06-02,1,0
+WT-17536,Task,Major - P3,5.0,Closed,2026-05-15,2026-06-05,1,0
+WT-17537,Task,Major - P3,5.0,Closed,2026-05-15,2026-06-01,1,0
+WT-17538,Task,Major - P3,3.0,Closed,2026-05-15,2026-06-16,1,0
+WT-17539,Task,Major - P3,5.0,Closed,2026-05-15,2026-06-21,1,0
+WT-17540,Task,Major - P3,5.0,Closed,2026-05-15,2026-06-02,1,0
+WT-17542,Task,Major - P3,5.0,Closed,2026-05-15,2026-06-10,1,0
+WT-17544,Bug,Major - P3,1.0,Closed,2026-05-15,2026-05-15,1,1
+WT-17561,Build Failure,Major - P3,5.0,Closed,2026-05-18,2026-06-24,1,1
+WT-17567,Bug,Major - P3,5.0,Closed,2026-05-19,2026-06-09,2,1
+WT-17572,Task,Major - P3,3.0,Closed,2026-05-19,2026-05-19,1,0
+WT-17574,Build Failure,Major - P3,5.0,Closed,2026-05-19,2026-07-15,3,1
+WT-17576,Build Failure,Major - P3,5.0,Closed,2026-05-19,2026-05-21,1,1
+WT-17577,Build Failure,Major - P3,5.0,Closed,2026-05-19,2026-06-16,1,1
+WT-17578,Build Failure,Major - P3,3.0,Closed,2026-05-19,2026-06-23,2,1
+WT-17582,Task,Major - P3,3.0,Closed,2026-05-19,2026-05-20,1,0
+WT-17584,Task,Major - P3,3.0,Closed,2026-05-20,2026-07-01,1,0
+WT-17586,Bug,Major - P3,5.0,Closed,2026-05-20,2026-05-21,1,1
+WT-17589,Task,Major - P3,2.0,Closed,2026-05-20,2026-05-26,1,0
+WT-17590,Improvement,Major - P3,5.0,Closed,2026-05-20,2026-05-26,2,0
+WT-17591,Task,Major - P3,3.0,Closed,2026-05-20,2026-05-22,1,0
+WT-17600,Task,Minor - P4,3.0,Closed,2026-05-21,2026-06-02,1,0
+WT-17601,Task,Major - P3,,Closed,2026-05-21,2026-05-29,1,0
+WT-17607,Build Failure,Major - P3,,Closed,2026-05-21,2026-05-26,1,1
+WT-17611,Bug,Major - P3,2.0,Closed,2026-05-21,2026-05-26,2,1
+WT-17613,Improvement,Major - P3,1.0,Closed,2026-05-21,2026-05-27,1,0
+WT-17615,Task,Minor - P4,1.0,Closed,2026-05-22,2026-06-09,2,0
+WT-17617,Task,Major - P3,8.0,Closed,2026-05-22,2026-07-22,4,0
+WT-17619,Task,Major - P3,3.0,Closed,2026-05-22,2026-05-26,2,0
+WT-17623,Task,Major - P3,2.0,Blocked,2026-05-22,,5,0
+WT-17627,Bug,Major - P3,1.0,Closed,2026-05-23,2026-06-10,1,1
+WT-17630,Task,Minor - P4,1.0,Closed,2026-05-24,2026-05-25,1,0
+WT-17636,Task,Minor - P4,2.0,Closed,2026-05-24,2026-09-01,3,0
+WT-17637,Bug,Major - P3,8.0,In Code Review,2026-05-25,,2,1
+WT-17643,Bug,Major - P3,1.0,Closed,2026-05-25,2026-05-26,1,1
+WT-17644,Build Failure,Major - P3,3.0,Closed,2026-05-26,2026-07-22,3,1
+WT-17651,Task,Major - P3,,Closed,2026-05-26,2026-05-26,1,0
+WT-17652,Bug,Major - P3,5.0,Closed,2026-05-26,2026-05-26,1,1
+WT-17655,Build Failure,Major - P3,3.0,Closed,2026-05-26,2026-10-07,4,1
+WT-17664,Build Failure,Major - P3,5.0,Closed,2026-05-27,2026-06-29,1,1
+WT-17666,Improvement,Major - P3,1.0,Closed,2026-05-27,2026-07-10,3,0
+WT-17677,Task,Minor - P4,3.0,Closed,2026-05-28,2026-08-14,3,0
+WT-17680,Improvement,Major - P3,8.0,Closed,2026-05-28,2026-07-04,3,0
+WT-17681,Improvement,Major - P3,5.0,Closed,2026-05-28,2026-08-13,3,0
+WT-17682,Improvement,Minor - P4,1.0,Closed,2026-05-28,2026-06-02,1,0
+WT-17684,Improvement,Major - P3,3.0,Closed,2026-05-28,2026-06-01,1,0
+WT-17689,Task,Major - P3,3.0,Closed,2026-05-29,2026-06-09,2,0
+WT-17698,Task,Major - P3,3.0,Open,2026-05-31,,3,0
+WT-17699,Bug,Major - P3,1.0,Closed,2026-05-31,2026-06-03,1,1
+WT-17706,Bug,Major - P3,1.0,Closed,2026-06-01,2026-06-02,1,1
+WT-17709,Build Failure,Major - P3,5.0,Closed,2026-06-01,2026-06-02,1,1
+WT-17711,Build Failure,Major - P3,3.0,Closed,2026-06-01,2026-06-01,1,1
+WT-17712,Task,Major - P3,1.0,Closed,2026-06-01,2026-06-01,2,0
+WT-17715,Bug,Major - P3,3.0,Closed,2026-06-01,2026-06-02,1,1
+WT-17720,Task,Minor - P4,1.0,Closed,2026-06-02,2026-06-04,1,0
+WT-17731,Task,Minor - P4,1.0,Closed,2026-06-02,2026-06-02,1,0
+WT-17735,Build Failure,Major - P3,3.0,Closed,2026-06-03,2026-07-13,2,1
+WT-17736,Task,Major - P3,3.0,Closed,2026-06-03,2026-06-03,1,0
+WT-17737,Improvement,Major - P3,3.0,Closed,2026-06-03,2026-08-25,5,0
+WT-17740,Task,Minor - P4,2.0,Closed,2026-06-03,2026-07-03,2,0
+WT-17743,Bug,Major - P3,1.0,Closed,2026-06-03,2026-06-04,1,1
+WT-17752,Bug,Major - P3,1.0,Closed,2026-06-04,2026-07-17,4,1
+WT-17753,Technical Debt,Major - P3,2.0,Closed,2026-06-04,2026-06-10,1,0
+WT-17755,Task,Major - P3,13.0,Closed,2026-06-04,2026-06-29,2,0
+WT-17756,Task,Major - P3,3.0,Open,2026-06-04,,7,0
+WT-17757,Task,Major - P3,3.0,Closed,2026-06-04,2026-08-10,3,0
+WT-17760,Task,Major - P3,5.0,Closed,2026-06-04,2026-06-16,1,0
+WT-17763,Bug,Critical - P2,3.0,Closed,2026-06-04,2026-07-24,4,1
+WT-17773,Task,Major - P3,1.0,Closed,2026-06-05,2026-10-14,2,0
+WT-17780,Task,Major - P3,5.0,Closed,2026-06-09,2026-06-12,1,0
+WT-17782,Task,Major - P3,13.0,Closed,2026-06-09,2026-06-19,1,0
+WT-17783,Bug,Major - P3,5.0,Closed,2026-06-09,2026-06-26,1,1
+WT-17784,Task,Major - P3,2.0,Closed,2026-06-09,2026-06-25,2,0
+WT-17785,Task,Major - P3,5.0,Closed,2026-06-09,2026-07-14,3,0
+WT-17786,Task,Major - P3,2.0,Closed,2026-06-09,2026-06-22,1,0
+WT-17787,Task,Major - P3,1.0,Closed,2026-06-09,2026-06-09,1,0
+WT-17788,Improvement,Major - P3,5.0,Closed,2026-06-09,2026-09-03,1,0
+WT-17789,Improvement,Major - P3,5.0,Open,2026-06-09,,5,0
+WT-17790,Task,Major - P3,2.0,Closed,2026-06-09,2026-08-04,1,0
+WT-17794,Bug,Major - P3,5.0,Closed,2026-06-10,2026-06-29,1,1
+WT-17798,Task,Major - P3,1.0,Closed,2026-06-11,2026-07-16,3,0
+WT-17799,Build Failure,Major - P3,5.0,Closed,2026-06-11,2026-07-29,1,1
+WT-17813,Task,Major - P3,3.0,Closed,2026-06-11,2026-06-19,1,0
+WT-17817,Bug,Major - P3,5.0,Closed,2026-06-11,2026-07-08,2,1
+WT-17820,Bug,Major - P3,3.0,Closed,2026-06-11,2026-07-13,2,1
+WT-17822,Build Failure,Major - P3,3.0,Closed,2026-06-12,2026-08-30,1,1
+WT-17835,Improvement,Major - P3,,Closed,2026-06-15,2026-06-17,1,0
+WT-17838,Task,Major - P3,5.0,Open,2026-06-15,,1,0
+WT-17841,Bug,Major - P3,2.0,In Code Review,2026-06-16,,1,1
+WT-17842,Task,Major - P3,3.0,Closed,2026-06-16,2026-08-28,1,0
+WT-17845,Bug,Major - P3,1.0,Closed,2026-06-16,2026-06-18,1,1
+WT-17847,Improvement,Major - P3,3.0,Closed,2026-06-16,2026-06-17,1,0
+WT-17851,Build Failure,Major - P3,2.0,Closed,2026-06-16,2026-08-21,1,1
+WT-17856,Task,Major - P3,3.0,Closed,2026-06-17,2026-06-19,1,0
+WT-17858,Task,Major - P3,13.0,Closed,2026-06-17,2026-06-26,1,0
+WT-17859,Task,Major - P3,3.0,Closed,2026-06-17,2026-06-19,1,0
+WT-17862,Task,Major - P3,3.0,Closed,2026-06-18,2026-06-18,1,0
+WT-17869,Bug,Minor - P4,1.0,Closed,2026-06-20,2026-07-20,1,1
+WT-17870,Build Failure,Major - P3,5.0,Closed,2026-06-20,2026-07-03,1,1
+WT-17875,Build Failure,Major - P3,5.0,Closed,2026-06-21,2026-07-09,2,1
+WT-17878,Build Failure,Major - P3,3.0,Closed,2026-06-22,2026-07-20,1,1
+WT-17880,Bug,Major - P3,5.0,Closed,2026-06-22,2026-08-03,1,1
+WT-17881,Task,Major - P3,2.0,Closed,2026-06-22,2026-06-30,1,0
+WT-17886,Task,Major - P3,5.0,Closed,2026-06-23,2026-07-08,2,0
+WT-17892,Bug,Major - P3,1.0,Closed,2026-06-23,2026-06-26,1,1
+WT-17895,Task,Major - P3,8.0,Closed,2026-06-24,2026-07-29,3,0
+WT-17896,Task,Major - P3,8.0,Closed,2026-06-24,2026-07-14,2,0
+WT-17897,Task,Major - P3,8.0,Closed,2026-06-24,2026-07-30,3,0
+WT-17907,Improvement,Major - P3,5.0,Closed,2026-06-25,2026-06-29,1,0
+WT-17908,Bug,Major - P3,3.0,Closed,2026-06-25,2026-08-11,1,1
+WT-17911,Bug,Major - P3,5.0,Open,2026-06-25,,2,1
+WT-17919,Task,Major - P3,5.0,Closed,2026-06-26,2026-06-30,1,0
+WT-17933,Bug,Critical - P2,8.0,Closed,2026-06-29,2026-08-06,2,1
+WT-17935,Bug,Major - P3,3.0,Closed,2026-06-29,2026-07-01,1,1
+WT-17938,Task,Major - P3,8.0,Open,2026-06-30,,2,0
+WT-17939,Task,Major - P3,3.0,Closed,2026-06-30,2026-07-01,1,0
+WT-17942,Task,Major - P3,1.0,Closed,2026-06-30,2026-09-14,1,0
+WT-17950,Improvement,Major - P3,2.0,Closed,2026-06-30,2026-08-14,1,0
+WT-17953,Build Failure,Major - P3,5.0,Closed,2026-07-01,2026-07-09,1,1
+WT-17955,Task,Major - P3,1.0,Closed,2026-07-01,2026-08-13,1,0
+WT-17957,Task,Major - P3,2.0,Closed,2026-07-01,2026-07-02,1,0
+WT-17959,Task,Major - P3,5.0,Closed,2026-07-02,2026-07-06,1,0
+WT-17962,Build Failure,Major - P3,8.0,Closed,2026-07-02,2026-07-16,1,1
+WT-17964,Task,Major - P3,5.0,Closed,2026-07-02,2026-09-11,2,0
+WT-17968,Bug,Major - P3,1.0,Blocked,2026-07-02,,1,1
+WT-17970,Task,Major - P3,3.0,Closed,2026-07-02,2026-07-13,1,0
+WT-17971,Task,Major - P3,3.0,Closed,2026-07-02,2026-07-12,1,0
+WT-17972,Task,Major - P3,5.0,Closed,2026-07-02,2026-07-13,1,0
+WT-17973,Task,Major - P3,3.0,Closed,2026-07-02,2026-07-21,1,0
+WT-17974,Task,Major - P3,5.0,Closed,2026-07-02,2026-07-30,2,0
+WT-17975,Task,Major - P3,3.0,Closed,2026-07-02,2026-07-28,1,0
+WT-17976,Task,Major - P3,3.0,Closed,2026-07-02,2026-07-28,1,0
+WT-17979,Build Failure,Major - P3,5.0,Closed,2026-07-03,2026-09-10,1,1
+WT-17982,Task,Major - P3,5.0,Closed,2026-07-03,2026-08-14,2,0
+WT-17984,Build Failure,Major - P3,8.0,Closed,2026-07-04,2026-07-13,1,1
+WT-17985,Task,Major - P3,3.0,Closed,2026-07-05,2026-07-07,1,0
+WT-17986,Technical Debt,Major - P3,3.0,Closed,2026-07-06,2026-09-03,1,0
+WT-17989,Bug,Major - P3,5.0,Closed,2026-07-06,2026-07-14,1,1
+WT-17993,Task,Major - P3,5.0,Closed,2026-07-06,2026-08-19,1,0
+WT-17998,Build Failure,Major - P3,5.0,Closed,2026-07-06,2026-07-20,1,1
+WT-18002,Improvement,Major - P3,3.0,Closed,2026-07-07,2026-08-19,1,0
+WT-18004,Task,Major - P3,3.0,Closed,2026-07-07,2026-07-07,1,0
+WT-18005,Improvement,Major - P3,3.0,Closed,2026-07-07,2026-08-06,1,0
+WT-18006,Improvement,Major - P3,2.0,Closed,2026-07-07,2026-09-01,3,0
+WT-18014,Task,Major - P3,3.0,Closed,2026-07-08,2026-07-10,1,0
+WT-18015,Task,Major - P3,3.0,Closed,2026-07-08,2026-08-12,1,0
+WT-18019,Task,Major - P3,3.0,Open,2026-07-09,,2,0
+WT-18021,Task,Major - P3,5.0,Closed,2026-07-09,2026-07-15,1,0
+WT-18028,Improvement,Major - P3,5.0,In Code Review,2026-07-09,,1,0
+WT-18029,Task,Major - P3,3.0,Closed,2026-07-09,2026-07-22,1,0
+WT-18031,Task,Major - P3,5.0,Closed,2026-07-09,2026-09-24,1,0
+WT-18042,Task,Major - P3,3.0,Open,2026-07-10,,2,0
+WT-18043,Task,Major - P3,3.0,Blocked,2026-07-10,,3,0
+WT-18044,Task,Major - P3,5.0,Closed,2026-07-10,2026-08-20,5,0
+WT-18045,Task,Major - P3,3.0,Closed,2026-07-10,2026-08-28,3,0
+WT-18049,Build Failure,Major - P3,3.0,Closed,2026-07-13,2026-08-17,1,1
+WT-18059,Task,Major - P3,2.0,Closed,2026-07-13,2026-07-15,1,0
+WT-18065,Task,Major - P3,5.0,Closed,2026-07-13,2026-07-27,2,0
+WT-18066,Task,Major - P3,3.0,Closed,2026-07-13,2026-07-21,1,0
+WT-18068,Bug,Major - P3,5.0,Closed,2026-07-13,2026-09-22,3,1
+WT-18069,Build Failure,Major - P3,3.0,Closed,2026-07-13,2026-07-17,2,1
+WT-18070,Build Failure,Major - P3,3.0,Closed,2026-07-14,2026-09-01,1,1
+WT-18071,Build Failure,Major - P3,3.0,Closed,2026-07-14,2026-09-15,1,1
+WT-18074,Task,Major - P3,3.0,Closed,2026-07-14,2026-07-30,1,0
+WT-18075,Task,Major - P3,3.0,Closed,2026-07-14,2026-07-16,1,0
+WT-18076,Task,Major - P3,3.0,Closed,2026-07-14,2026-07-16,1,0
+WT-18080,Task,Major - P3,5.0,Closed,2026-07-13,2026-09-19,3,0
+WT-18085,Build Failure,Major - P3,3.0,Closed,2026-07-14,2026-08-11,1,1
+WT-18087,Build Failure,Critical - P2,5.0,Closed,2026-07-14,2026-07-23,1,1
+WT-18091,Task,Major - P3,3.0,Open,2026-07-15,,3,0
+WT-18093,Task,Major - P3,5.0,Closed,2026-07-15,2026-07-30,1,0
+WT-18096,Task,Major - P3,1.0,Closed,2026-07-15,2026-07-24,1,0
+WT-18104,Improvement,Major - P3,3.0,Closed,2026-07-15,2026-08-10,1,0
+WT-18114,Build Failure,Critical - P2,3.0,Closed,2026-07-16,2026-08-21,1,1
+WT-18115,Task,Major - P3,3.0,Closed,2026-07-16,2026-07-16,1,0
+WT-18116,Task,Major - P3,5.0,Closed,2026-07-16,2026-08-06,2,0
+WT-18118,Task,Major - P3,1.0,Closed,2026-07-16,2026-09-28,1,0
+WT-18120,Improvement,Major - P3,5.0,Closed,2026-07-16,2026-07-30,1,0
+WT-18125,Build Failure,Major - P3,,Closed,2026-07-17,2026-07-23,1,1
+WT-18127,Bug,Critical - P2,8.0,Closed,2026-07-17,2026-07-20,2,1
+WT-18145,Bug,Major - P3,3.0,Closed,2026-07-20,2026-07-21,1,1
+WT-18146,Task,Major - P3,3.0,Open,2026-07-21,,3,0
+WT-18150,Task,Major - P3,5.0,Closed,2026-07-21,2026-08-06,1,0
+WT-18155,Task,Major - P3,5.0,Closed,2026-07-22,2026-08-06,3,0
+WT-18156,Bug,Critical - P2,13.0,Closed,2026-07-22,2026-08-07,2,1
+WT-18158,Improvement,Major - P3,2.0,Closed,2026-07-22,2026-08-19,1,0
+WT-18162,Improvement,Major - P3,3.0,Closed,2026-07-23,2026-07-24,1,0
+WT-18165,Build Failure,Major - P3,2.0,Closed,2026-07-23,2026-08-04,1,1
+WT-18168,Bug,Major - P3,3.0,Closed,2026-07-23,2026-08-10,1,1
+WT-18169,Task,Major - P3,,Closed,2026-07-23,2026-07-27,1,0
+WT-18172,Bug,Major - P3,2.0,Closed,2026-07-24,2026-09-10,3,1
+WT-18173,Bug,Critical - P2,5.0,Closed,2026-07-24,2026-08-03,1,1
+WT-18177,Task,Major - P3,3.0,Open,2026-07-26,,3,0
+WT-18179,Bug,Major - P3,5.0,Closed,2026-07-27,2026-08-17,2,1
+WT-18181,Build Failure,Major - P3,3.0,Closed,2026-07-27,2026-08-06,1,1
+WT-18184,Task,Major - P3,1.0,Closed,2026-07-27,2026-07-27,1,0
+WT-18188,Task,Major - P3,5.0,Closed,2026-07-27,2026-08-04,1,0
+WT-18190,Bug,Major - P3,3.0,Closed,2026-07-27,2026-08-04,1,1
+WT-18192,Task,Major - P3,1.0,Closed,2026-07-28,2026-07-28,1,0
+WT-18198,Bug,Major - P3,3.0,Closed,2026-07-28,2026-08-20,1,1
+WT-18204,Task,Major - P3,3.0,Closed,2026-07-29,2026-08-07,2,0
+WT-18205,Task,Major - P3,1.0,Closed,2026-07-29,2026-08-06,1,0
+WT-18210,Bug,Major - P3,3.0,Closed,2026-07-29,2026-08-06,2,1
+WT-18211,Improvement,Major - P3,1.0,Closed,2026-07-29,2026-09-03,1,0
+WT-18214,Task,Major - P3,2.0,Closed,2026-07-29,2026-07-31,1,0
+WT-18220,Task,Major - P3,3.0,Closed,2026-07-30,2026-07-30,1,0
+WT-18223,Build Failure,Major - P3,5.0,Closed,2026-07-30,2026-08-21,1,1
+WT-18225,Task,Major - P3,3.0,Closed,2026-07-30,2026-08-03,1,0
+WT-18230,Build Failure,Major - P3,5.0,Closed,2026-07-30,2026-08-13,1,1
+WT-18235,Build Failure,Major - P3,3.0,Closed,2026-07-31,2026-09-02,1,1
+WT-18238,Build Failure,Major - P3,3.0,Closed,2026-07-31,2026-08-04,1,1
+WT-18241,Build Failure,Major - P3,5.0,Closed,2026-08-01,2026-08-25,2,1
+WT-18242,Task,Major - P3,3.0,Closed,2026-08-03,2026-08-03,1,0
+WT-18246,Task,Minor - P4,3.0,Open,2026-08-03,,2,0
+WT-18249,Improvement,Major - P3,5.0,Open,2026-08-03,,2,0
+WT-18250,Build Failure,Major - P3,5.0,Closed,2026-08-04,2026-09-11,1,1
+WT-18251,Task,Major - P3,1.0,Closed,2026-08-04,2026-08-07,1,0
+WT-18252,Task,Major - P3,,Closed,2026-08-04,2026-08-05,1,0
+WT-18253,Bug,Major - P3,5.0,Closed,2026-08-04,2026-08-18,2,1
+WT-18254,Bug,Major - P3,3.0,Open,2026-08-04,,2,1
+WT-18255,Build Failure,Major - P3,5.0,Closed,2026-08-04,2026-10-01,4,1
+WT-18257,Task,Major - P3,3.0,Closed,2026-08-04,2026-08-11,1,0
+WT-18258,Task,Major - P3,5.0,Closed,2026-08-04,2026-08-14,1,0
+WT-18259,Task,Major - P3,5.0,Closed,2026-08-04,2026-08-19,3,0
+WT-18260,Build Failure,Major - P3,5.0,Open,2026-08-04,,2,1
+WT-18267,Task,Major - P3,3.0,Closed,2026-08-05,2026-09-30,2,0
+WT-18269,Build Failure,Major - P3,3.0,Closed,2026-08-05,2026-09-01,1,1
+WT-18270,Improvement,Major - P3,1.0,Closed,2026-08-05,2026-08-05,1,0
+WT-18274,Bug,Critical - P2,,Closed,2026-08-05,2026-08-12,1,1
+WT-18275,Improvement,Major - P3,5.0,Closed,2026-08-05,2026-08-21,2,0
+WT-18282,Sub-task,Major - P3,3.0,Closed,2026-08-06,2026-08-10,1,0
+WT-18292,Build Failure,Major - P3,2.0,Closed,2026-08-07,2026-08-10,1,1
+WT-18294,Build Failure,Major - P3,2.0,Closed,2026-08-07,2026-08-10,1,1
+WT-18295,Build Failure,Critical - P2,2.0,Closed,2026-08-08,2026-08-08,1,1
+WT-18296,Bug,Major - P3,2.0,Closed,2026-08-08,2026-08-10,1,1
+WT-18297,Bug,Major - P3,3.0,Closed,2026-08-09,2026-08-11,1,1
+WT-18298,Bug,Major - P3,2.0,Closed,2026-08-09,2026-08-11,1,1
+WT-18299,Build Failure,Major - P3,5.0,Closed,2026-08-09,2026-08-17,1,1
+WT-18300,Build Failure,Major - P3,3.0,Closed,2026-08-09,2026-09-07,3,1
+WT-18301,Build Failure,Major - P3,2.0,Closed,2026-08-09,2026-08-10,1,1
+WT-18302,Build Failure,Major - P3,2.0,Closed,2026-08-10,2026-08-10,1,1
+WT-18303,Build Failure,Major - P3,2.0,Closed,2026-08-10,2026-08-10,1,1
+WT-18306,Build Failure,Major - P3,5.0,Closed,2026-08-10,2026-08-20,1,1
+WT-18307,Build Failure,Major - P3,3.0,Closed,2026-08-10,2026-09-03,2,1
+WT-18308,Task,Major - P3,3.0,Closed,2026-08-10,2026-09-07,2,0
+WT-18315,Bug,Major - P3,,Closed,2026-08-11,2026-08-24,1,1
+WT-18320,Task,Major - P3,3.0,Closed,2026-08-11,2026-08-25,2,0
+WT-18324,Bug,Major - P3,,Closed,2026-08-12,2026-08-28,1,1
+WT-18331,Bug,Major - P3,3.0,Closed,2026-08-12,2026-08-14,1,1
+WT-18334,Bug,Major - P3,,Closed,2026-08-13,2026-09-07,1,1
+WT-18339,Bug,Major - P3,5.0,Closed,2026-08-13,2026-08-19,1,1
+WT-18343,Task,Major - P3,3.0,Closed,2026-08-14,2026-09-28,1,0
+WT-18347,Bug,Major - P3,3.0,Closed,2026-08-14,2026-08-17,1,1
+WT-18350,Bug,Major - P3,3.0,Closed,2026-08-15,2026-08-18,1,1
+WT-18351,Bug,Major - P3,3.0,Closed,2026-08-15,2026-08-19,1,1
+WT-18360,Bug,Critical - P2,3.0,Closed,2026-08-17,2026-08-17,1,1
+WT-18362,Bug,Major - P3,3.0,Closed,2026-08-17,2026-08-19,1,1
+WT-18366,Build Failure,Major - P3,3.0,Closed,2026-08-17,2026-08-19,1,1
+WT-18369,Bug,Critical - P2,1.0,Closed,2026-08-17,2026-08-26,1,1
+WT-18373,Bug,Minor - P4,1.0,Closed,2026-08-17,2026-08-18,1,1
+WT-18374,Build Failure,Major - P3,2.0,Closed,2026-08-17,2026-08-19,1,1
+WT-18378,Build Failure,Major - P3,5.0,Closed,2026-08-17,2026-09-10,2,1
+WT-18384,Bug,Major - P3,5.0,Closed,2026-08-18,2026-08-20,1,1
+WT-18386,Task,Major - P3,13.0,Open,2026-08-18,,1,0
+WT-18391,Build Failure,Major - P3,3.0,Closed,2026-08-18,2026-08-19,1,1
+WT-18400,Improvement,Major - P3,8.0,Closed,2026-08-18,2026-09-10,2,0
+WT-18403,Task,Major - P3,2.0,Closed,2026-08-19,2026-09-21,1,0
+WT-18405,Bug,Major - P3,2.0,Closed,2026-08-19,2026-09-17,1,1
+WT-18406,Task,Major - P3,5.0,Closed,2026-08-19,2026-08-31,2,0
+WT-18407,Task,Major - P3,3.0,Open,2026-08-19,,3,0
+WT-18409,Build Failure,Major - P3,2.0,Closed,2026-08-19,2026-08-19,1,1
+WT-18410,Bug,Major - P3,5.0,Closed,2026-08-19,2026-08-25,1,1
+WT-18415,Build Failure,Major - P3,,Closed,2026-08-19,2026-08-27,1,1
+WT-18425,Improvement,Major - P3,5.0,Closed,2026-08-20,2026-09-24,2,0
+WT-18429,Task,Major - P3,2.0,Closed,2026-08-20,2026-08-21,1,0
+WT-18430,Task,Major - P3,3.0,Closed,2026-08-20,2026-09-23,1,0
+WT-18431,Task,Major - P3,3.0,Open,2026-08-20,,2,0
+WT-18447,Bug,Major - P3,3.0,Closed,2026-08-20,2026-08-21,1,1
+WT-18448,Bug,Major - P3,3.0,Closed,2026-08-21,2026-08-24,1,1
+WT-18450,Build Failure,Major - P3,3.0,Open,2026-08-21,,2,1
+WT-18451,Bug,Major - P3,1.0,Closed,2026-08-21,2026-08-21,1,1
+WT-18455,Bug,Major - P3,2.0,Closed,2026-08-21,2026-08-21,1,1
+WT-18458,Bug,Major - P3,5.0,Closed,2026-08-21,2026-09-04,2,1
+WT-18461,Build Failure,Major - P3,3.0,Closed,2026-08-23,2026-09-02,1,1
+WT-18466,Build Failure,Major - P3,3.0,Closed,2026-08-24,2026-09-04,1,1
+WT-18468,Improvement,Major - P3,1.0,Closed,2026-08-24,2026-09-22,2,0
+WT-18469,Task,Major - P3,5.0,Open,2026-08-24,,1,0
+WT-18485,Task,Major - P3,3.0,Open,2026-08-26,,3,0
+WT-18488,Task,Major - P3,3.0,Closed,2026-08-26,2026-09-01,2,0
+WT-18494,Bug,Major - P3,1.0,Closed,2026-08-26,2026-09-14,1,1
+WT-18495,Bug,Major - P3,3.0,Closed,2026-08-26,2026-08-29,2,1
+WT-18496,Bug,Major - P3,3.0,Closed,2026-08-26,2026-08-29,2,1
+WT-18501,Task,Major - P3,3.0,Closed,2026-08-27,2026-10-09,1,0
+WT-18502,Build Failure,Major - P3,3.0,Closed,2026-08-27,2026-09-02,1,1
+WT-18512,Bug,Major - P3,5.0,Closed,2026-08-28,2026-09-10,2,1
+WT-18515,Task,Major - P3,3.0,Closed,2026-08-28,2026-09-08,1,0
+WT-18520,Bug,Major - P3,2.0,Closed,2026-08-30,2026-08-31,1,1
+WT-18521,Sub-task,Major - P3,2.0,Closed,2026-08-30,2026-09-02,1,0
+WT-18522,Improvement,Major - P3,5.0,In Code Review,2026-08-30,,1,0
+WT-18523,Bug,Major - P3,3.0,Closed,2026-08-30,2026-09-30,2,1
+WT-18536,Task,Major - P3,,Closed,2026-09-01,2026-09-02,1,0
+WT-18543,Improvement,Major - P3,3.0,Closed,2026-09-01,2026-09-03,1,0
+WT-18550,Task,Major - P3,3.0,Closed,2026-09-02,2026-09-04,1,0
+WT-18551,Task,Major - P3,1.0,Closed,2026-09-03,2026-09-03,1,0
+WT-18558,Task,Major - P3,3.0,Closed,2026-09-03,2026-09-03,1,0
+WT-18559,Improvement,Major - P3,3.0,Closed,2026-09-03,2026-09-11,1,0
+WT-18560,Build Failure,Major - P3,3.0,Closed,2026-09-03,2026-09-04,1,1
+WT-18565,Task,Major - P3,3.0,Closed,2026-09-04,2026-10-12,3,0
+WT-18570,Build Failure,Major - P3,2.0,Closed,2026-09-06,2026-09-09,1,1
+WT-18571,Build Failure,Major - P3,2.0,Closed,2026-09-06,2026-09-07,1,1
+WT-18572,Bug,Critical - P2,3.0,Closed,2026-09-07,2026-09-08,1,1
+WT-18579,Bug,Major - P3,3.0,Closed,2026-09-08,2026-09-10,1,1
+WT-18584,Task,Major - P3,3.0,Open,2026-09-08,,1,0
+WT-18590,Bug,Major - P3,8.0,Closed,2026-09-08,2026-09-20,1,1
+WT-18603,Build Failure,Major - P3,5.0,Closed,2026-09-09,2026-10-08,2,1
+WT-18607,Bug,Major - P3,3.0,Closed,2026-09-10,2026-09-10,1,1
+WT-18609,Task,Major - P3,1.0,Closed,2026-09-10,2026-09-10,1,0
+WT-18615,Build Failure,Major - P3,,Closed,2026-09-11,2026-09-11,2,1
+WT-18616,Build Failure,Major - P3,3.0,Closed,2026-09-11,2026-09-11,2,1
+WT-18620,Bug,Major - P3,2.0,Closed,2026-09-11,2026-09-11,2,1
+WT-18637,Task,Major - P3,5.0,In Code Review,2026-09-14,,2,0
+WT-18638,Task,Major - P3,3.0,Closed,2026-09-14,2026-10-12,2,0
+WT-18639,Task,Major - P3,3.0,Closed,2026-09-14,2026-10-12,2,0
+WT-18640,Task,Major - P3,2.0,In Progress,2026-09-14,,3,0
+WT-18642,Task,Major - P3,3.0,Open,2026-09-14,,1,0
+WT-18644,Task,Major - P3,5.0,Open,2026-09-14,,1,0
+WT-18645,Improvement,Major - P3,2.0,Closed,2026-09-14,2026-09-30,2,0
+WT-18653,Task,Major - P3,5.0,Closed,2026-09-14,2026-09-25,1,0
+WT-18667,Build Failure,Major - P3,5.0,Closed,2026-09-15,2026-09-25,1,1
+WT-18697,Task,Major - P3,1.0,Closed,2026-09-20,2026-09-24,1,0
+WT-18704,Bug,Major - P3,3.0,Closed,2026-09-21,2026-10-01,1,1
+WT-18705,Bug,Major - P3,3.0,Closed,2026-09-21,2026-10-08,1,1
+WT-18717,Bug,Major - P3,5.0,In Code Review,2026-09-22,,2,1
+WT-18722,Task,Major - P3,3.0,Closed,2026-09-23,2026-09-23,1,0
+WT-18724,Build Failure,Major - P3,3.0,Closed,2026-09-23,2026-10-11,1,1
+WT-18727,Task,Major - P3,3.0,Closed,2026-09-23,2026-09-24,1,0
+WT-18729,Task,Major - P3,2.0,Closed,2026-09-23,2026-09-24,1,0
+WT-18734,Task,Major - P3,3.0,Closed,2026-09-24,2026-10-01,2,0
+WT-18737,Task,Major - P3,2.0,Closed,2026-09-24,2026-09-25,1,0
+WT-18738,Task,Major - P3,1.0,Closed,2026-09-24,2026-09-25,1,0
+WT-18743,Bug,Major - P3,2.0,Closed,2026-09-24,2026-10-01,1,1
+WT-18744,Task,Major - P3,5.0,Closed,2026-09-24,2026-10-02,1,0
+WT-18747,Task,Major - P3,3.0,In Code Review,2026-09-25,,1,0
+WT-18751,Task,Major - P3,1.0,Closed,2026-09-25,2026-09-25,1,0
+WT-18768,Task,Major - P3,5.0,Open,2026-09-28,,1,0
+WT-18773,Bug,Major - P3,5.0,Closed,2026-09-29,2026-10-02,1,1
+WT-18786,Improvement,Major - P3,,Closed,2026-09-29,2026-10-07,1,0
+WT-18790,Task,Major - P3,5.0,Closed,2026-09-29,2026-10-12,1,0
+WT-18791,Bug,Major - P3,3.0,Closed,2026-09-30,2026-09-30,1,1
+WT-18803,Task,Major - P3,3.0,Closed,2026-10-01,2026-10-09,1,0
+WT-18804,Bug,Major - P3,,Closed,2026-10-01,2026-10-12,1,1

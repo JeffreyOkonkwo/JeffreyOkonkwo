@@ -6,6 +6,9 @@ Text analytics on 4,864 public comments from five platforms, process analysis, E
 **[Beat the Delay](beat-the-delay/)**: 15,800 real Toronto subway delays turned into a daily trip planner.
 Python cleaning pipeline, Excel model, Power BI star schema and DAX, and an interactive dashboard.
 
+**[Delivery Health Report](delivery-health-report/)**: a delivery health check of three real MongoDB engineering teams, 95 sprints and 2,943 public Jira tickets, with a RAID log and a 90-day recovery plan.
+Python pipeline, Excel model, Power BI report and a 5-page executive report.
+
 **[Agile Delivery Field Guides](agile-field-guides/)**: two free guides for delivery managers and Scrum Masters, covering sprint planning and the six delivery charts worth reading every sprint.
 
 ---

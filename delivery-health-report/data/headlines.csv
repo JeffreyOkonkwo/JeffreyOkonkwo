@@ -1,0 +1,5 @@
+,sprints,committed,say_do,median_sprint_say_do,added,added_pct,carried,items_done,cycle_p50,cycle_p85,review_share,blocked_share,flow_eff,review_p50,weekly_tp_p50
+SE Foundations,30.0,175.0,0.566,0.5,103.0,0.589,97.0,128.0,7.7,20.2,0.232,0.032,0.42,1.1,3.0
+SE Persistence,28.0,61.0,0.344,0.333,146.0,2.393,64.0,77.0,3.1,26.8,0.114,0.226,0.222,0.1,2.0
+SE Transactions,37.0,536.0,0.429,0.5,271.0,0.506,281.0,209.0,3.9,16.7,0.32,0.023,0.332,0.2,3.0
+All,95.0,772.0,0.453,0.5,520.0,0.674,442.0,414.0,4.1,18.2,0.232,0.085,0.327,0.6,5.0

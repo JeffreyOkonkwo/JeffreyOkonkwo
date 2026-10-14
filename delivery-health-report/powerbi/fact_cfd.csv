@@ -1,0 +1,829 @@
+team,date,stage,items
+SE Foundations,2025-04-01,To do,13
+SE Foundations,2025-04-08,Blocked,1
+SE Foundations,2025-04-08,To do,12
+SE Foundations,2025-04-15,Blocked,1
+SE Foundations,2025-04-15,To do,14
+SE Foundations,2025-04-22,In progress,1
+SE Foundations,2025-04-22,To do,14
+SE Foundations,2025-04-29,To do,16
+SE Foundations,2025-05-06,Done,1
+SE Foundations,2025-05-06,In progress,1
+SE Foundations,2025-05-06,In review,2
+SE Foundations,2025-05-06,To do,15
+SE Foundations,2025-05-13,Done,4
+SE Foundations,2025-05-13,In progress,2
+SE Foundations,2025-05-13,To do,15
+SE Foundations,2025-05-20,Done,5
+SE Foundations,2025-05-20,To do,16
+SE Foundations,2025-05-27,Done,5
+SE Foundations,2025-05-27,In progress,1
+SE Foundations,2025-05-27,In review,1
+SE Foundations,2025-05-27,To do,15
+SE Foundations,2025-06-03,Blocked,1
+SE Foundations,2025-06-03,Done,9
+SE Foundations,2025-06-03,In progress,4
+SE Foundations,2025-06-03,To do,12
+SE Foundations,2025-06-10,Blocked,1
+SE Foundations,2025-06-10,Done,10
+SE Foundations,2025-06-10,In progress,2
+SE Foundations,2025-06-10,In review,1
+SE Foundations,2025-06-10,To do,13
+SE Foundations,2025-06-17,Blocked,1
+SE Foundations,2025-06-17,Done,14
+SE Foundations,2025-06-17,In review,3
+SE Foundations,2025-06-17,To do,13
+SE Foundations,2025-06-24,Done,19
+SE Foundations,2025-06-24,In progress,1
+SE Foundations,2025-06-24,To do,11
+SE Foundations,2025-07-01,Done,20
+SE Foundations,2025-07-01,In progress,2
+SE Foundations,2025-07-01,To do,10
+SE Foundations,2025-07-08,Done,21
+SE Foundations,2025-07-08,To do,14
+SE Foundations,2025-07-15,Done,21
+SE Foundations,2025-07-15,To do,15
+SE Foundations,2025-07-22,Done,21
+SE Foundations,2025-07-22,To do,16
+SE Foundations,2025-07-29,Done,21
+SE Foundations,2025-07-29,To do,16
+SE Foundations,2025-08-05,Done,21
+SE Foundations,2025-08-05,In progress,2
+SE Foundations,2025-08-05,To do,16
+SE Foundations,2025-08-12,Done,23
+SE Foundations,2025-08-12,In progress,1
+SE Foundations,2025-08-12,In review,1
+SE Foundations,2025-08-12,To do,16
+SE Foundations,2025-08-19,Done,24
+SE Foundations,2025-08-19,In progress,2
+SE Foundations,2025-08-19,To do,16
+SE Foundations,2025-08-26,Done,26
+SE Foundations,2025-08-26,In progress,2
+SE Foundations,2025-08-26,In review,1
+SE Foundations,2025-08-26,To do,13
+SE Foundations,2025-09-02,Done,30
+SE Foundations,2025-09-02,To do,17
+SE Foundations,2025-09-09,Blocked,1
+SE Foundations,2025-09-09,Done,33
+SE Foundations,2025-09-09,In review,2
+SE Foundations,2025-09-09,To do,16
+SE Foundations,2025-09-16,Blocked,1
+SE Foundations,2025-09-16,Done,36
+SE Foundations,2025-09-16,In review,1
+SE Foundations,2025-09-16,To do,14
+SE Foundations,2025-09-23,Blocked,1
+SE Foundations,2025-09-23,Done,38
+SE Foundations,2025-09-23,In progress,1
+SE Foundations,2025-09-23,To do,14
+SE Foundations,2025-09-30,Blocked,1
+SE Foundations,2025-09-30,Done,40
+SE Foundations,2025-09-30,In progress,1
+SE Foundations,2025-09-30,To do,14
+SE Foundations,2025-10-07,Blocked,1
+SE Foundations,2025-10-07,Done,42
+SE Foundations,2025-10-07,In review,1
+SE Foundations,2025-10-07,To do,16
+SE Foundations,2025-10-14,Blocked,1
+SE Foundations,2025-10-14,Done,42
+SE Foundations,2025-10-14,In progress,1
+SE Foundations,2025-10-14,In review,2
+SE Foundations,2025-10-14,To do,18
+SE Foundations,2025-10-21,Done,49
+SE Foundations,2025-10-21,In progress,2
+SE Foundations,2025-10-21,To do,16
+SE Foundations,2025-10-28,Done,54
+SE Foundations,2025-10-28,To do,16
+SE Foundations,2025-11-04,Done,55
+SE Foundations,2025-11-04,To do,15
+SE Foundations,2025-11-11,Done,55
+SE Foundations,2025-11-11,To do,15
+SE Foundations,2025-11-18,Done,57
+SE Foundations,2025-11-18,In review,1
+SE Foundations,2025-11-18,To do,13
+SE Foundations,2025-11-25,Done,60
+SE Foundations,2025-11-25,To do,13
+SE Foundations,2025-12-02,Done,61
+SE Foundations,2025-12-02,To do,12
+SE Foundations,2025-12-09,Done,61
+SE Foundations,2025-12-09,To do,12
+SE Foundations,2025-12-16,Done,61
+SE Foundations,2025-12-16,To do,12
+SE Foundations,2025-12-23,Done,61
+SE Foundations,2025-12-23,To do,13
+SE Foundations,2025-12-30,Done,61
+SE Foundations,2025-12-30,To do,13
+SE Foundations,2026-01-06,Done,61
+SE Foundations,2026-01-06,In review,1
+SE Foundations,2026-01-06,To do,12
+SE Foundations,2026-01-13,Done,63
+SE Foundations,2026-01-13,To do,11
+SE Foundations,2026-01-20,Done,63
+SE Foundations,2026-01-20,To do,11
+SE Foundations,2026-01-27,Done,63
+SE Foundations,2026-01-27,To do,11
+SE Foundations,2026-02-03,Done,64
+SE Foundations,2026-02-03,To do,11
+SE Foundations,2026-02-10,Done,64
+SE Foundations,2026-02-10,To do,11
+SE Foundations,2026-02-17,Done,64
+SE Foundations,2026-02-17,To do,11
+SE Foundations,2026-02-24,Done,64
+SE Foundations,2026-02-24,To do,12
+SE Foundations,2026-03-03,Done,65
+SE Foundations,2026-03-03,To do,16
+SE Foundations,2026-03-10,Done,65
+SE Foundations,2026-03-10,To do,16
+SE Foundations,2026-03-17,Done,65
+SE Foundations,2026-03-17,To do,16
+SE Foundations,2026-03-24,Done,65
+SE Foundations,2026-03-24,To do,16
+SE Foundations,2026-03-31,Done,65
+SE Foundations,2026-03-31,To do,16
+SE Foundations,2026-04-07,Done,65
+SE Foundations,2026-04-07,To do,16
+SE Foundations,2026-04-14,Done,65
+SE Foundations,2026-04-14,To do,18
+SE Foundations,2026-04-21,Done,65
+SE Foundations,2026-04-21,In progress,1
+SE Foundations,2026-04-21,In review,1
+SE Foundations,2026-04-21,To do,17
+SE Foundations,2026-04-28,Done,66
+SE Foundations,2026-04-28,In progress,2
+SE Foundations,2026-04-28,In review,1
+SE Foundations,2026-04-28,To do,19
+SE Foundations,2026-05-05,Done,68
+SE Foundations,2026-05-05,In progress,2
+SE Foundations,2026-05-05,In review,2
+SE Foundations,2026-05-05,To do,18
+SE Foundations,2026-05-12,Done,72
+SE Foundations,2026-05-12,In review,3
+SE Foundations,2026-05-12,To do,19
+SE Foundations,2026-05-19,Done,72
+SE Foundations,2026-05-19,In progress,3
+SE Foundations,2026-05-19,In review,4
+SE Foundations,2026-05-19,To do,26
+SE Foundations,2026-05-26,Done,81
+SE Foundations,2026-05-26,In progress,2
+SE Foundations,2026-05-26,In review,1
+SE Foundations,2026-05-26,To do,25
+SE Foundations,2026-06-02,Done,84
+SE Foundations,2026-06-02,In progress,4
+SE Foundations,2026-06-02,In review,1
+SE Foundations,2026-06-02,To do,21
+SE Foundations,2026-06-09,Done,90
+SE Foundations,2026-06-09,In progress,2
+SE Foundations,2026-06-09,To do,21
+SE Foundations,2026-06-16,Done,94
+SE Foundations,2026-06-16,In progress,4
+SE Foundations,2026-06-16,In review,3
+SE Foundations,2026-06-16,To do,21
+SE Foundations,2026-06-23,Done,99
+SE Foundations,2026-06-23,In progress,4
+SE Foundations,2026-06-23,In review,3
+SE Foundations,2026-06-23,To do,23
+SE Foundations,2026-06-30,Done,102
+SE Foundations,2026-06-30,In progress,4
+SE Foundations,2026-06-30,In review,1
+SE Foundations,2026-06-30,To do,26
+SE Foundations,2026-07-07,Done,108
+SE Foundations,2026-07-07,In progress,5
+SE Foundations,2026-07-07,In review,3
+SE Foundations,2026-07-07,To do,31
+SE Foundations,2026-07-14,Blocked,1
+SE Foundations,2026-07-14,Done,114
+SE Foundations,2026-07-14,In progress,7
+SE Foundations,2026-07-14,In review,4
+SE Foundations,2026-07-14,To do,27
+SE Foundations,2026-07-21,Blocked,1
+SE Foundations,2026-07-21,Done,120
+SE Foundations,2026-07-21,In progress,3
+SE Foundations,2026-07-21,In review,6
+SE Foundations,2026-07-21,To do,28
+SE Foundations,2026-07-28,Blocked,2
+SE Foundations,2026-07-28,Done,126
+SE Foundations,2026-07-28,In progress,5
+SE Foundations,2026-07-28,In review,4
+SE Foundations,2026-07-28,To do,27
+SE Foundations,2026-08-04,Blocked,1
+SE Foundations,2026-08-04,Done,137
+SE Foundations,2026-08-04,In progress,4
+SE Foundations,2026-08-04,In review,5
+SE Foundations,2026-08-04,To do,22
+SE Foundations,2026-08-11,Blocked,1
+SE Foundations,2026-08-11,Done,147
+SE Foundations,2026-08-11,In progress,5
+SE Foundations,2026-08-11,In review,4
+SE Foundations,2026-08-11,To do,20
+SE Foundations,2026-08-18,Done,157
+SE Foundations,2026-08-18,In progress,4
+SE Foundations,2026-08-18,In review,1
+SE Foundations,2026-08-18,To do,24
+SE Foundations,2026-08-25,Done,163
+SE Foundations,2026-08-25,In review,6
+SE Foundations,2026-08-25,To do,24
+SE Foundations,2026-09-01,Blocked,1
+SE Foundations,2026-09-01,Done,168
+SE Foundations,2026-09-01,In progress,2
+SE Foundations,2026-09-01,In review,3
+SE Foundations,2026-09-01,To do,25
+SE Foundations,2026-09-08,Done,170
+SE Foundations,2026-09-08,In progress,1
+SE Foundations,2026-09-08,In review,3
+SE Foundations,2026-09-08,To do,25
+SE Foundations,2026-09-15,Done,171
+SE Foundations,2026-09-15,In review,2
+SE Foundations,2026-09-15,To do,32
+SE Foundations,2026-09-22,Done,173
+SE Foundations,2026-09-22,In progress,2
+SE Foundations,2026-09-22,In review,5
+SE Foundations,2026-09-22,To do,27
+SE Foundations,2026-09-29,Done,182
+SE Foundations,2026-09-29,In progress,4
+SE Foundations,2026-09-29,In review,6
+SE Foundations,2026-09-29,To do,22
+SE Foundations,2026-10-06,Done,187
+SE Foundations,2026-10-06,In progress,1
+SE Foundations,2026-10-06,In review,5
+SE Foundations,2026-10-06,To do,22
+SE Persistence,2025-04-01,To do,19
+SE Persistence,2025-04-08,In progress,1
+SE Persistence,2025-04-08,In review,1
+SE Persistence,2025-04-08,To do,18
+SE Persistence,2025-04-15,In review,3
+SE Persistence,2025-04-15,To do,19
+SE Persistence,2025-04-22,In review,3
+SE Persistence,2025-04-22,To do,19
+SE Persistence,2025-04-29,In review,3
+SE Persistence,2025-04-29,To do,19
+SE Persistence,2025-05-06,Done,4
+SE Persistence,2025-05-06,In progress,1
+SE Persistence,2025-05-06,In review,1
+SE Persistence,2025-05-06,To do,16
+SE Persistence,2025-05-13,Done,6
+SE Persistence,2025-05-13,In progress,2
+SE Persistence,2025-05-13,In review,1
+SE Persistence,2025-05-13,To do,19
+SE Persistence,2025-05-20,Done,7
+SE Persistence,2025-05-20,In progress,1
+SE Persistence,2025-05-20,To do,20
+SE Persistence,2025-05-27,Done,7
+SE Persistence,2025-05-27,In progress,2
+SE Persistence,2025-05-27,In review,1
+SE Persistence,2025-05-27,To do,18
+SE Persistence,2025-06-03,Done,8
+SE Persistence,2025-06-03,In progress,3
+SE Persistence,2025-06-03,To do,20
+SE Persistence,2025-06-10,Done,8
+SE Persistence,2025-06-10,In progress,1
+SE Persistence,2025-06-10,In review,1
+SE Persistence,2025-06-10,To do,23
+SE Persistence,2025-06-17,Done,11
+SE Persistence,2025-06-17,In progress,3
+SE Persistence,2025-06-17,In review,1
+SE Persistence,2025-06-17,To do,25
+SE Persistence,2025-06-24,Done,14
+SE Persistence,2025-06-24,In progress,2
+SE Persistence,2025-06-24,In review,1
+SE Persistence,2025-06-24,To do,27
+SE Persistence,2025-07-01,Done,18
+SE Persistence,2025-07-01,To do,26
+SE Persistence,2025-07-08,Done,19
+SE Persistence,2025-07-08,To do,25
+SE Persistence,2025-07-15,Done,19
+SE Persistence,2025-07-15,In progress,1
+SE Persistence,2025-07-15,To do,25
+SE Persistence,2025-07-22,Blocked,1
+SE Persistence,2025-07-22,Done,20
+SE Persistence,2025-07-22,In progress,1
+SE Persistence,2025-07-22,To do,23
+SE Persistence,2025-07-29,Blocked,1
+SE Persistence,2025-07-29,Done,21
+SE Persistence,2025-07-29,In progress,1
+SE Persistence,2025-07-29,To do,22
+SE Persistence,2025-08-05,Blocked,1
+SE Persistence,2025-08-05,Done,21
+SE Persistence,2025-08-05,In review,1
+SE Persistence,2025-08-05,To do,22
+SE Persistence,2025-08-12,Blocked,1
+SE Persistence,2025-08-12,Done,23
+SE Persistence,2025-08-12,In progress,1
+SE Persistence,2025-08-12,In review,1
+SE Persistence,2025-08-12,To do,19
+SE Persistence,2025-08-19,Blocked,1
+SE Persistence,2025-08-19,Done,24
+SE Persistence,2025-08-19,In review,1
+SE Persistence,2025-08-19,To do,19
+SE Persistence,2025-08-26,Blocked,1
+SE Persistence,2025-08-26,Done,25
+SE Persistence,2025-08-26,In review,1
+SE Persistence,2025-08-26,To do,18
+SE Persistence,2025-09-02,Blocked,1
+SE Persistence,2025-09-02,Done,26
+SE Persistence,2025-09-02,To do,20
+SE Persistence,2025-09-09,Blocked,1
+SE Persistence,2025-09-09,Done,28
+SE Persistence,2025-09-09,To do,20
+SE Persistence,2025-09-16,Blocked,1
+SE Persistence,2025-09-16,Done,28
+SE Persistence,2025-09-16,To do,21
+SE Persistence,2025-09-23,Blocked,1
+SE Persistence,2025-09-23,Done,30
+SE Persistence,2025-09-23,In review,1
+SE Persistence,2025-09-23,To do,19
+SE Persistence,2025-09-30,Blocked,1
+SE Persistence,2025-09-30,Done,31
+SE Persistence,2025-09-30,To do,19
+SE Persistence,2025-10-07,Blocked,1
+SE Persistence,2025-10-07,Done,31
+SE Persistence,2025-10-07,To do,21
+SE Persistence,2025-10-14,Blocked,1
+SE Persistence,2025-10-14,Done,31
+SE Persistence,2025-10-14,To do,22
+SE Persistence,2025-10-21,Blocked,1
+SE Persistence,2025-10-21,Done,34
+SE Persistence,2025-10-21,In progress,1
+SE Persistence,2025-10-21,To do,21
+SE Persistence,2025-10-28,Blocked,1
+SE Persistence,2025-10-28,Done,40
+SE Persistence,2025-10-28,In progress,1
+SE Persistence,2025-10-28,To do,30
+SE Persistence,2025-11-04,Blocked,1
+SE Persistence,2025-11-04,Done,47
+SE Persistence,2025-11-04,In progress,5
+SE Persistence,2025-11-04,To do,22
+SE Persistence,2025-11-11,Blocked,1
+SE Persistence,2025-11-11,Done,49
+SE Persistence,2025-11-11,In progress,1
+SE Persistence,2025-11-11,To do,31
+SE Persistence,2025-11-18,Blocked,1
+SE Persistence,2025-11-18,Done,57
+SE Persistence,2025-11-18,In progress,3
+SE Persistence,2025-11-18,To do,27
+SE Persistence,2025-11-25,Blocked,1
+SE Persistence,2025-11-25,Done,64
+SE Persistence,2025-11-25,To do,24
+SE Persistence,2025-12-02,Blocked,1
+SE Persistence,2025-12-02,Done,75
+SE Persistence,2025-12-02,In progress,1
+SE Persistence,2025-12-02,In review,2
+SE Persistence,2025-12-02,To do,19
+SE Persistence,2025-12-09,Blocked,1
+SE Persistence,2025-12-09,Done,80
+SE Persistence,2025-12-09,To do,17
+SE Persistence,2025-12-16,Blocked,1
+SE Persistence,2025-12-16,Done,81
+SE Persistence,2025-12-16,To do,16
+SE Persistence,2025-12-23,Blocked,1
+SE Persistence,2025-12-23,Done,82
+SE Persistence,2025-12-23,In progress,1
+SE Persistence,2025-12-23,To do,20
+SE Persistence,2025-12-30,Blocked,1
+SE Persistence,2025-12-30,Done,82
+SE Persistence,2025-12-30,In progress,2
+SE Persistence,2025-12-30,To do,20
+SE Persistence,2026-01-06,Blocked,1
+SE Persistence,2026-01-06,Done,83
+SE Persistence,2026-01-06,In progress,2
+SE Persistence,2026-01-06,To do,19
+SE Persistence,2026-01-13,Blocked,1
+SE Persistence,2026-01-13,Done,88
+SE Persistence,2026-01-13,In progress,1
+SE Persistence,2026-01-13,To do,18
+SE Persistence,2026-01-20,Blocked,1
+SE Persistence,2026-01-20,Done,91
+SE Persistence,2026-01-20,To do,17
+SE Persistence,2026-01-27,Blocked,1
+SE Persistence,2026-01-27,Done,91
+SE Persistence,2026-01-27,In progress,1
+SE Persistence,2026-01-27,In review,1
+SE Persistence,2026-01-27,To do,16
+SE Persistence,2026-02-03,Blocked,1
+SE Persistence,2026-02-03,Done,93
+SE Persistence,2026-02-03,In review,1
+SE Persistence,2026-02-03,To do,20
+SE Persistence,2026-02-10,Blocked,1
+SE Persistence,2026-02-10,Done,93
+SE Persistence,2026-02-10,In review,1
+SE Persistence,2026-02-10,To do,21
+SE Persistence,2026-02-17,Blocked,1
+SE Persistence,2026-02-17,Done,97
+SE Persistence,2026-02-17,In review,1
+SE Persistence,2026-02-17,To do,19
+SE Persistence,2026-02-24,Blocked,1
+SE Persistence,2026-02-24,Done,101
+SE Persistence,2026-02-24,In progress,1
+SE Persistence,2026-02-24,In review,1
+SE Persistence,2026-02-24,To do,16
+SE Persistence,2026-03-03,Blocked,1
+SE Persistence,2026-03-03,Done,108
+SE Persistence,2026-03-03,To do,17
+SE Persistence,2026-03-10,Blocked,1
+SE Persistence,2026-03-10,Done,110
+SE Persistence,2026-03-10,To do,16
+SE Persistence,2026-03-17,Blocked,1
+SE Persistence,2026-03-17,Done,112
+SE Persistence,2026-03-17,In review,1
+SE Persistence,2026-03-17,To do,18
+SE Persistence,2026-03-24,Blocked,2
+SE Persistence,2026-03-24,Done,116
+SE Persistence,2026-03-24,In progress,4
+SE Persistence,2026-03-24,In review,1
+SE Persistence,2026-03-24,To do,21
+SE Persistence,2026-03-31,Blocked,2
+SE Persistence,2026-03-31,Done,121
+SE Persistence,2026-03-31,In progress,3
+SE Persistence,2026-03-31,In review,1
+SE Persistence,2026-03-31,To do,18
+SE Persistence,2026-04-07,Blocked,3
+SE Persistence,2026-04-07,Done,122
+SE Persistence,2026-04-07,In progress,1
+SE Persistence,2026-04-07,In review,3
+SE Persistence,2026-04-07,To do,16
+SE Persistence,2026-04-14,Blocked,2
+SE Persistence,2026-04-14,Done,126
+SE Persistence,2026-04-14,In progress,1
+SE Persistence,2026-04-14,In review,1
+SE Persistence,2026-04-14,To do,15
+SE Persistence,2026-04-21,Blocked,2
+SE Persistence,2026-04-21,Done,128
+SE Persistence,2026-04-21,To do,15
+SE Persistence,2026-04-28,Blocked,1
+SE Persistence,2026-04-28,Done,131
+SE Persistence,2026-04-28,In progress,1
+SE Persistence,2026-04-28,To do,13
+SE Persistence,2026-05-05,Blocked,1
+SE Persistence,2026-05-05,Done,133
+SE Persistence,2026-05-05,In progress,1
+SE Persistence,2026-05-05,In review,2
+SE Persistence,2026-05-05,To do,12
+SE Persistence,2026-05-12,Blocked,1
+SE Persistence,2026-05-12,Done,139
+SE Persistence,2026-05-12,In progress,1
+SE Persistence,2026-05-12,To do,10
+SE Persistence,2026-05-19,Blocked,1
+SE Persistence,2026-05-19,Done,139
+SE Persistence,2026-05-19,To do,11
+SE Persistence,2026-05-26,Blocked,1
+SE Persistence,2026-05-26,Done,139
+SE Persistence,2026-05-26,To do,11
+SE Persistence,2026-06-02,Blocked,1
+SE Persistence,2026-06-02,Done,140
+SE Persistence,2026-06-02,In progress,1
+SE Persistence,2026-06-02,To do,9
+SE Persistence,2026-06-09,Blocked,2
+SE Persistence,2026-06-09,Done,140
+SE Persistence,2026-06-09,To do,9
+SE Persistence,2026-06-16,Blocked,2
+SE Persistence,2026-06-16,Done,140
+SE Persistence,2026-06-16,To do,9
+SE Persistence,2026-06-23,Blocked,1
+SE Persistence,2026-06-23,Done,140
+SE Persistence,2026-06-23,In progress,1
+SE Persistence,2026-06-23,To do,9
+SE Persistence,2026-06-30,Blocked,1
+SE Persistence,2026-06-30,Done,141
+SE Persistence,2026-06-30,To do,9
+SE Persistence,2026-07-07,Blocked,1
+SE Persistence,2026-07-07,Done,141
+SE Persistence,2026-07-07,To do,9
+SE Persistence,2026-07-14,Blocked,1
+SE Persistence,2026-07-14,Done,141
+SE Persistence,2026-07-14,To do,9
+SE Persistence,2026-07-21,Blocked,1
+SE Persistence,2026-07-21,Done,143
+SE Persistence,2026-07-21,To do,7
+SE Persistence,2026-07-28,Done,144
+SE Persistence,2026-07-28,To do,7
+SE Persistence,2026-08-04,Done,144
+SE Persistence,2026-08-04,To do,7
+SE Persistence,2026-08-11,Done,145
+SE Persistence,2026-08-11,To do,6
+SE Persistence,2026-08-18,Done,145
+SE Persistence,2026-08-18,To do,6
+SE Persistence,2026-08-25,Done,145
+SE Persistence,2026-08-25,To do,6
+SE Persistence,2026-09-01,Done,145
+SE Persistence,2026-09-01,To do,6
+SE Persistence,2026-09-08,Done,145
+SE Persistence,2026-09-08,To do,6
+SE Persistence,2026-09-15,Done,146
+SE Persistence,2026-09-15,To do,5
+SE Persistence,2026-09-22,Done,146
+SE Persistence,2026-09-22,To do,5
+SE Persistence,2026-09-29,Done,146
+SE Persistence,2026-09-29,To do,5
+SE Persistence,2026-10-06,Done,146
+SE Persistence,2026-10-06,To do,5
+SE Transactions,2025-04-01,Done,1
+SE Transactions,2025-04-01,To do,13
+SE Transactions,2025-04-08,Done,1
+SE Transactions,2025-04-08,To do,15
+SE Transactions,2025-04-15,To do,19
+SE Transactions,2025-04-22,In review,1
+SE Transactions,2025-04-22,To do,19
+SE Transactions,2025-04-29,Done,1
+SE Transactions,2025-04-29,In progress,1
+SE Transactions,2025-04-29,In review,1
+SE Transactions,2025-04-29,To do,17
+SE Transactions,2025-05-06,Done,5
+SE Transactions,2025-05-06,In progress,1
+SE Transactions,2025-05-06,In review,1
+SE Transactions,2025-05-06,To do,15
+SE Transactions,2025-05-13,Done,7
+SE Transactions,2025-05-13,In progress,2
+SE Transactions,2025-05-13,To do,13
+SE Transactions,2025-05-20,Done,9
+SE Transactions,2025-05-20,In review,2
+SE Transactions,2025-05-20,To do,13
+SE Transactions,2025-05-27,Done,13
+SE Transactions,2025-05-27,In review,2
+SE Transactions,2025-05-27,To do,14
+SE Transactions,2025-06-03,Done,17
+SE Transactions,2025-06-03,In progress,2
+SE Transactions,2025-06-03,In review,2
+SE Transactions,2025-06-03,To do,12
+SE Transactions,2025-06-10,Done,23
+SE Transactions,2025-06-10,In review,1
+SE Transactions,2025-06-10,To do,16
+SE Transactions,2025-06-17,Done,25
+SE Transactions,2025-06-17,In review,1
+SE Transactions,2025-06-17,To do,17
+SE Transactions,2025-06-24,Done,31
+SE Transactions,2025-06-24,In progress,2
+SE Transactions,2025-06-24,In review,2
+SE Transactions,2025-06-24,To do,15
+SE Transactions,2025-07-01,Done,36
+SE Transactions,2025-07-01,To do,16
+SE Transactions,2025-07-08,Done,36
+SE Transactions,2025-07-08,To do,18
+SE Transactions,2025-07-15,Done,37
+SE Transactions,2025-07-15,In progress,1
+SE Transactions,2025-07-15,To do,17
+SE Transactions,2025-07-22,Done,38
+SE Transactions,2025-07-22,In review,2
+SE Transactions,2025-07-22,To do,19
+SE Transactions,2025-07-29,Done,42
+SE Transactions,2025-07-29,In progress,2
+SE Transactions,2025-07-29,To do,16
+SE Transactions,2025-08-05,Done,43
+SE Transactions,2025-08-05,In review,1
+SE Transactions,2025-08-05,To do,18
+SE Transactions,2025-08-12,Done,46
+SE Transactions,2025-08-12,In progress,1
+SE Transactions,2025-08-12,To do,23
+SE Transactions,2025-08-19,Done,47
+SE Transactions,2025-08-19,In progress,1
+SE Transactions,2025-08-19,In review,2
+SE Transactions,2025-08-19,To do,26
+SE Transactions,2025-08-26,Done,53
+SE Transactions,2025-08-26,In progress,1
+SE Transactions,2025-08-26,In review,3
+SE Transactions,2025-08-26,To do,23
+SE Transactions,2025-09-02,Done,60
+SE Transactions,2025-09-02,To do,26
+SE Transactions,2025-09-09,Done,65
+SE Transactions,2025-09-09,In progress,1
+SE Transactions,2025-09-09,To do,25
+SE Transactions,2025-09-16,Done,67
+SE Transactions,2025-09-16,In progress,1
+SE Transactions,2025-09-16,To do,24
+SE Transactions,2025-09-23,Done,72
+SE Transactions,2025-09-23,In progress,1
+SE Transactions,2025-09-23,To do,26
+SE Transactions,2025-09-30,Done,75
+SE Transactions,2025-09-30,In progress,1
+SE Transactions,2025-09-30,In review,1
+SE Transactions,2025-09-30,To do,26
+SE Transactions,2025-10-07,Done,76
+SE Transactions,2025-10-07,In progress,2
+SE Transactions,2025-10-07,In review,1
+SE Transactions,2025-10-07,To do,26
+SE Transactions,2025-10-14,Done,79
+SE Transactions,2025-10-14,In progress,1
+SE Transactions,2025-10-14,In review,2
+SE Transactions,2025-10-14,To do,29
+SE Transactions,2025-10-21,Done,80
+SE Transactions,2025-10-21,In progress,1
+SE Transactions,2025-10-21,In review,2
+SE Transactions,2025-10-21,To do,31
+SE Transactions,2025-10-28,Done,83
+SE Transactions,2025-10-28,In review,2
+SE Transactions,2025-10-28,To do,30
+SE Transactions,2025-11-04,Done,88
+SE Transactions,2025-11-04,In review,1
+SE Transactions,2025-11-04,To do,31
+SE Transactions,2025-11-11,Done,88
+SE Transactions,2025-11-11,In review,2
+SE Transactions,2025-11-11,To do,32
+SE Transactions,2025-11-18,Done,93
+SE Transactions,2025-11-18,In progress,2
+SE Transactions,2025-11-18,In review,2
+SE Transactions,2025-11-18,To do,29
+SE Transactions,2025-11-25,Done,97
+SE Transactions,2025-11-25,In review,1
+SE Transactions,2025-11-25,To do,31
+SE Transactions,2025-12-02,Done,100
+SE Transactions,2025-12-02,In review,1
+SE Transactions,2025-12-02,To do,32
+SE Transactions,2025-12-09,Done,104
+SE Transactions,2025-12-09,In progress,1
+SE Transactions,2025-12-09,In review,1
+SE Transactions,2025-12-09,To do,28
+SE Transactions,2025-12-16,Blocked,1
+SE Transactions,2025-12-16,Done,108
+SE Transactions,2025-12-16,In progress,1
+SE Transactions,2025-12-16,In review,1
+SE Transactions,2025-12-16,To do,31
+SE Transactions,2025-12-23,Done,108
+SE Transactions,2025-12-23,In progress,1
+SE Transactions,2025-12-23,In review,1
+SE Transactions,2025-12-23,To do,35
+SE Transactions,2025-12-30,Done,108
+SE Transactions,2025-12-30,In progress,1
+SE Transactions,2025-12-30,In review,2
+SE Transactions,2025-12-30,To do,35
+SE Transactions,2026-01-06,Done,110
+SE Transactions,2026-01-06,In progress,1
+SE Transactions,2026-01-06,In review,2
+SE Transactions,2026-01-06,To do,34
+SE Transactions,2026-01-13,Done,116
+SE Transactions,2026-01-13,In progress,1
+SE Transactions,2026-01-13,In review,4
+SE Transactions,2026-01-13,To do,33
+SE Transactions,2026-01-20,Done,120
+SE Transactions,2026-01-20,In progress,1
+SE Transactions,2026-01-20,In review,1
+SE Transactions,2026-01-20,To do,35
+SE Transactions,2026-01-27,Done,122
+SE Transactions,2026-01-27,In review,1
+SE Transactions,2026-01-27,To do,38
+SE Transactions,2026-02-03,Done,123
+SE Transactions,2026-02-03,In progress,1
+SE Transactions,2026-02-03,In review,1
+SE Transactions,2026-02-03,To do,38
+SE Transactions,2026-02-10,Done,127
+SE Transactions,2026-02-10,In review,1
+SE Transactions,2026-02-10,To do,39
+SE Transactions,2026-02-17,Blocked,1
+SE Transactions,2026-02-17,Done,128
+SE Transactions,2026-02-17,In review,2
+SE Transactions,2026-02-17,To do,38
+SE Transactions,2026-02-24,Blocked,1
+SE Transactions,2026-02-24,Done,132
+SE Transactions,2026-02-24,In review,1
+SE Transactions,2026-02-24,To do,45
+SE Transactions,2026-03-03,Blocked,1
+SE Transactions,2026-03-03,Done,134
+SE Transactions,2026-03-03,In review,2
+SE Transactions,2026-03-03,To do,44
+SE Transactions,2026-03-10,Blocked,1
+SE Transactions,2026-03-10,Done,137
+SE Transactions,2026-03-10,In progress,1
+SE Transactions,2026-03-10,In review,2
+SE Transactions,2026-03-10,To do,46
+SE Transactions,2026-03-17,Blocked,1
+SE Transactions,2026-03-17,Done,139
+SE Transactions,2026-03-17,In review,1
+SE Transactions,2026-03-17,To do,47
+SE Transactions,2026-03-24,Blocked,1
+SE Transactions,2026-03-24,Done,139
+SE Transactions,2026-03-24,In review,3
+SE Transactions,2026-03-24,To do,47
+SE Transactions,2026-03-31,Blocked,1
+SE Transactions,2026-03-31,Done,139
+SE Transactions,2026-03-31,In progress,1
+SE Transactions,2026-03-31,In review,4
+SE Transactions,2026-03-31,To do,56
+SE Transactions,2026-04-07,Blocked,1
+SE Transactions,2026-04-07,Done,139
+SE Transactions,2026-04-07,In progress,3
+SE Transactions,2026-04-07,In review,8
+SE Transactions,2026-04-07,To do,51
+SE Transactions,2026-04-14,Blocked,1
+SE Transactions,2026-04-14,Done,142
+SE Transactions,2026-04-14,In progress,1
+SE Transactions,2026-04-14,In review,8
+SE Transactions,2026-04-14,To do,51
+SE Transactions,2026-04-21,Done,146
+SE Transactions,2026-04-21,In progress,2
+SE Transactions,2026-04-21,In review,6
+SE Transactions,2026-04-21,To do,54
+SE Transactions,2026-04-28,Done,155
+SE Transactions,2026-04-28,In progress,1
+SE Transactions,2026-04-28,In review,2
+SE Transactions,2026-04-28,To do,56
+SE Transactions,2026-05-05,Blocked,1
+SE Transactions,2026-05-05,Done,161
+SE Transactions,2026-05-05,In progress,2
+SE Transactions,2026-05-05,In review,3
+SE Transactions,2026-05-05,To do,55
+SE Transactions,2026-05-12,Blocked,1
+SE Transactions,2026-05-12,Done,168
+SE Transactions,2026-05-12,In progress,3
+SE Transactions,2026-05-12,In review,2
+SE Transactions,2026-05-12,To do,66
+SE Transactions,2026-05-19,Blocked,1
+SE Transactions,2026-05-19,Done,171
+SE Transactions,2026-05-19,In progress,1
+SE Transactions,2026-05-19,In review,7
+SE Transactions,2026-05-19,To do,65
+SE Transactions,2026-05-26,Blocked,1
+SE Transactions,2026-05-26,Done,185
+SE Transactions,2026-05-26,In progress,5
+SE Transactions,2026-05-26,In review,10
+SE Transactions,2026-05-26,To do,66
+SE Transactions,2026-06-02,Blocked,2
+SE Transactions,2026-06-02,Done,204
+SE Transactions,2026-06-02,In progress,3
+SE Transactions,2026-06-02,In review,7
+SE Transactions,2026-06-02,To do,69
+SE Transactions,2026-06-09,Blocked,2
+SE Transactions,2026-06-09,Done,220
+SE Transactions,2026-06-09,In progress,1
+SE Transactions,2026-06-09,In review,5
+SE Transactions,2026-06-09,To do,69
+SE Transactions,2026-06-16,Blocked,2
+SE Transactions,2026-06-16,Done,226
+SE Transactions,2026-06-16,In progress,3
+SE Transactions,2026-06-16,In review,5
+SE Transactions,2026-06-16,To do,71
+SE Transactions,2026-06-23,Blocked,2
+SE Transactions,2026-06-23,Done,242
+SE Transactions,2026-06-23,In progress,1
+SE Transactions,2026-06-23,In review,2
+SE Transactions,2026-06-23,To do,68
+SE Transactions,2026-06-30,Blocked,2
+SE Transactions,2026-06-30,Done,252
+SE Transactions,2026-06-30,In progress,1
+SE Transactions,2026-06-30,In review,2
+SE Transactions,2026-06-30,To do,65
+SE Transactions,2026-07-07,Blocked,1
+SE Transactions,2026-07-07,Done,264
+SE Transactions,2026-07-07,In progress,2
+SE Transactions,2026-07-07,In review,3
+SE Transactions,2026-07-07,To do,64
+SE Transactions,2026-07-14,Blocked,1
+SE Transactions,2026-07-14,Done,272
+SE Transactions,2026-07-14,In progress,2
+SE Transactions,2026-07-14,In review,4
+SE Transactions,2026-07-14,To do,71
+SE Transactions,2026-07-21,Blocked,1
+SE Transactions,2026-07-21,Done,285
+SE Transactions,2026-07-21,In progress,2
+SE Transactions,2026-07-21,In review,4
+SE Transactions,2026-07-21,To do,72
+SE Transactions,2026-07-28,Blocked,1
+SE Transactions,2026-07-28,Done,294
+SE Transactions,2026-07-28,In progress,5
+SE Transactions,2026-07-28,In review,3
+SE Transactions,2026-07-28,To do,72
+SE Transactions,2026-08-04,Blocked,2
+SE Transactions,2026-08-04,Done,299
+SE Transactions,2026-08-04,In progress,6
+SE Transactions,2026-08-04,In review,4
+SE Transactions,2026-08-04,To do,76
+SE Transactions,2026-08-11,Blocked,3
+SE Transactions,2026-08-11,Done,319
+SE Transactions,2026-08-11,In progress,4
+SE Transactions,2026-08-11,In review,5
+SE Transactions,2026-08-11,To do,78
+SE Transactions,2026-08-18,Blocked,3
+SE Transactions,2026-08-18,Done,335
+SE Transactions,2026-08-18,In progress,2
+SE Transactions,2026-08-18,In review,5
+SE Transactions,2026-08-18,To do,72
+SE Transactions,2026-08-25,Blocked,3
+SE Transactions,2026-08-25,Done,360
+SE Transactions,2026-08-25,In progress,6
+SE Transactions,2026-08-25,In review,2
+SE Transactions,2026-08-25,To do,64
+SE Transactions,2026-09-01,Blocked,4
+SE Transactions,2026-09-01,Done,370
+SE Transactions,2026-09-01,In progress,5
+SE Transactions,2026-09-01,In review,6
+SE Transactions,2026-09-01,To do,57
+SE Transactions,2026-09-08,Blocked,4
+SE Transactions,2026-09-08,Done,396
+SE Transactions,2026-09-08,In progress,4
+SE Transactions,2026-09-08,In review,5
+SE Transactions,2026-09-08,To do,44
+SE Transactions,2026-09-15,Blocked,4
+SE Transactions,2026-09-15,Done,417
+SE Transactions,2026-09-15,In progress,4
+SE Transactions,2026-09-15,In review,1
+SE Transactions,2026-09-15,To do,38
+SE Transactions,2026-09-22,Blocked,4
+SE Transactions,2026-09-22,Done,420
+SE Transactions,2026-09-22,In progress,5
+SE Transactions,2026-09-22,In review,3
+SE Transactions,2026-09-22,To do,34
+SE Transactions,2026-09-29,Blocked,4
+SE Transactions,2026-09-29,Done,427
+SE Transactions,2026-09-29,In progress,3
+SE Transactions,2026-09-29,In review,3
+SE Transactions,2026-09-29,To do,35
+SE Transactions,2026-10-06,Blocked,5
+SE Transactions,2026-10-06,Done,433
+SE Transactions,2026-10-06,In progress,3
+SE Transactions,2026-10-06,In review,2
+SE Transactions,2026-10-06,To do,34
