@@ -2,6 +2,8 @@
 
 **An outside-in delivery health check of a real engineering program: three MongoDB storage engine teams, 95 two-week sprints, 2,943 public Jira tickets, April 2025 to October 2026.**
 
+**Watch the 60-second Power BI walkthrough:** [assets/Delivery_Health_PowerBI.mp4](assets/Delivery_Health_PowerBI.mp4)
+
 [Read the 5-page report (PDF)](reports/Delivery_Health_Report.pdf) · [Excel model](excel/Delivery_Health_Model.xlsx) · [Power BI project](powerbi/) · [Python pipeline](pipeline/)
 
 ![Report preview](assets/report_preview.png)
