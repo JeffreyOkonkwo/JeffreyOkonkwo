@@ -61,12 +61,12 @@
                       "Entity": "_Measures"
                     }
                   },
-                  "Property": "Done Date"
+                  "Property": "Done Day"
                 }
               },
-              "queryRef": "_Measures.Done Date",
-              "nativeQueryRef": "Done Date",
-              "displayName": "Done"
+              "queryRef": "_Measures.Done Day",
+              "nativeQueryRef": "Done Day",
+              "displayName": "Days since April 2025"
             }
           ]
         },
@@ -124,7 +124,7 @@
             "showAxisTitle": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -132,6 +132,31 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Days since April 2025'"
+                }
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#4A4F4C'"
+                    }
+                  }
+                }
+              }
+            },
+            "titleFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
                 }
               }
             }

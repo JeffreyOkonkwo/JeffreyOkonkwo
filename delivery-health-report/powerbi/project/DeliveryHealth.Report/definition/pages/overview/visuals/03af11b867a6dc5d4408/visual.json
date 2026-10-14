@@ -23,12 +23,12 @@
                       "Entity": "fact_sprint"
                     }
                   },
-                  "Property": "start"
+                  "Property": "sprint_no"
                 }
               },
-              "queryRef": "fact_sprint.start",
-              "nativeQueryRef": "start",
-              "displayName": "Sprint start"
+              "queryRef": "fact_sprint.sprint_no",
+              "nativeQueryRef": "sprint_no",
+              "displayName": "Sprint number"
             }
           ]
         },
@@ -81,7 +81,7 @@
                     "Entity": "fact_sprint"
                   }
                 },
-                "Property": "start"
+                "Property": "sprint_no"
               }
             },
             "direction": "Ascending"
@@ -123,7 +123,7 @@
             "showAxisTitle": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
                 }
               }
             },
@@ -137,7 +137,32 @@
             "axisType": {
               "expr": {
                 "Literal": {
-                  "Value": "'Continuous'"
+                  "Value": "'Scalar'"
+                }
+              }
+            },
+            "titleText": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Sprint number'"
+                }
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#4A4F4C'"
+                    }
+                  }
+                }
+              }
+            },
+            "titleFontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
                 }
               }
             }

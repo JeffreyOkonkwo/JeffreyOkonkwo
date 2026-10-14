@@ -24,9 +24,11 @@ in
 let
     Source = Csv.Document(Web.Contents(DataRoot & "fact_sprint.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
     Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
-    Typed = Table.TransformColumnTypes(Promoted, {{"team", type text}, {"sprint", type text}, {"sprint_id", Int64.Type}, {"sprint_no", Int64.Type}, {"start", type date}, {"end", type date}, {"half", type text}, {"committed", Int64.Type}, {"committed_done", Int64.Type}, {"added", Int64.Type}, {"added_done", Int64.Type}, {"total_done", Int64.Type}, {"carried_over", Int64.Type}, {"removed", Int64.Type}, {"committed_pts", type number}, {"committed_pts_done", type number}}, "en-US")
+    Typed = Table.TransformColumnTypes(Promoted, {{"team", type text}, {"sprint", type text}, {"sprint_id", Int64.Type}, {"sprint_no", Int64.Type}, {"start", type date}, {"end", type date}, {"half", type text}, {"committed", Int64.Type}, {"committed_done", Int64.Type}, {"added", Int64.Type}, {"added_done", Int64.Type}, {"total_done", Int64.Type}, {"carried_over", Int64.Type}, {"removed", Int64.Type}, {"committed_pts", type number}, {"committed_pts_done", type number}}, "en-US"),
+    Label = Table.AddColumn(Typed, "sprint_label", each Text.AfterDelimiter([sprint], " - "), type text),
+    Result = Label
 in
-    Typed
+    Result
 
 // ---- Query name: fact_sprint_item
 let
@@ -40,9 +42,11 @@ in
 let
     Source = Csv.Document(Web.Contents(DataRoot & "fact_flow.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
     Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
-    Typed = Table.TransformColumnTypes(Promoted, {{"key", type text}, {"team", type text}, {"type", type text}, {"started", type date}, {"done", type date}, {"cycle_days", type number}, {"in_progress_days", type number}, {"code_review_days", type number}, {"blocked_days", type number}, {"other_wait_days", type number}}, "en-US")
+    Typed = Table.TransformColumnTypes(Promoted, {{"key", type text}, {"team", type text}, {"type", type text}, {"started", type date}, {"done", type date}, {"cycle_days", type number}, {"in_progress_days", type number}, {"code_review_days", type number}, {"blocked_days", type number}, {"other_wait_days", type number}}, "en-US"),
+    DoneDay = Table.AddColumn(Typed, "done_day", each Duration.Days([done] - #date(2025, 4, 1)), Int64.Type),
+    Result = DoneDay
 in
-    Typed
+    Result
 
 // ---- Query name: fact_throughput
 let

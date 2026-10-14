@@ -212,9 +212,9 @@
             "displayFolder": "2 Flow"
           },
           {
-            "name": "Done Date",
-            "expression": "MIN ( fact_flow[done] )",
-            "formatString": "mmm yyyy",
+            "name": "Done Day",
+            "expression": "// days from 1 April 2025 to the day the item was finished (numeric x axis for the scatter)\nMIN ( fact_flow[done_day] )",
+            "formatString": "0",
             "displayFolder": "2 Flow"
           },
           {
@@ -371,14 +371,14 @@
             "dataType": "dateTime",
             "sourceColumn": "start",
             "summarizeBy": "none",
-            "formatString": "yyyy-mm-dd"
+            "formatString": "dd mmm yy"
           },
           {
             "name": "end",
             "dataType": "dateTime",
             "sourceColumn": "end",
             "summarizeBy": "none",
-            "formatString": "yyyy-mm-dd"
+            "formatString": "dd mmm yy"
           },
           {
             "name": "half",
@@ -448,6 +448,12 @@
             "sourceColumn": "committed_pts_done",
             "summarizeBy": "none",
             "formatString": "0.0"
+          },
+          {
+            "name": "sprint_label",
+            "dataType": "string",
+            "sourceColumn": "sprint_label",
+            "summarizeBy": "none"
           }
         ],
         "partitions": [
@@ -460,9 +466,11 @@
                 "let",
                 "    Source = Csv.Document(Web.Contents(DataRoot & \"fact_sprint.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
                 "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
-                "    Typed = Table.TransformColumnTypes(Promoted, {{\"team\", type text}, {\"sprint\", type text}, {\"sprint_id\", Int64.Type}, {\"sprint_no\", Int64.Type}, {\"start\", type date}, {\"end\", type date}, {\"half\", type text}, {\"committed\", Int64.Type}, {\"committed_done\", Int64.Type}, {\"added\", Int64.Type}, {\"added_done\", Int64.Type}, {\"total_done\", Int64.Type}, {\"carried_over\", Int64.Type}, {\"removed\", Int64.Type}, {\"committed_pts\", type number}, {\"committed_pts_done\", type number}}, \"en-US\")",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"team\", type text}, {\"sprint\", type text}, {\"sprint_id\", Int64.Type}, {\"sprint_no\", Int64.Type}, {\"start\", type date}, {\"end\", type date}, {\"half\", type text}, {\"committed\", Int64.Type}, {\"committed_done\", Int64.Type}, {\"added\", Int64.Type}, {\"added_done\", Int64.Type}, {\"total_done\", Int64.Type}, {\"carried_over\", Int64.Type}, {\"removed\", Int64.Type}, {\"committed_pts\", type number}, {\"committed_pts_done\", type number}}, \"en-US\"),",
+                "    Label = Table.AddColumn(Typed, \"sprint_label\", each Text.AfterDelimiter([sprint], \" - \"), type text),",
+                "    Result = Label",
                 "in",
-                "    Typed"
+                "    Result"
               ]
             }
           }
@@ -579,14 +587,14 @@
             "dataType": "dateTime",
             "sourceColumn": "started",
             "summarizeBy": "none",
-            "formatString": "yyyy-mm-dd"
+            "formatString": "dd mmm yy"
           },
           {
             "name": "done",
             "dataType": "dateTime",
             "sourceColumn": "done",
             "summarizeBy": "none",
-            "formatString": "yyyy-mm-dd"
+            "formatString": "dd mmm yy"
           },
           {
             "name": "cycle_days",
@@ -622,6 +630,13 @@
             "sourceColumn": "other_wait_days",
             "summarizeBy": "none",
             "formatString": "0.0"
+          },
+          {
+            "name": "done_day",
+            "dataType": "int64",
+            "sourceColumn": "done_day",
+            "summarizeBy": "none",
+            "formatString": "0"
           }
         ],
         "partitions": [
@@ -634,9 +649,11 @@
                 "let",
                 "    Source = Csv.Document(Web.Contents(DataRoot & \"fact_flow.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
                 "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
-                "    Typed = Table.TransformColumnTypes(Promoted, {{\"key\", type text}, {\"team\", type text}, {\"type\", type text}, {\"started\", type date}, {\"done\", type date}, {\"cycle_days\", type number}, {\"in_progress_days\", type number}, {\"code_review_days\", type number}, {\"blocked_days\", type number}, {\"other_wait_days\", type number}}, \"en-US\")",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"key\", type text}, {\"team\", type text}, {\"type\", type text}, {\"started\", type date}, {\"done\", type date}, {\"cycle_days\", type number}, {\"in_progress_days\", type number}, {\"code_review_days\", type number}, {\"blocked_days\", type number}, {\"other_wait_days\", type number}}, \"en-US\"),",
+                "    DoneDay = Table.AddColumn(Typed, \"done_day\", each Duration.Days([done] - #date(2025, 4, 1)), Int64.Type),",
+                "    Result = DoneDay",
                 "in",
-                "    Typed"
+                "    Result"
               ]
             }
           }
@@ -657,7 +674,7 @@
             "dataType": "dateTime",
             "sourceColumn": "week",
             "summarizeBy": "none",
-            "formatString": "yyyy-mm-dd"
+            "formatString": "dd mmm yy"
           },
           {
             "name": "done",
@@ -700,7 +717,7 @@
             "dataType": "dateTime",
             "sourceColumn": "date",
             "summarizeBy": "none",
-            "formatString": "yyyy-mm-dd"
+            "formatString": "dd mmm yy"
           },
           {
             "name": "stage",

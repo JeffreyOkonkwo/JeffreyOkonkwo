@@ -85,7 +85,9 @@ Blocked Share = DIVIDE ( [Blocked Days], [Cycle Days] )
 
 Other Wait Share = DIVIDE ( [Other Wait Days], [Cycle Days] )
 
-Done Date = MIN ( fact_flow[done] )
+Done Day =
+    // days from 1 April 2025 to the day the item was finished (numeric x axis for the scatter)
+    MIN ( fact_flow[done_day] )
 
 Cycle Days Plot =
     // floors same-day items at 0.1 day so they can sit on a log scale
